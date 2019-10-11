@@ -323,9 +323,4 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		return new SpecificDate(currentSelectedDay, currentSelectedMonth, currentSelectedYear, chckbxAnnoDomini.isSelected());
 	}
 
-	public void activate(SpecificDate specificDate) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

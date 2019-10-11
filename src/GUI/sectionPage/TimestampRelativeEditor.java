@@ -58,7 +58,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		comboBox = new JComboBox<ComboItem>();
 		panel_selectRelativeSection.add(comboBox);
 		for(Section section : Book.getInstance().getSectionList().getSections()) {
-			if(!my_section.getID().getIDtoString().equals(section.getID().getIDtoString())) {				
+			if(!my_section.equals(section)) {				
 				comboBox.addItem(new ComboItem(section.getName(), section.getID()));
 			}
 		}

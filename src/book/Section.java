@@ -228,4 +228,12 @@ public class Section {
 		String[] words = my_text.split("\\s+");
 	    return words.length;
 	}
+	
+	public boolean equals(Section otherSection) {
+		return this.my_uID.getIDtoString().equals(otherSection.getID().getIDtoString());
+	}
+	
+	public boolean equals(ObjectID otherSection) {
+		return this.my_uID.getIDtoString().equals(otherSection.getIDtoString());
+	}
 }

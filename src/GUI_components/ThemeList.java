@@ -9,7 +9,7 @@ public class ThemeList {
 	
 	public final static Theme BluePhoenixTheme = new Theme("Blue Phoenix", Color.WHITE, new Color(0,145,255),
 			Color.WHITE, new Color(0,91,166),
-			Color.WHITE, new Color(0,91,166), new Color(165,45,0), new Color(115,195,255), Color.WHITE,
+			Color.WHITE, new Color(0,91,166), new Color(165,45,0), new Color(115,195,255), Color.WHITE,	//TODO: ButtonFontColor does not have enough contrast
 			new Color(0,145,255),
 			new Color(255,75,0));
 	

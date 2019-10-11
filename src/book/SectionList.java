@@ -23,7 +23,7 @@ public class SectionList {
 		if(my_sections == null) {my_sections = new ArrayList<Section>();}
 		ArrayList<Section> new_sectionList = new ArrayList<Section>();
 		for(Section section : my_sections) {
-			if(section.getID().getIDtoString().equals(newSection.getID().getIDtoString())) {
+			if(section.equals(newSection)) {
 				new_sectionList.add(newSection);
 			} else {
 				new_sectionList.add(section);
@@ -53,7 +53,7 @@ public class SectionList {
 		if(my_sections == null) {my_sections = new ArrayList<Section>();}
 		ArrayList<Section> new_sortedSectionList = new ArrayList<Section>();
 		for(Section section : my_sections) {
-			if(section.getID().getIDtoString().equals(sectionID.getIDtoString())) {
+			if(section.equals(sectionID)) {
 				Section lastSection = new_sortedSectionList.get(new_sortedSectionList.size() - 1);
 				new_sortedSectionList.remove(new_sortedSectionList.size() - 1);
 				new_sortedSectionList.add(section);
@@ -73,7 +73,7 @@ public class SectionList {
 		ArrayList<Section> newSortedSectionTail = new ArrayList<Section>();
 		boolean found = false;
 		for(Section section : my_sections) {
-			if(section.getID().getIDtoString().equals(sectionID.getIDtoString())) {
+			if(section.equals(sectionID)) {
 				found = true;
 				newSortedSectionTail.add(section);
 			} else {
@@ -222,7 +222,7 @@ public class SectionList {
 	public Section getPreSection(Section inputSection) {
 		Section preSection = null;
 		for(Section currentSection : my_sections) {
-			if(currentSection.getID().getIDtoString().equals(inputSection.getID().getIDtoString())) {
+			if(currentSection.equals(inputSection)) {
 				return preSection;
 			}
 			preSection = currentSection;
@@ -232,12 +232,11 @@ public class SectionList {
 
 	public Section getSection(ObjectID sectionID) {
 		for(Section section : my_sections) {
-			if(section.getID().getIDtoString().equals(sectionID.getIDtoString())) {
+			if(section.equals(sectionID)) {
 				return section;
 			}
 		}
 		return null;
 	}
-	
 	
 }

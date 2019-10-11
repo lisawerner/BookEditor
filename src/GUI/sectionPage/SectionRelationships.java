@@ -52,7 +52,7 @@ public class SectionRelationships extends TransparentPanel {
 					lblWARNING.setText("You have to choose two persons for setting a relationship.");
 					canSave = false;
 				} else {
-					if(personA.getID().getIDtoString().equals(personB.getID().getIDtoString())) {
+					if(personA.equals(personB)) {
 						lblWARNING.setText("You have to choose two different persons for setting a relationship.");
 						canSave = false;
 					}

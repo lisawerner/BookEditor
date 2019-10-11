@@ -121,7 +121,6 @@ public class SectionTimeEditor extends Page {
 		
 		if(my_section.hasTimestamp()) {
 			if(my_section.getTimestamp().isSpecificDate()) {
-				panel_specificBODY.activate(my_section.getTimestamp().getSpecificDate());
 				rdbtnSpecificTimestamp.setSelected(true);
 				panel_specificBODY.switchEnabled(true);
 			}

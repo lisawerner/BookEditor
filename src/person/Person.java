@@ -110,5 +110,13 @@ public class Person {
 	public boolean isSomebody() {
 		return !isSuperMainCharapter && !isMainCharapter;
 	}
+	
+	public boolean equals(Person otherPerson) {
+		return this.my_uID.getIDtoString().equals(otherPerson.getID().getIDtoString());
+	}
+	
+	public boolean equals(ObjectID otherPerson) {
+		return this.my_uID.getIDtoString().equals(otherPerson.getIDtoString());
+	}
 
 }

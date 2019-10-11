@@ -13,7 +13,7 @@ import global.FileManager;
 
 public class Book {
 	
-	private static Book my_instance; //TODO, damit es nicht mehr im Frame gespeichert werden muss und einfach immer so geladen werden kann :D
+	private static Book my_instance;
 	private ObjectID my_uID;
 	private String my_filename;
 	private Theme my_theme;
@@ -146,7 +146,7 @@ public class Book {
 		ArrayList<Person> newList = new ArrayList<Person>();
 		
 		for(Person person : my_persons) {
-			if(person.getID().getIDtoString().equals(personID.getIDtoString())) {
+			if(person.equals(personID)) {
 				newList.add(newPerson);
 			} else {
 				newList.add(person);
@@ -160,7 +160,7 @@ public class Book {
 	
 	public Person getPerson(ObjectID personID) {
 		for(Person person : my_persons) {
-			if(person.getID().getIDtoString().equals(personID.getIDtoString())) {
+			if(person.equals(personID)) {
 				return person;
 			}
 		}
@@ -196,7 +196,7 @@ public class Book {
 
 	public Place getPlace(ObjectID placeID) {
 		for(Place place : my_world) {
-			if(place.getID().getIDtoString().equals(placeID.getIDtoString())) {
+			if(place.equals(placeID)) {
 				return place;
 			}
 		}

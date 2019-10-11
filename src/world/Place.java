@@ -135,5 +135,13 @@ public class Place {
 			my_childrenPlaces = sortedChildrenList;
 		}
 	}
+	
+	public boolean equals(Place otherPlace) {
+		return this.my_uID.getIDtoString().equals(otherPlace.getID().getIDtoString());
+	}
+	
+	public boolean equals(ObjectID otherPlace) {
+		return this.my_uID.getIDtoString().equals(otherPlace.getIDtoString());
+	}
 
 }

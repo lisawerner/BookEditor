@@ -197,7 +197,7 @@ public class PlaceEditor extends PageBody {
 	private void setInput() {
 		for(Place p : Book.getInstance().getPlaces()) {
 			if(my_place != null) {				
-				if(!p.getID().getIDtoString().equals(my_place.getID().getIDtoString())) {
+				if(!p.equals(my_place)) {
 					comboBox.addItem(new ComboItem(p.getName(), p.getID()));	
 				}
 			} else {

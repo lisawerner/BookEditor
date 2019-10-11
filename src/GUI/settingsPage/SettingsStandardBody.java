@@ -178,6 +178,7 @@ public class SettingsStandardBody extends PageBody {
 		rdbtnPrintChaptername.setSelected(Book.getInstance().printChapterName());
 		printSettings_body.add(rdbtnPrintChaptername);
 		//********************************************************************
+		
 	}
 
 	public String getBookTitle() {

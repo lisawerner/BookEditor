@@ -45,7 +45,7 @@ public class SortChapterElement extends TransparentPanel {
 		panel_move.setLayout(new BorderLayout(5, 5));
 		
 		JButton btn_makeToChapter = new JButton("<");
-		btn_makeToChapter.setEnabled(!my_section.isChapter());
+		btn_makeToChapter.setEnabled(!my_section.isChapter() || my_section.isUnsorted());
 		btn_makeToChapter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.makeToChapter();
@@ -89,7 +89,7 @@ public class SortChapterElement extends TransparentPanel {
 		panel_buttonplacer.add(btnDelete, BorderLayout.CENTER);
 		
 		JButton btn_removeChapterStatus = new JButton(">");
-		btn_removeChapterStatus.setEnabled(my_section.isChapter());
+		btn_removeChapterStatus.setEnabled(my_section.isChapter() || my_section.isUnsorted());
 		btn_removeChapterStatus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.removeChapterStatus();
