@@ -142,7 +142,6 @@ public class PersonEditor extends PageBody {
 		//*********************************************************************************
 		StructureCard card_Relationships = new StructureCard("Person has following Relationships");
 		if(my_person != null) {this.addStructureCard(card_Relationships);}
-		//TODO:
 		
 		TransparentPanel relationListPanel = new TransparentPanel();
 		card_Relationships.setBody(relationListPanel);
