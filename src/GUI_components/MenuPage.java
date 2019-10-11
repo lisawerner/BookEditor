@@ -92,8 +92,10 @@ public class MenuPage extends JPanel {
 		int titleWidth = (int) lblMenutitle.getPreferredSize().getWidth();
 		JSeparator separator = new JSeparator();
 		separator.setPreferredSize(new Dimension(titleWidth - 15, 3));
-		separator.setForeground(ThemeList.currentTheme.menuButtonFont);
-		separator.setBackground(ThemeList.currentTheme.menuButtonFont);
+		if(ThemeList.currentTheme != null) {			
+			separator.setForeground(ThemeList.currentTheme.menuButtonFont);
+			separator.setBackground(ThemeList.currentTheme.menuButtonFont);
+		}
 		submenupanel.add(separator, BorderLayout.NORTH);
 		
 		TransparentPanel placesubmenu = new TransparentPanel();
