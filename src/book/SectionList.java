@@ -229,6 +229,15 @@ public class SectionList {
 		}
 		return null;
 	}
+
+	public Section getSection(ObjectID sectionID) {
+		for(Section section : my_sections) {
+			if(section.getID().getIDtoString().equals(sectionID.getIDtoString())) {
+				return section;
+			}
+		}
+		return null;
+	}
 	
 	
 }

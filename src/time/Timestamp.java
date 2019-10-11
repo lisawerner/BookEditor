@@ -11,51 +11,62 @@ public class Timestamp {
 	
 	// Achtung: Was ist mit Geschichten/Welten, die eine andere Zeitrechnung haben?
 	
-	private boolean isSpecificTimestamp;
 	private SpecificDate my_specificDate;
+	private RelativeDate my_relativeDate;
 	
-	public Timestamp(boolean specific, SpecificDate newSpecificDate) {
-		isSpecificTimestamp = specific;
-		if(isSpecificTimestamp) {			
-			my_specificDate = newSpecificDate;
-		} else {
-			my_specificDate = null;
-		}
-
+	public Timestamp(SpecificDate newSpecificDate, RelativeDate newRelativeDate) {
+		my_specificDate = newSpecificDate;
+		my_relativeDate = newRelativeDate;
 	}
 	
 	public SpecificDate getSpecificDate() {
-		if(isSpecificTimestamp) {
+		if(my_specificDate != null) {
 			return my_specificDate;
+		}
+		if(my_relativeDate != null) {
+			return my_relativeDate.generateSpecificDate();
 		}
 		return null;
 	}
 
 	public boolean isSpecificDate() {
-		return isSpecificTimestamp;
+		return my_specificDate != null;
 	}
 	
 	public String toString() {
-		if(isSpecificTimestamp) {
+		if(my_specificDate != null) {
 			return my_specificDate.toString();
+		} else {
+			return my_relativeDate.toString();
 		}
-		return "";
 	}
 	
 	public boolean greaterThen(Timestamp otherTimestamp) {
 		Date my_date = new Date();
-		if(isSpecificTimestamp) {
+		if(my_specificDate != null) {
 			my_date = my_specificDate.getDate();
 		} else {
-			//TODO
+			my_date = my_relativeDate.generateSpecificDate().getDate();
 		}
 		Date other_date = new Date();
 		if(otherTimestamp.isSpecificDate()) {
 			other_date = otherTimestamp.getSpecificDate().getDate();
 		} else {
-			//TODO
+			other_date = otherTimestamp.getSpecificDate().getDate();
 		}
 		return my_date.after(other_date);
+	}
+	
+	public String getDayOfWeek() {
+		if(my_specificDate != null) {
+			return my_specificDate.getDayOfWeek();
+		} else {
+			return my_relativeDate.generateSpecificDate().getDayOfWeek();
+		}
+	}
+
+	public RelativeDate getUnspecificDate() {
+		return my_relativeDate;
 	}
 	
 
