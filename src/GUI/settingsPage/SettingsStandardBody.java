@@ -181,7 +181,7 @@ public class SettingsStandardBody extends PageBody {
 	}
 
 	public String getBookTitle() {
-		return lblTitle.getText();
+		return txt_title.getText();
 	}
 	
 	public boolean isWorkTitle() {
