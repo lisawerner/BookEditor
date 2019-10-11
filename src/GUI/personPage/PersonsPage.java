@@ -35,7 +35,7 @@ public class PersonsPage extends Page {
 		Submenu submenu_addPerson = new Submenu("");
 		panel_personslist.addSubmenu(submenu_addPerson);
 		JButton btnAddNew = submenu_addPerson.addButton("Add new");
-		btnAddNew.addActionListener(e -> changeBody(null));
+		btnAddNew.addActionListener(e -> changeBody(new PersonEditor(null)));
 		Submenu submenu_personListSuperMain = new Submenu("Super Main Characters");
 		panel_personslist.addSubmenu(submenu_personListSuperMain);
 		submenu_personListSuperMain.activateList();
