@@ -15,7 +15,6 @@ import java.awt.GridLayout;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.LinkButton;
 import GUI_components.Page;
-import GUI_components.PageBody;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
@@ -40,16 +39,13 @@ public class SectionTimeEditor extends Page {
 		super("Change Timestamp of Section: " + section.getName());
 		my_section = section;
 		
-		PageBody my_body = new PageBody();
-		this.changeBody(my_body);
-		
 		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
-			my_body.addStructureCard(new TutorialCard(9, false));
+			addCard(new TutorialCard(9, false));
 		}
 		
 		//*****************************************************************************************************
 		StructureCard card_information = new StructureCard("Helpful Information");
-		my_body.addStructureCard(card_information);
+		addCard(card_information);
 		
 		TransparentPanel panel_preSection = new TransparentPanel();
 		card_information.setBody(panel_preSection);
@@ -69,7 +65,7 @@ public class SectionTimeEditor extends Page {
 		
 		//*****************************************************************************************************
 		StructureCard card_setTimestamp = new StructureCard("Set Timestamp for Section '" + my_section.getName() + "'");
-		my_body.addStructureCard(card_setTimestamp);
+		addCard(card_setTimestamp);
 		//TODO: Change Forumlar, if Custom Calendar is selected!
 		
 		TransparentPanel panel_BODY = new TransparentPanel();
@@ -128,7 +124,7 @@ public class SectionTimeEditor extends Page {
 			
 		//*****************************************************************************************************
 		TransparentPanel panel_FOOTER = new TransparentPanel();
-		my_body.setFooter(panel_FOOTER);
+		setFooter(panel_FOOTER);
 		panel_FOOTER.setLayout(new BorderLayout(5, 5));
 		
 		JButton btnSaveTimestamp = new JButton("Save Timestamp");

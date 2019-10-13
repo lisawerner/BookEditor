@@ -16,7 +16,7 @@ import GUI.sectionPage.SectionPage;
 import GUI_components.ComboItem;
 import GUI_components.InfoButton;
 import GUI_components.LinkButton;
-import GUI_components.PageBody;
+import GUI_components.Page;
 import GUI_components.SimpleCheckbox;
 import GUI_components.SimpleTextfield;
 import GUI_components.StructureCard;
@@ -30,7 +30,7 @@ import world.Place;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
 
-public class PlaceEditor extends PageBody {
+public class PlaceEditor extends Page {
 	private static final long serialVersionUID = 1L;
 	
 	private Place my_place;
@@ -43,18 +43,19 @@ public class PlaceEditor extends PageBody {
 	private TransparentPanel panel_taglist;
 	
 	public PlaceEditor(Place place) {
+		super("World, States, Regions, Citys, Places, ...");
 		my_place = place;
 		
 		if(UserSettings.getInstance().getTutorial().viewPersons && !UserSettings.getInstance().getTutorial().createFirstPlace) {			
-			addStructureCard(new TutorialCard(17, false));
+			addCard(new TutorialCard(17, false));
 		}
 		if(UserSettings.getInstance().getTutorial().createFirstPlace && !UserSettings.getInstance().getTutorial().setMapDependencies) {			
-			addStructureCard(new TutorialCard(18, false));
+			addCard(new TutorialCard(18, false));
 		}
 		
 		//****************************************************************************************
 		StructureCard card_changeName = new StructureCard("Change Place Name");
-		this.addStructureCard(card_changeName);
+		this.addCard(card_changeName);
 		
 		TransparentPanel panel_title = new TransparentPanel();
 		panel_title.setLayout(new BorderLayout(5, 5));
@@ -70,7 +71,7 @@ public class PlaceEditor extends PageBody {
 
 		//****************************************************************************************
 		StructureCard card_changePlacetype = new StructureCard("Change Type of Place");
-		this.addStructureCard(card_changePlacetype);
+		this.addCard(card_changePlacetype);
 
 		TransparentPanel panel_placetype = new TransparentPanel();
 		card_changePlacetype.setBody(panel_placetype);
@@ -89,7 +90,7 @@ public class PlaceEditor extends PageBody {
 		
 		//****************************************************************************************
 		StructureCard card_hasParent = new StructureCard("Is part of another Place");
-		this.addStructureCard(card_hasParent);
+		this.addCard(card_hasParent);
 		
 		TransparentPanel panel_placedIn = new TransparentPanel();
 		card_hasParent.setBody(panel_placedIn);
@@ -109,7 +110,7 @@ public class PlaceEditor extends PageBody {
 		
 		//****************************************************************************************
 		StructureCard card_hasChildren = new StructureCard("Has following places inside");
-		this.addStructureCard(card_hasChildren);
+		this.addCard(card_hasChildren);
 				
 		TransparentPanel panel_childrenList = new TransparentPanel();
 		card_hasChildren.setBody(panel_childrenList);
@@ -134,7 +135,7 @@ public class PlaceEditor extends PageBody {
 		
 		//****************************************************************************************
 		StructureCard card_wasTagged = new StructureCard("Place was tagged in Section(s)");
-		this.addStructureCard(card_wasTagged);		
+		this.addCard(card_wasTagged);		
 		
 		panel_taglist = new TransparentPanel();
 		panel_taglist.setLayout(new BoxLayout(panel_taglist, BoxLayout.LINE_AXIS));
@@ -177,13 +178,11 @@ public class PlaceEditor extends PageBody {
 							UserSettings.getInstance().getTutorial().createFirstPlace = true;
 							UserSettings.getInstance().save();
 						}
-						WorldPage newPage = new WorldPage(my_place);
-						BookEditorFrame.getInstance().switchBody(newPage);
+						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
 					} else {
 						my_place.editPlace(name, txtPlacetype.getText(), newParent, Book.getInstance());
 						Book.getInstance().changePlace(my_place.getID(), my_place);
-						WorldPage newPage = new WorldPage(my_place);
-						BookEditorFrame.getInstance().switchBody(newPage);
+						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
 					}
 				}
 			}
@@ -192,6 +191,7 @@ public class PlaceEditor extends PageBody {
 
 		//****************************************************************************************
 		setInput();
+		setMenu(new PlaceMenu());
 	}
 	
 	private void setInput() {

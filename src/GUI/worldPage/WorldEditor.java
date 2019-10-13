@@ -13,25 +13,26 @@ import java.util.ArrayList;
 import javax.swing.JSeparator;
 
 import GUI_components.InfoButton;
-import GUI_components.PageBody;
+import GUI_components.Page;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
 import GUI_components.TutorialCard;
 import book.Book;
 
-public class WorldEditor extends PageBody {
+public class WorldEditor extends Page {
 	private static final long serialVersionUID = 1L;
 	
 	private TransparentPanel panel_sortBody;
 	
 	public WorldEditor() {
+		super("World, States, Regions, Citys, Places, ...");
 
 		if(UserSettings.getInstance().getTutorial().createFirstPlace && !UserSettings.getInstance().getTutorial().setMapDependencies) {			
-			addStructureCard(new TutorialCard(18, true));
+			addCard(new TutorialCard(18, true));
 		}
 		
 		StructureCard card_world = new StructureCard("World-Hierachy");
-		this.addStructureCard(card_world);
+		this.addCard(card_world);
 		
 		TransparentPanel card_body = new TransparentPanel();
 		card_body.setLayout(new BorderLayout(5 , 5));
@@ -70,6 +71,8 @@ public class WorldEditor extends PageBody {
 				}
 			}
 		}
+		
+		setMenu(new PlaceMenu());
 	}
 	
 	private void addAllChildren(ArrayList<ObjectID> childrenPlaceRefs, String hierarchyDepth) {

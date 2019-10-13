@@ -10,8 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import GUI_components.BookFooter;
 import GUI_components.HeaderBook;
+import GUI_components.Page;
 import GUI_components.ThemeList;
-import GUI_components.TransparentPanel;
 import book.Book;
 
 public class BookEditorFrame extends JFrame {
@@ -62,7 +62,7 @@ public class BookEditorFrame extends JFrame {
 		return instance;
 	}
 		
-	public void switchBody(TransparentPanel newBody){
+	public void switchBody(Page newBody){
 		BorderLayout layout = (BorderLayout)contentPane.getLayout();
 		if(layout.getLayoutComponent(BorderLayout.CENTER) != null) {			
 			contentPane.remove(layout.getLayoutComponent(BorderLayout.CENTER));

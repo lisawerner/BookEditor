@@ -47,7 +47,7 @@ public class PageBody extends JScrollPane {
 		}
 	}
 	
-	public void addStructureCard(Component structureCard) {
+	public void addCard(Card structureCard) {
 		my_center.add(structureCard);
 		Component structureGab = Box.createVerticalStrut(20);
 		my_center.add(structureGab);

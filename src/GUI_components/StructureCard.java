@@ -7,7 +7,7 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JLabel;
 
-public class StructureCard extends TransparentPanel {
+public class StructureCard extends Card {
 	private static final long serialVersionUID = 1L;
 	
 	private String frontTag = "<html><div style='text-align: left;'><font size=\"4\">     ";

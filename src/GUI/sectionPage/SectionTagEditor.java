@@ -1,7 +1,6 @@
 package GUI.sectionPage;
 
 import GUI_components.Page;
-import GUI_components.PageBody;
 import GUI_components.SimpleCheckbox;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
@@ -36,19 +35,16 @@ public class SectionTagEditor extends Page {
 		super("Edit Tags of Section: " + section.getName());
 		my_section = section;
 		
-		PageBody my_body = new PageBody();
-		this.changeBody(my_body);
-		
 		if(UserSettings.getInstance().getTutorial().addFurtherPersons && !UserSettings.getInstance().getTutorial().tagPersonToSection) {			
-			my_body.addStructureCard(new TutorialCard(14, false));
+			addCard(new TutorialCard(14, false));
 		}
 		if(UserSettings.getInstance().getTutorial().setMapDependencies && !UserSettings.getInstance().getTutorial().tagPlaceAndViewInTimeline) {			
-			my_body.addStructureCard(new TutorialCard(19, false));
+			addCard(new TutorialCard(19, false));
 		}
 		
 		//********************************************************************************
 		StructureCard card_personTags = new StructureCard("Change Person-Tags");
-		my_body.addStructureCard(card_personTags);
+		addCard(card_personTags);
 
 		TransparentPanel panel_personTagList = new TransparentPanel();
 		card_personTags.setBody(panel_personTagList);
@@ -72,7 +68,7 @@ public class SectionTagEditor extends Page {
 
 		//********************************************************************************
 		StructureCard card_Relationships = new StructureCard("Change Relationships");
-		my_body.addStructureCard(card_Relationships);
+		addCard(card_Relationships);
 		card_relationship_body = new TransparentPanel();
 		card_relationship_body.setLayout(new BoxLayout(card_relationship_body, BoxLayout.PAGE_AXIS));
 		card_Relationships.setBody(card_relationship_body);
@@ -84,7 +80,7 @@ public class SectionTagEditor extends Page {
 
 		//********************************************************************************
 		StructureCard card_placeTags = new StructureCard("Change Place-Tags");
-		my_body.addStructureCard(card_placeTags);
+		addCard(card_placeTags);
 		// &#8627; -> Arrow
 		TransparentPanel panel_placeTagList = new TransparentPanel();
 		card_placeTags.setBody(panel_placeTagList);
@@ -126,7 +122,7 @@ public class SectionTagEditor extends Page {
 				BookEditorFrame.getInstance().switchBody(new SectionPage(my_section));
 			}
 		});
-		my_body.setFooter(btnBackToSection);
+		setFooter(btnBackToSection);
 
 	}
 

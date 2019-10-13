@@ -7,12 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.personPage.PersonsPage;
+import GUI.personPage.PersonEditorPage;
 import GUI.worldPage.WorldPage;
 import GUI_components.InfoButton;
 import GUI_components.MenuPage;
 import GUI_components.Page;
-import GUI_components.PageBody;
 import GUI_components.SimpleTextfield;
 import GUI_components.StructureCard;
 import GUI_components.Submenu;
@@ -40,39 +39,36 @@ public class SectionPage extends Page {
 	public SectionPage(Section section) {
 		super("Edit Section");
 		my_section = section;
-		
-		PageBody my_body = new PageBody();
-		this.changeBody(my_body);
-		
+				
 		if(UserSettings.getInstance().getTutorial().chooseFirstColorTheme && !UserSettings.getInstance().getTutorial().createFirstSection) {			
-			my_body.addStructureCard(new TutorialCard(4, false));
+			addCard(new TutorialCard(4, false));
 		}
 		if(UserSettings.getInstance().getTutorial().createFirstSection && !UserSettings.getInstance().getTutorial().setDevelopmentStatus) {		
 			if(my_section != null) {				
-				my_body.addStructureCard(new TutorialCard(6, false));
+				addCard(new TutorialCard(6, false));
 			}
 		}
 		if(UserSettings.getInstance().getTutorial().setDevelopmentStatus && !UserSettings.getInstance().getTutorial().sortSectionsAndChapters) {			
-			my_body.addStructureCard(new TutorialCard(7, false));
+			addCard(new TutorialCard(7, false));
 		}
 		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
 			if(my_section != null) {
-				my_body.addStructureCard(new TutorialCard(9, false));
+				addCard(new TutorialCard(9, false));
 			}
 		}
 		if(UserSettings.getInstance().getTutorial().addFurtherPersons && !UserSettings.getInstance().getTutorial().tagPersonToSection) {			
-			my_body.addStructureCard(new TutorialCard(13, false));
+			addCard(new TutorialCard(13, false));
 		}
 		if(UserSettings.getInstance().getTutorial().tagPersonToSection && !UserSettings.getInstance().getTutorial().viewPersons) {			
-			my_body.addStructureCard(new TutorialCard(15, true));
+			addCard(new TutorialCard(15, true));
 		}
 		if(UserSettings.getInstance().getTutorial().setMapDependencies && !UserSettings.getInstance().getTutorial().tagPlaceAndViewInTimeline) {			
-			my_body.addStructureCard(new TutorialCard(19, false));
+			addCard(new TutorialCard(19, false));
 		}
 		
 		//****************************************************************************************
 		StructureCard card_sectionTitle = new StructureCard("Section Title");
-		my_body.addStructureCard(card_sectionTitle);
+		addCard(card_sectionTitle);
 				
 		TransparentPanel panel_changeTitle = new TransparentPanel();
 		card_sectionTitle.setBody(panel_changeTitle);
@@ -92,8 +88,8 @@ public class SectionPage extends Page {
 		panel_changeTitle.add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnSaveChapter = new JButton("Save new Title");
-		if(my_section != null) {btnSaveChapter.setText("Crate Section");}
+		JButton btnSaveChapter = new JButton("Create new Section");
+		if(my_section != null) {btnSaveChapter.setText("Save new Title");}
 		panel_footer.add(btnSaveChapter, BorderLayout.SOUTH);
 		
 		lbl_saveWarning = new JLabel(" ");
@@ -106,13 +102,13 @@ public class SectionPage extends Page {
 		//****************************************************************************************
 		StructureCard card_sectionFurtherInformation = new StructureCard("Section Information");
 		if(my_section != null) {			
-			my_body.addStructureCard(card_sectionFurtherInformation);
+			addCard(card_sectionFurtherInformation);
 		}
 		card_sectionFurtherInformation.setBody(new SectionInformationCard(my_section));
 		//****************************************************************************************
 		StructureCard card_sectionText = new StructureCard("Section Content");
 		if(my_section != null) {			
-			my_body.addStructureCard(card_sectionText);
+			addCard(card_sectionText);
 		}
 		card_sectionText.setBody(new EditSectiontextCard(my_section));
 		//****************************************************************************************
@@ -138,7 +134,7 @@ public class SectionPage extends Page {
 			ArrayList<Person> personTags = my_section.getPersonByTag();
 			for(Person person : personTags) {
 				JButton personButton = submenu_personTags.addListButton(person.getName());
-				personButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonsPage(person)));
+				personButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
 			}
 		}
 		

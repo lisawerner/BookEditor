@@ -1,7 +1,6 @@
 package GUI.timelinePage;
 
 import GUI_components.Page;
-import GUI_components.PageBody;
 import GUI_components.StructureCard;
 import GUI_components.TimelineItem;
 import GUI_components.TransparentPanel;
@@ -20,21 +19,18 @@ public class TimelinePage extends Page {
 	public TimelinePage() {
 		super("Timeline");
 		
-		PageBody my_body = new PageBody();
-		this.changeBody(my_body);
-		
 		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
-			my_body.addStructureCard(new TutorialCard(9, true));
+			addCard(new TutorialCard(9, true));
 		}
 		if(UserSettings.getInstance().getTutorial().tagPersonToSection && !UserSettings.getInstance().getTutorial().viewPersons) {			
-			my_body.addStructureCard(new TutorialCard(15, true));
+			addCard(new TutorialCard(15, true));
 		}
 		if(UserSettings.getInstance().getTutorial().setMapDependencies && !UserSettings.getInstance().getTutorial().tagPlaceAndViewInTimeline) {			
-			my_body.addStructureCard(new TutorialCard(19, true));
+			addCard(new TutorialCard(19, true));
 		}
 		
 		StructureCard card_viewTimeline = new StructureCard("View Timeline");
-		my_body.addStructureCard(card_viewTimeline);
+		addCard(card_viewTimeline);
 		
 		TransparentPanel panel_timeline = new TransparentPanel();
 		card_viewTimeline.setBody(panel_timeline);

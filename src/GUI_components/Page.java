@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-
 import java.awt.Component;
 import javax.swing.Box;
 
@@ -16,7 +15,7 @@ public class Page extends TransparentPanel {
 	private String backTag = "</size></div></html>";
 	private String my_title;
 	private TitledBorder titledBorder;
-//	private PageBody my_body;
+	private PageBody my_body;
 
 	public Page(String pageHeader) {
 		setLayout(new BorderLayout(20, 20));
@@ -36,8 +35,8 @@ public class Page extends TransparentPanel {
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		add(horizontalStrut_1, BorderLayout.SOUTH);
 		
-//		my_body = new PageBody();
-//		add(my_body, BorderLayout.CENTER);
+		my_body = new PageBody();
+		add(my_body, BorderLayout.CENTER);
 		
 		changeTheme();
 	}
@@ -55,14 +54,26 @@ public class Page extends TransparentPanel {
 		}
 	}
 	
-	public void changeBody(PageBody newBody) {
-		BorderLayout layout = (BorderLayout)getLayout();
-		if(layout.getLayoutComponent(BorderLayout.CENTER) != null) {			
-			remove(layout.getLayoutComponent(BorderLayout.CENTER));
-		}
-		add(newBody, BorderLayout.CENTER);
-		revalidate();
-		repaint();
+	public void addCard(Card newStructureCard) {
+		my_body.addCard(newStructureCard);
+	}
+	
+//	public void changeBody(PageBody newBody) {
+//		BorderLayout layout = (BorderLayout)getLayout();
+//		if(layout.getLayoutComponent(BorderLayout.CENTER) != null) {			
+//			remove(layout.getLayoutComponent(BorderLayout.CENTER));
+//		}
+//		add(newBody, BorderLayout.CENTER);
+//		revalidate();
+//		repaint();
+//	}
+	
+	public void setMenu(MenuPage newnMenu) {
+		add(newnMenu, BorderLayout.EAST);
+	}
+	
+	public void setFooter(Component footer) {
+		my_body.setFooter(footer);
 	}
 
 }

@@ -3,6 +3,8 @@ package GUI.personPage;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -13,7 +15,7 @@ import javax.swing.JLabel;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
 import GUI_components.LinkButton;
-import GUI_components.PageBody;
+import GUI_components.Page;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextarea;
 import GUI_components.SimpleTextfield;
@@ -27,10 +29,7 @@ import global.UserSettings;
 import person.Person;
 import person.Relationship;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class PersonEditor extends PageBody {
+public class PersonEditorPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
 	private Person my_person = null;
@@ -40,25 +39,27 @@ public class PersonEditor extends PageBody {
 
 	private JLabel lblName;
 
-	public PersonEditor(Person person) {
+	public PersonEditorPage(Person person) {
+		super("Persons, Relationships, ...");
+		
 		my_person = person;
 		
 		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().createFirstPerson) {			
-			addStructureCard(new TutorialCard(11, false));
+			addCard(new TutorialCard(11, false));
 		}
 		if(UserSettings.getInstance().getTutorial().createFirstPerson && !UserSettings.getInstance().getTutorial().addFurtherPersons) {			
-			addStructureCard(new TutorialCard(12, true));
+			addCard(new TutorialCard(12, true));
 		}
 		if(UserSettings.getInstance().getTutorial().addFurtherPersons && !UserSettings.getInstance().getTutorial().tagPersonToSection) {			
-			addStructureCard(new TutorialCard(13, false));
+			addCard(new TutorialCard(13, false));
 		}
 		if(UserSettings.getInstance().getTutorial().tagPersonToSection && !UserSettings.getInstance().getTutorial().viewPersons) {			
-			addStructureCard(new TutorialCard(15, true));
+			addCard(new TutorialCard(15, true));
 		}
 		
 		//************************************************************************
 		StructureCard card_name = new StructureCard("Person Name");
-		this.addStructureCard(card_name);
+		this.addCard(card_name);
 		
 		TransparentPanel changeName_body = new TransparentPanel();
 		card_name.setBody(changeName_body);
@@ -74,13 +75,13 @@ public class PersonEditor extends PageBody {
 		
 		//*********************************************************************************
 		StructureCard card_age = new StructureCard("Person Age");
-		this.addStructureCard(card_age);
+		this.addCard(card_age);
 		personsAgeCard = new AgeCard(my_person);
 		card_age.setBody(personsAgeCard);
 		
 		//*********************************************************************************
 		StructureCard card_mainStatus = new StructureCard("Character Status");
-		this.addStructureCard(card_mainStatus);
+		this.addCard(card_mainStatus);
 		
 		TransparentPanel panel_mainStatus = new TransparentPanel();
 		card_mainStatus.setBody(panel_mainStatus);
@@ -106,7 +107,7 @@ public class PersonEditor extends PageBody {
 		
 		//*********************************************************************************
 		StructureCard card_Notes = new StructureCard("Notes about Person");
-		this.addStructureCard(card_Notes);
+		this.addCard(card_Notes);
 		
 		TransparentPanel panel_skills = new TransparentPanel();
 		card_Notes.setBody(panel_skills);
@@ -121,7 +122,7 @@ public class PersonEditor extends PageBody {
 
 		//*********************************************************************************
 		StructureCard card_tagRefs = new StructureCard("Person was tagged in following sections");
-		if(my_person != null) {this.addStructureCard(card_tagRefs);}
+		if(my_person != null) {this.addCard(card_tagRefs);}
 			
 		TransparentPanel panel_sectionRefList = new TransparentPanel();
 		card_tagRefs.setBody(panel_sectionRefList);
@@ -141,7 +142,7 @@ public class PersonEditor extends PageBody {
 		
 		//*********************************************************************************
 		StructureCard card_Relationships = new StructureCard("Person has following Relationships");
-		if(my_person != null) {this.addStructureCard(card_Relationships);}
+		if(my_person != null) {this.addCard(card_Relationships);}
 		
 		TransparentPanel relationListPanel = new TransparentPanel();
 		card_Relationships.setBody(relationListPanel);
@@ -157,7 +158,7 @@ public class PersonEditor extends PageBody {
 				Person relPerson = Book.getInstance().getPerson(relship.getOtherPerson(my_person.getID()));
 				LinkButton lbtnRelPerson = new LinkButton(relPerson.getName());
 				relationPanel.add(lbtnRelPerson);
-				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonsPage(relPerson)));
+				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(relPerson)));
 			}
 		}
 		
@@ -206,21 +207,21 @@ public class PersonEditor extends PageBody {
 							UserSettings.getInstance().getTutorial().createFirstPerson = true;
 							UserSettings.getInstance().save();
 						}
-						PersonsPage newPage = new PersonsPage(my_person);
-						BookEditorFrame.getInstance().switchBody(newPage);
+						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person));
 						
 					} else {
 						my_person.editPerson(name, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 								txt_notes.getText());
 						Book.getInstance().changePerson(my_person.getID(), my_person);
-						PersonsPage newPage = new PersonsPage(my_person);
-						BookEditorFrame.getInstance().switchBody(newPage);
+						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person));
 					}
 					lblWarning.setText("<html>" + saveMessage + "<br>Successfully saved</html>");
 				}	
 			}
 		});
 		footer.add(btnSave);
+		
+		setMenu(new PersonMenu());
 	}
 	
 	private void setWarningEnterName(boolean warning) {

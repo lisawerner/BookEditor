@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import GUI_components.Page;
-import GUI_components.PageBody;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
 import book.Book;
@@ -20,11 +19,8 @@ public class PrintPage extends Page {
 	public PrintPage() {
 		super("Print and Export");
 		
-		PageBody my_body = new PageBody();
-		this.changeBody(my_body);
-		
 		StructureCard card_printHints = new StructureCard("Print Hints");
-		my_body.addStructureCard(card_printHints);
+		addCard(card_printHints);
 		TransparentPanel panel_hint = new TransparentPanel();
 		card_printHints.setBody(panel_hint);
 		panel_hint.setLayout(new GridLayout(0, 1, 5, 5));
@@ -53,7 +49,7 @@ public class PrintPage extends Page {
 		if(Book.getInstance().getSectionList().getUnsortedSections().size() > 0) {panel_hint.add(lblSectionsUnsorted);}
 		
 		StructureCard card_export = new StructureCard("Export Book");
-		my_body.addStructureCard(card_export);
+		addCard(card_export);
 		TransparentPanel panel_export = new TransparentPanel();
 		card_export.setBody(panel_export);
 		panel_export.setLayout(new GridLayout(0, 1, 5, 5));
@@ -67,7 +63,7 @@ public class PrintPage extends Page {
 		//TODO: Als was noch exportieren? Export as ONE TXT File (only Text, not Notes, Persons, Places, ...)? Export as Multi TXT files (One with the Notes for chapter or for section???)? export to other format(but which??)
 		
 		StructureCard card_print = new StructureCard("PrettyPrint Book");
-		my_body.addStructureCard(card_print);
+		addCard(card_print);
 		TransparentPanel panel_print = new TransparentPanel();
 		card_print.setBody(panel_print);
 		panel_print.setLayout(new GridLayout(0, 1, 5, 5));

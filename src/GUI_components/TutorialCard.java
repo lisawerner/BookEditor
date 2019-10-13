@@ -12,7 +12,7 @@ import global.UserSettings;
 
 import javax.swing.JButton;
 
-public class TutorialCard extends TransparentPanel {
+public class TutorialCard extends Card {
 	private static final long serialVersionUID = 1L;
 	
 	private String frontTag = "<html><div style='text-align: left;'><font size=\"4\">     ";

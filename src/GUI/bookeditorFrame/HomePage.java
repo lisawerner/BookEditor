@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 
 import GUI_components.Page;
-import GUI_components.PageBody;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
 import GUI_components.TutorialCard;
@@ -18,53 +17,50 @@ public class HomePage extends Page {
 
 	public HomePage() {
 		super("Home");
-		
-		PageBody my_body = new PageBody();
-		this.changeBody(my_body);
-		
+				
 		if(!UserSettings.getInstance().getTutorial().chooseFirstColorTheme) {			
-			my_body.addStructureCard(new TutorialCard(1, false));
+			addCard(new TutorialCard(1, false));
 		}
 		if(UserSettings.getInstance().getTutorial().chooseFirstColorTheme && !UserSettings.getInstance().getTutorial().createFirstSection) {			
-			my_body.addStructureCard(new TutorialCard(3, false));
+			addCard(new TutorialCard(3, false));
 		}
 		if(UserSettings.getInstance().getTutorial().createFirstSection && !UserSettings.getInstance().getTutorial().setDevelopmentStatus) {			
-			my_body.addStructureCard(new TutorialCard(5, false));
+			addCard(new TutorialCard(5, false));
 		}
 		if(UserSettings.getInstance().getTutorial().setDevelopmentStatus && !UserSettings.getInstance().getTutorial().sortSectionsAndChapters) {			
-			my_body.addStructureCard(new TutorialCard(7, false));
+			addCard(new TutorialCard(7, false));
 		}
 		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
-			my_body.addStructureCard(new TutorialCard(9, false));
+			addCard(new TutorialCard(9, false));
 		}
 		if(UserSettings.getInstance().getTutorial().setTimestamps && !UserSettings.getInstance().getTutorial().createFirstPerson) {			
-			my_body.addStructureCard(new TutorialCard(10, false));
+			addCard(new TutorialCard(10, false));
 		}
 		if(UserSettings.getInstance().getTutorial().createFirstPerson && !UserSettings.getInstance().getTutorial().addFurtherPersons) {			
-			my_body.addStructureCard(new TutorialCard(12, false));
+			addCard(new TutorialCard(12, false));
 		}
 		if(UserSettings.getInstance().getTutorial().addFurtherPersons && !UserSettings.getInstance().getTutorial().tagPersonToSection) {			
-			my_body.addStructureCard(new TutorialCard(13, false));
+			addCard(new TutorialCard(13, false));
 		}
 		if(UserSettings.getInstance().getTutorial().tagPersonToSection && !UserSettings.getInstance().getTutorial().viewPersons) {			
-			my_body.addStructureCard(new TutorialCard(15, false));
+			addCard(new TutorialCard(15, false));
 		}
 		if(UserSettings.getInstance().getTutorial().viewPersons && !UserSettings.getInstance().getTutorial().createFirstPlace) {			
-			my_body.addStructureCard(new TutorialCard(16, false));
+			addCard(new TutorialCard(16, false));
 		}
 		if(UserSettings.getInstance().getTutorial().createFirstPlace && !UserSettings.getInstance().getTutorial().setMapDependencies) {			
-			my_body.addStructureCard(new TutorialCard(18, false));
+			addCard(new TutorialCard(18, false));
 		}
 		if(UserSettings.getInstance().getTutorial().setMapDependencies && !UserSettings.getInstance().getTutorial().tagPlaceAndViewInTimeline) {			
-			my_body.addStructureCard(new TutorialCard(19, false));
+			addCard(new TutorialCard(19, false));
 		}
 		if(UserSettings.getInstance().getTutorial().tagPlaceAndViewInTimeline && !UserSettings.getInstance().getTutorial().finishTutorial) {			
-			my_body.addStructureCard(new TutorialCard(20, true));
+			addCard(new TutorialCard(20, true));
 		}
 		
 		//*************************************************************************
 		StructureCard card_Statistics = new StructureCard("Statistics");
-		my_body.addStructureCard(card_Statistics);
+		addCard(card_Statistics);
 		
 		TransparentPanel panel_statistics = new TransparentPanel();
 		panel_statistics.setLayout(new GridLayout(0, 1, 5, 5));

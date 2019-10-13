@@ -1,16 +1,12 @@
 package GUI.worldPage;
 
-import GUI_components.MenuPage;
 import GUI_components.Page;
-import GUI_components.Submenu;
 import GUI_components.TransparentPanel;
-import book.Book;
 import world.Place;
-
 import java.awt.BorderLayout;
-
-import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import GUI.bookeditorFrame.BookEditorFrame;
 
 public class WorldPage extends Page {
 	private static final long serialVersionUID = 1L;
@@ -30,31 +26,13 @@ public class WorldPage extends Page {
 		
 		//*****************************************************************************
 		//*****************************************************************************
-		MenuPage panel_placeList = new MenuPage("List of Places:");
-		add(panel_placeList, BorderLayout.EAST);
-		//*****************************************************************************
-		Submenu submenu_viewWholeMap = new Submenu("");
-		panel_placeList.addSubmenu(submenu_viewWholeMap);
-		
-		JButton btnViewMap = submenu_viewWholeMap.addButton("View Map");
-		btnViewMap.addActionListener(e -> changeBody(new WorldEditor()));
-		
-		JButton btnAddPlace = submenu_viewWholeMap.addButton("Add Place");
-		btnAddPlace.addActionListener(e -> changeBody(new PlaceEditor(null)));
-		//*****************************************************************************
-		Submenu submenu_listOfPlaces = new Submenu("");
-		panel_placeList.addSubmenu(submenu_listOfPlaces);
-		submenu_listOfPlaces.activateList();
-		for(Place place : Book.getInstance().getPlaces()) {
-			JButton btnPlace = submenu_listOfPlaces.addListButton(place.getName());
-			btnPlace.addActionListener(e -> changeBody(new PlaceEditor(place)));
-		}
+		setMenu(new PlaceMenu());
 		
 
 		//*****************************************************************************
 		//*****************************************************************************
 		if(openPlace != null) {
-			changeBody(new PlaceEditor(openPlace));
+			BookEditorFrame.getInstance().switchBody(new PlaceEditor(openPlace));
 		}
 	}
 

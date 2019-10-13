@@ -1,7 +1,7 @@
 package GUI.timelinePage;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.personPage.PersonsPage;
+import GUI.personPage.PersonEditorPage;
 import GUI.sectionPage.SectionPage;
 import GUI.worldPage.WorldPage;
 import GUI_components.LinkButton;
@@ -47,7 +47,7 @@ public class TimelineElement extends TimelineItem {
 		ArrayList<Person> personTags = my_section.getPersonByTag();
 		for(Person tag : personTags) {
 			LinkButton tagName = new LinkButton(tag.getName());
-			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonsPage(tag)));
+			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(tag)));
 			panel_personTags.add(tagName);
 			panel_personTags.add(new JLabel(";  "));
 		}
