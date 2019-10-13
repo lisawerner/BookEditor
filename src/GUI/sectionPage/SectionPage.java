@@ -13,7 +13,6 @@ import GUI_components.InfoButton;
 import GUI_components.MenuPage;
 import GUI_components.Page;
 import GUI_components.PageBody;
-import GUI_components.SimpleTextarea;
 import GUI_components.SimpleTextfield;
 import GUI_components.StructureCard;
 import GUI_components.Submenu;
@@ -36,7 +35,6 @@ public class SectionPage extends Page {
 	private SimpleTextfield txt_sectionTitle;
 	private JLabel lbl_saveWarning;
 	private JLabel lblChapterTitle;
-	private SimpleTextarea textArea;
 	private JButton btnEdit;
 	
 	public SectionPage(Section section) {
@@ -89,30 +87,13 @@ public class SectionPage extends Page {
 		
 		InfoButton btnNewButton = new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every time.</html>");
 		panel_changeTitle.add(btnNewButton, BorderLayout.EAST);
-
 		
-		//****************************************************************************************
-		StructureCard card_sectionTimestamp = new StructureCard("Section Information");
-		my_body.addStructureCard(card_sectionTimestamp);
-		card_sectionTimestamp.setBody(new SectionInformationCard(my_section));
-		
-		//****************************************************************************************
-		StructureCard card_sectionText = new StructureCard("Section Content");
-		my_body.addStructureCard(card_sectionText);
-		
-		textArea = new SimpleTextarea();
-		if(my_section != null) {textArea.setText(my_section.getText());}
-		card_sectionText.setBody(textArea);
-
-
-		
-		//****************************************************************************************
 		TransparentPanel panel_footer = new TransparentPanel();
-		my_body.setFooter(panel_footer);
+		panel_changeTitle.add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnSaveChapter = new JButton("Save new Section");
-		if(my_section != null) {btnSaveChapter.setText("Save edited Section");}
+		JButton btnSaveChapter = new JButton("Save new Title");
+		if(my_section != null) {btnSaveChapter.setText("Crate Section");}
 		panel_footer.add(btnSaveChapter, BorderLayout.SOUTH);
 		
 		lbl_saveWarning = new JLabel(" ");
@@ -120,10 +101,23 @@ public class SectionPage extends Page {
 		lbl_saveWarning.setForeground(Color.RED);
 		
 		btnSaveChapter.addActionListener(e -> save());
+
 		
-		
-		
-		
+		//****************************************************************************************
+		StructureCard card_sectionFurtherInformation = new StructureCard("Section Information");
+		if(my_section != null) {			
+			my_body.addStructureCard(card_sectionFurtherInformation);
+		}
+		card_sectionFurtherInformation.setBody(new SectionInformationCard(my_section));
+		//****************************************************************************************
+		StructureCard card_sectionText = new StructureCard("Section Content");
+		if(my_section != null) {			
+			my_body.addStructureCard(card_sectionText);
+		}
+		card_sectionText.setBody(new EditSectiontextCard(my_section));
+		//****************************************************************************************
+
+
 		//****************************************************************************************
 		MenuPage menu_tags = new MenuPage("Tags of this Section");
 		add(menu_tags, BorderLayout.EAST);
@@ -186,14 +180,14 @@ public class SectionPage extends Page {
 		if(canSave) {
 			lbl_saveWarning.setForeground(Color.BLACK);
 			if(my_section == null) {
-				my_section = new Section(txt_sectionTitle.getText(), textArea.getText());
+				my_section = new Section(txt_sectionTitle.getText());
 				Book.getInstance().getSectionList().addSection(my_section);
 				if(!UserSettings.getInstance().getTutorial().createFirstSection) {
 					UserSettings.getInstance().getTutorial().createFirstSection = true;
 					UserSettings.getInstance().save();
 				}
 			} else {
-				my_section.edit(txt_sectionTitle.getText(), textArea.getText());
+				my_section.setTitle(txt_sectionTitle.getText());
 				Book.getInstance().getSectionList().editSection(my_section);
 			}
 			btnEdit.setEnabled(true);

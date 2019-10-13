@@ -24,11 +24,11 @@ public class Section {
 	private Timestamp my_timestamp;
 	private int my_devStatus;
 	
-	public Section(String newName, String newText) {
+	public Section(String newName) {
 		my_uID = new ObjectID(this.getClass().getName());
 		
 		my_name = newName;
-		my_text = newText;
+		my_text = "";
 		
 		isUnsorted = true;
 		isChapterStart = false;
@@ -127,9 +127,13 @@ public class Section {
 		return my_text;
 	}
 	
-	public void edit(String newName, String newText) {
+	public void setTitle(String newName) {
 		my_name = newName;
+	}
+	
+	public void setText(String newText) {
 		my_text = newText;
+		Book.getInstance().save();
 	}
 	
 	public String getShortTextPreview() {
