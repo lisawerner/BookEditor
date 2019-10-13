@@ -41,7 +41,7 @@ public class BookSettingsPage extends Page {
 	public BookSettingsPage() {
 		super("Book Settings");
 		
-my_theme = Book.getInstance().getTheme();
+		my_theme = Book.getInstance().getTheme();
 		
 		//******************************************************************************************************************************************
 		

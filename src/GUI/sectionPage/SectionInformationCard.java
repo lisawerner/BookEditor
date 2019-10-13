@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.sectionTimestamp.SectionTimeEditor;
 import GUI_components.InfoButton;
 import GUI_components.TransparentPanel;
 import book.DevelopmentStatus;

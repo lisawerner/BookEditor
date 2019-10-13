@@ -1,4 +1,4 @@
-package GUI.sectionPage;
+package GUI.sectionTags;
 
 import GUI_components.Page;
 import GUI_components.SimpleCheckbox;
@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.sectionPage.SectionPage;
 
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;

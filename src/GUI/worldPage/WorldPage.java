@@ -2,16 +2,13 @@ package GUI.worldPage;
 
 import GUI_components.Page;
 import GUI_components.TransparentPanel;
-import world.Place;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-
-import GUI.bookeditorFrame.BookEditorFrame;
 
 public class WorldPage extends Page {
 	private static final long serialVersionUID = 1L;
 
-	public WorldPage(Place openPlace) {
+	public WorldPage() {
 		super("World, States, Regions, Citys, Places, ...");
 	
 		TransparentPanel panel_placeholder = new TransparentPanel();
@@ -23,17 +20,7 @@ public class WorldPage extends Page {
 		lblOpenAnExisting.setVerticalTextPosition(JLabel.CENTER);
 		panel_placeholder.add(lblOpenAnExisting, BorderLayout.CENTER);
 		
-		
-		//*****************************************************************************
-		//*****************************************************************************
 		setMenu(new PlaceMenu());
-		
-
-		//*****************************************************************************
-		//*****************************************************************************
-		if(openPlace != null) {
-			BookEditorFrame.getInstance().switchBody(new PlaceEditor(openPlace));
-		}
 	}
 
 }

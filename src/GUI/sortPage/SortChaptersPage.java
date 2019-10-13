@@ -21,8 +21,6 @@ public class SortChaptersPage extends Page {
 			addCard(new TutorialCard(8, true));
 		}
 		
-		
-		
 		//TODO: Make this Card to a "Tutorial-StructureCard", so User can hide it. Hiding-Setting will Save in Tutorial-File for Whole Editor (not for single Book!); Maybe Tutorial-Cards will have different color-Theme
 		StructureCard card_hintPanel = new StructureCard("Hint");
 		addCard(card_hintPanel);
@@ -41,7 +39,6 @@ public class SortChaptersPage extends Page {
 		TransparentPanel panel_bodyForSorting = new TransparentPanel();
 		card_sortPanel.setBody(panel_bodyForSorting);
 		panel_bodyForSorting.setLayout(new BoxLayout(panel_bodyForSorting, BoxLayout.PAGE_AXIS));
-//		panel_bodyForSorting.setLayout(new GridLayout(0, 1, 5, 5));	
 		for(Section section : Book.getInstance().getSectionList().getSections()) {			
 			panel_bodyForSorting.add(new SortChapterElement(section));
 		}

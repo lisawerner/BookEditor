@@ -31,7 +31,7 @@ public class EditorMenu extends MenuBook {
 		btnOpenPersons.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonsEmptyPage()));
 		
 		JButton btnOpenPlaces = createMainButton("World");
-		btnOpenPlaces.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new WorldPage(null)));
+		btnOpenPlaces.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new WorldPage()));
 		
 		JButton btnOpenTimeline = createMainButton("Timeline");
 		btnOpenTimeline.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new TimelinePage()));

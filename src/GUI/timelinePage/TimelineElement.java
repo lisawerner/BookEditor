@@ -3,7 +3,7 @@ package GUI.timelinePage;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.personPage.PersonEditorPage;
 import GUI.sectionPage.SectionPage;
-import GUI.worldPage.WorldPage;
+import GUI.worldPage.PlaceEditor;
 import GUI_components.LinkButton;
 import GUI_components.TimelineItem;
 import GUI_components.TransparentPanel;
@@ -61,7 +61,7 @@ public class TimelineElement extends TimelineItem {
 		ArrayList<Place> placeTags = my_section.getPelaceByTag();
 		for(Place tag : placeTags) {
 			LinkButton tagName = new LinkButton(tag.getName());
-			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new WorldPage(tag)));
+			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(tag)));
 			panel_placeTags.add(tagName);
 			panel_placeTags.add(new JLabel(";  "));
 		}

@@ -1,4 +1,4 @@
-package GUI.sectionPage;
+package GUI.sectionTags;
 
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextfield;
@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
+
 import java.awt.GridLayout;
 
 public class SectionRelationships extends TransparentPanel {

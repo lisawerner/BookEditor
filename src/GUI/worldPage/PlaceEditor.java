@@ -124,7 +124,7 @@ public class PlaceEditor extends Page {
 			} else {
 				for(Place childInfo : childrenInfos) {
 					LinkButton lblChildInfo = new LinkButton(childInfo.getName());
-					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new WorldPage(childInfo)));
+					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(childInfo)));
 					panel_childrenList.add(lblChildInfo);
 					panel_childrenList.add(new JLabel(";  "));
 				}				

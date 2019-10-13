@@ -1,4 +1,4 @@
-package GUI.sectionPage;
+package GUI.sectionTimestamp;
 
 import book.Book;
 import book.Section;
@@ -13,6 +13,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.sectionPage.SectionPage;
 import GUI_components.LinkButton;
 import GUI_components.Page;
 import GUI_components.SimpleRadiobutton;
