@@ -5,10 +5,10 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.InfoButton;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextfield;
 import GUI_components.TransparentPanel;
 import book.Book;
@@ -21,8 +21,8 @@ public class SectionTitleCard extends TransparentPanel {
 	private Section my_section;
 	
 	private SimpleTextfield txt_sectionTitle;
-	private JLabel lbl_saveWarning;
-	private JLabel lblChapterTitle;
+	private SimpleLabel lbl_saveWarning;
+	private SimpleLabel lblChapterTitle;
 
 
 	public SectionTitleCard(Section section) {
@@ -34,7 +34,7 @@ public class SectionTitleCard extends TransparentPanel {
 		if(my_section != null) {txt_sectionTitle.setText(my_section.getName());}
 		add(txt_sectionTitle);
 		
-		lblChapterTitle = new JLabel("Section Title:");
+		lblChapterTitle = new SimpleLabel("Section Title:");
 		add(lblChapterTitle, BorderLayout.WEST);
 		
 		InfoButton btnNewButton = new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every time.</html>");
@@ -48,7 +48,7 @@ public class SectionTitleCard extends TransparentPanel {
 		if(my_section != null) {btnSaveChapter.setText("Save new Title");}
 		panel_footer.add(btnSaveChapter, BorderLayout.SOUTH);
 		
-		lbl_saveWarning = new JLabel(" ");
+		lbl_saveWarning = new SimpleLabel(" ");
 		panel_footer.add(lbl_saveWarning, BorderLayout.NORTH);
 		lbl_saveWarning.setForeground(Color.RED);
 		

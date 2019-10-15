@@ -45,7 +45,11 @@ public class Page extends TransparentPanel {
 		if(ThemeList.currentTheme != null) {
 			Border coloredBorder = BorderFactory.createLineBorder(ThemeList.currentTheme.headerBackColor);
 			titledBorder = BorderFactory.createTitledBorder(coloredBorder, frontTag + my_title + backTag);
-			titledBorder.setTitleColor(ThemeList.currentTheme.foregroundColor);
+			if(ThemeList.currentTheme.darkTheme) {				
+				titledBorder.setTitleColor(ThemeList.currentTheme.darkForegroundColor);
+			} else {
+				titledBorder.setTitleColor(ThemeList.currentTheme.lightForegroundColor);
+			}
 			this.setBorder(titledBorder);
 			revalidate();
 			repaint();

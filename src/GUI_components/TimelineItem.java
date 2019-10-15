@@ -10,14 +10,13 @@ import javax.swing.Box;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
 
 public class TimelineItem extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private TransparentPanel my_body;
-	private JLabel contactArrow;
-	private JLabel contactDate;
+	private SimpleLabel contactArrow;
+	private SimpleLabel contactDate;
 	private JPanel topRightGab;
 	private TransparentPanel panelOverBody;
 	
@@ -48,12 +47,12 @@ public class TimelineItem extends TransparentPanel {
 		TransparentPanel lineContact = new TransparentPanel();
 		lineContact.setOpaque(false);
 		lineContact.setLayout(new GridLayout(1, 0, 0, 0));
-		contactArrow = new JLabel();
-		contactArrow.setHorizontalTextPosition(JLabel.CENTER);
-		contactArrow.setVerticalTextPosition(JLabel.CENTER);
-		contactDate = new JLabel(date);
-		contactDate.setHorizontalTextPosition(JLabel.CENTER);
-		contactDate.setVerticalTextPosition(JLabel.CENTER);
+		contactArrow = new SimpleLabel("");
+		contactArrow.setHorizontalTextPosition(SimpleLabel.CENTER);
+		contactArrow.setVerticalTextPosition(SimpleLabel.CENTER);
+		contactDate = new SimpleLabel(date);
+		contactDate.setHorizontalTextPosition(SimpleLabel.CENTER);
+		contactDate.setVerticalTextPosition(SimpleLabel.CENTER);
 		if(leftPosition) {
 			//When Item is on left Side, contact must on right side
 			add(lineContact, BorderLayout.EAST);
@@ -75,7 +74,7 @@ public class TimelineItem extends TransparentPanel {
 		my_center.add(my_body, BorderLayout.CENTER);
 		my_body.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JLabel lblIsSpecific = new JLabel("");
+		SimpleLabel lblIsSpecific = new SimpleLabel("");
 		my_body.add(lblIsSpecific);
 		if(isSpecific) {
 			lblIsSpecific.setText("Specific Date");
@@ -110,8 +109,8 @@ public class TimelineItem extends TransparentPanel {
 		topRightGab.add(topGab);
 		
 		my_body = new TransparentPanel();
-		contactArrow = new JLabel();
-		contactDate = new JLabel();
+		contactArrow = new SimpleLabel("");
+		contactDate = new SimpleLabel("");
 		
 		changeTheme();
 	}

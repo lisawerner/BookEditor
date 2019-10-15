@@ -1,5 +1,6 @@
 package GUI.sectionTags;
 
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextfield;
 import GUI_components.TransparentPanel;
@@ -18,7 +19,6 @@ import javax.swing.JButton;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
 
 import java.awt.GridLayout;
 
@@ -30,7 +30,7 @@ public class SectionRelationships extends TransparentPanel {
 	private SectionTagEditor my_body;
 	private Relationship my_relationship;
 	
-	private JLabel lblWARNING;
+	private SimpleLabel lblWARNING;
 	
 	private Person personA;
 	private Person personB;
@@ -85,13 +85,13 @@ public class SectionRelationships extends TransparentPanel {
 		TransparentPanel panel_type = new TransparentPanel();
 		add(panel_type, BorderLayout.WEST);
 		panel_type.setLayout(new GridLayout(0, 1, 0, 0));
-		JLabel lblType = new JLabel("Relationship-Type: ");
+		SimpleLabel lblType = new SimpleLabel("Relationship-Type: ");
 		panel_type.add(lblType);
 		txt_relationshipType = new SimpleTextfield();
 		if(my_relationship != null) {txt_relationshipType.setText(my_relationship.getDescribingRelationshipType());}
 		panel_type.add(txt_relationshipType);
 
-		lblWARNING = new JLabel(" ");
+		lblWARNING = new SimpleLabel(" ");
 		add(lblWARNING, BorderLayout.SOUTH);
 		lblWARNING.setForeground(Color.RED);
 		
@@ -101,7 +101,7 @@ public class SectionRelationships extends TransparentPanel {
 		
 		TransparentPanel panel_personA = new TransparentPanel();
 		panel_Persons.add(panel_personA);
-		JLabel lblPersonA = new JLabel("Choose Person A: ");
+		SimpleLabel lblPersonA = new SimpleLabel("Choose Person A: ");
 		panel_personA.add(lblPersonA);
 		ButtonGroup group_personA = new ButtonGroup();
 		for(Person person : Book.getInstance().getPersonList()) {
@@ -129,7 +129,7 @@ public class SectionRelationships extends TransparentPanel {
 		
 		TransparentPanel panel_personB = new TransparentPanel();
 		panel_Persons.add(panel_personB);
-		JLabel lblPersonB = new JLabel("Choose Person B: ");
+		SimpleLabel lblPersonB = new SimpleLabel("Choose Person B: ");
 		panel_personB.add(lblPersonB);
 		ButtonGroup group_personB = new ButtonGroup();
 		for(Person person : Book.getInstance().getPersonList()) {

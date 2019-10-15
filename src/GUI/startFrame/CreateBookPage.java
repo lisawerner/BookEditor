@@ -1,7 +1,6 @@
 package GUI.startFrame;
 
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +9,7 @@ import javax.swing.JTextField;
 
 import GUI_components.HeaderBook;
 import GUI_components.InfoButton;
+import GUI_components.SimpleLabel;
 import book.Book;
 
 import javax.swing.BorderFactory;
@@ -25,8 +25,8 @@ public class CreateBookPage extends JPanel {
 	
 	private JTextField txt_newTitle;
 	private JCheckBox chckbxRememberWorktitle;
-	private JLabel lblSaveWarning;
-	private JLabel lblNewTitle;
+	private SimpleLabel lblSaveWarning;
+	private SimpleLabel lblNewTitle;
 	
 	public CreateBookPage() {
 		setLayout(new BorderLayout(10, 10));
@@ -35,10 +35,10 @@ public class CreateBookPage extends JPanel {
 		add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JLabel lblSavingHInt = new JLabel("You have to fill every field with an *.");
+		SimpleLabel lblSavingHInt = new SimpleLabel("You have to fill every field with an *.");
 		panel_footer.add(lblSavingHInt);
 		
-		lblSaveWarning = new JLabel(" ");
+		lblSaveWarning = new SimpleLabel(" ");
 		panel_footer.add(lblSaveWarning);
 		lblSaveWarning.setForeground(Color.RED);
 		
@@ -79,7 +79,7 @@ public class CreateBookPage extends JPanel {
 		panel_body.add(panel_enterDataHere);
 		panel_enterDataHere.setLayout(new BorderLayout(5, 5));
 		
-		lblNewTitle = new JLabel("* Enter Book Title:");
+		lblNewTitle = new SimpleLabel("* Enter Book Title:");
 		panel_enterDataHere.add(lblNewTitle, BorderLayout.WEST);
 		
 		InfoButton btn_newTitleInfo = new InfoButton("You can change the title at any time.");

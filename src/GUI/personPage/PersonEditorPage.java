@@ -10,12 +10,12 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
 import GUI_components.LinkButton;
 import GUI_components.Page;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextarea;
 import GUI_components.SimpleTextfield;
@@ -37,7 +37,7 @@ public class PersonEditorPage extends Page {
 	private AgeCard personsAgeCard;
 	private SimpleTextfield txt_name;
 
-	private JLabel lblName;
+	private SimpleLabel lblName;
 
 	public PersonEditorPage(Person person) {
 		super("Persons, Relationships, ...");
@@ -65,7 +65,7 @@ public class PersonEditorPage extends Page {
 		card_name.setBody(changeName_body);
 		changeName_body.setLayout(new BorderLayout(5, 5));
 		
-		lblName = new JLabel("Name:");
+		lblName = new SimpleLabel("Name:");
 		changeName_body.add(lblName, BorderLayout.WEST);
 		
 		txt_name = new SimpleTextfield();
@@ -113,7 +113,7 @@ public class PersonEditorPage extends Page {
 		card_Notes.setBody(panel_skills);
 		panel_skills.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNotesskills = new JLabel("Notes (Skills, Job, ...):");
+		SimpleLabel lblNotesskills = new SimpleLabel("Notes (Skills, Job, ...):");
 		panel_skills.add(lblNotesskills, BorderLayout.NORTH);
 		
 		SimpleTextarea txt_notes = new SimpleTextarea();
@@ -134,7 +134,7 @@ public class PersonEditorPage extends Page {
 					LinkButton btnSectionTag = new LinkButton(section.getName());
 					btnSectionTag.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section)));
 					panel_sectionRefList.add(btnSectionTag);
-					panel_sectionRefList.add(new JLabel(";  "));
+					panel_sectionRefList.add(new SimpleLabel(";  "));
 				}
 			}
 		}
@@ -154,7 +154,7 @@ public class PersonEditorPage extends Page {
 				TransparentPanel relationPanel = new TransparentPanel();
 				relationListPanel.add(relationPanel);
 				relationPanel.setLayout(new BoxLayout(relationPanel, BoxLayout.LINE_AXIS));
-				relationPanel.add(new JLabel("Has Relationship '" + relship.getDescribingRelationshipType() + "' with Person "));
+				relationPanel.add(new SimpleLabel("Has Relationship '" + relship.getDescribingRelationshipType() + "' with Person "));
 				Person relPerson = Book.getInstance().getPerson(relship.getOtherPerson(my_person.getID()));
 				LinkButton lbtnRelPerson = new LinkButton(relPerson.getName());
 				relationPanel.add(lbtnRelPerson);
@@ -169,7 +169,7 @@ public class PersonEditorPage extends Page {
 		this.setFooter(footer);
 		footer.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JLabel lblWarning = new JLabel(" ");
+		SimpleLabel lblWarning = new SimpleLabel(" ");
 		lblWarning.setForeground(Color.RED);
 		footer.add(lblWarning);
 

@@ -25,9 +25,15 @@ public class LinkButton extends JButton{
 	
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
-			setBorder(BorderFactory.createEmptyBorder());
-			setBackground(ThemeList.currentTheme.backgroundColor);
-			setForeground(ThemeList.currentTheme.actionFontColor);
+			if(ThemeList.currentTheme.darkTheme) {
+				setBorder(BorderFactory.createEmptyBorder());
+				setBackground(ThemeList.currentTheme.darkBackgroundColor);
+				setForeground(ThemeList.currentTheme.darkActionFontColor);
+			} else {				
+				setBorder(BorderFactory.createEmptyBorder());
+				setBackground(ThemeList.currentTheme.lightBackgroundColor);
+				setForeground(ThemeList.currentTheme.actionFontColor);
+			}
 			revalidate();
 			repaint();
 		} else {

@@ -7,13 +7,13 @@ import world.Place;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JSeparator;
 
 import GUI_components.InfoButton;
 import GUI_components.Page;
+import GUI_components.SimpleLabel;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
 import GUI_components.TutorialCard;
@@ -46,7 +46,7 @@ public class WorldEditor extends Page {
 		InfoButton hintButton = new InfoButton("You can change hirachy by changing every single element.");
 		panel_hint.add(hintButton, BorderLayout.WEST);
 		
-		JLabel lblChangingHint = new JLabel("You can change hirachy by changing every single element.");
+		SimpleLabel lblChangingHint = new SimpleLabel("You can change hirachy by changing every single element.");
 		lblChangingHint.setForeground(Color.RED);
 		panel_hint.add(lblChangingHint, BorderLayout.CENTER);
 		
@@ -61,7 +61,7 @@ public class WorldEditor extends Page {
 		
 		for(Place place : Book.getInstance().getPlaces()) {
 			if(place.getParentRef() == null) {				
-				JLabel lblPlaceInfo = new JLabel(place.getName() + " [Type: " + place.getType() + "]");
+				SimpleLabel lblPlaceInfo = new SimpleLabel(place.getName() + " [Type: " + place.getType() + "]");
 				panel_sortBody.add(lblPlaceInfo);
 				if(place.getChildrenIDs() != null) {					
 					String childDepth = "      >>  ";
@@ -79,7 +79,7 @@ public class WorldEditor extends Page {
 		if(childrenPlaceRefs != null) {
 			for(ObjectID childID : childrenPlaceRefs) {
 				Place currentPlace = Book.getInstance().getPlace(childID);
-				JLabel lblPlaceInfo = new JLabel(hierarchyDepth + currentPlace.getName() + " [Type: " + currentPlace.getType() + "]");
+				SimpleLabel lblPlaceInfo = new SimpleLabel(hierarchyDepth + currentPlace.getName() + " [Type: " + currentPlace.getType() + "]");
 				panel_sortBody.add(lblPlaceInfo);
 				if(currentPlace.getChildrenIDs() != null) {					
 					String childDepth = hierarchyDepth + "      >>  ";

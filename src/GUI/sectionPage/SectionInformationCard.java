@@ -4,11 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
-
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionTimestamp.SectionTimeEditor;
 import GUI_components.InfoButton;
+import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import book.DevelopmentStatus;
 import book.Section;
@@ -19,7 +18,7 @@ public class SectionInformationCard extends TransparentPanel {
 	
 	private Section my_section;
 	
-	private JLabel lblDevStatus;
+	private SimpleLabel lblDevStatus;
 	private InfoButton hint_devStatus;
 	private JButton btnDecreaseDevStatus;
 	private InfoButton ibtnDecrease;
@@ -33,12 +32,12 @@ public class SectionInformationCard extends TransparentPanel {
 		TransparentPanel panel_timestamp = new TransparentPanel();
 		add(panel_timestamp);
 		panel_timestamp.setLayout(new BorderLayout(5, 5));
-		JLabel lblTimestamp = new JLabel("Timestamp:");
+		SimpleLabel lblTimestamp = new SimpleLabel("Timestamp:");
 		panel_timestamp.add(lblTimestamp, BorderLayout.WEST);
 		JButton btnChange = new JButton("Change");
 		btnChange.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionTimeEditor(my_section)));
 		panel_timestamp.add(btnChange, BorderLayout.EAST);
-		JLabel lblSectionTimestamp = new JLabel("  ");
+		SimpleLabel lblSectionTimestamp = new SimpleLabel("  ");
 		if(my_section != null) {
 			if(my_section.hasTimestamp()) {
 				lblSectionTimestamp.setText(my_section.getTimestamp().toString());
@@ -52,7 +51,7 @@ public class SectionInformationCard extends TransparentPanel {
 		TransparentPanel panel_devStatus = new TransparentPanel();
 		add(panel_devStatus);
 		panel_devStatus.setLayout(new BorderLayout(5, 5));
-		lblDevStatus = new JLabel("Current Development Status: unkown");
+		lblDevStatus = new SimpleLabel("Current Development Status: unkown");
 		panel_devStatus.add(lblDevStatus, BorderLayout.WEST);
 		TransparentPanel panel_positionDevStatusHint = new TransparentPanel();
 		panel_devStatus.add(panel_positionDevStatusHint, BorderLayout.CENTER);
@@ -85,7 +84,7 @@ public class SectionInformationCard extends TransparentPanel {
 			panel_changeDevStatus.add(ibtnIncrease, BorderLayout.EAST);
 		}
 		
-		JLabel lblSectionInfoCounts = new JLabel("Words: ...; Char: ...");
+		SimpleLabel lblSectionInfoCounts = new SimpleLabel("Words: ...; Char: ...");
 		if(my_section != null) {lblSectionInfoCounts.setText("Words: " + my_section.getCountWords() + "; Char: " + my_section.getText().length());}
 		add(lblSectionInfoCounts);
 	}

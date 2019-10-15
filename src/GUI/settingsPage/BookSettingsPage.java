@@ -3,8 +3,6 @@ package GUI.settingsPage;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.JLabel;
-
 import GUI.bookeditorFrame.BookEditorFrame;
 
 import javax.swing.BorderFactory;
@@ -15,6 +13,7 @@ import java.awt.GridLayout;
 import GUI_components.InfoButton;
 import GUI_components.Page;
 import GUI_components.SimpleCheckbox;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextfield;
 import GUI_components.StructureCard;
@@ -35,8 +34,10 @@ public class BookSettingsPage extends Page {
 	
 	private SimpleTextfield txt_title;
 	private SimpleCheckbox rdbtnIsWorkTitle;
-	private JLabel lblTitle;
+	private SimpleLabel lblTitle;
 	private SimpleCheckbox rdbtnPrintChaptername;
+	private SimpleRadiobutton rdbtnDark;
+	private SimpleRadiobutton rdbtnLight;
 
 	public BookSettingsPage() {
 		super("Book Settings");
@@ -66,7 +67,7 @@ public class BookSettingsPage extends Page {
 		changeBookTitle_body.add(panel_setTitle);
 		panel_setTitle.setLayout(new BorderLayout(5, 5));
 		
-		lblTitle = new JLabel("Title:");
+		lblTitle = new SimpleLabel("Title:");
 		panel_setTitle.add(lblTitle, BorderLayout.WEST);
 		
 		txt_title = new SimpleTextfield(Book.getInstance().getTitle());
@@ -87,7 +88,7 @@ public class BookSettingsPage extends Page {
 		card_TimelineSettings.setBody(timelineSettings_body);
 		timelineSettings_body.setLayout(new GridLayout(0, 1, 10, 10));
 				
-		JLabel lblIfYouWant = new JLabel("If you want to work with Timeline-Features, choose following options:");
+		SimpleLabel lblIfYouWant = new SimpleLabel("If you want to work with Timeline-Features, choose following options:");
 		timelineSettings_body.add(lblIfYouWant);
 		
 		ButtonGroup btngrCalendarType = new ButtonGroup();
@@ -134,6 +135,7 @@ public class BookSettingsPage extends Page {
 		rdbtnDefaultTheme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_theme = null;
+				enableColorTheme(false);
 			}
 		});
 		btngrTheme.add(rdbtnDefaultTheme);
@@ -148,6 +150,7 @@ public class BookSettingsPage extends Page {
 			rdbtnTheme.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					my_theme = theme;
+					enableColorTheme(true);
 				}
 			});
 			btngrTheme.add(rdbtnTheme);
@@ -163,13 +166,21 @@ public class BookSettingsPage extends Page {
 		themeSettings_body.add(panel_DarkLight, BorderLayout.WEST);
 		panel_DarkLight.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		SimpleRadiobutton rdbtnDark = new SimpleRadiobutton("DarkTheme");
+		rdbtnDark = new SimpleRadiobutton("DarkTheme");
 		btngrThemeDarkLight.add(rdbtnDark);
+		if(my_theme != null) {
+			rdbtnDark.setSelected(my_theme.darkTheme);
+		}
 		panel_DarkLight.add(rdbtnDark);
 		
-		SimpleRadiobutton rdbtnLight = new SimpleRadiobutton("Light Theme");
+		rdbtnLight = new SimpleRadiobutton("Light Theme");
 		btngrThemeDarkLight.add(rdbtnLight);
+		if(my_theme != null) {			
+			rdbtnLight.setSelected(!my_theme.darkTheme);
+		}
 		panel_DarkLight.add(rdbtnLight);
+
+		enableColorTheme(my_theme != null);
 		//********************************************************************
 		
 		
@@ -191,7 +202,7 @@ public class BookSettingsPage extends Page {
 		setFooter(footer);
 		footer.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JLabel lblWarning = new JLabel(" ");
+		SimpleLabel lblWarning = new SimpleLabel(" ");
 		lblWarning.setForeground(Color.RED);
 		footer.add(lblWarning);
 		
@@ -213,6 +224,15 @@ public class BookSettingsPage extends Page {
 					canSave = false;
 					setWarningEnterName(true);
 				}
+				
+				if(my_theme != null) {
+					if(!rdbtnDark.isSelected() && !rdbtnLight.isSelected()) {
+						lblWarning.setText("If you choose a Theme, you have to choose dark or light also!");
+						canSave = false;
+					}
+					theme.darkTheme = rdbtnDark.isSelected() && !rdbtnLight.isSelected();
+				}
+				
 							
 				if(canSave) {
 					Book.getInstance().changeBookSettings(booktitle, isWorkTitled, isGregorian, printChaptername, theme);
@@ -241,6 +261,11 @@ public class BookSettingsPage extends Page {
 			txt_title.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			lblTitle.setForeground(Color.BLACK);
 		}
+	}
+	
+	public void enableColorTheme(boolean enable) {
+		rdbtnDark.setEnabled(enable);
+		rdbtnLight.setEnabled(enable);
 	}
 
 }

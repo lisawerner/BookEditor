@@ -2,6 +2,7 @@ package GUI.sectionTags;
 
 import GUI_components.Page;
 import GUI_components.SimpleCheckbox;
+import GUI_components.SimpleLabel;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
 import GUI_components.TutorialCard;
@@ -15,7 +16,6 @@ import world.Place;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
@@ -138,7 +138,7 @@ public class SectionTagEditor extends Page {
 			TransparentPanel distancePanel = new TransparentPanel();
 			distancePanel.setLayout(new BorderLayout(5, 5));
 			parentPanel.add(distancePanel);
-			JLabel lblDistance = new JLabel("<html>" + distance + "</html>");
+			SimpleLabel lblDistance = new SimpleLabel("<html>" + distance + "</html>");
 			distancePanel.add(lblDistance, BorderLayout.WEST);
 			SimpleCheckbox chckbxPlace = new SimpleCheckbox(child.getName());
 			distancePanel.add(chckbxPlace, BorderLayout.CENTER);			

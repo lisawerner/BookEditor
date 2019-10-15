@@ -15,11 +15,15 @@ public class SimpleRadiobutton extends JRadioButton {
 	
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
-			setForeground(ThemeList.currentTheme.actionFontColor);
+			if(ThemeList.currentTheme.darkTheme) {
+				setForeground(ThemeList.currentTheme.darkActionFontColor);
+			} else {
+				setForeground(ThemeList.currentTheme.actionFontColor);
+			}
 			revalidate();
 			repaint();
 		} else {
-			System.out.println("Change Theme in Component to: Default");
+//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

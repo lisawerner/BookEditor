@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import book.Section;
 
@@ -24,7 +24,7 @@ public class SortChapterElement extends TransparentPanel {
 		add(panel_sectionInfo, BorderLayout.CENTER);
 		panel_sectionInfo.setLayout(new BorderLayout(5, 5));
 		
-		JLabel lblChapterSpace = new JLabel("    ??     ");
+		SimpleLabel lblChapterSpace = new SimpleLabel("    ??     ");
 		if(my_section.isUnsorted()) {
 			lblChapterSpace.setText("    ??     ");
 		} else {
@@ -36,7 +36,7 @@ public class SortChapterElement extends TransparentPanel {
 		}
 		panel_sectionInfo.add(lblChapterSpace, BorderLayout.WEST);
 		
-		JLabel lblSectionName = new JLabel(my_section.getName());
+		SimpleLabel lblSectionName = new SimpleLabel(my_section.getName());
 		panel_sectionInfo.add(lblSectionName, BorderLayout.CENTER);
 		lblSectionName.setToolTipText("<html>Preview Text:<br>" + my_section.getShortTextPreview() + "</html>");
 		

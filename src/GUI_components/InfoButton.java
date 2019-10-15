@@ -48,6 +48,7 @@ public class InfoButton extends JPanel {
 	
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
+			//TODO: Die Farbe geht so noch gar nicht... bei allen Themes hell und dunkel o.O
 			setForeground(ThemeList.currentTheme.cardTitleFont);
 			my_label.setForeground(ThemeList.currentTheme.cardTitleFont);
 			revalidate();

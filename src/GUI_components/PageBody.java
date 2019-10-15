@@ -39,7 +39,11 @@ public class PageBody extends JScrollPane {
 	
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
-			panel_viewport.setBackground(ThemeList.currentTheme.backgroundColor);
+			if(ThemeList.currentTheme.darkTheme) {
+				panel_viewport.setBackground(ThemeList.currentTheme.darkBackgroundColor);
+			} else {				
+				panel_viewport.setBackground(ThemeList.currentTheme.lightBackgroundColor);
+			}
 			revalidate();
 			repaint();
 		} else {

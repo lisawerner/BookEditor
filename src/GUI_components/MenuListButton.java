@@ -26,7 +26,7 @@ public class MenuListButton extends JButton {
 			revalidate();
 			repaint();
 		} else {
-			System.out.println("Change Theme in Component to: Default");
+//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

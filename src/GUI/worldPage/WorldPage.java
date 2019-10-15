@@ -1,9 +1,9 @@
 package GUI.worldPage;
 
 import GUI_components.Page;
+import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
 
 public class WorldPage extends Page {
 	private static final long serialVersionUID = 1L;
@@ -14,10 +14,10 @@ public class WorldPage extends Page {
 		TransparentPanel panel_placeholder = new TransparentPanel();
 		panel_placeholder.setLayout(new BorderLayout(0, 0));
 		add(panel_placeholder, BorderLayout.CENTER);
-		JLabel lblOpenAnExisting = new JLabel("<html><div style='text-align: center;'><font size=\"5\">Open an existing place or add a new one.<br/>"
+		SimpleLabel lblOpenAnExisting = new SimpleLabel("<html><div style='text-align: center;'><font size=\"5\">Open an existing place or add a new one.<br/>"
 				+ "You can also open whole world &#x27A1;</size></div></html>");
-		lblOpenAnExisting.setHorizontalTextPosition(JLabel.RIGHT);
-		lblOpenAnExisting.setVerticalTextPosition(JLabel.CENTER);
+		lblOpenAnExisting.setHorizontalTextPosition(SimpleLabel.RIGHT);
+		lblOpenAnExisting.setVerticalTextPosition(SimpleLabel.CENTER);
 		panel_placeholder.add(lblOpenAnExisting, BorderLayout.CENTER);
 		
 		setMenu(new PlaceMenu());

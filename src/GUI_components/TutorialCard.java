@@ -6,7 +6,6 @@ import java.awt.Component;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.JLabel;
 
 import global.UserSettings;
 
@@ -18,8 +17,8 @@ public class TutorialCard extends Card {
 	private String frontTag = "<html><div style='text-align: left;'><font size=\"4\">     ";
 	private String backTag = "</size></div></html>";
 	private int maxSteps = 20;
-	private JLabel lblCardTitle;
-	private JLabel my_hint;
+	private SimpleLabel lblCardTitle;
+	private SimpleLabel my_hint;
 	private JButton btnDone;
 
 	public TutorialCard(int tutorialNumber, boolean needsConfirmation) {
@@ -34,14 +33,14 @@ public class TutorialCard extends Card {
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		add(verticalStrut_1, BorderLayout.EAST);
 		
-		lblCardTitle = new JLabel(frontTag + "Tutorial Hint  (Step: " + tutorialNumber + " of " + maxSteps + ")" + backTag);
+		lblCardTitle = new SimpleLabel(frontTag + "Tutorial Hint  (Step: " + tutorialNumber + " of " + maxSteps + ")" + backTag);
 		add(lblCardTitle, BorderLayout.NORTH);
 		
 		TransparentPanel my_body = new TransparentPanel();
 		add(my_body, BorderLayout.CENTER);
 		my_body.setLayout(new BorderLayout(0, 0));
 		
-		my_hint = new JLabel("<html>" + getTutorial(tutorialNumber) + "</html>");
+		my_hint = new SimpleLabel("<html>" + getTutorial(tutorialNumber) + "</html>");
 		my_body.add(my_hint, BorderLayout.CENTER);
 		
 		btnDone = new JButton("  Done!  ");

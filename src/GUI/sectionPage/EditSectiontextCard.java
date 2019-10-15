@@ -1,10 +1,10 @@
 package GUI.sectionPage;
 
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextarea;
 import GUI_components.TransparentPanel;
 import book.Section;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.BorderLayout;
@@ -21,7 +21,7 @@ public class EditSectiontextCard extends TransparentPanel {
 //	private String backTag = "</html>";
 	
 	private SimpleTextarea textArea;
-	private JLabel lblSaveHint;
+	private SimpleLabel lblSaveHint;
 	
 	public EditSectiontextCard(Section openedSection) {
 		my_section = openedSection;
@@ -78,7 +78,7 @@ public class EditSectiontextCard extends TransparentPanel {
 		add(btnSave, BorderLayout.EAST);
 		btnSave.addActionListener(e -> save());
 		
-		lblSaveHint = new JLabel("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Last saved:</html>");
+		lblSaveHint = new SimpleLabel("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Last saved:</html>");
 		add(lblSaveHint, BorderLayout.SOUTH);
 
 	}

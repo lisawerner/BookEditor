@@ -4,8 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
 
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextfield;
 import GUI_components.TransparentPanel;
@@ -25,7 +25,7 @@ public class AgeCard extends TransparentPanel {
 		
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblAge = new JLabel("Age:");
+		SimpleLabel lblAge = new SimpleLabel("Age:");
 		add(lblAge, BorderLayout.NORTH);
 		
 		txt_age = new SimpleTextfield();

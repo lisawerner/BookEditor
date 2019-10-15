@@ -1,6 +1,7 @@
 package GUI.sortPage;
 
 import GUI_components.Page;
+import GUI_components.SimpleLabel;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
 import GUI_components.TutorialCard;
@@ -9,7 +10,6 @@ import book.Section;
 import global.UserSettings;
 
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 
 public class SortChaptersPage extends Page {
 	private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class SortChaptersPage extends Page {
 		//TODO: Make this Card to a "Tutorial-StructureCard", so User can hide it. Hiding-Setting will Save in Tutorial-File for Whole Editor (not for single Book!); Maybe Tutorial-Cards will have different color-Theme
 		StructureCard card_hintPanel = new StructureCard("Hint");
 		addCard(card_hintPanel);
-		JLabel lblHint = new JLabel("<html>Use &lt; for making a Chapter and > for making a Subsection.<br>"
+		SimpleLabel lblHint = new SimpleLabel("<html>Use &lt; for making a Chapter and > for making a Subsection.<br>"
 				+ "Use ^ for moving up and v for moving down.<br/>"
 				+ "Left places Sections with '>>' are already a chapter; Right places Sections with '>>>>' are Subsections.<br/>"
 				+ "<br/>"

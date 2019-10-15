@@ -15,10 +15,14 @@ public class SimpleCheckbox extends JCheckBox {
 	
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
+			if(ThemeList.currentTheme.darkTheme) {				
+				setForeground(ThemeList.currentTheme.darkActionFontColor);
+			} else {
+				setForeground(ThemeList.currentTheme.actionFontColor);
+			}
 			revalidate();
 			repaint();
 		} else {
-			//System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

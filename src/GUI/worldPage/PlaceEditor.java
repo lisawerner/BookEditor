@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -18,6 +17,7 @@ import GUI_components.InfoButton;
 import GUI_components.LinkButton;
 import GUI_components.Page;
 import GUI_components.SimpleCheckbox;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextfield;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
@@ -36,7 +36,7 @@ public class PlaceEditor extends Page {
 	private Place my_place;
 	
 	private SimpleTextfield txt_placename;
-	private JLabel lblPlacename;
+	private SimpleLabel lblPlacename;
 	private SimpleTextfield txtPlacetype;
 	private JComboBox<ComboItem> comboBox;
 	private SimpleCheckbox chckbxHasParent;
@@ -60,7 +60,7 @@ public class PlaceEditor extends Page {
 		TransparentPanel panel_title = new TransparentPanel();
 		panel_title.setLayout(new BorderLayout(5, 5));
 		card_changeName.setBody(panel_title);
-		lblPlacename = new JLabel("Placename:");
+		lblPlacename = new SimpleLabel("Placename:");
 		panel_title.add(lblPlacename, BorderLayout.WEST);
 		
 		txt_placename = new SimpleTextfield();
@@ -77,7 +77,7 @@ public class PlaceEditor extends Page {
 		card_changePlacetype.setBody(panel_placetype);
 		panel_placetype.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblPlacetype = new JLabel("Place-Type:");
+		SimpleLabel lblPlacetype = new SimpleLabel("Place-Type:");
 		panel_placetype.add(lblPlacetype, BorderLayout.NORTH);
 		
 		InfoButton btnPlaceTypeInfo = new InfoButton("<html>Enter something like city, state, village, parc, house, disco, ...<br/>"
@@ -119,14 +119,14 @@ public class PlaceEditor extends Page {
 		if(my_place != null) {
 			ArrayList<Place> childrenInfos = my_place.getChildrenObject();
 			if(childrenInfos.size() == 0) {
-				JLabel lblChildInfo = new JLabel("---");
+				SimpleLabel lblChildInfo = new SimpleLabel("---");
 				panel_childrenList.add(lblChildInfo);
 			} else {
 				for(Place childInfo : childrenInfos) {
 					LinkButton lblChildInfo = new LinkButton(childInfo.getName());
 					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(childInfo)));
 					panel_childrenList.add(lblChildInfo);
-					panel_childrenList.add(new JLabel(";  "));
+					panel_childrenList.add(new SimpleLabel(";  "));
 				}				
 			}
 		}
@@ -147,7 +147,7 @@ public class PlaceEditor extends Page {
 		this.setFooter(footer);
 		footer.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JLabel lblWarning = new JLabel(" ");
+		SimpleLabel lblWarning = new SimpleLabel(" ");
 		lblWarning.setForeground(Color.RED);
 		footer.add(lblWarning, BorderLayout.SOUTH);		
 
@@ -225,7 +225,7 @@ public class PlaceEditor extends Page {
 					LinkButton btnSectionTag = new LinkButton(section.getName());
 					btnSectionTag.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section)));
 					panel_taglist.add(btnSectionTag);
-					panel_taglist.add(new JLabel(";  "));
+					panel_taglist.add(new SimpleLabel(";  "));
 				}
 			}
 		}

@@ -73,8 +73,12 @@ public class BookEditorFrame extends JFrame {
 	}
 	
 	private void changeTheme() {
-		if(ThemeList.currentTheme != null) {			
-			contentPane.setBackground(ThemeList.currentTheme.backgroundColor);
+		if(ThemeList.currentTheme != null) {
+			if(ThemeList.currentTheme.darkTheme) {
+				contentPane.setBackground(ThemeList.currentTheme.darkBackgroundColor);
+			} else {				
+				contentPane.setBackground(ThemeList.currentTheme.lightBackgroundColor);
+			}
 		}
 	}
 	

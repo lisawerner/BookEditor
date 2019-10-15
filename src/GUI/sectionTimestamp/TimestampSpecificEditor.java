@@ -12,13 +12,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import GUI_components.InfoButton;
 import GUI_components.Pair;
 import GUI_components.SimpleCheckbox;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextfield;
 import GUI_components.TransparentPanel;
 import book.Section;
@@ -33,14 +33,14 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	private SimpleTextfield txt_year;
 	private JComboBox<Pair> cmb_month;
 	private JComboBox<String> cmb_day;
-	private JLabel lblDayWarning;
-	private JLabel lblEnterADate;
-	private JLabel lblMonth;
-	private JLabel lblDay;
-	private JLabel lblYear;
+	private SimpleLabel lblDayWarning;
+	private SimpleLabel lblEnterADate;
+	private SimpleLabel lblMonth;
+	private SimpleLabel lblDay;
+	private SimpleLabel lblYear;
 	private SimpleCheckbox chckbxAnnoDomini;
 	private String dayOfWeek;
-	private JLabel lblDayOfWeek;
+	private SimpleLabel lblDayOfWeek;
 
 	public TimestampSpecificEditor(Section openedSection) {
 		my_section = openedSection;
@@ -52,7 +52,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		
 		setLayout(new BorderLayout(10, 10));
 		
-		lblEnterADate = new JLabel("Enter a Date:");
+		lblEnterADate = new SimpleLabel("Enter a Date:");
 		add(lblEnterADate, BorderLayout.NORTH);
 		
 		TransparentPanel panel_specificPlacer = new TransparentPanel();
@@ -63,13 +63,13 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		panel_specificPlacer.add(panel_enterDate, BorderLayout.NORTH);
 		panel_enterDate.setLayout(new GridLayout(0, 3, 5, 5));
 		
-		lblDay = new JLabel("Day:");
+		lblDay = new SimpleLabel("Day:");
 		panel_enterDate.add(lblDay);
 		
-		lblMonth = new JLabel("Month:");
+		lblMonth = new SimpleLabel("Month:");
 		panel_enterDate.add(lblMonth);
 		
-		lblYear = new JLabel("Year");
+		lblYear = new SimpleLabel("Year");
 		panel_enterDate.add(lblYear);
 		
 		cmb_month = new JComboBox<Pair>();
@@ -159,10 +159,10 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		if(my_specificTimestamp != null) {
 			dayOfWeek = my_specificTimestamp.getDayOfWeek();
 		}
-		lblDayOfWeek = new JLabel("<html>&#8594;" + dayOfWeek + "</html>");
+		lblDayOfWeek = new SimpleLabel("<html>&#8594;" + dayOfWeek + "</html>");
 		panel_enterDate.add(lblDayOfWeek);
 		
-		JLabel lblEmpty = new JLabel(" ");
+		SimpleLabel lblEmpty = new SimpleLabel(" ");
 		panel_enterDate.add(lblEmpty);
 	
 		panel_enterDate.add(chckbxAnnoDomini);
@@ -182,7 +182,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		panel_enterDate.add(panel_DayWarning);
 		panel_DayWarning.setLayout(new BorderLayout(5, 5));
 		
-		lblDayWarning = new JLabel(" ");
+		lblDayWarning = new SimpleLabel(" ");
 		panel_DayWarning.add(lblDayWarning, BorderLayout.NORTH);
 		lblDayWarning.setForeground(Color.RED);
 		

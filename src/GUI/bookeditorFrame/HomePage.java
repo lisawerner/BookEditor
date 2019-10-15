@@ -2,9 +2,8 @@ package GUI.bookeditorFrame;
 
 import java.awt.GridLayout;
 
-import javax.swing.JLabel;
-
 import GUI_components.Page;
+import GUI_components.SimpleLabel;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
 import GUI_components.TutorialCard;
@@ -66,7 +65,7 @@ public class HomePage extends Page {
 		panel_statistics.setLayout(new GridLayout(0, 1, 5, 5));
 		card_Statistics.setBody(panel_statistics);
 		
-		JLabel lblSectionStatistics = new JLabel("Chapters: " + Book.getInstance().getSectionList().getCountChapters() + " + with Sections: " + Book.getInstance().getSectionList().getSections().size());
+		SimpleLabel lblSectionStatistics = new SimpleLabel("Chapters: " + Book.getInstance().getSectionList().getCountChapters() + " + with Sections: " + Book.getInstance().getSectionList().getSections().size());
 		panel_statistics.add(lblSectionStatistics);
 		
 		int countWords = 0;
@@ -75,13 +74,13 @@ public class HomePage extends Page {
 			countWords += section.getCountWords();
 			countChars += section.getText().length();
 		}
-		JLabel lblContentStatistics = new JLabel("Words: " + countWords + "; Chars: " + countChars);
+		SimpleLabel lblContentStatistics = new SimpleLabel("Words: " + countWords + "; Chars: " + countChars);
 		panel_statistics.add(lblContentStatistics);
 		
-		JLabel lblPersonStatistics = new JLabel("Persons: " + Book.getInstance().getPersonList().size());
+		SimpleLabel lblPersonStatistics = new SimpleLabel("Persons: " + Book.getInstance().getPersonList().size());
 		panel_statistics.add(lblPersonStatistics);
 		
-		JLabel lblPlacesStatistics = new JLabel("Places: " + Book.getInstance().getPlaces().size());
+		SimpleLabel lblPlacesStatistics = new SimpleLabel("Places: " + Book.getInstance().getPlaces().size());
 		panel_statistics.add(lblPlacesStatistics);
 	}
 

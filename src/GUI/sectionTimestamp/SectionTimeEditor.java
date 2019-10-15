@@ -7,7 +7,6 @@ import time.RelativeDate;
 import time.SpecificDate;
 import time.Timestamp;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -16,6 +15,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
 import GUI_components.LinkButton;
 import GUI_components.Page;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
@@ -55,11 +55,11 @@ public class SectionTimeEditor extends Page {
 		if(preSection != null) {		
 			if(preSection.hasTimestamp()) {				
 				panel_preSection.setLayout(new BoxLayout(panel_preSection, BoxLayout.LINE_AXIS));
-				panel_preSection.add(new JLabel("Section before '"));
+				panel_preSection.add(new SimpleLabel("Section before '"));
 				LinkButton btnPresection = new LinkButton(preSection.getName());
 				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection)));
 				panel_preSection.add(btnPresection);
-				panel_preSection.add(new JLabel("' has Timestamp: " + preSection.getTimestamp().toString()));
+				panel_preSection.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toString()));
 			}
 		}
 
@@ -131,7 +131,7 @@ public class SectionTimeEditor extends Page {
 		JButton btnSaveTimestamp = new JButton("Save Timestamp");
 		panel_FOOTER.add(btnSaveTimestamp, BorderLayout.SOUTH);
 		
-		JLabel lblSaveWarning = new JLabel(" ");
+		SimpleLabel lblSaveWarning = new SimpleLabel(" ");
 		panel_FOOTER.add(lblSaveWarning, BorderLayout.NORTH);
 		btnSaveTimestamp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

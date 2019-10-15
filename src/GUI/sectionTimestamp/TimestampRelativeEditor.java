@@ -2,6 +2,7 @@ package GUI.sectionTimestamp;
 
 import GUI_components.ComboItem;
 import GUI_components.SimpleIntegerTextfield;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.TransparentPanel;
 import book.Book;
@@ -15,9 +16,6 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.JLabel;
-
-
 public class TimestampRelativeEditor extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
@@ -27,18 +25,18 @@ public class TimestampRelativeEditor extends TransparentPanel {
 	private SimpleIntegerTextfield txt_weeks;
 	private SimpleIntegerTextfield txt_months;
 	private SimpleIntegerTextfield txt_years;
-	private JLabel lblSelectASection;
-	private JLabel lblShouldTheRelated;
+	private SimpleLabel lblSelectASection;
+	private SimpleLabel lblShouldTheRelated;
 	private JComboBox<ComboItem> comboBox;
 	private SimpleRadiobutton rdbtnBefore;
 	private SimpleRadiobutton rdbtnAfter;
-	private JLabel lblSetTheDistancetime;
-	private JLabel lblDays;
-	private JLabel lblWeeks;
-	private JLabel lblMonths;
-	private JLabel lblYears;
-	private JLabel lblResult;
-	private JLabel lblWARNING;
+	private SimpleLabel lblSetTheDistancetime;
+	private SimpleLabel lblDays;
+	private SimpleLabel lblWeeks;
+	private SimpleLabel lblMonths;
+	private SimpleLabel lblYears;
+	private SimpleLabel lblResult;
+	private SimpleLabel lblWARNING;
 
 	public TimestampRelativeEditor(Section openedSection) {
 		my_section = openedSection;
@@ -52,7 +50,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		add(panel_selectRelativeSection);
 		panel_selectRelativeSection.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		lblSelectASection = new JLabel("Select a Section to which the Timestamp is related:");
+		lblSelectASection = new SimpleLabel("Select a Section to which the Timestamp is related:");
 		panel_selectRelativeSection.add(lblSelectASection);
 		
 		comboBox = new JComboBox<ComboItem>();
@@ -67,7 +65,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		add(panel_beforeOrAfter);
 		panel_beforeOrAfter.setLayout(new BorderLayout(5, 5));
 		
-		lblShouldTheRelated = new JLabel("Should the related time happen gefore or after the selected section:");
+		lblShouldTheRelated = new SimpleLabel("Should the related time happen gefore or after the selected section:");
 		panel_beforeOrAfter.add(lblShouldTheRelated, BorderLayout.NORTH);
 		
 		TransparentPanel panel_afterBeforeBODY = new TransparentPanel();
@@ -86,23 +84,23 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		add(panel_setDistance);
 		panel_setDistance.setLayout(new BorderLayout(0, 0));
 		
-		lblSetTheDistancetime = new JLabel("Set the distance-time to selected Section:");
+		lblSetTheDistancetime = new SimpleLabel("Set the distance-time to selected Section:");
 		panel_setDistance.add(lblSetTheDistancetime, BorderLayout.NORTH);
 		
 		TransparentPanel panel_distanceBODY = new TransparentPanel();
 		panel_setDistance.add(panel_distanceBODY);
 		panel_distanceBODY.setLayout(new GridLayout(0, 4, 5, 5));
 		
-		lblDays = new JLabel("Days:");
+		lblDays = new SimpleLabel("Days:");
 		panel_distanceBODY.add(lblDays);
 		
-		lblWeeks = new JLabel("Weeks:");
+		lblWeeks = new SimpleLabel("Weeks:");
 		panel_distanceBODY.add(lblWeeks);
 		
-		lblMonths = new JLabel("Months:");
+		lblMonths = new SimpleLabel("Months:");
 		panel_distanceBODY.add(lblMonths);
 		
-		lblYears = new JLabel("Years:");
+		lblYears = new SimpleLabel("Years:");
 		panel_distanceBODY.add(lblYears);
 		
 		txt_days = new SimpleIntegerTextfield();
@@ -121,10 +119,10 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		add(panel_result);
 		panel_result.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lblResult = new JLabel("Result:");
+		lblResult = new SimpleLabel("Result:");
 		panel_result.add(lblResult);
 		
-		lblWARNING = new JLabel(" ");
+		lblWARNING = new SimpleLabel(" ");
 		lblWARNING.setForeground(Color.RED);
 		add(lblWARNING);
 		
