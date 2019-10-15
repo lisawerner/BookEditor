@@ -5,12 +5,15 @@ import java.awt.Color;
 public class Theme {
 	
 	public String themeName;
+	public boolean darkTheme; //Otherwise lightTheme!
 	
 	public Color headerFontColor;
 	public Color headerBackColor;
 	
-	public Color backgroundColor;
-	public Color foregroundColor;
+	public Color lightBackgroundColor;
+	public Color darkBackgroundColor;
+	public Color lightForegroundColor;
+	public Color darkForegroundColor;
 	
 	public Color menuFontColor;
 	public Color menuBackColor;
@@ -21,24 +24,31 @@ public class Theme {
 	public Color cardTitleFont;
 	public Color cardTitleBack;
 	
-	public Color actionFontColor; //FontColor for Radiobuttons, BorderColor for Textfields, ...
+	//FontColor for Radiobuttons, LinkButton, Checkbox
+	public Color actionFontColor; 
+	public Color darkActionFontColor;
+	//BorderColor for Textfields, Textareas...
 	public Color actionBorderColor;
+	//FontColor for SimpleLabel
 	public Color simpleTextFontColor;
 	
 	public Color warningTutorialCardLayout;
 	
 		
 	public Theme(String newThemeName, Color headerFontColorNew, Color newHeaderBackColor,
-			Color newBackgroundColor, Color newForegroundColor,
+			Color newBackgroundColor, Color newForegroundColor, Color newDarkBackgroundColor, Color newDarkForegroundColor,
 			Color newMenuFontColor, Color newMenuBackColor, Color newMenuButtonFont, Color newMenuButtonBack, Color newMenuListButtonFont,
-			Color newActionBorderColor,
+			Color newCardTitleBackColor, Color newCardTitleFontColor,
+			Color newActionBorderColor, Color newDarkActionFontColor,
 			Color newWarningTutorialCardLayout) {
 		themeName = newThemeName;
 		headerFontColor = headerFontColorNew;
 		headerBackColor = newHeaderBackColor;
 		
-		backgroundColor = newBackgroundColor;
-		foregroundColor = newForegroundColor;
+		lightBackgroundColor = newBackgroundColor;
+		lightForegroundColor = newForegroundColor;
+		darkBackgroundColor = newDarkBackgroundColor;
+		darkForegroundColor = newDarkForegroundColor;
 		
 		menuFontColor = newMenuFontColor;
 		menuBackColor = newMenuBackColor;
@@ -46,10 +56,11 @@ public class Theme {
 		menuButtonFont = newMenuButtonFont;
 		menuListButtonFont = newMenuListButtonFont;
 		
-		cardTitleFont = foregroundColor;
-		cardTitleBack = menuButtonBack;
+		cardTitleFont = newCardTitleFontColor;
+		cardTitleBack = newCardTitleBackColor;
 		
 		actionFontColor = headerBackColor;
+		darkActionFontColor = newDarkActionFontColor;
 		simpleTextFontColor = Color.darkGray;
 		actionBorderColor = newActionBorderColor;
 		
