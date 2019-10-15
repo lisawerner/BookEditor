@@ -71,8 +71,8 @@ public class Page extends TransparentPanel {
 //		revalidate();
 //		repaint();
 //	}
-	
-	public void setMenu(MenuPage newnMenu) {
+		
+	public void setMenu(PageMenu newnMenu) {
 		add(newnMenu, BorderLayout.EAST);
 	}
 	
