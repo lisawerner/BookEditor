@@ -30,20 +30,17 @@ import java.awt.event.ActionEvent;
 public class BookSettingsPage extends Page {
 	private static final long serialVersionUID = 1L;
 
-	private Theme my_theme;
-	
+
+	ThemeSettingsCard themeBody;
 	private SimpleTextfield txt_title;
 	private SimpleCheckbox rdbtnIsWorkTitle;
 	private SimpleLabel lblTitle;
 	private SimpleCheckbox rdbtnPrintChaptername;
-	private SimpleRadiobutton rdbtnDark;
-	private SimpleRadiobutton rdbtnLight;
+
 
 	public BookSettingsPage() {
 		super("Book Settings");
-		
-		my_theme = Book.getInstance().getTheme();
-		
+				
 		//******************************************************************************************************************************************
 		
 		if(!UserSettings.getInstance().getTutorial().chooseFirstColorTheme) {			
@@ -114,74 +111,15 @@ public class BookSettingsPage extends Page {
 		//********************************************************************
 		
 		
+		
 		//********************************************************************
 		//CARD change Color-Theme
-		//TODO: WARNIGN! ERROR: When first select Theme and then select Default again -> Can not set Theme to default again -> Error appeared
 		StructureCard card_ThemeSettings = new StructureCard("Change Color Theme of Editor:");
 		addCard(card_ThemeSettings);
-		
-		TransparentPanel themeSettings_body = new TransparentPanel();
-		themeSettings_body.setLayout(new BorderLayout(5, 5));
-		card_ThemeSettings.setBody(themeSettings_body);
-		
-		TransparentPanel panel_themeList = new TransparentPanel();
-		themeSettings_body.add(panel_themeList, BorderLayout.CENTER);
-		
-		ButtonGroup btngrTheme = new ButtonGroup();
-		
-		panel_themeList.setLayout(new GridLayout(0, 3, 5, 5));
-		SimpleRadiobutton rdbtnDefaultTheme = new SimpleRadiobutton("Default");
-		rdbtnDefaultTheme.setSelected(my_theme == null);
-		rdbtnDefaultTheme.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				my_theme = null;
-				enableColorTheme(false);
-			}
-		});
-		btngrTheme.add(rdbtnDefaultTheme);
-		panel_themeList.add(rdbtnDefaultTheme);
-		for(Theme theme : ThemeList.getThemes()) {			
-			SimpleRadiobutton rdbtnTheme = new SimpleRadiobutton(theme.themeName);
-			if(my_theme != null) {				
-				if(theme.themeName.equals(my_theme.themeName)) {
-					rdbtnTheme.setSelected(true);
-				}
-			}
-			rdbtnTheme.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					my_theme = theme;
-					enableColorTheme(true);
-				}
-			});
-			btngrTheme.add(rdbtnTheme);
-			panel_themeList.add(rdbtnTheme);
-		}
-		
-		InfoButton btnThemeInfo = new InfoButton("You can choose different Themes for every book.");
-		themeSettings_body.add(btnThemeInfo, BorderLayout.EAST);
-		
-		ButtonGroup btngrThemeDarkLight = new ButtonGroup();
-		
-		TransparentPanel panel_DarkLight = new TransparentPanel();
-		themeSettings_body.add(panel_DarkLight, BorderLayout.WEST);
-		panel_DarkLight.setLayout(new GridLayout(0, 1, 5, 5));
-		
-		rdbtnDark = new SimpleRadiobutton("DarkTheme");
-		btngrThemeDarkLight.add(rdbtnDark);
-		if(my_theme != null) {
-			rdbtnDark.setSelected(my_theme.darkTheme);
-		}
-		panel_DarkLight.add(rdbtnDark);
-		
-		rdbtnLight = new SimpleRadiobutton("Light Theme");
-		btngrThemeDarkLight.add(rdbtnLight);
-		if(my_theme != null) {			
-			rdbtnLight.setSelected(!my_theme.darkTheme);
-		}
-		panel_DarkLight.add(rdbtnLight);
-
-		enableColorTheme(my_theme != null);
+		themeBody = new ThemeSettingsCard();
+		card_ThemeSettings.setBody(themeBody);
 		//********************************************************************
+		
 		
 		
 		//********************************************************************
@@ -217,23 +155,19 @@ public class BookSettingsPage extends Page {
 				boolean isWorkTitled = rdbtnIsWorkTitle.isSelected();
 				boolean isGregorian = rdbtnIsWorkTitle.isSelected();
 				boolean printChaptername = rdbtnPrintChaptername.isSelected();
-				Theme theme = my_theme;
+				
+				if(!themeBody.canSave()) {
+					lblWarning.setText("Can not change, because something is wrong with theme-settings!");
+					canSave = false;
+				}
+				Theme theme = themeBody.getTheme();
 				
 				if("".equals(booktitle)) {
 					lblWarning.setText("You have to enter an booktitle!");
 					canSave = false;
 					setWarningEnterName(true);
 				}
-				
-				if(my_theme != null) {
-					if(!rdbtnDark.isSelected() && !rdbtnLight.isSelected()) {
-						lblWarning.setText("If you choose a Theme, you have to choose dark or light also!");
-						canSave = false;
-					}
-					theme.darkTheme = rdbtnDark.isSelected() && !rdbtnLight.isSelected();
-				}
-				
-							
+						
 				if(canSave) {
 					Book.getInstance().changeBookSettings(booktitle, isWorkTitled, isGregorian, printChaptername, theme);
 					if(!UserSettings.getInstance().getTutorial().chooseFirstColorTheme) {						
@@ -261,11 +195,6 @@ public class BookSettingsPage extends Page {
 			txt_title.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			lblTitle.setForeground(Color.BLACK);
 		}
-	}
-	
-	public void enableColorTheme(boolean enable) {
-		rdbtnDark.setEnabled(enable);
-		rdbtnLight.setEnabled(enable);
 	}
 
 }

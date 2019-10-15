@@ -1,4 +1,4 @@
-package GUI.startFrame;
+package GUI_StartFrame;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;

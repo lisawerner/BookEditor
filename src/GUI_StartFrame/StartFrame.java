@@ -1,4 +1,4 @@
-package GUI.startFrame;
+package GUI_StartFrame;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI_components.BookFooter;
 
 public class StartFrame extends JFrame {
 	
@@ -44,6 +45,9 @@ public class StartFrame extends JFrame {
 		centeredBody = new JPanel();
 		contentPane.add(centeredBody, BorderLayout.CENTER);
 		centeredBody.add(new StartPage());
+		
+		BookFooter generalFooter = new BookFooter();
+		contentPane.add(generalFooter, BorderLayout.SOUTH);
 	}
 	
 	public void switchBody(JPanel newBody){

@@ -1,4 +1,4 @@
-package GUI.startFrame;
+package GUI_StartFrame;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;

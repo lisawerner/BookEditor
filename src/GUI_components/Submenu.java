@@ -50,7 +50,7 @@ public class Submenu extends TransparentPanel {
 	}
 
 	public void addText(String text) {
-		my_buttonBody.add(new MenuText(text));
+		my_buttonBody.add(new MenuText("<html>" + text + "</html>"));
 	}
 	
 	public void activateList() {

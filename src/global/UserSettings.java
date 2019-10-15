@@ -24,6 +24,11 @@ public class UserSettings {
 	public Tutorial getTutorial() {
 		return user_tutorial;
 	}
+	
+	public void restartTutorial() {
+		user_tutorial = new Tutorial();
+		save();
+	}
 
 	public void save() {
 		FileManager.saveJSONFile(my_filename, this);
