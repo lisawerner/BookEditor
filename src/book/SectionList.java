@@ -139,11 +139,37 @@ public class SectionList {
 		//Get First -> First could be smallest
 		Section smallestDateSection = restList.get(0);
 		for(Section currentSection : restList) {
-			if(smallestDateSection.getTimestamp().greaterThen(currentSection.getTimestamp())) {
-				smallestDateSection = currentSection;
-			}
+			smallestDateSection = getSmallerSection(smallestDateSection, currentSection);
 		}
 		return smallestDateSection;
+	}
+	
+	private Section getSmallerSection(Section sectionA, Section sectionB) {
+		if(sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && !sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
+			//return sectionB, because sectionB is before christ and sectionA after christ
+			return sectionB;
+		}
+		if(!sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
+			//return sectionA, because sectionA is before christ and sectionB after christ
+			return sectionA;
+		}
+		if(!sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && !sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
+			//return section which is smaller, because both after christ
+			if(sectionB.getTimestamp().greaterThen(sectionA.getTimestamp())) {
+				return sectionB;
+			} else {
+				return sectionA;
+			}
+		}
+		if(sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
+			//return section which is greater, because both before christ
+			if(sectionA.getTimestamp().greaterThen(sectionB.getTimestamp())) {
+				return sectionB;
+			} else {
+				return sectionA;
+			}
+		}
+		return null;
 	}
 	
 	public ArrayList<Section> getUnfinishedSections(){

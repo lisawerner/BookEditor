@@ -73,8 +73,17 @@ public class RelativeDate {
 		cal.set(Calendar.DAY_OF_MONTH, myDay);
 		cal.set(Calendar.MONTH, myMonth);
 		
+		boolean isAnnoDomini = relatedDate.isAnnoDomini();
+		
 		if(isAfter) {
-			myYear += my_yearsDistance;
+			if(relatedDate.isAnnoDomini()) {				
+				myYear += my_yearsDistance;
+			} else {
+				myYear -= my_yearsDistance;
+				if(myYear < 0) {
+					isAnnoDomini = false;
+				}
+			}
 		    cal.set(Calendar.YEAR, myYear);
 		    cal.add(Calendar.MONTH, my_monthsDistance);
 			cal.add(Calendar.DATE, addDays); // Adding x days
@@ -82,7 +91,14 @@ public class RelativeDate {
 			myMonth = cal.get(Calendar.MONTH);
 			myDay = cal.get(Calendar.DAY_OF_MONTH);
 		} else {
-			myYear -= my_yearsDistance;
+			if(relatedDate.isAnnoDomini()) {				
+				myYear -= my_yearsDistance;
+				if(myYear >= 0) {
+					isAnnoDomini = true;
+				}
+			} else {
+				myYear += my_yearsDistance;
+			}
 		    cal.set(Calendar.YEAR, myYear);
 		    cal.add(Calendar.MONTH, -my_monthsDistance);
 			cal.add(Calendar.DATE, -addDays); // Adding x days
@@ -91,8 +107,7 @@ public class RelativeDate {
 			myDay = cal.get(Calendar.DAY_OF_MONTH);
 		}
 
-		boolean isAnnoDomini = myYear < 0;
-		if(isAnnoDomini) {
+		if(!isAnnoDomini) {
 			myYear = Math.abs(myYear);
 		}
 	    

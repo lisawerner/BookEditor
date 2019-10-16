@@ -22,7 +22,7 @@ public class TimelineElement extends TimelineItem {
 	private Section my_section;
 	
 	public TimelineElement(Section section, boolean leftPosition) {
-		super(leftPosition, section.getTimestamp().toString(), section.getTimestamp().isSpecificDate());
+		super(leftPosition, section.getTimestamp().toString(), section.getTimestamp().isSpecificDate(), !section.getTimestamp().getSpecificDate().isAnnoDomini());
 		my_section = section;
 
 		//TODO: Filterfunktionen!!!!
@@ -73,7 +73,7 @@ public class TimelineElement extends TimelineItem {
 		panel_relationshipSwitchs.add(lblRelationshipSwitchs);
 		ArrayList<Relationship> relSwitches = my_section.getRelationships();
 		for(Relationship rel : relSwitches) {
-			SimpleLabel lblRel = new SimpleLabel(rel.getSwitchToString(Book.getInstance()) + "; ");
+			SimpleLabel lblRel = new SimpleLabel("<html>" + rel.getSwitchToString(Book.getInstance()) + "; </html>");
 			panel_relationshipSwitchs.add(lblRel);
 		}
 

@@ -41,6 +41,14 @@ public class Timestamp {
 		}
 	}
 	
+	public String toCompleteString() {
+		if(my_specificDate != null) {
+			return my_specificDate.toCompleteString();
+		} else {
+			return my_relativeDate.generateSpecificDate().toCompleteString();
+		}
+	}
+	
 	public boolean greaterThen(Timestamp otherTimestamp) {
 		Date my_date = new Date();
 		if(my_specificDate != null) {

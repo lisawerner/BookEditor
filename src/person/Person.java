@@ -2,6 +2,7 @@ package person;
 
 import java.util.ArrayList;
 
+import book.Book;
 import global.ObjectID;
 
 public class Person {
@@ -77,6 +78,7 @@ public class Person {
 		isMainCharapter = newIsMainCharapter;
 		
 		my_notes = newNotes;
+		Book.getInstance().save();
 	}
 
 	public void addRelationship(ObjectID relationship) {

@@ -201,13 +201,14 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		txt_weeks.setText("" + unspecificDate.getDistWeeks());
 		txt_months.setText("" + unspecificDate.getDistMonths());
 		txt_years.setText("" + unspecificDate.getDistYears());
-		lblResult.setText("<html>Result: " + unspecificDate.toString() + " &#8594; " + getResult().generateSpecificDate().getDayOfWeek() + "</html>");
+		updateRsult();
 		lblWARNING.setText("");
 	}
 	
 	private void updateRsult() {
 		if(getResult() != null) {
-			lblResult.setText("<html>Result: " + getResult().toString() + " &#8594; " + getResult().generateSpecificDate().getDayOfWeek() + "</html>");
+			String restultText = "<html>Result: " + getResult().generateSpecificDate().toCompleteString() + "</html>";
+			lblResult.setText(restultText);
 		}
 	}
 

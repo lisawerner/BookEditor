@@ -52,6 +52,16 @@ public class SpecificDate {
 		}
 		return result;
 	}
+	
+	public String toCompleteString() {
+		String result = toString();
+		if(isAnnoDomini) {
+			result += " (" + getDayOfWeek() + ")";
+		} else {
+			result += " (before christ)";
+		}
+		return result;
+	}
 
 	public Date getDate() {
 		Calendar cal = Calendar.getInstance();

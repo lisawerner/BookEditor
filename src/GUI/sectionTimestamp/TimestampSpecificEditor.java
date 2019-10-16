@@ -93,10 +93,13 @@ public class TimestampSpecificEditor extends TransparentPanel {
 				reloadDayOfWeek();
 			}
 		});
-		
+		lblDayOfWeek = new SimpleLabel("<html>&#8594;" + dayOfWeek + "</html>");
 		chckbxAnnoDomini = new SimpleCheckbox("Anno Domini");
 		if(my_specificTimestamp != null) {
-			chckbxAnnoDomini.setSelected(my_specificTimestamp.isAnnoDomini());		
+			chckbxAnnoDomini.setSelected(my_specificTimestamp.isAnnoDomini());
+			if(!my_specificTimestamp.isAnnoDomini()) {
+				lblDayOfWeek.setText("Not Possible for before christ");
+			}
 		} else {
 			chckbxAnnoDomini.setSelected(true);			
 		}
@@ -159,7 +162,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		if(my_specificTimestamp != null) {
 			dayOfWeek = my_specificTimestamp.getDayOfWeek();
 		}
-		lblDayOfWeek = new SimpleLabel("<html>&#8594;" + dayOfWeek + "</html>");
+
 		panel_enterDate.add(lblDayOfWeek);
 		
 		SimpleLabel lblEmpty = new SimpleLabel(" ");

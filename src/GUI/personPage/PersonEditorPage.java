@@ -212,7 +212,7 @@ public class PersonEditorPage extends Page {
 					} else {
 						my_person.editPerson(name, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 								txt_notes.getText());
-						Book.getInstance().changePerson(my_person.getID(), my_person);
+						Book.getInstance().changePerson();
 						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person));
 					}
 					lblWarning.setText("<html>" + saveMessage + "<br>Successfully saved</html>");

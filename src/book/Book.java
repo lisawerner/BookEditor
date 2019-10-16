@@ -142,18 +142,7 @@ public class Book {
 		return my_persons;
 	}
 	
-	public void changePerson(ObjectID personID, Person newPerson) {
-		ArrayList<Person> newList = new ArrayList<Person>();
-		
-		for(Person person : my_persons) {
-			if(person.equals(personID)) {
-				newList.add(newPerson);
-			} else {
-				newList.add(person);
-			}
-		}
-		
-		my_persons = newList;
+	public void changePerson() {
 		sortPersons();
 		save();
 	}

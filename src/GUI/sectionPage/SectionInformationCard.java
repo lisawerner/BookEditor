@@ -40,7 +40,7 @@ public class SectionInformationCard extends TransparentPanel {
 		SimpleLabel lblSectionTimestamp = new SimpleLabel("  ");
 		if(my_section != null) {
 			if(my_section.hasTimestamp()) {
-				lblSectionTimestamp.setText(my_section.getTimestamp().toString());
+				lblSectionTimestamp.setText(my_section.getTimestamp().toCompleteString());
 			}
 		} else {
 			btnChange.setEnabled(false);

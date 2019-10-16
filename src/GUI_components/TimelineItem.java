@@ -23,7 +23,7 @@ public class TimelineItem extends TransparentPanel {
 	private String frontTag = "<html><font size=\"9\">";
 	private String backTag = "</size></html>";
 
-	public TimelineItem(boolean leftPosition, String date, boolean isSpecific) {
+	public TimelineItem(boolean leftPosition, String date, boolean isSpecific, boolean beforeChrist) {
 		setLayout(new BorderLayout(0, 0));
 		
 		if(date.length() < 10) {
@@ -42,7 +42,11 @@ public class TimelineItem extends TransparentPanel {
 			newDate += date;
 			date = newDate;
 		}
-		date = " " + date + " ";
+		date = "&nbsp;" + date + "&nbsp;";
+		
+		if(beforeChrist){
+			date += "<br/>&emsp;&emsp;b.c.";
+		}
 		
 		TransparentPanel lineContact = new TransparentPanel();
 		lineContact.setOpaque(false);
@@ -50,7 +54,7 @@ public class TimelineItem extends TransparentPanel {
 		contactArrow = new SimpleLabel("");
 		contactArrow.setHorizontalTextPosition(SimpleLabel.CENTER);
 		contactArrow.setVerticalTextPosition(SimpleLabel.CENTER);
-		contactDate = new SimpleLabel(date);
+		contactDate = new SimpleLabel("<html>" + date + "</html>");
 		contactDate.setHorizontalTextPosition(SimpleLabel.CENTER);
 		contactDate.setVerticalTextPosition(SimpleLabel.CENTER);
 		if(leftPosition) {

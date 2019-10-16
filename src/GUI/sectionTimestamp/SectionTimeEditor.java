@@ -59,7 +59,7 @@ public class SectionTimeEditor extends Page {
 				LinkButton btnPresection = new LinkButton(preSection.getName());
 				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection)));
 				panel_preSection.add(btnPresection);
-				panel_preSection.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toString()));
+				panel_preSection.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toCompleteString()));
 			}
 		}
 
