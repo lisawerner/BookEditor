@@ -77,10 +77,10 @@ public class HomePage extends Page {
 		SimpleLabel lblContentStatistics = new SimpleLabel("Words: " + countWords + "; Chars: " + countChars);
 		panel_statistics.add(lblContentStatistics);
 		
-		SimpleLabel lblPersonStatistics = new SimpleLabel("Persons: " + Book.getInstance().getPersonList().size());
+		SimpleLabel lblPersonStatistics = new SimpleLabel("Persons: " + Book.getInstance().getSociety().getPersonList().size());
 		panel_statistics.add(lblPersonStatistics);
 		
-		SimpleLabel lblPlacesStatistics = new SimpleLabel("Places: " + Book.getInstance().getPlaces().size());
+		SimpleLabel lblPlacesStatistics = new SimpleLabel("Places: " + Book.getInstance().getWorld().getPlaces().size());
 		panel_statistics.add(lblPlacesStatistics);
 	}
 

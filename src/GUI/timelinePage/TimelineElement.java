@@ -8,7 +8,6 @@ import GUI_components.LinkButton;
 import GUI_components.SimpleLabel;
 import GUI_components.TimelineItem;
 import GUI_components.TransparentPanel;
-import book.Book;
 import book.Section;
 import person.Person;
 import person.Relationship;
@@ -73,7 +72,7 @@ public class TimelineElement extends TimelineItem {
 		panel_relationshipSwitchs.add(lblRelationshipSwitchs);
 		ArrayList<Relationship> relSwitches = my_section.getRelationships();
 		for(Relationship rel : relSwitches) {
-			SimpleLabel lblRel = new SimpleLabel("<html>" + rel.getSwitchToString(Book.getInstance()) + "; </html>");
+			SimpleLabel lblRel = new SimpleLabel("<html>" + rel.getSwitchToString() + "; </html>");
 			panel_relationshipSwitchs.add(lblRel);
 		}
 

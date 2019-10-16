@@ -173,15 +173,15 @@ public class PlaceEditor extends Page {
 				if(canSave) {
 					if(my_place == null) {
 						my_place = new Place(name, txtPlacetype.getText(), newParent);
-						Book.getInstance().addPlace(my_place);
+						Book.getInstance().getWorld().addPlace(my_place);
 						if(!UserSettings.getInstance().getTutorial().createFirstPlace) {
 							UserSettings.getInstance().getTutorial().createFirstPlace = true;
 							UserSettings.getInstance().save();
 						}
 						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
 					} else {
-						my_place.editPlace(name, txtPlacetype.getText(), newParent, Book.getInstance());
-						Book.getInstance().changePlace(my_place.getID(), my_place);
+						my_place.editPlace(name, txtPlacetype.getText(), newParent);
+						Book.getInstance().getWorld().changePlace(my_place.getID(), my_place);
 						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
 					}
 				}
@@ -195,7 +195,7 @@ public class PlaceEditor extends Page {
 	}
 	
 	private void setInput() {
-		for(Place p : Book.getInstance().getPlaces()) {
+		for(Place p : Book.getInstance().getWorld().getPlaces()) {
 			if(my_place != null) {				
 				if(!p.equals(my_place)) {
 					comboBox.addItem(new ComboItem(p.getName(), p.getID()));	

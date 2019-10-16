@@ -18,21 +18,7 @@ public class SectionList {
 		my_sections.add(newSection);
 		Book.getInstance().save();
 	}
-	
-	public void editSection(Section newSection) {
-		if(my_sections == null) {my_sections = new ArrayList<Section>();}
-		ArrayList<Section> new_sectionList = new ArrayList<Section>();
-		for(Section section : my_sections) {
-			if(section.equals(newSection)) {
-				new_sectionList.add(newSection);
-			} else {
-				new_sectionList.add(section);
-			}
-		}
-		my_sections = new_sectionList;
-		Book.getInstance().save();
-	}
-	
+		
 	public void resortSections() {
 		if(my_sections == null) {my_sections = new ArrayList<Section>();}
 		ArrayList<Section> new_sortedSectionList = new ArrayList<Section>();
@@ -217,27 +203,19 @@ public class SectionList {
 		return unfinishedSections;
 	}
 
-	public ArrayList<Section> getSectionsByPersons(ArrayList<Person> selectedPersons, boolean ANDselect) {
+	public ArrayList<Section> getSectionsByPersons(ArrayList<Person> selectedPersons, boolean intersectionSelect) {
 		ArrayList<Section> selectedSections = new ArrayList<Section>();
 		for(Section section : my_sections) {
-			if(ANDselect) {
+			if(intersectionSelect) {
 				//Select section only if ALL persons are tagged in the section
-				boolean allPersonsTagged = true;
-				for(Person person : selectedPersons) {
-					if(!section.hasTag(person.getID())) {
-						allPersonsTagged = false;
-					}
-				}
+				boolean allPersonsTagged = selectedPersons.stream().allMatch(person -> section.hasTag(person.getID()));
 				if(allPersonsTagged) {
 					selectedSections.add(section);
 				}
 			} else {				
 				//Select section if min one of the persons is tagged in the section
-				for(Person person : selectedPersons) {
-					if(section.hasTag(person.getID())) {
-						selectedSections.add(section);
-						break;
-					}
+				if (selectedPersons.stream().anyMatch(person -> section.hasTag(person.getID()))) {
+					selectedSections.add(section);
 				}
 			}
 		}

@@ -155,7 +155,7 @@ public class PersonEditorPage extends Page {
 				relationListPanel.add(relationPanel);
 				relationPanel.setLayout(new BoxLayout(relationPanel, BoxLayout.LINE_AXIS));
 				relationPanel.add(new SimpleLabel("Has Relationship '" + relship.getDescribingRelationshipType() + "' with Person "));
-				Person relPerson = Book.getInstance().getPerson(relship.getOtherPerson(my_person.getID()));
+				Person relPerson = Book.getInstance().getSociety().getPerson(relship.getOtherPerson(my_person.getID()));
 				LinkButton lbtnRelPerson = new LinkButton(relPerson.getName());
 				relationPanel.add(lbtnRelPerson);
 				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(relPerson)));
@@ -202,7 +202,7 @@ public class PersonEditorPage extends Page {
 					if(my_person == null) {
 						my_person = new Person(name, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 								txt_notes.getText());
-						Book.getInstance().addPerson(my_person);
+						Book.getInstance().getSociety().addPerson(my_person);
 						if(!UserSettings.getInstance().getTutorial().createFirstPerson) {
 							UserSettings.getInstance().getTutorial().createFirstPerson = true;
 							UserSettings.getInstance().save();
@@ -212,7 +212,6 @@ public class PersonEditorPage extends Page {
 					} else {
 						my_person.editPerson(name, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 								txt_notes.getText());
-						Book.getInstance().changePerson();
 						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person));
 					}
 					lblWarning.setText("<html>" + saveMessage + "<br>Successfully saved</html>");

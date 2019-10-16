@@ -69,15 +69,15 @@ public class Section {
 		my_tags.add(tag);
 	}
 	
-	public ArrayList<String> getTagsToString(Book my_book){
+	public ArrayList<String> getTagsToString(){
 		if(my_tags == null) {return new ArrayList<String>();}
 		ArrayList<String> stringList = new ArrayList<String>();
 		for(Tag tag : my_tags) {
 			if(tag.getType().equals("person.Person")) {
-				stringList.add(my_book.getPerson(tag.getRefID()).getName());
+				stringList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()).getName());
 			}
 			if(tag.getType().equals("world.Place")) {
-				stringList.add(my_book.getPlace(tag.getRefID()).getName());
+				stringList.add(Book.getInstance().getWorld().getPlace(tag.getRefID()).getName());
 			}
 		}
 		return stringList;
@@ -104,7 +104,7 @@ public class Section {
 		if(tagList == null) {return new ArrayList<Person>();}
 		ArrayList<Person> personList = new ArrayList<Person>();
 		for(Tag tag : tagList) {
-			personList.add(Book.getInstance().getPerson(tag.getRefID()));
+			personList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()));
 		}
 		return personList;
 	}
@@ -114,7 +114,7 @@ public class Section {
 		if(tagList == null) {return new ArrayList<Place>();}
 		ArrayList<Place> placeList = new ArrayList<Place>();
 		for(Tag tag : tagList) {
-			placeList.add(Book.getInstance().getPlace(tag.getRefID()));
+			placeList.add(Book.getInstance().getWorld().getPlace(tag.getRefID()));
 		}
 		return placeList;
 	}
@@ -129,6 +129,7 @@ public class Section {
 	
 	public void setTitle(String newName) {
 		my_name = newName;
+		Book.getInstance().save();
 	}
 	
 	public void setText(String newText) {

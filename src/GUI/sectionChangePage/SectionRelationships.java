@@ -1,4 +1,4 @@
-package GUI.sectionTags;
+package GUI.sectionChangePage;
 
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
@@ -27,7 +27,7 @@ public class SectionRelationships extends TransparentPanel {
 	private SimpleTextfield txt_relationshipType;
 	
 	private Section my_section;
-	private SectionTagEditor my_body;
+	private SectionEditorPage my_body;
 	private Relationship my_relationship;
 	
 	private SimpleLabel lblWARNING;
@@ -35,7 +35,7 @@ public class SectionRelationships extends TransparentPanel {
 	private Person personA;
 	private Person personB;
 
-	public SectionRelationships(SectionTagEditor body, Section section, Relationship relship) {
+	public SectionRelationships(SectionEditorPage body, Section section, Relationship relship) {
 		my_section = section;
 		my_body = body;
 		my_relationship = relship;
@@ -71,7 +71,7 @@ public class SectionRelationships extends TransparentPanel {
 						my_section.addRelationship(newRelationship);
 						//TODO: Reload this completele!!!!
 					} else {
-						my_relationship.change(Book.getInstance(), personA, personB, txt_relationshipType.getText());
+						my_relationship.change(personA, personB, txt_relationshipType.getText());
 					}
 				}
 			}
@@ -104,7 +104,7 @@ public class SectionRelationships extends TransparentPanel {
 		SimpleLabel lblPersonA = new SimpleLabel("Choose Person A: ");
 		panel_personA.add(lblPersonA);
 		ButtonGroup group_personA = new ButtonGroup();
-		for(Person person : Book.getInstance().getPersonList()) {
+		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			SimpleRadiobutton chckbxPersonA = new SimpleRadiobutton(person.getName());
 			panel_personA.add(chckbxPersonA);		
 			group_personA.add(chckbxPersonA);
@@ -132,7 +132,7 @@ public class SectionRelationships extends TransparentPanel {
 		SimpleLabel lblPersonB = new SimpleLabel("Choose Person B: ");
 		panel_personB.add(lblPersonB);
 		ButtonGroup group_personB = new ButtonGroup();
-		for(Person person : Book.getInstance().getPersonList()) {
+		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			SimpleRadiobutton chckbxPersonB = new SimpleRadiobutton(person.getName());
 			panel_personB.add(chckbxPersonB);
 			group_personB.add(chckbxPersonB);

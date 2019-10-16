@@ -48,27 +48,27 @@ public class Relationship {
 		return my_describingRelationshipType;
 	}
 
-	public void change(Book my_book, Person personA, Person personB, String newDescribingRelationshipType) {
+	public void change(Person personA, Person personB, String newDescribingRelationshipType) {
 		if(!refToPersonA.getIDtoString().equals(personA.getID().getIDtoString())) {
-			my_book.getPerson(refToPersonA).removeRelationship(my_uID);
+			Book.getInstance().getSociety().getPerson(refToPersonA).removeRelationship(my_uID);
 			personA.addRelationship(my_uID);
 			refToPersonA = personA.getID();
 		}
 		if(!refToPersonB.getIDtoString().equals(personB.getID().getIDtoString())) {
-			my_book.getPerson(refToPersonB).removeRelationship(my_uID);
+			Book.getInstance().getSociety().getPerson(refToPersonB).removeRelationship(my_uID);
 			personB.addRelationship(my_uID);
 			refToPersonB = personB.getID();
 		}
 			
 		my_describingRelationshipType = newDescribingRelationshipType;
 		
-		my_book.save();
+		Book.getInstance().save();
 	}
 
-	public String getSwitchToString(Book my_book) {
+	public String getSwitchToString() {
 		String result = "";
-		result += my_book.getPerson(refToPersonA).getName() + " + ";
-		result += my_book.getPerson(refToPersonB).getName() + "   &#8594;  ";
+		result += Book.getInstance().getSociety().getPerson(refToPersonA).getName() + " + ";
+		result += Book.getInstance().getSociety().getPerson(refToPersonB).getName() + "   &#8594;  ";
 		result += my_describingRelationshipType;
 		return result;
 	}

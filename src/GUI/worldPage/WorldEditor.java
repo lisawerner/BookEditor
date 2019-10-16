@@ -59,7 +59,7 @@ public class WorldEditor extends Page {
 		JSeparator firstSeparator = new JSeparator();
 		panel_sortBody.add(firstSeparator);
 		
-		for(Place place : Book.getInstance().getPlaces()) {
+		for(Place place : Book.getInstance().getWorld().getPlaces()) {
 			if(place.getParentRef() == null) {				
 				SimpleLabel lblPlaceInfo = new SimpleLabel(place.getName() + " [Type: " + place.getType() + "]");
 				panel_sortBody.add(lblPlaceInfo);
@@ -78,7 +78,7 @@ public class WorldEditor extends Page {
 	private void addAllChildren(ArrayList<ObjectID> childrenPlaceRefs, String hierarchyDepth) {
 		if(childrenPlaceRefs != null) {
 			for(ObjectID childID : childrenPlaceRefs) {
-				Place currentPlace = Book.getInstance().getPlace(childID);
+				Place currentPlace = Book.getInstance().getWorld().getPlace(childID);
 				SimpleLabel lblPlaceInfo = new SimpleLabel(hierarchyDepth + currentPlace.getName() + " [Type: " + currentPlace.getType() + "]");
 				panel_sortBody.add(lblPlaceInfo);
 				if(currentPlace.getChildrenIDs() != null) {					

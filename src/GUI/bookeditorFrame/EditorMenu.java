@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import GUI.PrintPage;
 import GUI.filterPage.FilterChaptersPage;
 import GUI.personPage.PersonsEmptyPage;
+import GUI.sectionChangePage.CreateSectionPage;
 import GUI.sectionPage.SectionPage;
 import GUI.settingsPage.BookSettingsPage;
 import GUI.sortPage.SortChaptersPage;
@@ -40,7 +41,7 @@ public class EditorMenu extends MenuBook {
 		btnOpenPrint.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PrintPage()));
 
 		JButton btnAddChapter = createContentButton("Add new Section");
-		btnAddChapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(null)));
+		btnAddChapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new CreateSectionPage()));
 
 		JButton btnSort = createContentButton("Sort Content");
 		btnSort.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SortChaptersPage()));

@@ -1,38 +1,46 @@
 package GUI.sectionPage;
 
 import java.util.ArrayList;
-
 import javax.swing.JButton;
-
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.personPage.PersonEditorPage;
-import GUI.sectionTags.SectionTagEditor;
+import GUI.sectionChangePage.SectionEditorPage;
 import GUI.worldPage.PlaceEditor;
 import GUI_components.PageMenu;
-import book.Book;
 import book.Section;
 import person.Person;
 import person.Relationship;
 import world.Place;
 
-public class SectionTagMenu extends PageMenu {
+public class SectionInformationMenu extends PageMenu {
 	private static final long serialVersionUID = 1L;
 
 	private Section my_section;
 	
 	private JButton btnEdit;
 	
-	public SectionTagMenu(Section section) {
-		super("Tags of this Section");
+	public SectionInformationMenu(Section section) {
+		super("Section Information");
 		my_section = section;
 		
-		btnEdit = this.addButtonToTopMenu("Add new");
+		
+		btnEdit = this.addButtonToTopMenu("Change");
 		if(my_section == null) {
 			btnEdit.setEnabled(false);
 			btnEdit.setToolTipText("You have to create a section first.");
 		}
-		btnEdit.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionTagEditor(my_section)));
+		btnEdit.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionEditorPage(my_section)));
 		
+		//***************************************************************************************************************************
+		this.addBetweenTitle("General Information");
+		this.addText("Name: " + my_section.getName());
+		if(my_section.hasTimestamp()) {
+			this.addText("Timestamp: " + my_section.getTimestamp().toCompleteString());
+		} else {
+			this.addText("Timestamp: ??");
+		}
+
+		//***************************************************************************************************************************
 		this.addBetweenTitle("Person Tags:");
 		if(my_section != null) {
 			ArrayList<Person> personTags = my_section.getPersonByTag();
@@ -42,11 +50,12 @@ public class SectionTagMenu extends PageMenu {
 			}
 		}
 		
+		//***************************************************************************************************************************
 		this.addBetweenTitle("Switched Relationships:");
 		if(my_section != null) {
 			ArrayList<Relationship> relationshipTags = my_section.getRelationships();
 			for(Relationship relationship : relationshipTags) {
-				this.addText(relationship.getSwitchToString(Book.getInstance()));
+				this.addText(relationship.getSwitchToString());
 			}
 		}
 		

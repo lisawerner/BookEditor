@@ -16,19 +16,19 @@ public class PersonMenu extends PageMenu {
 		btnAddNew.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(null)));
 		
 		this.addBetweenTitle("Super Main Characters");
-		for(Person person : Book.getInstance().getPersonListOfSuperMainCharacters()) {
+		for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
 			JButton btnOpenPerson = this.addLinkedListButton(person.getName());
 			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
 		}
 		
 		this.addBetweenTitle("'Important' Characters");
-		for(Person person : Book.getInstance().getPersonListImportantCharacters()) {
+		for(Person person : Book.getInstance().getSociety().getPersonListImportantCharacters()) {
 			JButton btnOpenPerson = this.addLinkedListButton(person.getName());
 			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
 		}
 		
 		this.addBetweenTitle("Somebody");
-		for(Person person : Book.getInstance().getPersonListTheRest()) {
+		for(Person person : Book.getInstance().getSociety().getPersonListTheRest()) {
 			JButton btnOpenPerson = this.addLinkedListButton(person.getName());
 			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
 		}

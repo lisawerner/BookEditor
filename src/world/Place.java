@@ -25,7 +25,7 @@ public class Place {
 		
 		my_parentPlace = newParent;
 		if(newParent != null) {			
-			Book.getInstance().getPlace(newParent).addChild(my_uID);
+			Book.getInstance().getWorld().getPlace(newParent).addChild(my_uID);
 		}
 		my_childrenPlaces = new ArrayList<ObjectID>();
 	}
@@ -42,21 +42,21 @@ public class Place {
 		return my_type;
 	}
 
-	public void editPlace(String newName, String newType, ObjectID newParent, Book my_book) {
+	public void editPlace(String newName, String newType, ObjectID newParent) {
 		my_name = newName;
 		my_type = newType;
 		if(my_parentPlace != null) {
 			if(newParent != null) {				
 				if(!my_parentPlace.getIDtoString().equals(newParent.getIDtoString())) {
-					my_book.getPlace(my_parentPlace).removeChild(my_uID);
+					Book.getInstance().getWorld().getPlace(my_parentPlace).removeChild(my_uID);
 				}			
 			} else {
-				my_book.getPlace(my_parentPlace).removeChild(my_uID);
+				Book.getInstance().getWorld().getPlace(my_parentPlace).removeChild(my_uID);
 			}
 		}
 		my_parentPlace = newParent;
 		if(newParent != null) {	
-			my_book.getPlace(newParent).addChild(my_uID);
+			Book.getInstance().getWorld().getPlace(newParent).addChild(my_uID);
 		}
 	}
 
@@ -65,9 +65,9 @@ public class Place {
 		my_childrenPlaces.remove(childID);
 	}
 
-	public String getParentInfo(Book my_book) {
+	public String getParentInfo() {
 		if(my_parentPlace == null) {return null;}
-		Place parent = my_book.getPlace(my_parentPlace);
+		Place parent = Book.getInstance().getWorld().getPlace(my_parentPlace);
 		return parent.getName() + "[Type: " + parent.getType() + "]";
 	}
 	
@@ -80,7 +80,7 @@ public class Place {
 		if(my_childrenPlaces.size() == 0) {return new ArrayList<Place>();}
 		ArrayList<Place> result = new ArrayList<Place>();
 		for(ObjectID childID : my_childrenPlaces) {
-			result.add(Book.getInstance().getPlace(childID));
+			result.add(Book.getInstance().getWorld().getPlace(childID));
 		}
 		return result;
 	}
@@ -119,13 +119,13 @@ public class Place {
 			ArrayList<String> listOfNames = new ArrayList<String>();
 			for(ObjectID placeID : my_childrenPlaces) {
 				System.out.println(placeID.getIDtoString());
-				listOfNames.add(Book.getInstance().getPlace(placeID).getName());
+				listOfNames.add(Book.getInstance().getWorld().getPlace(placeID).getName());
 			}
 			Collections.sort(listOfNames);
 			ArrayList<ObjectID> sortedChildrenList = new ArrayList<ObjectID>();
 			for(String placeName : listOfNames) {
 				for(ObjectID placeID : my_childrenPlaces) {
-					Place child = Book.getInstance().getPlace(placeID);
+					Place child = Book.getInstance().getWorld().getPlace(placeID);
 					if(placeName.equals(child.getName())) {
 						sortedChildrenList.add(child.getID());
 					}

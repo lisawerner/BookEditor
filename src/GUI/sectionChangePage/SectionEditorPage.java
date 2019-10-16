@@ -1,4 +1,4 @@
-package GUI.sectionTags;
+package GUI.sectionChangePage;
 
 import GUI_components.Page;
 import GUI_components.SimpleCheckbox;
@@ -25,17 +25,20 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
-public class SectionTagEditor extends Page {
+public class SectionEditorPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
 	
 	private TransparentPanel card_relationship_body;
 
-	public SectionTagEditor( Section section) {
-		super("Edit Tags of Section: " + section.getName());
+	public SectionEditorPage( Section section) {
+		super("Edit Section: " + section.getName());
 		my_section = section;
 		
+		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
+			addCard(new TutorialCard(9, false));
+		}
 		if(UserSettings.getInstance().getTutorial().addFurtherPersons && !UserSettings.getInstance().getTutorial().tagPersonToSection) {			
 			addCard(new TutorialCard(14, false));
 		}
@@ -44,12 +47,24 @@ public class SectionTagEditor extends Page {
 		}
 		
 		//********************************************************************************
+		StructureCard card_sectionTitle = new StructureCard("Section Title");
+		addCard(card_sectionTitle);
+		card_sectionTitle.setBody(new SectionTitleCard(my_section));
+		
+		
+		//********************************************************************************
+		StructureCard card_timestamp = new StructureCard("Change Timestamp");
+		addCard(card_timestamp);
+		card_timestamp.setBody(new SectionTimestampCard(my_section));
+		
+		
+		//********************************************************************************
 		StructureCard card_personTags = new StructureCard("Change Person-Tags");
 		addCard(card_personTags);
 
 		TransparentPanel panel_personTagList = new TransparentPanel();
 		card_personTags.setBody(panel_personTagList);
-		for(Person person : Book.getInstance().getPersonList()) {
+		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			SimpleCheckbox chckbxPerson = new SimpleCheckbox(person.getName());
 			panel_personTagList.add(chckbxPerson);			
 			chckbxPerson.setSelected(my_section.hasTag(person.getID()));
@@ -86,7 +101,7 @@ public class SectionTagEditor extends Page {
 		TransparentPanel panel_placeTagList = new TransparentPanel();
 		card_placeTags.setBody(panel_placeTagList);
 		panel_placeTagList.setLayout(new BoxLayout(panel_placeTagList, BoxLayout.PAGE_AXIS));
-		for(Place place : Book.getInstance().getPlaces()) {
+		for(Place place : Book.getInstance().getWorld().getPlaces()) {
 			if(place.getParentRef() == null) {
 				TransparentPanel parentPlacePanel = new TransparentPanel();
 				parentPlacePanel.setLayout(new GridLayout(0, 1, 5, 5));
@@ -112,7 +127,7 @@ public class SectionTagEditor extends Page {
 		
 		
 		//********************************************************************************
-		JButton btnBackToSection = new JButton("Save and back to Section");
+		JButton btnBackToSection = new JButton("Back to Section");
 		btnBackToSection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Book.getInstance().save();

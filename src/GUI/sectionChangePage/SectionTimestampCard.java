@@ -1,76 +1,64 @@
-package GUI.sectionTimestamp;
+package GUI.sectionChangePage;
 
-import book.Book;
-import book.Section;
-import global.UserSettings;
-import time.RelativeDate;
-import time.SpecificDate;
-import time.Timestamp;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import java.awt.GridLayout;
+
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
+import GUI.sectionTimestamp.TimestampRelativeEditor;
+import GUI.sectionTimestamp.TimestampSpecificEditor;
 import GUI_components.LinkButton;
-import GUI_components.Page;
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
-import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
-import GUI_components.TutorialCard;
+import book.Book;
+import book.Section;
+import time.RelativeDate;
+import time.SpecificDate;
+import time.Timestamp;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class SectionTimeEditor extends Page {
+public class SectionTimestampCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Section my_section;
 
-	
 	private SimpleRadiobutton rdbtnSpecificTimestamp;
 	private SimpleRadiobutton rdbtnUnspecificTimestamp;
 
 	private TimestampSpecificEditor panel_specificBODY;
 	private TimestampRelativeEditor panel_unspecificBODY;
-
-	public SectionTimeEditor(Section section) {
-		super("Change Timestamp of Section: " + section.getName());
+	
+	public SectionTimestampCard(Section section) {
 		my_section = section;
-		
-		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
-			addCard(new TutorialCard(9, false));
-		}
-		
-		//*****************************************************************************************************
-		StructureCard card_information = new StructureCard("Helpful Information");
-		addCard(card_information);
-		
-		TransparentPanel panel_preSection = new TransparentPanel();
-		card_information.setBody(panel_preSection);
-		System.out.println();
-		Section preSection = Book.getInstance().getSectionList().getPreSection(my_section);
-		if(preSection != null) {		
-			if(preSection.hasTimestamp()) {				
-				panel_preSection.setLayout(new BoxLayout(panel_preSection, BoxLayout.LINE_AXIS));
-				panel_preSection.add(new SimpleLabel("Section before '"));
-				LinkButton btnPresection = new LinkButton(preSection.getName());
-				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection)));
-				panel_preSection.add(btnPresection);
-				panel_preSection.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toCompleteString()));
-			}
-		}
-
-		
-		//*****************************************************************************************************
-		StructureCard card_setTimestamp = new StructureCard("Set Timestamp for Section '" + my_section.getName() + "'");
-		addCard(card_setTimestamp);
+		setLayout(new BorderLayout(10, 10));
 		//TODO: Change Forumlar, if Custom Calendar is selected!
 		
+		
+		//*****************************************************************************************************************
+		TransparentPanel panel_helpfullInformationInNorth = new TransparentPanel();
+		add(panel_helpfullInformationInNorth, BorderLayout.NORTH);
+		Section preSection = Book.getInstance().getSectionList().getPreSection(my_section);
+		if(preSection != null) {			
+			if(preSection.hasTimestamp()) {				
+				panel_helpfullInformationInNorth.setLayout(new BoxLayout(panel_helpfullInformationInNorth, BoxLayout.LINE_AXIS));
+				panel_helpfullInformationInNorth.add(new SimpleLabel("Section before '"));
+				LinkButton btnPresection = new LinkButton(preSection.getName());
+				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection)));
+				panel_helpfullInformationInNorth.add(btnPresection);
+				panel_helpfullInformationInNorth.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toCompleteString()));
+			}
+		}
+		
+		
+		//*****************************************************************************************************************
 		TransparentPanel panel_BODY = new TransparentPanel();
-		card_setTimestamp.setBody(panel_BODY);
+		add(panel_BODY, BorderLayout.CENTER);
 		panel_BODY.setLayout(new GridLayout(1, 0, 20, 20));
 		
 		ButtonGroup btngrTimestampType = new ButtonGroup();
@@ -122,10 +110,10 @@ public class SectionTimeEditor extends Page {
 				panel_specificBODY.switchEnabled(true);
 			}
 		}
-			
+		
 		//*****************************************************************************************************
 		TransparentPanel panel_FOOTER = new TransparentPanel();
-		setFooter(panel_FOOTER);
+		add(panel_FOOTER, BorderLayout.SOUTH);
 		panel_FOOTER.setLayout(new BorderLayout(5, 5));
 		
 		JButton btnSaveTimestamp = new JButton("Save Timestamp");
@@ -154,16 +142,14 @@ public class SectionTimeEditor extends Page {
 					Timestamp newTimestamp = new Timestamp(specificDate, relativeDate);
 					my_section.setTimestamp(newTimestamp);
 					Book.getInstance().save();
-					BookEditorFrame.getInstance().switchBody(new SectionPage(my_section));
+					lblSaveWarning.setText("New Timestamp was successfully saved!");
 				}
 			}
 		});
 		
 		switchSpecificAndUnspecific();
 	}
-	
 
-	
 	private void switchSpecificAndUnspecific() {
 		//System.out.println("Set Specific Time: " + rdbtnSpecificTimestamp.isSelected());
 		panel_specificBODY.switchEnabled(rdbtnSpecificTimestamp.isSelected());
@@ -172,4 +158,3 @@ public class SectionTimeEditor extends Page {
 	}
 	
 }
-

@@ -12,12 +12,9 @@ public class SectionPage extends Page {
 	private Section my_section;
 	
 	public SectionPage(Section section) {
-		super("Edit Section");
+		super("Edit Section: " + section.getName());
 		my_section = section;
 				
-		if(UserSettings.getInstance().getTutorial().chooseFirstColorTheme && !UserSettings.getInstance().getTutorial().createFirstSection) {			
-			addCard(new TutorialCard(4, false));
-		}
 		if(UserSettings.getInstance().getTutorial().createFirstSection && !UserSettings.getInstance().getTutorial().setDevelopmentStatus) {		
 			if(my_section != null) {				
 				addCard(new TutorialCard(6, false));
@@ -42,11 +39,6 @@ public class SectionPage extends Page {
 		}
 		
 		//****************************************************************************************
-		StructureCard card_sectionTitle = new StructureCard("Section Title");
-		addCard(card_sectionTitle);
-		card_sectionTitle.setBody(new SectionTitleCard(my_section));
-		
-		//****************************************************************************************
 		StructureCard card_sectionFurtherInformation = new StructureCard("Section Information");
 		if(my_section != null) {			
 			addCard(card_sectionFurtherInformation);
@@ -61,7 +53,7 @@ public class SectionPage extends Page {
 		
 		//****************************************************************************************
 		//****************************************************************************************
-		setMenu(new SectionTagMenu(my_section));		
+		setMenu(new SectionInformationMenu(my_section));		
 	}
 	
 }

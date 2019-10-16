@@ -78,6 +78,7 @@ public class Person {
 		isMainCharapter = newIsMainCharapter;
 		
 		my_notes = newNotes;
+		Book.getInstance().getSociety().sortPersons();
 		Book.getInstance().save();
 	}
 

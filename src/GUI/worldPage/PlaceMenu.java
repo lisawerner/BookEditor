@@ -24,7 +24,7 @@ public class PlaceMenu extends PageMenu {
 		//*****************************************************************************
 		
 		this.addBetweenTitle("List of Places");
-		for(Place place : Book.getInstance().getPlaces()) {
+		for(Place place : Book.getInstance().getWorld().getPlaces()) {
 			JButton btnPlace = this.addLinkedListButton(place.getName());
 			btnPlace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(place)));
 		}

@@ -1,4 +1,4 @@
-package GUI.sectionPage;
+package GUI.sectionChangePage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.sectionPage.SectionPage;
 import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextfield;
@@ -77,12 +78,13 @@ public class SectionTitleCard extends TransparentPanel {
 					UserSettings.getInstance().getTutorial().createFirstSection = true;
 					UserSettings.getInstance().save();
 				}
+				BookEditorFrame.getInstance().switchBody(new SectionPage(my_section));
 			} else {
 				my_section.setTitle(txt_sectionTitle.getText());
-				Book.getInstance().getSectionList().editSection(my_section);
+				lbl_saveWarning.setForeground(Color.WHITE); //TODO: White by darkTheme, Black by lightTheme!
+				lbl_saveWarning.setText("New title " + my_section.getName() + " is saved!");
 			}
 			BookEditorFrame.getInstance().reloadMenu();
-			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section));
 		}
 	}
 	

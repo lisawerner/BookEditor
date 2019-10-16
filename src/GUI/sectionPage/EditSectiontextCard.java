@@ -22,6 +22,7 @@ public class EditSectiontextCard extends TransparentPanel {
 	
 	private SimpleTextarea textArea;
 	private SimpleLabel lblSaveHint;
+	private SimpleLabel lblCounts;
 	
 	public EditSectiontextCard(Section openedSection) {
 		my_section = openedSection;
@@ -65,12 +66,15 @@ public class EditSectiontextCard extends TransparentPanel {
 		textArea.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setSavestatus();
+				updateCounts();
 			}
 			public void removeUpdate(DocumentEvent e) {
 				setSavestatus();
+				updateCounts();
 			}
 			public void insertUpdate(DocumentEvent e) {
 				setSavestatus();
+				updateCounts();
 			}
 		});
 		
@@ -78,8 +82,16 @@ public class EditSectiontextCard extends TransparentPanel {
 		add(btnSave, BorderLayout.EAST);
 		btnSave.addActionListener(e -> save());
 		
+		TransparentPanel panel_footer = new TransparentPanel();
+		panel_footer.setLayout(new GridLayout(0, 1, 5, 5));
+		add(panel_footer, BorderLayout.SOUTH);
+		
+		lblCounts = new SimpleLabel("Words: ...; Char: ...");
+		updateCounts();
+		panel_footer.add(lblCounts);
+		
 		lblSaveHint = new SimpleLabel("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Last saved:</html>");
-		add(lblSaveHint, BorderLayout.SOUTH);
+		panel_footer.add(lblSaveHint);
 
 	}
 
@@ -94,6 +106,7 @@ public class EditSectiontextCard extends TransparentPanel {
 	private void save() {
 		my_section.setText(textArea.getText());
 		setSavestatus();
+		updateCounts();
 	}
 	
 	private void setSavestatus() {
@@ -102,5 +115,9 @@ public class EditSectiontextCard extends TransparentPanel {
 		} else {
 			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br><font color=\"red\">NOT saved at the moment! Press STRG+S</font></html>");
 		}
+	}
+	
+	private void updateCounts() {
+		lblCounts.setText("Words: " + textArea.getText().split("\\s+").length + "; Char: " + textArea.getText().length());
 	}
 }
