@@ -9,9 +9,14 @@ import java.awt.Color;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.BoxLayout;
 import javax.swing.JSeparator;
 
+import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.sectionPage.SectionPage;
 import GUI_components.InfoButton;
+import GUI_components.LinkButton;
 import GUI_components.Page;
 import GUI_components.SimpleLabel;
 import GUI_components.StructureCard;
@@ -60,9 +65,17 @@ public class WorldEditor extends Page {
 		panel_sortBody.add(firstSeparator);
 		
 		for(Place place : Book.getInstance().getWorld().getPlaces()) {
-			if(place.getParentRef() == null) {				
-				SimpleLabel lblPlaceInfo = new SimpleLabel(place.getName() + " [Type: " + place.getType() + "]");
-				panel_sortBody.add(lblPlaceInfo);
+			if(place.getParentRef() == null) {
+				TransparentPanel panel_worldEntry = new TransparentPanel();
+				panel_worldEntry.setLayout(new BoxLayout(panel_worldEntry, BoxLayout.LINE_AXIS));
+				panel_sortBody.add(panel_worldEntry);
+				
+				LinkButton lblPlaceInfo = new LinkButton(place.getName());
+				lblPlaceInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(place)));
+				panel_worldEntry.add(lblPlaceInfo);
+				if(!place.getType().isEmpty()) {						
+					panel_worldEntry.add(new SimpleLabel(" [Type: " + place.getType() + "]"));
+				}
 				if(place.getChildrenIDs() != null) {					
 					String childDepth = "      >>  ";
 					addAllChildren(place.getChildrenIDs(), childDepth);
@@ -78,9 +91,18 @@ public class WorldEditor extends Page {
 	private void addAllChildren(ArrayList<ObjectID> childrenPlaceRefs, String hierarchyDepth) {
 		if(childrenPlaceRefs != null) {
 			for(ObjectID childID : childrenPlaceRefs) {
+				TransparentPanel panel_worldEntry = new TransparentPanel();
+				panel_worldEntry.setLayout(new BoxLayout(panel_worldEntry, BoxLayout.LINE_AXIS));
+				panel_sortBody.add(panel_worldEntry);
+				panel_worldEntry.add(new SimpleLabel(hierarchyDepth));
 				Place currentPlace = Book.getInstance().getWorld().getPlace(childID);
-				SimpleLabel lblPlaceInfo = new SimpleLabel(hierarchyDepth + currentPlace.getName() + " [Type: " + currentPlace.getType() + "]");
-				panel_sortBody.add(lblPlaceInfo);
+				LinkButton lblPlaceInfo = new LinkButton(currentPlace.getName());
+				lblPlaceInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(currentPlace)));
+				panel_worldEntry.add(lblPlaceInfo);
+				if(!currentPlace.getType().isEmpty()) {					
+					panel_worldEntry.add(new SimpleLabel(" [Type: " + currentPlace.getType() + "]"));
+				}
+				
 				if(currentPlace.getChildrenIDs() != null) {					
 					String childDepth = hierarchyDepth + "      >>  ";
 					addAllChildren(currentPlace.getChildrenIDs(), childDepth);

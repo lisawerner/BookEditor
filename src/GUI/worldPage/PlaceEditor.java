@@ -195,17 +195,17 @@ public class PlaceEditor extends Page {
 	}
 	
 	private void setInput() {
-		for(Place p : Book.getInstance().getWorld().getPlaces()) {
-			if(my_place != null) {				
-				if(!p.equals(my_place)) {
-					comboBox.addItem(new ComboItem(p.getName(), p.getID()));	
-				}
-			} else {
-				comboBox.addItem(new ComboItem(p.getName(), p.getID()));				
-			}
-		}
-		
 		if(my_place != null) {			
+			for(Place p : Book.getInstance().getWorld().getPossibleParentsList(my_place)) {
+				if(my_place != null) {				
+					if(!p.equals(my_place)) {
+						comboBox.addItem(new ComboItem(p.getName(), p.getID()));	
+					}
+				} else {
+					comboBox.addItem(new ComboItem(p.getName(), p.getID()));				
+				}
+			}
+		
 			txtPlacetype.setText(my_place.getType());
 			
 			chckbxHasParent.setSelected(my_place.getParentRef() != null);

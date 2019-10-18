@@ -114,11 +114,9 @@ public class Place {
 	}
 	
 	private void sortChildrenAlphabetic() {
-		System.out.println(my_name);
 		if(my_childrenPlaces != null) {			
 			ArrayList<String> listOfNames = new ArrayList<String>();
 			for(ObjectID placeID : my_childrenPlaces) {
-				System.out.println(placeID.getIDtoString());
 				listOfNames.add(Book.getInstance().getWorld().getPlace(placeID).getName());
 			}
 			Collections.sort(listOfNames);

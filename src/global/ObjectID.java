@@ -24,6 +24,10 @@ public class ObjectID {
 	    return newID;
 	}
 	
+	public boolean equals(ObjectID otherID) {
+		return my_id.equals(otherID.getIDtoString());
+	}
+	
 	public String getIDtoString() {
 		return my_id;
 	}

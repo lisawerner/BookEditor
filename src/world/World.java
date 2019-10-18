@@ -83,4 +83,29 @@ public class World {
 		return currentList;
 	}
 
+	public ArrayList<Place> getPossibleParentsList(Place parentPlace) {
+		if(parentPlace == null) {
+			return getPlaces();
+		}
+		return removeChildren(parentPlace, my_world);
+	}
+	
+	private ArrayList<Place> removeChildren(Place parentPlace, ArrayList<Place> currentList){
+		ArrayList<Place> withoutChildren = new ArrayList<Place>();
+		withoutChildren.addAll(currentList);
+		
+		if(parentPlace.getChildrenIDs() == null) {
+			return currentList;
+		}
+		for(Place possibleChild : currentList) {
+			for(ObjectID childID : parentPlace.getChildrenIDs()) {				
+				if(childID.equals(possibleChild.getID())) {				
+					withoutChildren.remove(possibleChild);
+					withoutChildren = removeChildren(possibleChild, withoutChildren);
+				}
+			}
+		}
+		return withoutChildren;
+	}
+
 }
