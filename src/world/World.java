@@ -1,7 +1,8 @@
 package world;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import book.Book;
 import global.ObjectID;
@@ -52,26 +53,9 @@ public class World {
 	
 	private void sortPlace() {
 		//Select Parents First and sort alphabetical
-		ArrayList<Place> parentPlaceList = new ArrayList<Place>();
-		for(Place place : my_world) {
-			if(place.getParentRef() == null) {
-				parentPlaceList.add(place);
-			}
-		}	
-		ArrayList<String> listOfNames = new ArrayList<String>();
-		for(Place place : parentPlaceList) {
-			listOfNames.add(place.getName());
-		}
-		Collections.sort(listOfNames);
-		ArrayList<Place> sortedParentList = new ArrayList<Place>();
-		for(String placeName : listOfNames) {
-			for(Place place : parentPlaceList) {
-				if(placeName.equals(place.getName())) {
-					sortedParentList.add(place);
-				}
-			}
-			
-		}
+		ArrayList<Place> parentPlaceList = (ArrayList<Place>) my_world.stream().filter(place -> place.getParentRef() == null).collect(Collectors.toList());
+		ArrayList<Place> sortedParentList = (ArrayList<Place>) parentPlaceList.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());				
+
 		//Create Sorted List of Parent-Children hierarchic and every level alphabetical
 		ArrayList<Place> completeSortedList = new ArrayList<Place>();
 		for(Place parent : sortedParentList) {
@@ -84,7 +68,6 @@ public class World {
 				}
 			}			
 		}
-		
 		
 		my_world = completeSortedList;
 	}

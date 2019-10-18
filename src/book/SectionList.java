@@ -95,10 +95,6 @@ public class SectionList {
 		return count;
 	}
 	
-	
-	
-	
-	
 	public ArrayList<Section> getSections(){
 		if(my_sections == null) {return new ArrayList<Section>();}
 		return my_sections;
@@ -208,8 +204,7 @@ public class SectionList {
 		for(Section section : my_sections) {
 			if(intersectionSelect) {
 				//Select section only if ALL persons are tagged in the section
-				boolean allPersonsTagged = selectedPersons.stream().allMatch(person -> section.hasTag(person.getID()));
-				if(allPersonsTagged) {
+				if(selectedPersons.stream().allMatch(person -> section.hasTag(person.getID()))) {
 					selectedSections.add(section);
 				}
 			} else {				

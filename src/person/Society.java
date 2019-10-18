@@ -1,7 +1,8 @@
 package person;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import book.Book;
 import global.ObjectID;
@@ -56,45 +57,18 @@ public class Society {
 	
 	void sortPersons() {
 		//TODO: Or sort: most set tags; -> Or both and let user decide ^^
-		ArrayList<String> listOfSuperMainCharNames = new ArrayList<String>();
-		ArrayList<String> listOfMainCharNames = new ArrayList<String>();
-		ArrayList<String> listOfSomebodyNames = new ArrayList<String>();
-		for(Person person : my_persons) {
-			if(person.isSuperMainChar()) {				
-				listOfSuperMainCharNames.add(person.getName());
-			} else if(person.isFrequentlyChar()) {				
-				listOfMainCharNames.add(person.getName());
-			} else {				
-				listOfSomebodyNames.add(person.getName());
-			}
-		}
-
-		Collections.sort(listOfSuperMainCharNames);
-		ArrayList<Person> sortedPersonList = new ArrayList<Person>();
-		for(String personName : listOfSuperMainCharNames) {
-			for(Person person : my_persons) {
-				if(personName.equals(person.getName())) {
-					sortedPersonList.add(person);
-				}
-			}
-		}
-		Collections.sort(listOfMainCharNames);
-		for(String personName : listOfMainCharNames) {
-			for(Person person : my_persons) {
-				if(personName.equals(person.getName())) {
-					sortedPersonList.add(person);
-				}
-			}
-		}
-		Collections.sort(listOfSomebodyNames);
-		for(String personName : listOfSomebodyNames) {
-			for(Person person : my_persons) {
-				if(personName.equals(person.getName())) {
-					sortedPersonList.add(person);
-				}
-			}
-		}
-		my_persons = sortedPersonList;
+		ArrayList<Person> listOfSuperMainCharNames = (ArrayList<Person>) my_persons.stream().filter(person -> person.isSuperMainChar()).collect(Collectors.toList());
+		ArrayList<Person> listOfMainCharNames = (ArrayList<Person>) my_persons.stream().filter(person -> person.isFrequentlyChar()).collect(Collectors.toList());
+		ArrayList<Person> listOfSomebodyNames = (ArrayList<Person>) my_persons.stream().filter(person -> person.isSomebody()).collect(Collectors.toList());
+		
+		ArrayList<Person> result = (ArrayList<Person>) listOfSuperMainCharNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
+		ArrayList<Person> result2 = (ArrayList<Person>) listOfMainCharNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
+		ArrayList<Person> result3 = (ArrayList<Person>) listOfSomebodyNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
+		
+		my_persons = new ArrayList<Person>();
+		my_persons.addAll(result);
+		my_persons.addAll(result2);
+		my_persons.addAll(result3);
 	}
 	
 	public ArrayList<Person> getPersonList(){
