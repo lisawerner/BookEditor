@@ -10,19 +10,12 @@ public class FilterChaptersPage extends Page {
 		super("Filter and Search for Sections");
 					
 		//**************************************************************************************************
-		StructureCard card_filterByDevStatus = new StructureCard("Filter by Development Status");
-		addCard(card_filterByDevStatus);
-		card_filterByDevStatus.setBody(new FilterDevStatusCard());
+		addCard(new StructureCard("Filter by Development Status", new FilterDevStatusCard()));
 
 		//**************************************************************************************************
-		StructureCard card_filterOthers = new StructureCard("Filter for unfinished Sections");
-		addCard(card_filterOthers);
-		card_filterOthers.setBody(new FilterMiscCard());
+		addCard(new StructureCard("Filter for unfinished Sections", new FilterMiscCard()));
 		
 		//**************************************************************************************************
-		StructureCard card_Persons = new StructureCard("Filter for Persons");
-		addCard(card_Persons);
-		card_Persons.setBody(new FilterPersonCard());
-
+		addCard(new StructureCard("Filter for Persons", new FilterPersonCard()));
 	}
 }

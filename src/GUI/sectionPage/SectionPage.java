@@ -39,18 +39,14 @@ public class SectionPage extends Page {
 		}
 		
 		//****************************************************************************************
-		StructureCard card_sectionFurtherInformation = new StructureCard("Section Information");
 		if(my_section != null) {			
-			addCard(card_sectionFurtherInformation);
+			addCard(new StructureCard("Section Information", new SectionInformationCard(my_section)));
 		}
-		card_sectionFurtherInformation.setBody(new SectionInformationCard(my_section));
 		//****************************************************************************************
-		StructureCard card_sectionText = new StructureCard("Section Content");
 		if(my_section != null) {			
-			addCard(card_sectionText);
+			addCard(new StructureCard("Section Content", new EditSectiontextCard(my_section)));
 		}
-		card_sectionText.setBody(new EditSectiontextCard(my_section));
-		
+	
 		//****************************************************************************************
 		//****************************************************************************************
 		setMenu(new SectionInformationMenu(my_section));		

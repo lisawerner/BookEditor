@@ -71,7 +71,7 @@ public class Section {
 		ArrayList<String> stringList = new ArrayList<String>();
 		for(Tag tag : my_tags) {
 			if(tag.getType().equals("person.Person")) {
-				stringList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()).getName());
+				stringList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()).getInformation().getName());
 			}
 			if(tag.getType().equals("world.Place")) {
 				stringList.add(Book.getInstance().getWorld().getPlace(tag.getRefID()).getName());

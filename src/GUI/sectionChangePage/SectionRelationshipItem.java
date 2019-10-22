@@ -22,12 +22,12 @@ import javax.swing.ButtonGroup;
 
 import java.awt.GridLayout;
 
-public class SectionRelationships extends TransparentPanel {
+public class SectionRelationshipItem extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	private SimpleTextfield txt_relationshipType;
 	
 	private Section my_section;
-	private SectionEditorPage my_body;
+	private SectionRelationshipCard my_body;
 	private Relationship my_relationship;
 	
 	private SimpleLabel lblWARNING;
@@ -35,7 +35,7 @@ public class SectionRelationships extends TransparentPanel {
 	private Person personA;
 	private Person personB;
 
-	public SectionRelationships(SectionEditorPage body, Section section, Relationship relship) {
+	public SectionRelationshipItem(SectionRelationshipCard body, Section section, Relationship relship) {
 		my_section = section;
 		my_body = body;
 		my_relationship = relship;
@@ -47,7 +47,7 @@ public class SectionRelationships extends TransparentPanel {
 				lblWARNING.setText(" ");
 				boolean canSave = true;
 				
-				System.out.println("A: " + personA.getName() + " - B: " + personB.getName());
+				System.out.println("A: " + personA.getInformation().getName() + " - B: " + personB.getInformation().getName());
 				
 				if(personA == null || personB == null) {
 					lblWARNING.setText("You have to choose two persons for setting a relationship.");
@@ -105,7 +105,7 @@ public class SectionRelationships extends TransparentPanel {
 		panel_personA.add(lblPersonA);
 		ButtonGroup group_personA = new ButtonGroup();
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleRadiobutton chckbxPersonA = new SimpleRadiobutton(person.getName());
+			SimpleRadiobutton chckbxPersonA = new SimpleRadiobutton(person.getInformation().getName());
 			panel_personA.add(chckbxPersonA);		
 			group_personA.add(chckbxPersonA);
 			if(my_relationship != null) {
@@ -133,7 +133,7 @@ public class SectionRelationships extends TransparentPanel {
 		panel_personB.add(lblPersonB);
 		ButtonGroup group_personB = new ButtonGroup();
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleRadiobutton chckbxPersonB = new SimpleRadiobutton(person.getName());
+			SimpleRadiobutton chckbxPersonB = new SimpleRadiobutton(person.getInformation().getName());
 			panel_personB.add(chckbxPersonB);
 			group_personB.add(chckbxPersonB);
 			if(my_relationship != null) {

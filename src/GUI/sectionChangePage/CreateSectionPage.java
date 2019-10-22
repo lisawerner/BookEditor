@@ -19,10 +19,7 @@ public class CreateSectionPage extends Page {
 		}
 		
 		//****************************************************************************************
-		StructureCard card_sectionTitle = new StructureCard("Section Title");
-		addCard(card_sectionTitle);
-		card_sectionTitle.setBody(new SectionTitleCard(null));
-
+		addCard(new StructureCard("Section Title", new SectionTitleCard(null)));
 	}
 
 }

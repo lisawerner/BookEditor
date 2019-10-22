@@ -67,8 +67,8 @@ public class Relationship {
 
 	public String getSwitchToString() {
 		String result = "";
-		result += Book.getInstance().getSociety().getPerson(refToPersonA).getName() + " + ";
-		result += Book.getInstance().getSociety().getPerson(refToPersonB).getName() + "   &#8594;  ";
+		result += Book.getInstance().getSociety().getPerson(refToPersonA).getInformation().getName() + " + ";
+		result += Book.getInstance().getSociety().getPerson(refToPersonB).getInformation().getName() + "   &#8594;  ";
 		result += my_describingRelationshipType;
 		return result;
 	}

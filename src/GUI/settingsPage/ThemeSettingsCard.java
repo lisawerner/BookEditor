@@ -1,18 +1,22 @@
 package GUI.settingsPage;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.InfoButton;
+import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.Theme;
 import GUI_components.ThemeList;
 import GUI_components.TransparentPanel;
 import book.Book;
+import global.UserSettings;
 
 public class ThemeSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +25,7 @@ public class ThemeSettingsCard extends TransparentPanel {
 	
 	private SimpleRadiobutton rdbtnDark;
 	private SimpleRadiobutton rdbtnLight;
+	private SimpleLabel lblWarning;
 
 	public ThemeSettingsCard() {
 		
@@ -55,6 +60,7 @@ public class ThemeSettingsCard extends TransparentPanel {
 				public void actionPerformed(ActionEvent arg0) {
 					my_theme = theme;
 					enableColorTheme(true);
+					save();
 				}
 			});
 			btngrTheme.add(rdbtnTheme);
@@ -75,16 +81,22 @@ public class ThemeSettingsCard extends TransparentPanel {
 		if(my_theme != null) {
 			rdbtnDark.setSelected(my_theme.darkTheme);
 		}
+		rdbtnDark.addActionListener(e -> save());
 		panel_DarkLight.add(rdbtnDark);
 		
 		rdbtnLight = new SimpleRadiobutton("Light Theme");
 		btngrThemeDarkLight.add(rdbtnLight);
+		rdbtnLight.addActionListener(e -> save());
 		if(my_theme != null) {			
 			rdbtnLight.setSelected(!my_theme.darkTheme);
 		}
 		panel_DarkLight.add(rdbtnLight);
 
 		enableColorTheme(my_theme != null);
+		
+		lblWarning = new SimpleLabel(" ");
+		lblWarning.setForeground(Color.RED);
+		add(lblWarning, BorderLayout.SOUTH);
 
 	}
 	
@@ -93,7 +105,7 @@ public class ThemeSettingsCard extends TransparentPanel {
 		rdbtnLight.setEnabled(enable);
 	}
 
-	public Theme getTheme() {
+	private Theme getTheme() {
 		if(my_theme != null) {
 			if(!rdbtnDark.isSelected() && !rdbtnLight.isSelected()) {
 				return null;
@@ -103,8 +115,32 @@ public class ThemeSettingsCard extends TransparentPanel {
 		return my_theme;
 	}
 
-	public boolean canSave() {
+	private boolean canSave() {
 		return (my_theme != null && (rdbtnDark.isSelected() || rdbtnLight.isSelected())) || (my_theme == null);
+	}
+	
+	private void save() {
+		if(!canSave()) {
+			lblWarning.setText("Can not change, because something is wrong with theme-settings!");
+		}
+		Theme theme = getTheme();
+		
+		if(canSave()) {
+			if(!UserSettings.getInstance().getTutorial().chooseFirstColorTheme) {						
+				if(theme != null) {
+					UserSettings.getInstance().getTutorial().chooseFirstColorTheme = true;
+					UserSettings.getInstance().save();
+				}
+			}
+			Book.getInstance().changeBookTheme(theme);
+			
+			//*******************************************************
+			//REPAINT FRAME!!!
+			BookEditorFrame.getInstance().updateBookTitle();
+			ThemeList.setCurrentTheme(theme);
+			BookEditorFrame.getInstance().repaintFrame();
+			BookEditorFrame.getInstance().switchBody(new BookSettingsPage());
+		}
 	}
 
 }

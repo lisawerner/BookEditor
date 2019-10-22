@@ -1,14 +1,8 @@
 package GUI.bookeditorFrame;
 
-import java.awt.GridLayout;
-
 import GUI_components.Page;
-import GUI_components.SimpleLabel;
 import GUI_components.StructureCard;
-import GUI_components.TransparentPanel;
 import GUI_components.TutorialCard;
-import book.Book;
-import book.Section;
 import global.UserSettings;
 
 public class HomePage extends Page {
@@ -58,30 +52,7 @@ public class HomePage extends Page {
 		}
 		
 		//*************************************************************************
-		StructureCard card_Statistics = new StructureCard("Statistics");
-		addCard(card_Statistics);
-		
-		TransparentPanel panel_statistics = new TransparentPanel();
-		panel_statistics.setLayout(new GridLayout(0, 1, 5, 5));
-		card_Statistics.setBody(panel_statistics);
-		
-		SimpleLabel lblSectionStatistics = new SimpleLabel("Chapters: " + Book.getInstance().getSectionList().getCountChapters() + " + with Sections: " + Book.getInstance().getSectionList().getSections().size());
-		panel_statistics.add(lblSectionStatistics);
-		
-		int countWords = 0;
-		int countChars = 0;
-		for(Section section : Book.getInstance().getSectionList().getSections()) {
-			countWords += section.getCountWords();
-			countChars += section.getText().length();
-		}
-		SimpleLabel lblContentStatistics = new SimpleLabel("Words: " + countWords + "; Chars: " + countChars);
-		panel_statistics.add(lblContentStatistics);
-		
-		SimpleLabel lblPersonStatistics = new SimpleLabel("Persons: " + Book.getInstance().getSociety().getPersonList().size());
-		panel_statistics.add(lblPersonStatistics);
-		
-		SimpleLabel lblPlacesStatistics = new SimpleLabel("Places: " + Book.getInstance().getWorld().getPlaces().size());
-		panel_statistics.add(lblPlacesStatistics);
+		addCard(new StructureCard("Statistics", new HomeStatisticsCard()));
 	}
 
 }

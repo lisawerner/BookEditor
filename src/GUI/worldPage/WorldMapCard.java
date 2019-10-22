@@ -1,12 +1,7 @@
 package GUI.worldPage;
 
-import global.ObjectID;
-import global.UserSettings;
-import world.Place;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -16,36 +11,24 @@ import javax.swing.JSeparator;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.InfoButton;
 import GUI_components.LinkButton;
-import GUI_components.Page;
 import GUI_components.SimpleLabel;
-import GUI_components.StructureCard;
 import GUI_components.TransparentPanel;
-import GUI_components.TutorialCard;
 import book.Book;
+import global.ObjectID;
+import world.Place;
 
-public class WorldEditor extends Page {
+public class WorldMapCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private TransparentPanel panel_sortBody;
-	
-	public WorldEditor() {
-		super("World, States, Regions, Citys, Places, ...");
 
-		if(UserSettings.getInstance().getTutorial().createFirstPlace && !UserSettings.getInstance().getTutorial().setMapDependencies) {			
-			addCard(new TutorialCard(18, true));
-		}
+	public WorldMapCard() {
+		setLayout(new BorderLayout(5 , 5));
 		
-		StructureCard card_world = new StructureCard("World-Hierachy");
-		this.addCard(card_world);
-		
-		TransparentPanel card_body = new TransparentPanel();
-		card_body.setLayout(new BorderLayout(5 , 5));
-		card_world.setBody(card_body);
-		
-		//*************************************************************
+		//**************************************************************************************************************************
 		TransparentPanel panel_hint = new TransparentPanel();
 		panel_hint.setLayout(new BorderLayout(5 , 5));
-		card_body.add(panel_hint, BorderLayout.NORTH);
+		add(panel_hint, BorderLayout.NORTH);
 		
 		InfoButton hintButton = new InfoButton("You can change hirachy by changing every single element.");
 		panel_hint.add(hintButton, BorderLayout.WEST);
@@ -57,7 +40,7 @@ public class WorldEditor extends Page {
 
 		//*************************************************************
 		panel_sortBody = new TransparentPanel();
-		card_body.add(panel_sortBody, BorderLayout.CENTER);
+		add(panel_sortBody, BorderLayout.CENTER);
 		panel_sortBody.setLayout(new GridLayout(0, 1, 20, 20));
 		
 		JSeparator firstSeparator = new JSeparator();
@@ -83,8 +66,6 @@ public class WorldEditor extends Page {
 				}
 			}
 		}
-		
-		setMenu(new PlaceMenu());
 	}
 	
 	private void addAllChildren(ArrayList<ObjectID> childrenPlaceRefs, String hierarchyDepth) {

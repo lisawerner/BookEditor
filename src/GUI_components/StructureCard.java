@@ -14,8 +14,15 @@ public class StructureCard extends Card {
 	private String backTag = "</size></div></html>";
 	private JLabel lblCardTitle;
 	private TransparentPanel my_body;
-
-	public StructureCard(String cardTitle) {
+	
+	public StructureCard(String cardTitle, TransparentPanel newBody) {
+		createCard(cardTitle);
+		setBody(newBody);
+		
+		changeTheme();
+	}
+	
+	private void createCard(String cardTitle) {
 		setLayout(new BorderLayout(10, 10));
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
@@ -33,10 +40,8 @@ public class StructureCard extends Card {
 		my_body = new TransparentPanel();
 		my_body.setLayout(new BorderLayout(10, 10));
 		add(my_body, BorderLayout.CENTER);
-		
-		changeTheme();
 	}
-
+	
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
 			setBorder(BorderFactory.createLineBorder(ThemeList.currentTheme.cardTitleBack));

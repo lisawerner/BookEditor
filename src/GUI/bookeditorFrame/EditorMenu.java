@@ -2,9 +2,9 @@ package GUI.bookeditorFrame;
 
 import javax.swing.JButton;
 
-import GUI.PrintPage;
 import GUI.filterPage.FilterChaptersPage;
 import GUI.personPage.PersonsEmptyPage;
+import GUI.printPage.PrintPage;
 import GUI.sectionChangePage.CreateSectionPage;
 import GUI.sectionPage.SectionPage;
 import GUI.settingsPage.BookSettingsPage;

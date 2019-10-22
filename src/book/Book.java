@@ -75,12 +75,9 @@ public class Book {
 		return isWorktitle;
 	}
 	
-	public void changeBookSettings(String newTitle, boolean isNewTitleWorktitle, boolean newGregorainCalendarSettings, boolean chapterPrintName, Theme newTheme) {
+	public void changeBooktitleSettings(String newTitle, boolean isNewTitleWorktitle) {
 		my_title = newTitle;
 		isWorktitle = isNewTitleWorktitle;
-		useGregorianCalendar = newGregorainCalendarSettings;
-		printChapterName = chapterPrintName;
-		my_theme = newTheme;
 		save();
 	}
 		
@@ -136,6 +133,21 @@ public class Book {
 	
 	public Society getSociety() {
 		return my_society;
+	}
+
+	public void changePrintSettings(boolean chapterPrintName) {
+		printChapterName = chapterPrintName;
+		save();
+	}
+
+	public void changeBookTheme(Theme newTheme) {
+		my_theme = newTheme;
+		save();
+	}
+
+	public void changeCalendarSettings(boolean newGregorainCalendarSettings) {
+		useGregorianCalendar = newGregorainCalendarSettings;
+		save();
 	}
 	
 }

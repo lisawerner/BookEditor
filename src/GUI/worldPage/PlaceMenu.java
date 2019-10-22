@@ -15,7 +15,7 @@ public class PlaceMenu extends PageMenu {
 		
 		
 		JButton btnViewMap = this.addButtonToTopMenu("View Map");
-		btnViewMap.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new WorldEditor()));
+		btnViewMap.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewWorldmapPage()));
 
 		JButton btnAddPlace = this.addButtonToTopMenu("Add Place");
 		btnAddPlace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(null)));

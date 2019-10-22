@@ -19,16 +19,13 @@ public class Place {
 	private ArrayList<ObjectID> my_childrenPlaces;
 	
 	
-	public Place(String newName, String newType, ObjectID newParent) {
+	public Place(String newName, String newType) {
 		my_uID = new ObjectID(this.getClass().getName());
 		
 		my_name = newName;
 		my_type = newType;
 		
-		my_parentPlace = newParent;
-		if(newParent != null) {			
-			Book.getInstance().getWorld().getPlace(newParent).addChild(my_uID);
-		}
+		my_parentPlace = null;
 		my_childrenPlaces = new ArrayList<ObjectID>();
 	}
 	
@@ -44,22 +41,10 @@ public class Place {
 		return my_type;
 	}
 
-	public void editPlace(String newName, String newType, ObjectID newParent) {
+	public void editPlace(String newName, String newType) {
 		my_name = newName;
 		my_type = newType;
-		if(my_parentPlace != null) {
-			if(newParent != null) {				
-				if(!my_parentPlace.getIDtoString().equals(newParent.getIDtoString())) {
-					Book.getInstance().getWorld().getPlace(my_parentPlace).removeChild(my_uID);
-				}			
-			} else {
-				Book.getInstance().getWorld().getPlace(my_parentPlace).removeChild(my_uID);
-			}
-		}
-		my_parentPlace = newParent;
-		if(newParent != null) {	
-			Book.getInstance().getWorld().getPlace(newParent).addChild(my_uID);
-		}
+		
 		Book.getInstance().getWorld().changePlace();
 	}
 
@@ -139,6 +124,24 @@ public class Place {
 	
 	public boolean equals(ObjectID otherPlace) {
 		return this.my_uID.getIDtoString().equals(otherPlace.getIDtoString());
+	}
+
+	public void setParent(ObjectID newParent) {
+		if(my_parentPlace != null) {
+			if(newParent != null) {				
+				if(!my_parentPlace.getIDtoString().equals(newParent.getIDtoString())) {
+					Book.getInstance().getWorld().getPlace(my_parentPlace).removeChild(my_uID);
+				}			
+			} else {
+				Book.getInstance().getWorld().getPlace(my_parentPlace).removeChild(my_uID);
+			}
+		}
+		my_parentPlace = newParent;
+		if(newParent != null) {	
+			Book.getInstance().getWorld().getPlace(newParent).addChild(my_uID);
+		}
+		
+		Book.getInstance().getWorld().changePlace();
 	}
 
 }
