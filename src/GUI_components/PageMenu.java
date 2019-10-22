@@ -50,23 +50,22 @@ public class PageMenu extends JPanel {
 		
 		TransparentPanel position_submenu = new TransparentPanel();
 		position_mainBody.add(position_submenu, BorderLayout.CENTER);
-		position_submenu.setLayout(new BorderLayout(20, 20));
+		position_submenu.setLayout(new BorderLayout(0, 0));
 		
 		
 		//TODO: Die ScrollBar wird nicht aktiviert.... Prüfen warum das so ist o.O
 		submenu = new JScrollPane();
-		position_submenu.add(submenu, BorderLayout.NORTH);
+		position_submenu.add(submenu);
 		submenu.setOpaque(false);
 		submenu.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		submenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-		submenuBody = new JPanel();
-		submenuBody.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		JViewport viewport = new JViewport();
-		viewport.setOpaque(false);
-		submenu.setViewportView(viewport);
-		viewport.setView(submenuBody);
+				submenuBody = new JPanel();
+				submenuBody.setLayout(new GridLayout(0, 1, 5, 5));
+				
+				JViewport viewport = new JViewport();
+				viewport.setOpaque(false);
+				submenu.setViewportView(viewport);
+				viewport.setView(submenuBody);
 				
 		Component rigidArea = Box.createRigidArea(new Dimension(10, 10));
 		backgroundColorBody.add(rigidArea, BorderLayout.NORTH);

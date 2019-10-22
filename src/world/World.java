@@ -27,17 +27,7 @@ public class World {
 		return my_world;
 	}
 
-	public void changePlace(ObjectID placeID, Place newPlace) {
-		ArrayList<Place> newList = new ArrayList<Place>();
-		
-		for(Place place : my_world) {
-			if(place.getID().getIDtoString().equals(placeID.getIDtoString())) {
-				newList.add(newPlace);
-			} else {
-				newList.add(place);
-			}
-		}
-		my_world = newList;
+	public void changePlace() {
 		sortPlace();
 		Book.getInstance().save();
 	}

@@ -1,6 +1,8 @@
 package book;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import global.ObjectID;
 import person.Person;
@@ -102,12 +104,8 @@ public class SectionList {
 	
 	public ArrayList<Section> getTimeSortedSections(){
 		ArrayList<Section> sortedSections = new ArrayList<Section>();
-		ArrayList<Section> UNsortedCops = new ArrayList<Section>();
-		for(Section section : my_sections) {
-			if(section.hasTimestamp()) {
-				UNsortedCops.add(section);
-			}
-		}
+		List<Section> UNsortedCops = my_sections.stream().filter(section -> section.hasTimestamp()).collect(Collectors.toList());
+
 		while(UNsortedCops.size() != 0) {			
 			Section smallestDateSection = getSectionWithSmallestTimestamp(UNsortedCops);
 			sortedSections.add(smallestDateSection);
@@ -117,13 +115,14 @@ public class SectionList {
 		return sortedSections;
 	}
 	
-	private Section getSectionWithSmallestTimestamp(ArrayList<Section> restList) {
+	private Section getSectionWithSmallestTimestamp(List<Section> restList) {
 		//Get First -> First could be smallest
-		Section smallestDateSection = restList.get(0);
-		for(Section currentSection : restList) {
-			smallestDateSection = getSmallerSection(smallestDateSection, currentSection);
-		}
-		return smallestDateSection;
+//		Section smallestDateSection = restList.get(0);
+//		
+//		for(Section currentSection : restList) {
+//			smallestDateSection = getSmallerSection(smallestDateSection, currentSection);
+//		}
+		return restList.stream().reduce(this::getSmallerSection).get();
 	}
 	
 	private Section getSmallerSection(Section sectionA, Section sectionB) {
@@ -154,67 +153,40 @@ public class SectionList {
 		return null;
 	}
 	
-	public ArrayList<Section> getUnfinishedSections(){
-		ArrayList<Section> unfinishedSections = new ArrayList<Section>();
-		for(Section section : my_sections) {
-			if(section.getDevelopmentStatus() < 4) {
-				unfinishedSections.add(section);
-			}
-		}
-		return unfinishedSections;
+	public List<Section> getUnfinishedSections(){
+		return my_sections.stream()
+				.filter(section -> section.getDevelopmentStatus() < 4)
+				.collect(Collectors.toList());
 	}
 	
-	public ArrayList<Section> getEmptySections(){
-		ArrayList<Section> unfinishedSections = new ArrayList<Section>();
-		for(Section section : my_sections) {
-			if(section.getText().equals("")) {
-				unfinishedSections.add(section);
-			}
-		}
-		return unfinishedSections;
+	public List<Section> getEmptySections(){
+		return my_sections.stream().filter(section -> "".equals(section.getText())).collect(Collectors.toList());
 	}
 	
-	public ArrayList<Section> getUnsortedSections(){
-		ArrayList<Section> unfinishedSections = new ArrayList<Section>();
-		for(Section section : my_sections) {
-			if(section.isUnsorted()) {
-				unfinishedSections.add(section);
-			}
-		}
-		return unfinishedSections;
+	public List<Section> getUnsortedSections(){
+		return my_sections.stream().filter(section -> section.isUnsorted()).collect(Collectors.toList());
 	}
 	
-	public ArrayList<Section> getSectionsByDevStatus(int devStatus, boolean andSmaller){
-		ArrayList<Section> unfinishedSections = new ArrayList<Section>();
-		for(Section section : my_sections) {
-			if(section.getDevelopmentStatus() == devStatus) {
-				unfinishedSections.add(section);
-			}
-			if(andSmaller) {
-				if(section.getDevelopmentStatus() < devStatus) {
-					unfinishedSections.add(section);
-				}
-			}
-		}
-		return unfinishedSections;
+	public List<Section> getSectionsByDevStatus(int devStatus, boolean andSmaller){
+		return my_sections.stream().filter(section -> section.getDevelopmentStatus() == devStatus
+					|| (andSmaller && section.getDevelopmentStatus() < devStatus)).collect(Collectors.toList());
 	}
 
-	public ArrayList<Section> getSectionsByPersons(ArrayList<Person> selectedPersons, boolean intersectionSelect) {
-		ArrayList<Section> selectedSections = new ArrayList<Section>();
-		for(Section section : my_sections) {
-			if(intersectionSelect) {
-				//Select section only if ALL persons are tagged in the section
-				if(selectedPersons.stream().allMatch(person -> section.hasTag(person.getID()))) {
-					selectedSections.add(section);
-				}
-			} else {				
-				//Select section if min one of the persons is tagged in the section
-				if (selectedPersons.stream().anyMatch(person -> section.hasTag(person.getID()))) {
-					selectedSections.add(section);
-				}
-			}
-		}
-		return selectedSections;
+		
+	public List<Section> getSectionsByPersons(ArrayList<Person> selectedPersons, boolean intersectionSelect) {
+		return my_sections.stream()
+				.filter(section -> allPersonsTagged(intersectionSelect,selectedPersons,section) || anyPersonTagged(intersectionSelect,selectedPersons,section))
+				.collect(Collectors.toList());
+	}
+	
+	private boolean allPersonsTagged(boolean intersectionSelect, List<Person> selectedPersons, Section section) {
+		//Select section only if ALL persons are tagged in the section
+		return intersectionSelect && selectedPersons.stream().allMatch(person -> section.hasTag(person.getID()));
+	}
+	
+	private boolean anyPersonTagged(boolean intersectionSelect, List<Person> selectedPersons, Section section) {
+		//Select section if min one of the persons is tagged in the section
+		return selectedPersons.stream().anyMatch(person -> section.hasTag(person.getID()));
 	}
 	
 	

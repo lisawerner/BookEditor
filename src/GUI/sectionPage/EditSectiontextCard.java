@@ -97,8 +97,14 @@ public class EditSectiontextCard extends TransparentPanel {
 
 //	private void makeTextBold() {
 //		String text = textArea.getSelectedText();
-//		textArea.replaceSelection("<b>" + text + "</b>");
-//		textArea.setContentType("text/html");
+//		String originalText = textArea.getText();
+//		
+//		int start = textArea.getSelectionStart();
+//		int end = textArea.getSelectionEnd();
+//		originalText = originalText.substring(0, start-1) + "<b>" + text + "</b>" + originalText.substring(end+1);
+//		//textArea.setContentType("text/html");
+//		textArea.setText(originalText);
+//		
 //		textArea.revalidate();
 //		textArea.repaint();
 //	}

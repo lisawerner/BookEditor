@@ -3,7 +3,7 @@ package GUI.worldPage;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
@@ -89,7 +89,7 @@ public class PlaceEditor extends Page {
 		
 		
 		//****************************************************************************************
-		StructureCard card_hasParent = new StructureCard("Is part of another Place");
+		StructureCard card_hasParent = new StructureCard("Is part of another Place");		
 		this.addCard(card_hasParent);
 		
 		TransparentPanel panel_placedIn = new TransparentPanel();
@@ -110,14 +110,16 @@ public class PlaceEditor extends Page {
 		
 		//****************************************************************************************
 		StructureCard card_hasChildren = new StructureCard("Has following places inside");
-		this.addCard(card_hasChildren);
+		if(my_place != null) {			
+			this.addCard(card_hasChildren);
+		}
 				
 		TransparentPanel panel_childrenList = new TransparentPanel();
 		card_hasChildren.setBody(panel_childrenList);
 		panel_childrenList.setLayout(new BoxLayout(panel_childrenList, BoxLayout.LINE_AXIS));
 		
 		if(my_place != null) {
-			ArrayList<Place> childrenInfos = my_place.getChildrenObject();
+			List<Place> childrenInfos = my_place.getChildrenObject();
 			if(childrenInfos.size() == 0) {
 				SimpleLabel lblChildInfo = new SimpleLabel("---");
 				panel_childrenList.add(lblChildInfo);
@@ -135,7 +137,9 @@ public class PlaceEditor extends Page {
 		
 		//****************************************************************************************
 		StructureCard card_wasTagged = new StructureCard("Place was tagged in Section(s)");
-		this.addCard(card_wasTagged);		
+		if(my_place != null) {
+			this.addCard(card_wasTagged);			
+		}
 		
 		panel_taglist = new TransparentPanel();
 		panel_taglist.setLayout(new BoxLayout(panel_taglist, BoxLayout.LINE_AXIS));
@@ -181,7 +185,6 @@ public class PlaceEditor extends Page {
 						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
 					} else {
 						my_place.editPlace(name, txtPlacetype.getText(), newParent);
-						Book.getInstance().getWorld().changePlace(my_place.getID(), my_place);
 						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
 					}
 				}
@@ -195,16 +198,16 @@ public class PlaceEditor extends Page {
 	}
 	
 	private void setInput() {
-		if(my_place != null) {			
-			for(Place p : Book.getInstance().getWorld().getPossibleParentsList(my_place)) {
-				if(my_place != null) {				
-					if(!p.equals(my_place)) {
-						comboBox.addItem(new ComboItem(p.getName(), p.getID()));	
-					}
-				} else {
-					comboBox.addItem(new ComboItem(p.getName(), p.getID()));				
+		for(Place p : Book.getInstance().getWorld().getPossibleParentsList(my_place)) {
+			if(my_place != null) {				
+				if(!p.equals(my_place)) {
+					comboBox.addItem(new ComboItem(p.getName(), p.getID()));	
 				}
+			} else {
+				comboBox.addItem(new ComboItem(p.getName(), p.getID()));				
 			}
+		}
+		if(my_place != null) {			
 		
 			txtPlacetype.setText(my_place.getType());
 			

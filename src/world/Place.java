@@ -2,6 +2,8 @@ package world;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import book.Book;
 import global.ObjectID;
@@ -58,6 +60,7 @@ public class Place {
 		if(newParent != null) {	
 			Book.getInstance().getWorld().getPlace(newParent).addChild(my_uID);
 		}
+		Book.getInstance().getWorld().changePlace();
 	}
 
 	private void removeChild(ObjectID childID) {
@@ -75,14 +78,10 @@ public class Place {
 		return my_parentPlace;
 	}
 	
-	public ArrayList<Place> getChildrenObject() {
+	public List<Place> getChildrenObject() {
 		if(my_childrenPlaces == null) {return new ArrayList<Place>();}
 		if(my_childrenPlaces.size() == 0) {return new ArrayList<Place>();}
-		ArrayList<Place> result = new ArrayList<Place>();
-		for(ObjectID childID : my_childrenPlaces) {
-			result.add(Book.getInstance().getWorld().getPlace(childID));
-		}
-		return result;
+		return my_childrenPlaces.stream().map(childID -> Book.getInstance().getWorld().getPlace(childID)).collect(Collectors.toList());
 	}
 	
 	public ArrayList<ObjectID> getChildrenIDs(){

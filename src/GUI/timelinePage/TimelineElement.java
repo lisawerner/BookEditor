@@ -13,6 +13,8 @@ import person.Person;
 import person.Relationship;
 import world.Place;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.BoxLayout;
 
 public class TimelineElement extends TimelineItem {
@@ -42,7 +44,7 @@ public class TimelineElement extends TimelineItem {
 		panel_personTags.setLayout(new BoxLayout(panel_personTags, BoxLayout.LINE_AXIS));
 		SimpleLabel lblPersons = new SimpleLabel("Persons:  ");
 		panel_personTags.add(lblPersons);
-		ArrayList<Person> personTags = my_section.getPersonByTag();
+		List<Person> personTags = my_section.getPersonByTag();
 		for(Person tag : personTags) {
 			LinkButton tagName = new LinkButton(tag.getName());
 			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(tag)));
@@ -56,7 +58,7 @@ public class TimelineElement extends TimelineItem {
 		panel_placeTags.setLayout(new BoxLayout(panel_placeTags, BoxLayout.LINE_AXIS));
 		SimpleLabel lblPlaces = new SimpleLabel("Places:  ");
 		panel_placeTags.add(lblPlaces);
-		ArrayList<Place> placeTags = my_section.getPelaceByTag();
+		List<Place> placeTags = my_section.getPelaceByTag();
 		for(Place tag : placeTags) {
 			LinkButton tagName = new LinkButton(tag.getName());
 			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(tag)));

@@ -1,6 +1,8 @@
 package GUI.sectionPage;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.personPage.PersonEditorPage;
@@ -43,7 +45,7 @@ public class SectionInformationMenu extends PageMenu {
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Person Tags:");
 		if(my_section != null) {
-			ArrayList<Person> personTags = my_section.getPersonByTag();
+			List<Person> personTags = my_section.getPersonByTag();
 			for(Person person : personTags) {
 				JButton personButton = this.addLinkedListButton(person.getName());
 				personButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
@@ -61,7 +63,7 @@ public class SectionInformationMenu extends PageMenu {
 		
 		this.addBetweenTitle("Place Tags:");
 		if(my_section != null) {
-		ArrayList<Place> placeTags = my_section.getPelaceByTag();
+		List<Place> placeTags = my_section.getPelaceByTag();
 			for(Place tag : placeTags) {
 				JButton placeButton = this.addLinkedListButton(tag.getName());
 				placeButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(tag)));

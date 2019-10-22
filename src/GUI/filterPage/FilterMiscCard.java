@@ -3,6 +3,7 @@ package GUI.filterPage;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -45,15 +46,15 @@ public class FilterMiscCard extends TransparentPanel {
 	private void filterUnfinished(boolean empty, boolean unsorted, boolean unfinished) {
 		panel_unfinishedFilteredSections.removeAll();
 		panel_unfinishedFilteredSections.setLayout(new GridLayout(0, 5, 5, 5));
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		List<Section> sectionList = new ArrayList<>();
 		if(empty) {
 			sectionList = Book.getInstance().getSectionList().getEmptySections();
 		} else if(unfinished) {
-			sectionList = Book.getInstance().getSectionList().getUnfinishedSections();
+			sectionList= Book.getInstance().getSectionList().getUnfinishedSections();
 		} else if(unsorted) {
 			sectionList = Book.getInstance().getSectionList().getUnsortedSections();
 		}
-		for(Section section :  sectionList) {
+		for(Section section : sectionList) {
 			LinkButton sectionBTN = new LinkButton(section.getName());
 			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section)));
 			panel_unfinishedFilteredSections.add(sectionBTN);

@@ -1,6 +1,8 @@
 package book;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import global.ObjectID;
 import global.Tag;
@@ -45,12 +47,7 @@ public class Section {
 	
 	public boolean hasTag(ObjectID tagID){
 		if(my_tags == null) {return false;}
-		for(Tag tag : my_tags) {
-			if(tag.getRefID().getIDtoString().equals(tagID.getIDtoString())) {
-				return true;
-			}
-		}
-		return false;
+		return my_tags.stream().anyMatch(tag -> tag.getRefID().getIDtoString().equals(tagID.getIDtoString()));
 	}
 	
 	public void removeTag(ObjectID tagID) {
@@ -83,40 +80,17 @@ public class Section {
 		return stringList;
 	}
 	
-	private ArrayList<Tag> getTags(String tagType){
+	private List<Tag> getTagsByTagtype(String tagType){
 		if(my_tags == null) {return new ArrayList<Tag>();}
-		ArrayList<Tag> tagList = new ArrayList<Tag>();
-		for(Tag tag : my_tags) {
-			if(tag.getType().equals(tagType)) {
-				if(tag.getType().equals("person.Person")) {
-					tagList.add(tag);
-				}
-				if(tag.getType().equals("world.Place")) {
-					tagList.add(tag);
-				}
-			}
-		}
-		return tagList;
+		return my_tags.stream().filter(tag -> tag.getType().equals(tagType)).collect(Collectors.toList());
 	}
 	
-	public ArrayList<Person> getPersonByTag(){
-		ArrayList<Tag> tagList = getTags("person.Person");
-		if(tagList == null) {return new ArrayList<Person>();}
-		ArrayList<Person> personList = new ArrayList<Person>();
-		for(Tag tag : tagList) {
-			personList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()));
-		}
-		return personList;
+	public List<Person> getPersonByTag(){
+		return getTagsByTagtype("person.Person").stream().map(tag -> Book.getInstance().getSociety().getPerson(tag.getRefID())).collect(Collectors.toList());
 	}
 	
-	public ArrayList<Place> getPelaceByTag(){
-		ArrayList<Tag> tagList = getTags("world.Place");
-		if(tagList == null) {return new ArrayList<Place>();}
-		ArrayList<Place> placeList = new ArrayList<Place>();
-		for(Tag tag : tagList) {
-			placeList.add(Book.getInstance().getWorld().getPlace(tag.getRefID()));
-		}
-		return placeList;
+	public List<Place> getPelaceByTag(){
+		return getTagsByTagtype("world.Place").stream().map(tag -> Book.getInstance().getWorld().getPlace(tag.getRefID())).collect(Collectors.toList());
 	}
 	
 	public String getName() {

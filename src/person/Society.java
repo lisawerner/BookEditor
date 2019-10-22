@@ -2,6 +2,7 @@ package person;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import book.Book;
@@ -15,37 +16,19 @@ public class Society {
 		my_persons = new ArrayList<Person>();
 	}
 	
-	public ArrayList<Person> getPersonListOfSuperMainCharacters() {
+	public List<Person> getPersonListOfSuperMainCharacters() {
 		if(my_persons == null) {return new ArrayList<Person>();}
-		ArrayList<Person> superMains = new ArrayList<Person>();
-		for(Person person : my_persons) {
-			if(person.isSuperMainChar()) {
-				superMains.add(person);
-			}
-		}
-		return superMains;
+		return my_persons.stream().filter(person -> person.isSuperMainChar()).collect(Collectors.toList());
 	}
 
-	public ArrayList<Person> getPersonListImportantCharacters() {
+	public List<Person> getPersonListImportantCharacters() {
 		if(my_persons == null) {return new ArrayList<Person>();}
-		ArrayList<Person> mainChars = new ArrayList<Person>();
-		for(Person person : my_persons) {
-			if(person.isFrequentlyChar()) {
-				mainChars.add(person);
-			}
-		}
-		return mainChars;
+		return my_persons.stream().filter(person -> person.isFrequentlyChar()).collect(Collectors.toList());
 	}
 
-	public ArrayList<Person> getPersonListTheRest() {
+	public List<Person> getPersonListTheRest() {
 		if(my_persons == null) {return new ArrayList<Person>();}
-		ArrayList<Person> theRest = new ArrayList<Person>();
-		for(Person person : my_persons) {
-			if(person.isSomebody()) {
-				theRest.add(person);
-			}
-		}
-		return theRest;
+		return my_persons.stream().filter(person -> person.isSomebody()).collect(Collectors.toList());
 	}
 	
 	public void addPerson(Person newPerson) {
@@ -61,9 +44,9 @@ public class Society {
 		ArrayList<Person> listOfMainCharNames = (ArrayList<Person>) my_persons.stream().filter(person -> person.isFrequentlyChar()).collect(Collectors.toList());
 		ArrayList<Person> listOfSomebodyNames = (ArrayList<Person>) my_persons.stream().filter(person -> person.isSomebody()).collect(Collectors.toList());
 		
-		ArrayList<Person> result = (ArrayList<Person>) listOfSuperMainCharNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
-		ArrayList<Person> result2 = (ArrayList<Person>) listOfMainCharNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
-		ArrayList<Person> result3 = (ArrayList<Person>) listOfSomebodyNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
+		List<Person> result = listOfSuperMainCharNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
+		List<Person> result2 = listOfMainCharNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
+		List<Person> result3 = listOfSomebodyNames.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());
 		
 		my_persons = new ArrayList<Person>();
 		my_persons.addAll(result);

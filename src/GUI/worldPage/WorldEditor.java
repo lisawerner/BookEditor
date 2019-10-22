@@ -14,7 +14,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JSeparator;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
 import GUI_components.InfoButton;
 import GUI_components.LinkButton;
 import GUI_components.Page;
