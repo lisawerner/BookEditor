@@ -16,6 +16,8 @@ public class InfoButton extends JPanel {
 	
 	private JLabel my_label;
 	
+	private boolean isMenuInfoHint;
+	
 	public InfoButton(String hint) {
 		setOpaque(false);
 		setPreferredSize(new Dimension(16, 16));
@@ -25,6 +27,7 @@ public class InfoButton extends JPanel {
 		my_label.setHorizontalTextPosition(JLabel.CENTER);
 		my_label.setVerticalTextPosition(JLabel.CENTER);
 		setToolTipText(hint);
+		isMenuInfoHint = false;
 		
 		my_label.addMouseListener(new MouseAdapter()  
 		{  
@@ -48,9 +51,14 @@ public class InfoButton extends JPanel {
 	
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
-			//TODO: Die Farbe geht so noch gar nicht... bei allen Themes hell und dunkel o.O
-			setForeground(ThemeList.currentTheme.cardTitleFont);
-			my_label.setForeground(ThemeList.currentTheme.cardTitleFont);
+			if(isMenuInfoHint) {
+				setForeground(Color.WHITE);
+				my_label.setForeground(Color.WHITE);
+			} else {				
+				//TODO: Die Farbe geht so noch gar nicht... bei allen Themes hell und dunkel o.O
+				setForeground(ThemeList.currentTheme.cardTitleFont);
+				my_label.setForeground(ThemeList.currentTheme.cardTitleFont);
+			}
 			revalidate();
 			repaint();
 		} else {
@@ -68,5 +76,10 @@ public class InfoButton extends JPanel {
 	
 	public void setText(String newToolTipText) {
 		my_label.setToolTipText(newToolTipText);
+	}
+
+	public void setMenuInfo() {
+		isMenuInfoHint = true;
+		changeTheme();
 	}
 }

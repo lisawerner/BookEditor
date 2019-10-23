@@ -1,8 +1,9 @@
-package GUI.sectionPage;
+package GUI.sectionChangePage;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.sectionPage.SectionPage;
 import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
@@ -10,7 +11,7 @@ import book.DevelopmentStatus;
 import book.Section;
 import global.UserSettings;
 
-public class SectionInformationCard extends TransparentPanel {
+public class SectionDevstatusCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
@@ -22,7 +23,7 @@ public class SectionInformationCard extends TransparentPanel {
 	private JButton btnIncreaseDevStatus;
 	private InfoButton ibtnIncrease;
 
-	public SectionInformationCard(Section section) {
+	public SectionDevstatusCard(Section section) {
 		my_section = section;
 		setLayout(new BorderLayout(5, 5));
 		

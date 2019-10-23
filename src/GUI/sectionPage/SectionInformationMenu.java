@@ -1,5 +1,6 @@
 package GUI.sectionPage;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,11 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.personPage.PersonEditorPage;
 import GUI.sectionChangePage.SectionEditorPage;
 import GUI.worldPage.PlaceEditor;
+import GUI_components.InfoButton;
 import GUI_components.PageMenu;
+import GUI_components.SimpleLabel;
+import GUI_components.TransparentPanel;
+import book.DevelopmentStatus;
 import book.Section;
 import person.Person;
 import person.Relationship;
@@ -20,6 +25,9 @@ public class SectionInformationMenu extends PageMenu {
 	private Section my_section;
 	
 	private JButton btnEdit;
+	
+	private SimpleLabel lblDevStatus;
+	private InfoButton hint_devStatus;
 	
 	public SectionInformationMenu(Section section) {
 		super("Section Information");
@@ -40,6 +48,20 @@ public class SectionInformationMenu extends PageMenu {
 			this.addText("Timestamp: " + my_section.getTimestamp().toCompleteString());
 		} else {
 			this.addText("Timestamp: ??");
+		}
+		
+		//***************************************************************************************************************************
+		this.addBetweenTitle("Current Development Status:");
+		TransparentPanel devStatusPanel = new TransparentPanel();
+		devStatusPanel.setLayout(new BorderLayout(2, 2));
+		this.addComplexMenuItem(devStatusPanel);
+		lblDevStatus = new SimpleLabel("");
+		devStatusPanel.add(lblDevStatus, BorderLayout.CENTER);
+		hint_devStatus = new InfoButton(DevelopmentStatus.getDevStatDescription(-1));
+		hint_devStatus.setMenuInfo();
+		devStatusPanel.add(hint_devStatus, BorderLayout.WEST);
+		if(my_section != null) {
+			changeDevStatus(my_section.getDevelopmentStatus());
 		}
 
 		//***************************************************************************************************************************
@@ -71,5 +93,9 @@ public class SectionInformationMenu extends PageMenu {
 		}
 
 	}
-
+	
+	private void changeDevStatus(int newDevStatus) {
+		lblDevStatus.setText(my_section.getDevelopmentStatusToString());
+		hint_devStatus.setToolTipText(my_section.getDevelopmentStatusDescription());
+	}
 }

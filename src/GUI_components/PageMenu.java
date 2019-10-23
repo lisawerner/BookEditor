@@ -130,5 +130,9 @@ public class PageMenu extends JPanel {
 	public void addText(String text) {
 		submenuBody.add(new MenuText("<html>" + text + "</html>"));
 	}
+	
+	protected void addComplexMenuItem(TransparentPanel complexMenuitem) {
+		submenuBody.add(complexMenuitem);
+	}
 
 }

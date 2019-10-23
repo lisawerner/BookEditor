@@ -39,9 +39,6 @@ public class SectionPage extends Page {
 		}
 		
 		//****************************************************************************************
-		if(my_section != null) {			
-			addCard(new StructureCard("Section Information", new SectionInformationCard(my_section)));
-		}
 		//****************************************************************************************
 		if(my_section != null) {			
 			addCard(new StructureCard("Section Content", new EditSectiontextCard(my_section)));
