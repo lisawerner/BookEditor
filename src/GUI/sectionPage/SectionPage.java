@@ -2,6 +2,7 @@ package GUI.sectionPage;
 
 import GUI_components.Page;
 import GUI_components.StructureCard;
+import GUI_components.TextPreview;
 import GUI_components.TutorialCard;
 import book.Section;
 import global.UserSettings;
@@ -40,13 +41,27 @@ public class SectionPage extends Page {
 		
 		//****************************************************************************************
 		//****************************************************************************************
+		if(my_section != null) {
+			String preText = my_section.getPreText();
+			if(!"".equals(preText)) {				
+				addCard(new StructureCard("Review Content", new TextPreview(preText, true, true)));
+			}
+		}
+		
 		if(my_section != null) {			
 			addCard(new StructureCard("Section Content", new EditSectiontextCard(my_section)));
+		}
+		
+		if(my_section != null) {
+			String preText = my_section.getPostText();
+			if(!"".equals(preText)) {				
+				addCard(new StructureCard("Preview Content", new TextPreview(preText, false, true)));
+			}
 		}
 	
 		//****************************************************************************************
 		//****************************************************************************************
-		setMenu(new SectionInformationMenu(my_section));		
+		setMenu(new SectionInformationMenu(my_section));
 	}
 	
 }

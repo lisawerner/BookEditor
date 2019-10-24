@@ -17,6 +17,8 @@ public class SimpleTextarea extends JTextArea{
 	
 	public SimpleTextarea(String text) {
 		super(text);
+		setWrapStyleWord(true);
+		setLineWrap(true);
 		
 		changeTheme();
 	}

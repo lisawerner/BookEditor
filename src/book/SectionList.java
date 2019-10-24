@@ -201,6 +201,19 @@ public class SectionList {
 		return null;
 	}
 
+	public Section getPostSection(Section inputSection) {
+		boolean foundInputSection = false;
+		for(Section currentSection : my_sections) {
+			if(foundInputSection) {
+				return currentSection;
+			}
+			if(currentSection.equals(inputSection)) {
+				foundInputSection = true;
+			}
+		}
+		return null;
+	}
+	
 	public Section getSection(ObjectID sectionID) {
 		for(Section section : my_sections) {
 			if(section.equals(sectionID)) {
@@ -209,5 +222,6 @@ public class SectionList {
 		}
 		return null;
 	}
+
 	
 }

@@ -215,4 +215,22 @@ public class Section {
 	public boolean equals(ObjectID otherSection) {
 		return this.my_uID.getIDtoString().equals(otherSection.getIDtoString());
 	}
+
+	public String getPreText() {
+		Section preSection = Book.getInstance().getSectionList().getPreSection(this);
+		String result = "";
+		if(preSection != null) {
+			result = preSection.getText();
+		}
+		return result;
+	}
+
+	public String getPostText() {
+		Section preSection = Book.getInstance().getSectionList().getPostSection(this);
+		String result = "";
+		if(preSection != null) {
+			result = preSection.getText();
+		}
+		return result;
+	}
 }
