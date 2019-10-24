@@ -13,6 +13,7 @@ import GUI_components.HeaderBook;
 import GUI_components.Page;
 import GUI_components.ThemeList;
 import book.Book;
+import global.Constant;
 
 public class BookEditorFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +29,7 @@ public class BookEditorFrame extends JFrame {
 	public BookEditorFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle("Book Writer");
+		setTitle(Constant.editorname);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();

@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.BookFooter;
+import global.Constant;
 
 public class StartFrame extends JFrame {
 	
@@ -30,7 +31,7 @@ public class StartFrame extends JFrame {
 	private StartFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle("Book Writer");
+		setTitle(Constant.editorname);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();
