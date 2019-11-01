@@ -43,7 +43,12 @@ public class SectionInformationMenu extends PageMenu {
 		
 		//***************************************************************************************************************************
 		this.addBetweenTitle("General Information");
-		this.addText("Name: " + my_section.getName());
+		String name = my_section.getName();
+		if(name.length() > 17) {
+			name = name.substring(0,15) + "...";
+			//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+		}
+		this.addText("Name: " + name);
 		if(my_section.hasTimestamp()) {
 			this.addText("Timestamp: " + my_section.getTimestamp().toCompleteString());
 		} else {

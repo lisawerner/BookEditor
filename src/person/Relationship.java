@@ -2,10 +2,9 @@ package person;
 
 import book.Book;
 import global.ObjectID;
+import global.SerializedObject;
 
-public class Relationship {
-	
-	private ObjectID my_uID;
+public class Relationship  extends SerializedObject{
 	
 	private ObjectID refToPersonA;
 	private ObjectID refToPersonB;
@@ -13,18 +12,14 @@ public class Relationship {
 	private String my_describingRelationshipType;
 	
 	public Relationship(Person personA, Person personB, String newDescribingRelationshipType) {
-		my_uID = new ObjectID(this.getClass().getName());
-		
+		super();
+
 		refToPersonA = personA.getID();
-		personA.addRelationship(my_uID);
+		personA.addRelationship(this.my_uID);
 		refToPersonB = personB.getID();
-		personB.addRelationship(my_uID);
+		personB.addRelationship(this.my_uID);
 		
 		my_describingRelationshipType = newDescribingRelationshipType;
-	}
-	
-	public ObjectID getID() {
-		return my_uID;
 	}
 
 	public ObjectID getPersonA() {
@@ -50,13 +45,13 @@ public class Relationship {
 
 	public void change(Person personA, Person personB, String newDescribingRelationshipType) {
 		if(!refToPersonA.getIDtoString().equals(personA.getID().getIDtoString())) {
-			Book.getInstance().getSociety().getPerson(refToPersonA).removeRelationship(my_uID);
-			personA.addRelationship(my_uID);
+			Book.getInstance().getSociety().getPerson(refToPersonA).removeRelationship(this.my_uID);
+			personA.addRelationship(getID());
 			refToPersonA = personA.getID();
 		}
 		if(!refToPersonB.getIDtoString().equals(personB.getID().getIDtoString())) {
-			Book.getInstance().getSociety().getPerson(refToPersonB).removeRelationship(my_uID);
-			personB.addRelationship(my_uID);
+			Book.getInstance().getSociety().getPerson(refToPersonB).removeRelationship(this.my_uID);
+			personB.addRelationship(this.my_uID);
 			refToPersonB = personB.getID();
 		}
 			

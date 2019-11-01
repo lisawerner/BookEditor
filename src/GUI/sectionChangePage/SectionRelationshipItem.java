@@ -1,7 +1,7 @@
 package GUI.sectionChangePage;
 
+import GUI_components.ComboItem;
 import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextfield;
 import GUI_components.TransparentPanel;
 import book.Book;
@@ -9,16 +9,11 @@ import book.Section;
 import person.Person;
 import person.Relationship;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JButton;
-
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 
 import java.awt.GridLayout;
 
@@ -32,7 +27,9 @@ public class SectionRelationshipItem extends TransparentPanel {
 	
 	private SimpleLabel lblWARNING;
 	
+	private JComboBox<ComboItem> cmboxPersonA;
 	private Person personA;
+	private JComboBox<ComboItem> cmboxPersonB;
 	private Person personB;
 
 	public SectionRelationshipItem(SectionRelationshipCard body, Section section, Relationship relship) {
@@ -41,46 +38,21 @@ public class SectionRelationshipItem extends TransparentPanel {
 		my_relationship = relship;
 		setLayout(new BorderLayout(5, 5));
 	
+		TransparentPanel panel_buttons = new TransparentPanel();
+		panel_buttons.setLayout(new GridLayout(0, 1, 2, 2));
+		add(panel_buttons, BorderLayout.EAST);
+		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				lblWARNING.setText(" ");
-				boolean canSave = true;
-				
-				System.out.println("A: " + personA.getInformation().getName() + " - B: " + personB.getInformation().getName());
-				
-				if(personA == null || personB == null) {
-					lblWARNING.setText("You have to choose two persons for setting a relationship.");
-					canSave = false;
-				} else {
-					if(personA.equals(personB)) {
-						lblWARNING.setText("You have to choose two different persons for setting a relationship.");
-						canSave = false;
-					}
-				}
-				
-				if(txt_relationshipType.getText().equals("")) {
-					lblWARNING.setText("You have to enter a describing relationtype (for example: Father, Friends, Collegues.");
-					canSave = false;
-				}
-				
-				if(canSave) {
-					if(my_relationship == null) {
-						Relationship newRelationship = new Relationship(personA, personB, txt_relationshipType.getText());
-						my_body.addRelationship(newRelationship);
-						my_section.addRelationship(newRelationship);
-						//TODO: Reload this completele!!!!
-					} else {
-						my_relationship.change(personA, personB, txt_relationshipType.getText());
-					}
-				}
-			}
-		});
+		btnAdd.addActionListener(e -> save());
+		panel_buttons.add(btnAdd);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(e -> delete());
+
 		if(my_relationship != null) {
 			btnAdd.setText("Change");
-			//TODO: DeleteButtoN!!!
+			panel_buttons.add(btnDelete);
 		}
-		add(btnAdd, BorderLayout.EAST);
 		
 		TransparentPanel panel_type = new TransparentPanel();
 		add(panel_type, BorderLayout.WEST);
@@ -97,63 +69,94 @@ public class SectionRelationshipItem extends TransparentPanel {
 		
 		TransparentPanel panel_Persons = new TransparentPanel();
 		add(panel_Persons, BorderLayout.CENTER);
-		panel_Persons.setLayout(new BoxLayout(panel_Persons, BoxLayout.PAGE_AXIS));
+		panel_Persons.setLayout(new GridLayout(0, 1, 5, 5));
 		
 		TransparentPanel panel_personA = new TransparentPanel();
+		panel_personA.setLayout(new BorderLayout(5, 5));
 		panel_Persons.add(panel_personA);
 		SimpleLabel lblPersonA = new SimpleLabel("Choose Person A: ");
-		panel_personA.add(lblPersonA);
-		ButtonGroup group_personA = new ButtonGroup();
+		panel_personA.add(lblPersonA, BorderLayout.WEST);
+		cmboxPersonA = new JComboBox<ComboItem>();
+		panel_personA.add(cmboxPersonA, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleRadiobutton chckbxPersonA = new SimpleRadiobutton(person.getInformation().getName());
-			panel_personA.add(chckbxPersonA);		
-			group_personA.add(chckbxPersonA);
+			ComboItem item = new ComboItem(person.getInformation().getName(), person.getID());
+			cmboxPersonA.addItem(item);
+
 			if(my_relationship != null) {
-				if(my_relationship.getPersonA().getIDtoString().equals(person.getID().getIDtoString())) {					
-					chckbxPersonA.setSelected(true);
+				if(my_relationship.getPersonA().getIDtoString().equals(person.getID().getIDtoString())) {
+					cmboxPersonA.setSelectedItem(item);
 					personA = person;
 				}
 			}
-			chckbxPersonA.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(chckbxPersonA.isSelected()) {			
-						//System.out.println("Click: Is Selected now");
-						personA = person;
-					} else {
-						//System.out.println("Click: Is NOOOTTT Selected anymore");
-					}
-				}
-			});
 		}
+		cmboxPersonA.addActionListener(e -> setPersonA());
 		
 		
 		TransparentPanel panel_personB = new TransparentPanel();
 		panel_Persons.add(panel_personB);
+		panel_personB.setLayout(new BorderLayout(5, 5));
 		SimpleLabel lblPersonB = new SimpleLabel("Choose Person B: ");
-		panel_personB.add(lblPersonB);
-		ButtonGroup group_personB = new ButtonGroup();
+		panel_personB.add(lblPersonB, BorderLayout.WEST);
+		cmboxPersonB = new JComboBox<ComboItem>();
+		panel_personB.add(cmboxPersonB, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleRadiobutton chckbxPersonB = new SimpleRadiobutton(person.getInformation().getName());
-			panel_personB.add(chckbxPersonB);
-			group_personB.add(chckbxPersonB);
+			ComboItem item = new ComboItem(person.getInformation().getName(), person.getID());
+			cmboxPersonB.addItem(item);
+
 			if(my_relationship != null) {
-				if(my_relationship.getPersonB().getIDtoString().equals(person.getID().getIDtoString())) {					
-					chckbxPersonB.setSelected(true);
+				if(my_relationship.getPersonB().getIDtoString().equals(person.getID().getIDtoString())) {
+					cmboxPersonB.setSelectedItem(item);
 					personB = person;
 				}
 			}
-			chckbxPersonB.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(chckbxPersonB.isSelected()) {			
-						//System.out.println("Click: Is Selected now");
-						personB = person;
-					} else {
-						//System.out.println("Click: Is NOOOTTT Selected anymore");
-					}
-				}
-			});
+		}
+		cmboxPersonB.addActionListener(e -> setPersonB());
+	}
+	
+	private void setPersonA() {
+		ComboItem item = (ComboItem) cmboxPersonA.getSelectedItem();
+		personA = Book.getInstance().getSociety().getPerson(item.getValue());
+	}
+	private void setPersonB() {
+		ComboItem item = (ComboItem) cmboxPersonB.getSelectedItem();
+		personB = Book.getInstance().getSociety().getPerson(item.getValue());
+	}
+	
+	private void save() {
+		lblWARNING.setText(" ");
+		boolean canSave = true;
+		
+		if(personA == null || personB == null) {
+			lblWARNING.setText("You have to choose two persons for setting a relationship.");
+			canSave = false;
+		} else {
+			if(personA.equals(personB)) {
+				lblWARNING.setText("You have to choose two different persons for setting a relationship.");
+				canSave = false;
+			}
 		}
 		
+		if(txt_relationshipType.getText().equals("")) {
+			lblWARNING.setText("You have to enter a describing relationtype (for example: Father, Friends, Collegues.");
+			canSave = false;
+		}
+		
+		if(canSave) {
+			if(my_relationship == null) {
+				Relationship newRelationship = new Relationship(personA, personB, txt_relationshipType.getText());
+				my_body.addRelationship(newRelationship);
+				my_section.addRelationship(newRelationship);
+			} else {
+				my_relationship.change(personA, personB, txt_relationshipType.getText());
+			}
+			txt_relationshipType.setText("");
+			my_relationship = null;
+		}
+	}
+	
+	private void delete() {
+		my_section.removeRelationship(my_relationship);
+		my_body.reloadRelationships(my_section);
 	}
 
 }

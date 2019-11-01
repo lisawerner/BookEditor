@@ -1,10 +1,10 @@
 package global;
 
-public class BookObject {
+public class SerializedObject {
 	
 	protected ObjectID my_uID;
 	
-	public BookObject() {
+	public SerializedObject() {
 		my_uID = new ObjectID(this.getClass().getName());
 	}
 	

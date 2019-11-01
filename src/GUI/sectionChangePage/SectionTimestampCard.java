@@ -11,8 +11,6 @@ import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
-import GUI.sectionTimestamp.TimestampRelativeEditor;
-import GUI.sectionTimestamp.TimestampSpecificEditor;
 import GUI_components.LinkButton;
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;

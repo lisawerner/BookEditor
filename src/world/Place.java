@@ -7,10 +7,9 @@ import java.util.stream.Collectors;
 
 import book.Book;
 import global.ObjectID;
+import global.SerializedObject;
 
-public class Place {
-	
-	private ObjectID my_uID;
+public class Place  extends SerializedObject{
 	
 	private String my_name;
 	private String my_type;
@@ -20,17 +19,13 @@ public class Place {
 	
 	
 	public Place(String newName, String newType) {
-		my_uID = new ObjectID(this.getClass().getName());
+		super();
 		
 		my_name = newName;
 		my_type = newType;
 		
 		my_parentPlace = null;
 		my_childrenPlaces = new ArrayList<ObjectID>();
-	}
-	
-	public ObjectID getID() {
-		return my_uID;
 	}
 
 	public String getName() {

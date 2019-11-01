@@ -5,29 +5,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import global.ObjectID;
+import global.SerializedObject;
 import global.Tag;
 import person.Person;
 import person.Relationship;
 import time.Timestamp;
 import world.Place;
 
-public class Section {
+public class Section extends SerializedObject {
 	
-	private ObjectID my_uID;
-	
+	//Text and Structure
 	private String my_name;
 	private String my_text;
-	
 	private boolean isUnsorted;
 	private boolean isChapterStart;
 	
+	//Tagged Informations
 	private ArrayList<Tag> my_tags; //TODO: Persönlich/Privat Tags die von den Nutzern spezifisch angelegt wurden
 	private ArrayList<Relationship> my_relationshipSwitches;
 	private Timestamp my_timestamp;
 	private int my_devStatus;
 	
 	public Section(String newName) {
-		my_uID = new ObjectID(this.getClass().getName());
+		super();
 		
 		my_name = newName;
 		my_text = "";
@@ -40,11 +40,7 @@ public class Section {
 		my_timestamp = null;
 		my_devStatus = -1;
 	}
-	
-	public ObjectID getID() {
-		return my_uID;
-	}
-	
+		
 	public boolean hasTag(ObjectID tagID){
 		if(my_tags == null) {return false;}
 		return my_tags.stream().anyMatch(tag -> tag.getRefID().getIDtoString().equals(tagID.getIDtoString()));
@@ -147,7 +143,7 @@ public class Section {
 			isUnsorted = false;
 			Book.getInstance().getSectionList().resortSections();
 		} else {
-			Book.getInstance().getSectionList().sortSectionUp(my_uID);
+			Book.getInstance().getSectionList().sortSectionUp(this.my_uID);
 		}
 	}
 	
@@ -156,7 +152,7 @@ public class Section {
 			isUnsorted = false;
 			Book.getInstance().getSectionList().resortSections();
 		} else {
-			Book.getInstance().getSectionList().sortSectionDown(my_uID);
+			Book.getInstance().getSectionList().sortSectionDown(this.my_uID);
 		}
 	}
 
@@ -192,6 +188,7 @@ public class Section {
 	public void addRelationship(Relationship newRelationship) {
 		if(my_relationshipSwitches == null) {my_relationshipSwitches = new ArrayList<Relationship>();}
 		my_relationshipSwitches.add(newRelationship);
+
 		Book.getInstance().save();
 	}
 
@@ -232,5 +229,12 @@ public class Section {
 			result = preSection.getText();
 		}
 		return result;
+	}
+
+	public void removeRelationship(Relationship relationship) {
+		my_relationshipSwitches.remove(relationship);
+		Book.getInstance().getSociety().getPerson(relationship.getPersonA()).removeRelationship(relationship.getID());
+		Book.getInstance().getSociety().getPerson(relationship.getPersonB()).removeRelationship(relationship.getID());
+		Book.getInstance().save();
 	}
 }

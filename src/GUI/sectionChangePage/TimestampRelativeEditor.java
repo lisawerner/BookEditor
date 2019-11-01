@@ -1,4 +1,4 @@
-package GUI.sectionTimestamp;
+package GUI.sectionChangePage;
 
 import GUI_components.ComboItem;
 import GUI_components.SimpleIntegerTextfield;

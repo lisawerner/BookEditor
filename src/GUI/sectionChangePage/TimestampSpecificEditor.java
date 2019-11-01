@@ -1,4 +1,4 @@
-package GUI.sectionTimestamp;
+package GUI.sectionChangePage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

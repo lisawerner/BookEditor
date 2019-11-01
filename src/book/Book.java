@@ -1,16 +1,16 @@
 package book;
 
 import global.ObjectID;
+import global.SerializedObject;
 import person.Relationship;
 import person.Society;
 import world.World;
 import GUI_components.Theme;
 import global.FileManager;
 
-public class Book {
+public class Book extends SerializedObject {
 	
 	private static Book my_instance;
-	private ObjectID my_uID;
 	private String my_filename;
 	private Theme my_theme;
 	
@@ -28,10 +28,11 @@ public class Book {
 		
 	
 	private Book() {
+		super();
+		
 		my_title = "";
 		isWorktitle = false;
 		
-		my_uID = new ObjectID(this.getClass().getName());
 		my_filename = "empty.json";
 		
 		my_sectionlist = new SectionList();

@@ -14,17 +14,27 @@ public class SectionRelationshipCard extends TransparentPanel {
 	public SectionRelationshipCard(Section section) {
 		my_section = section; 
 		
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		
-		add(new SectionRelationshipItem(this, my_section, null));
-		for(Relationship relship : my_section.getRelationships()) {
-			add(new SectionRelationshipItem(this, my_section, relship));
-		}
-
+		reloadRelationships(section);
 	}
 	
 	public void addRelationship(Relationship newRelationship) {
 		this.add(new SectionRelationshipItem(this, my_section, newRelationship));
+		revalidate();
+		repaint();
+	}
+
+	public void reloadRelationships(Section update) {
+		my_section = update; 
+		
+		this.removeAll();
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		
+		add(new SectionRelationshipItem(this, my_section, null));
+		//TODO: Show inherited Relationships from pre Sections!
+		for(Relationship relship : my_section.getRelationships()) {
+			add(new SectionRelationshipItem(this, my_section, relship));
+		}
+		
 		revalidate();
 		repaint();
 	}

@@ -1,12 +1,12 @@
 package person;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import global.ObjectID;
+import global.SerializedObject;
 
-public class Person {
-	
-	private ObjectID my_uID;
+public class Person extends SerializedObject {
 	
 	private PersonInformation my_information;
 	
@@ -15,16 +15,13 @@ public class Person {
 	public Person(String newName, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
 			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
 			String newNotes) {
-		my_uID = new ObjectID(this.getClass().getName());
+		super();
 		
 		my_information = new PersonInformation(newName, newAge, ageBookStart, ageFirstAppearance, newIsSuperMainCharapter, newIsMainCharapter, newNotes);
 		
 		my_relationships = new ArrayList<ObjectID>();
 	}
 	
-	public ObjectID getID() {
-		return my_uID;
-	}
 	
 	public void addRelationship(ObjectID relationship) {
 		if(my_relationships == null) {my_relationships = new ArrayList<ObjectID>();}
@@ -56,6 +53,10 @@ public class Person {
 	
 	public boolean equals(ObjectID otherPerson) {
 		return this.my_uID.getIDtoString().equals(otherPerson.getIDtoString());
+	}
+
+	protected void setRelationships(List<ObjectID> filteredRelationships) {
+		my_relationships = (ArrayList<ObjectID>) filteredRelationships;	
 	}
 
 }

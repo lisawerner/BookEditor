@@ -49,6 +49,9 @@ public class SectionEditorPage extends Page {
 
 		//********************************************************************************
 		addCard(new StructureCard("Change Place-Tags", new SectionPlacetagCard(my_section)));
+		
+		//********************************************************************************
+		addCard(new StructureCard("Change your Personal-Tags", new SectionPersonaltagCard(my_section)));
 	
 		//********************************************************************************
 		//********************************************************************************
