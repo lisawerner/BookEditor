@@ -25,6 +25,7 @@ public class Section extends SerializedObject {
 	private ArrayList<Relationship> my_relationshipSwitches;
 	private Timestamp my_timestamp;
 	private int my_devStatus;
+	private String my_notes;
 	
 	public Section(String newName) {
 		super();
@@ -39,6 +40,7 @@ public class Section extends SerializedObject {
 		my_relationshipSwitches = new ArrayList<Relationship>();
 		my_timestamp = null;
 		my_devStatus = -1;
+		my_notes = "";
 	}
 		
 	public boolean hasTag(ObjectID tagID){
@@ -236,5 +238,14 @@ public class Section extends SerializedObject {
 		Book.getInstance().getSociety().getPerson(relationship.getPersonA()).removeRelationship(relationship.getID());
 		Book.getInstance().getSociety().getPerson(relationship.getPersonB()).removeRelationship(relationship.getID());
 		Book.getInstance().save();
+	}
+
+	public String getNotes() {
+		if(my_notes == null) {return "";}
+		return my_notes;
+	}
+
+	public void setNotes(String newNotes) {
+		my_notes = newNotes;
 	}
 }

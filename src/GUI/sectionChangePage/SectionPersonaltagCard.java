@@ -1,5 +1,6 @@
 package GUI.sectionChangePage;
 
+import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import book.Section;
 
@@ -8,6 +9,8 @@ public class SectionPersonaltagCard extends TransparentPanel {
 	
 
 	public SectionPersonaltagCard(Section section) {
+		
+		add(new SimpleLabel("Coming soon"));
 
 	}
 

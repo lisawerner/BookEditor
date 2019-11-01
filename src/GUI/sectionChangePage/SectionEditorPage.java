@@ -37,6 +37,9 @@ public class SectionEditorPage extends Page {
 
 		//********************************************************************************
 		addCard(new StructureCard("Development Status", new SectionDevstatusCard(my_section)));
+		
+		//********************************************************************************
+		addCard(new StructureCard("Notes, Research and more", new SectionNoteCard(my_section)));
 
 		//********************************************************************************
 		addCard(new StructureCard("Change Timestamp", new SectionTimestampCard(my_section)));		

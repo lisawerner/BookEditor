@@ -12,6 +12,9 @@ public class PersonMenu extends PageMenu {
 	public PersonMenu() {
 		super("List of Persons:");
 		
+		JButton btnViewRelationships = this.addButtonToTopMenu("View Society");
+		btnViewRelationships.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewSociety()));
+		
 		JButton btnAddNew = this.addButtonToTopMenu("Add new");
 		btnAddNew.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(null)));
 		

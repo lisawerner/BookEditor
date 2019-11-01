@@ -68,6 +68,13 @@ public class SectionInformationMenu extends PageMenu {
 		if(my_section != null) {
 			changeDevStatus(my_section.getDevelopmentStatus());
 		}
+		
+		//***************************************************************************************************************************
+		this.addBetweenTitle("Comments:");
+		ArrayList<String> splittedNotes = splitNotes();
+		for(String notePart : splittedNotes) {
+			this.addText(notePart);
+		}
 
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Person Tags:");
@@ -99,6 +106,26 @@ public class SectionInformationMenu extends PageMenu {
 
 	}
 	
+	private ArrayList<String> splitNotes() {
+		ArrayList<String> splittedNotes = new ArrayList<String>();
+		String notes = my_section.getNotes();
+		int noteLength = notes.length();
+		//TODO: W needs more space, then i, so notes has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+		while(noteLength > 0) {
+			if(noteLength > 20) {
+				//TODO: Den Text irgendwie sinnvoll trennen o.O
+				String newPart = notes.substring(0,18) + "...";
+				splittedNotes.add(newPart);
+				notes = notes.substring(18);
+				noteLength = notes.length();
+			} else {
+				splittedNotes.add(notes);
+				noteLength = 0;
+			}
+		}
+		return splittedNotes;
+	}
+
 	private void changeDevStatus(int newDevStatus) {
 		lblDevStatus.setText(my_section.getDevelopmentStatusToString());
 		hint_devStatus.setToolTipText(my_section.getDevelopmentStatusDescription());
