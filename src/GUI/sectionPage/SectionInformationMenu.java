@@ -81,7 +81,7 @@ public class SectionInformationMenu extends PageMenu {
 		if(my_section != null) {
 			List<Person> personTags = my_section.getPersonByTag();
 			for(Person person : personTags) {
-				JButton personButton = this.addLinkedListButton(person.getInformation().getName());
+				JButton personButton = this.addLinkedListButton(person.getInformation().getNickname());
 				personButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
 			}
 		}

@@ -46,7 +46,7 @@ public class TimelineElement extends TimelineItem {
 		panel_personTags.add(lblPersons);
 		List<Person> personTags = my_section.getPersonByTag();
 		for(Person tag : personTags) {
-			LinkButton tagName = new LinkButton(tag.getInformation().getName());
+			LinkButton tagName = new LinkButton(tag.getInformation().getNickname());
 			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(tag)));
 			panel_personTags.add(tagName);
 			panel_personTags.add(new SimpleLabel(";  "));

@@ -31,7 +31,7 @@ public class PersonRelationshipCard extends TransparentPanel {
 				relationPanel.setLayout(new BoxLayout(relationPanel, BoxLayout.LINE_AXIS));
 				relationPanel.add(new SimpleLabel("Has Relationship '" + relship.getDescribingRelationshipType() + "' with Person "));
 				Person relPerson = Book.getInstance().getSociety().getPerson(relship.getOtherPerson(my_person.getID()));
-				LinkButton lbtnRelPerson = new LinkButton(relPerson.getInformation().getName());
+				LinkButton lbtnRelPerson = new LinkButton(relPerson.getInformation().getNickname());
 				relationPanel.add(lbtnRelPerson);
 				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(relPerson)));
 			}

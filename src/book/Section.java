@@ -69,7 +69,7 @@ public class Section extends SerializedObject {
 		ArrayList<String> stringList = new ArrayList<String>();
 		for(Tag tag : my_tags) {
 			if(tag.getType().equals("person.Person")) {
-				stringList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()).getInformation().getName());
+				stringList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()).getInformation().getNickname());
 			}
 			if(tag.getType().equals("world.Place")) {
 				stringList.add(Book.getInstance().getWorld().getPlace(tag.getRefID()).getName());

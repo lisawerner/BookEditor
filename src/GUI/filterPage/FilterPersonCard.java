@@ -47,7 +47,7 @@ public class FilterPersonCard extends TransparentPanel {
 		
 		
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleCheckbox boxbtn_person = new SimpleCheckbox(person.getInformation().getName());
+			SimpleCheckbox boxbtn_person = new SimpleCheckbox(person.getInformation().getNickname());
 			panel_FilterSettings.add(boxbtn_person);
 			boxbtn_person.addActionListener(e -> addPersonToFilterlist(person, boxbtn_person.isSelected()));
 		}

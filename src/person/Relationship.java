@@ -62,8 +62,8 @@ public class Relationship  extends SerializedObject{
 
 	public String getSwitchToString() {
 		String result = "";
-		result += Book.getInstance().getSociety().getPerson(refToPersonA).getInformation().getName() + " + ";
-		result += Book.getInstance().getSociety().getPerson(refToPersonB).getInformation().getName() + "   &#8594;  ";
+		result += Book.getInstance().getSociety().getPerson(refToPersonA).getInformation().getNickname() + " + ";
+		result += Book.getInstance().getSociety().getPerson(refToPersonB).getInformation().getNickname() + "   &#8594;  ";
 		result += my_describingRelationshipType;
 		return result;
 	}

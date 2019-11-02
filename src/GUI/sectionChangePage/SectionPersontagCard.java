@@ -19,7 +19,7 @@ public class SectionPersontagCard extends TransparentPanel {
 		setLayout(new GridLayout(0, 7, 5, 5));
 		
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleCheckbox chckbxPerson = new SimpleCheckbox(person.getInformation().getName());
+			SimpleCheckbox chckbxPerson = new SimpleCheckbox(person.getInformation().getNickname());
 			add(chckbxPerson);			
 			chckbxPerson.setSelected(my_section.hasTag(person.getID()));
 			chckbxPerson.addActionListener(e -> save(chckbxPerson, person));

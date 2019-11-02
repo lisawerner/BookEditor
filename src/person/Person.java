@@ -12,12 +12,12 @@ public class Person extends SerializedObject {
 	
 	private ArrayList<ObjectID> my_relationships;
 	
-	public Person(String newName, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
+	public Person(String newName, String newNickname, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
 			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
 			String newNotes) {
 		super();
 		
-		my_information = new PersonInformation(newName, newAge, ageBookStart, ageFirstAppearance, newIsSuperMainCharapter, newIsMainCharapter, newNotes);
+		my_information = new PersonInformation(newName, newNickname, newAge, ageBookStart, ageFirstAppearance, newIsSuperMainCharapter, newIsMainCharapter, newNotes);
 		
 		my_relationships = new ArrayList<ObjectID>();
 	}

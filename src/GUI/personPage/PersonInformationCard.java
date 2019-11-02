@@ -10,6 +10,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextarea;
@@ -30,6 +31,7 @@ public class PersonInformationCard extends TransparentPanel {
 	private SimpleTextfield txt_age;
 	private SimpleRadiobutton rdbtnAgeBookstart;
 	private SimpleRadiobutton rdbtnAgeFirstAppeareance;
+	private SimpleTextfield txtTxtnickname;
 	
 	public PersonInformationCard(Person person) {
 		my_person = person;
@@ -41,12 +43,32 @@ public class PersonInformationCard extends TransparentPanel {
 		changeName_body.setLayout(new BorderLayout(5, 5));
 		this.add(changeName_body);
 		
-		lblName = new SimpleLabel("Name:");
-		changeName_body.add(lblName, BorderLayout.WEST);
+		TransparentPanel panel_nameTextfields = new TransparentPanel();
+		changeName_body.add(panel_nameTextfields, BorderLayout.CENTER);
+		panel_nameTextfields.setLayout(new GridLayout(0, 1, 2, 2));
 		
 		txt_name = new SimpleTextfield();
+		panel_nameTextfields.add(txt_name);
 		if(my_person != null) {txt_name.setText(my_person.getInformation().getName());}
-		changeName_body.add(txt_name, BorderLayout.CENTER);
+		
+		TransparentPanel panel_nameLabels = new TransparentPanel();
+		changeName_body.add(panel_nameLabels, BorderLayout.WEST);
+		panel_nameLabels.setLayout(new GridLayout(0, 1, 2, 2));
+		
+		lblName = new SimpleLabel("Name:");
+		panel_nameLabels.add(lblName);
+		
+		SimpleLabel lblNickname = new SimpleLabel("Nickname:");
+		panel_nameLabels.add(lblNickname);
+		
+		
+		txtTxtnickname = new SimpleTextfield();
+		panel_nameTextfields.add(txtTxtnickname);
+		if(my_person != null) {txtTxtnickname.setText(my_person.getInformation().getNickname());}
+		
+		InfoButton hint_nickname = new InfoButton("<html>If it is possible always the nickname will shown instead of the fullname<br/>"
+				+ "everywhere outside the Person-Menu.</html>");
+		changeName_body.add(hint_nickname, BorderLayout.EAST);
 		
 		//*********************************************************************************
 		//*********************************************************************************
@@ -133,6 +155,7 @@ public class PersonInformationCard extends TransparentPanel {
 				String newAge = txt_age.getText();
 				boolean ageFromBookstart = rdbtnAgeBookstart.isSelected();
 				boolean ageFirstEnter = rdbtnAgeFirstAppeareance.isSelected();
+				String newNickname = txtTxtnickname.getText();
 				
 				if(!"".equals(newAge)) {
 					if(!ageFromBookstart && !ageFirstEnter) {
@@ -152,7 +175,7 @@ public class PersonInformationCard extends TransparentPanel {
 				if(canSave) {
 					String saveMessage = "";
 					if(my_person == null) {
-						my_person = new Person(name, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
+						my_person = new Person(name, newNickname, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 								txt_notes.getText());
 						Book.getInstance().getSociety().addPerson(my_person);
 						if(!UserSettings.getInstance().getTutorial().createFirstPerson) {
@@ -162,7 +185,7 @@ public class PersonInformationCard extends TransparentPanel {
 						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person));
 						
 					} else {
-						my_person.getInformation().editInformation(name, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
+						my_person.getInformation().editInformation(name, newNickname, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 								txt_notes.getText());
 					}
 					lblWarning.setText("<html>" + saveMessage + "<br>Successfully saved</html>");

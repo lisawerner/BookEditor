@@ -78,7 +78,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		cmboxPersonA = new JComboBox<ComboItem>();
 		panel_personA.add(cmboxPersonA, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			ComboItem item = new ComboItem(person.getInformation().getName(), person.getID());
+			ComboItem item = new ComboItem(person.getInformation().getNickname(), person.getID());
 			cmboxPersonA.addItem(item);
 
 			if(my_relationship != null) {
@@ -99,7 +99,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		cmboxPersonB = new JComboBox<ComboItem>();
 		panel_personB.add(cmboxPersonB, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			ComboItem item = new ComboItem(person.getInformation().getName(), person.getID());
+			ComboItem item = new ComboItem(person.getInformation().getNickname(), person.getID());
 			cmboxPersonB.addItem(item);
 
 			if(my_relationship != null) {

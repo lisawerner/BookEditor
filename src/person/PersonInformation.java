@@ -5,6 +5,7 @@ import book.Book;
 public class PersonInformation {
 
 	private String my_name;
+	private String my_nickname;
 	
 	private String my_age;
 	private boolean age_startAtBook;
@@ -15,10 +16,11 @@ public class PersonInformation {
 	
 	private String my_notes;
 	
-	protected PersonInformation(String newName, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
+	protected PersonInformation(String newName, String newNickname, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
 			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
 			String newNotes) {
 		my_name = newName;
+		my_nickname = newNickname;
 		
 		my_age = newAge;
 		age_startAtBook = ageBookStart;
@@ -30,12 +32,13 @@ public class PersonInformation {
 		my_notes = newNotes;
 	}
 	
-	public void editInformation(String newName, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
+	public void editInformation(String newName, String newNickname, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
 			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
 			String newNotes) {
 		my_name = newName;
-		my_age = newAge;
+		my_nickname = newNickname;
 		
+		my_age = newAge;
 		age_startAtBook = ageBookStart;
 		age_startAtFirstAppearance = ageFirstAppearance;
 		
@@ -49,6 +52,12 @@ public class PersonInformation {
 	
 	public String getName() {
 		return my_name;
+	}
+	
+	public String getNickname() {
+		if(my_nickname == null) { return my_name;}
+		if("".equals(my_nickname)) { return my_name;}
+		return my_nickname;
 	}
 	
 	public String getAge() {
