@@ -22,6 +22,16 @@ public class SimpleLabel extends JLabel{
 //			System.out.println("Change Theme in Component to: Default");
 		}
 	}
+	
+	public void setWarning(boolean activateWarning) {
+		if(activateWarning) {
+			setForeground(ThemeList.currentTheme.warningTutorialCardLayout);
+			revalidate();
+			repaint();
+		} else {
+			changeTheme();
+		}
+	}
 
 	//TODO: Alle JLabel sollten etwas größere Schrift haben (nicht viel, aber bisschen! :D )
 	//TODO: Alle JLabel sollten automatisch in <html> </html> Tags eingeschloßen werden :D

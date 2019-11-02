@@ -14,7 +14,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 public class TimestampRelativeEditor extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -123,7 +122,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		panel_result.add(lblResult);
 		
 		lblWARNING = new SimpleLabel(" ");
-		lblWARNING.setForeground(Color.RED);
+		lblWARNING.setWarning(true);
 		add(lblWARNING);
 		
 		

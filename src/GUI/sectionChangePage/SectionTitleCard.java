@@ -1,9 +1,6 @@
 package GUI.sectionChangePage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
@@ -51,7 +48,7 @@ public class SectionTitleCard extends TransparentPanel {
 		
 		lbl_saveWarning = new SimpleLabel(" ");
 		panel_footer.add(lbl_saveWarning, BorderLayout.NORTH);
-		lbl_saveWarning.setForeground(Color.RED);
+		lbl_saveWarning.setWarning(true);
 		
 		btnSaveChapter.addActionListener(e -> save());
 
@@ -59,7 +56,7 @@ public class SectionTitleCard extends TransparentPanel {
 	
 	private void save() {
 		lbl_saveWarning.setText(" ");
-		lbl_saveWarning.setForeground(Color.RED);
+		lbl_saveWarning.setWarning(true);
 		boolean canSave = true;
 		
 		setWarningEnterName(false);
@@ -70,7 +67,7 @@ public class SectionTitleCard extends TransparentPanel {
 		}
 		
 		if(canSave) {
-			lbl_saveWarning.setForeground(Color.BLACK);
+			lbl_saveWarning.setWarning(false);
 			if(my_section == null) {
 				my_section = new Section(txt_sectionTitle.getText());
 				Book.getInstance().getSectionList().addSection(my_section);
@@ -81,7 +78,7 @@ public class SectionTitleCard extends TransparentPanel {
 				BookEditorFrame.getInstance().switchBody(new SectionPage(my_section));
 			} else {
 				my_section.setTitle(txt_sectionTitle.getText());
-				lbl_saveWarning.setForeground(Color.WHITE); //TODO: White by darkTheme, Black by lightTheme!
+				lbl_saveWarning.setWarning(false);
 				lbl_saveWarning.setText("New title " + my_section.getName() + " is saved!");
 			}
 			BookEditorFrame.getInstance().reloadMenu();
@@ -90,11 +87,11 @@ public class SectionTitleCard extends TransparentPanel {
 	
 	private void setWarningEnterName(boolean warning) {
 		if(warning) {
-			txt_sectionTitle.setBorder(BorderFactory.createLineBorder(Color.RED));
-			lblChapterTitle.setForeground(Color.RED);
+			txt_sectionTitle.setWarning(warning);
+			lblChapterTitle.setWarning(warning);
 		} else {
-			txt_sectionTitle.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-			lblChapterTitle.setForeground(Color.BLACK);
+			txt_sectionTitle.setWarning(warning);
+			lblChapterTitle.setWarning(warning);
 		}
 	}
 

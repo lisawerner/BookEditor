@@ -1,12 +1,9 @@
 package GUI.settingsPage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import GUI_components.SimpleCheckbox;
@@ -46,7 +43,7 @@ public class BooktitleSettingsCard extends TransparentPanel {
 		footer.setLayout(new GridLayout(0, 1, 5, 5));
 		
 		SimpleLabel lblWarning = new SimpleLabel(" ");
-		lblWarning.setForeground(Color.RED);
+		lblWarning.setWarning(true);
 		footer.add(lblWarning);
 		
 		JButton btnSave = new JButton("Save");
@@ -75,11 +72,11 @@ public class BooktitleSettingsCard extends TransparentPanel {
 	
 	private void setWarningEnterName(boolean warning) {
 		if(warning) {
-			txt_title.setBorder(BorderFactory.createLineBorder(Color.RED));
-			lblTitle.setForeground(Color.RED);
+			txt_title.setWarning(true);
+			lblTitle.setWarning(true);
 		} else {
-			txt_title.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			lblTitle.setForeground(Color.BLACK);
+			txt_title.setWarning(false);
+			lblTitle.setWarning(false);
 		}
 	}
 

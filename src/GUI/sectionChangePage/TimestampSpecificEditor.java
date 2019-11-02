@@ -1,7 +1,6 @@
 package GUI.sectionChangePage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -187,7 +186,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		
 		lblDayWarning = new SimpleLabel(" ");
 		panel_DayWarning.add(lblDayWarning, BorderLayout.NORTH);
-		lblDayWarning.setForeground(Color.RED);
+		lblDayWarning.setWarning(true);
 		
 		InfoButton btnSpecificHint = new InfoButton("<html>Possible days will change, if you choose month and/or year.<br/>"
 				+ "If no year is entered: Current year is taken for calculate possible days.<br/>"

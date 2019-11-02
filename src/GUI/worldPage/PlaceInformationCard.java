@@ -1,12 +1,9 @@
 package GUI.worldPage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
@@ -73,7 +70,7 @@ public class PlaceInformationCard extends TransparentPanel {
 		footer.setLayout(new GridLayout(0, 1, 5, 5));
 		
 		SimpleLabel lblWarning = new SimpleLabel(" ");
-		lblWarning.setForeground(Color.RED);
+		lblWarning.setWarning(true);
 		footer.add(lblWarning, BorderLayout.SOUTH);		
 
 		JButton btnSave = new JButton("Save Place");
@@ -111,11 +108,11 @@ public class PlaceInformationCard extends TransparentPanel {
 	
 	private void setWarningEnterName(boolean warning) {
 		if(warning) {
-			txt_placename.setBorder(BorderFactory.createLineBorder(Color.RED));
-			lblPlacename.setForeground(Color.RED);
+			txt_placename.setWarning(true);
+			lblPlacename.setWarning(true);
 		} else {
-			txt_placename.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			lblPlacename.setForeground(Color.BLACK);
+			txt_placename.setWarning(false);
+			lblPlacename.setWarning(false);
 		}
 	}
 

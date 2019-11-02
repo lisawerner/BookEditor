@@ -10,7 +10,6 @@ import person.Person;
 import person.Relationship;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -65,7 +64,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 
 		lblWARNING = new SimpleLabel(" ");
 		add(lblWARNING, BorderLayout.SOUTH);
-		lblWARNING.setForeground(Color.RED);
+		lblWARNING.setWarning(true);
 		
 		TransparentPanel panel_Persons = new TransparentPanel();
 		add(panel_Persons, BorderLayout.CENTER);

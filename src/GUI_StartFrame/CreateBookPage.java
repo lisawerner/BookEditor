@@ -2,17 +2,14 @@ package GUI_StartFrame;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.JTextField;
 
 import GUI_components.HeaderBook;
 import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
+import GUI_components.SimpleTextfield;
 import book.Book;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -23,7 +20,7 @@ import java.awt.GridLayout;
 public class CreateBookPage extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JTextField txt_newTitle;
+	private SimpleTextfield txt_newTitle;
 	private JCheckBox chckbxRememberWorktitle;
 	private SimpleLabel lblSaveWarning;
 	private SimpleLabel lblNewTitle;
@@ -40,7 +37,7 @@ public class CreateBookPage extends JPanel {
 		
 		lblSaveWarning = new SimpleLabel(" ");
 		panel_footer.add(lblSaveWarning);
-		lblSaveWarning.setForeground(Color.RED);
+		lblSaveWarning.setWarning(true);
 		
 		JButton btnSpeichern = new JButton("Save");
 		btnSpeichern.addActionListener(new ActionListener() {
@@ -85,7 +82,7 @@ public class CreateBookPage extends JPanel {
 		InfoButton btn_newTitleInfo = new InfoButton("You can change the title at any time.");
 		panel_enterDataHere.add(btn_newTitleInfo, BorderLayout.EAST);
 		
-		txt_newTitle = new JTextField();
+		txt_newTitle = new SimpleTextfield();
 		panel_enterDataHere.add(txt_newTitle, BorderLayout.CENTER);
 		txt_newTitle.setPreferredSize(new Dimension(200, txt_newTitle.getHeight()));
 		
@@ -96,11 +93,11 @@ public class CreateBookPage extends JPanel {
 	
 	private void setWarningEnterName(boolean warning) {
 		if(warning) {
-			txt_newTitle.setBorder(BorderFactory.createLineBorder(Color.RED));
-			lblNewTitle.setForeground(Color.RED);
+			txt_newTitle.setWarning(warning);
+			lblNewTitle.setWarning(warning);
 		} else {
-			txt_newTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			lblNewTitle.setForeground(Color.BLACK);
+			txt_newTitle.setWarning(warning);
+			lblNewTitle.setWarning(warning);
 		}
 	}
 

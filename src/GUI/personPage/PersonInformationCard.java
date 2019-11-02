@@ -1,12 +1,10 @@
 package GUI.personPage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -124,7 +122,7 @@ public class PersonInformationCard extends TransparentPanel {
 		footer.setLayout(new GridLayout(0, 1, 5, 5));
 		
 		SimpleLabel lblWarning = new SimpleLabel(" ");
-		lblWarning.setForeground(Color.RED);
+		lblWarning.setWarning(true);
 		footer.add(lblWarning);
 		
 		JButton btnSave = new JButton("Save Person");
@@ -166,7 +164,6 @@ public class PersonInformationCard extends TransparentPanel {
 					} else {
 						my_person.getInformation().editInformation(name, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 								txt_notes.getText());
-						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person));
 					}
 					lblWarning.setText("<html>" + saveMessage + "<br>Successfully saved</html>");
 				}	
@@ -178,11 +175,11 @@ public class PersonInformationCard extends TransparentPanel {
 		
 	private void setWarningEnterName(boolean warning) {
 		if(warning) {
-			txt_name.setBorder(BorderFactory.createLineBorder(Color.RED));
-			lblName.setForeground(Color.RED);
+			txt_name.setWarning(warning);
+			lblName.setWarning(warning);
 		} else {
-			txt_name.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			lblName.setForeground(Color.BLACK);
+			txt_name.setWarning(warning);
+			lblName.setWarning(warning);
 		}
 	}
 

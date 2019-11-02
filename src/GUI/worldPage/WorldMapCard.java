@@ -1,7 +1,6 @@
 package GUI.worldPage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -34,7 +33,7 @@ public class WorldMapCard extends TransparentPanel {
 		panel_hint.add(hintButton, BorderLayout.WEST);
 		
 		SimpleLabel lblChangingHint = new SimpleLabel("You can change hirachy by changing every single element.");
-		lblChangingHint.setForeground(Color.RED);
+		lblChangingHint.setWarning(true);
 		panel_hint.add(lblChangingHint, BorderLayout.CENTER);
 		
 

@@ -1,7 +1,6 @@
 package GUI.settingsPage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,7 +94,7 @@ public class ThemeSettingsCard extends TransparentPanel {
 		enableColorTheme(my_theme != null);
 		
 		lblWarning = new SimpleLabel(" ");
-		lblWarning.setForeground(Color.RED);
+		lblWarning.setWarning(true);
 		add(lblWarning, BorderLayout.SOUTH);
 
 	}
