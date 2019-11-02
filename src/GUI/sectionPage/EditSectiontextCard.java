@@ -21,26 +21,15 @@ public class EditSectiontextCard extends TransparentPanel {
 //	private String backTag = "</html>";
 	
 	private SimpleTextarea textArea;
-	private SimpleLabel lblSaveHint;
+	private SimpleLabel lblSaveHint_Bottom;
+	private SimpleLabel lblSaveHint_TOP;
 	private SimpleLabel lblCounts;
 	
 	public EditSectiontextCard(Section openedSection) {
 		my_section = openedSection;
 		setLayout(new BorderLayout(10, 10));
 		
-		TransparentPanel panel_changeFontButtons = new TransparentPanel();
-		add(panel_changeFontButtons, BorderLayout.NORTH);
-		panel_changeFontButtons.setLayout(new GridLayout(1, 0, 5, 5));
-		
-		//TODO: Try again to add bold/italic and other stuff to text.... :/
-		JButton btnBold = new JButton("bold");
-		panel_changeFontButtons.add(btnBold);
-		btnBold.setEnabled(false);
-//		btnBold.addActionListener(e -> makeTextBold());
-		
-		JButton btnItalic = new JButton("italic");
-		panel_changeFontButtons.add(btnItalic);
-		btnItalic.setEnabled(false);
+		String saveHint = "<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Last saved:</html>";
 		
 		textArea = new SimpleTextarea(); //TextArea and TextField can not use html!
 //		textArea = new JTextPane();
@@ -90,8 +79,30 @@ public class EditSectiontextCard extends TransparentPanel {
 		updateCounts();
 		panel_footer.add(lblCounts);
 		
-		lblSaveHint = new SimpleLabel("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Last saved:</html>");
-		panel_footer.add(lblSaveHint);
+		lblSaveHint_Bottom = new SimpleLabel(saveHint);
+		panel_footer.add(lblSaveHint_Bottom);
+		
+		TransparentPanel panel_header = new TransparentPanel();
+		add(panel_header, BorderLayout.NORTH);
+		panel_header.setLayout(new GridLayout(0, 1, 5, 5));
+		
+		TransparentPanel panel_changeFontButtons = new TransparentPanel();
+		panel_header.add(panel_changeFontButtons);
+		panel_changeFontButtons.setLayout(new GridLayout(1, 0, 5, 5));
+		
+		//TODO: Try again to add bold/italic and other stuff to text.... :/
+		JButton btnBold = new JButton("bold");
+		panel_changeFontButtons.add(btnBold);
+		btnBold.setEnabled(false);
+		//		btnBold.addActionListener(e -> makeTextBold());
+				
+		JButton btnItalic = new JButton("italic");
+		panel_changeFontButtons.add(btnItalic);
+		btnItalic.setEnabled(false);
+		
+		lblSaveHint_TOP = new SimpleLabel(saveHint);
+		panel_header.add(lblSaveHint_TOP);
+		//TODO: lblSaveHint_TOP nur aktivieren, wenn der Text so lang ist, dass man scrollen muss um den SaveHint unten sehen zu können?!?!
 
 	}
 
@@ -116,10 +127,14 @@ public class EditSectiontextCard extends TransparentPanel {
 	}
 	
 	private void setSavestatus() {
-		if(my_section.getText().equals(textArea.getText())) {			
-			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Already saved</html>");
+		if(my_section.getText().equals(textArea.getText())) {
+			String saveHint = "<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Already saved</html>";
+			lblSaveHint_Bottom.setText(saveHint);
+			lblSaveHint_TOP.setText(saveHint);
 		} else {
-			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br><font color=\"red\">NOT saved at the moment! Press STRG+S</font></html>");
+			String saveHint = "<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br><font color=\"red\">NOT saved at the moment! Press STRG+S</font></html>";
+			lblSaveHint_Bottom.setText(saveHint);
+			lblSaveHint_TOP.setText(saveHint);
 		}
 	}
 	

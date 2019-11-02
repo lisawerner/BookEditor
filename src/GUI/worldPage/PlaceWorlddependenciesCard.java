@@ -23,6 +23,7 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 	
 	private Place my_place;
 	
+	private SimpleLabel lblParentSaveHint;
 	private SimpleCheckbox chckbxHasParent;
 	private JComboBox<ComboItem> cmbox_possibleParents;
 
@@ -35,8 +36,13 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 		add(panel_placedIn);
 		panel_placedIn.setLayout(new BorderLayout(5, 5));
 		
-		SimpleLabel lblParent = new SimpleLabel("Dependencie: This Place is inside a regaion/another place");
-		this.add(lblParent, BorderLayout.NORTH);
+		TransparentPanel panel_savePlace = new TransparentPanel();
+		add(panel_savePlace);
+		panel_savePlace.setLayout(new BorderLayout(0, 0));
+		
+		lblParentSaveHint = new SimpleLabel(" ");
+		lblParentSaveHint.setWarning(true);
+		panel_savePlace.add(lblParentSaveHint, BorderLayout.WEST);
 				
 		chckbxHasParent = new SimpleCheckbox("Has Parent");
 		chckbxHasParent.setEnabled(my_place != null);
@@ -70,11 +76,19 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 				}
 			}
 		}
+		cmbox_possibleParents.addActionListener(e -> save());
+		
+		TransparentPanel panel_viewChildrenDependecies = new TransparentPanel();
+		add(panel_viewChildrenDependecies);
+		panel_viewChildrenDependecies.setLayout(new BorderLayout(0, 0));
+		
+		SimpleLabel lblChildren = new SimpleLabel("This place has following children (=Places inside):");
+		panel_viewChildrenDependecies.add(lblChildren, BorderLayout.NORTH);
 		
 		//TODO: Add to Layout.CENTER a change/save/hint/warning Label
 		
 		TransparentPanel panel_childrenList = new TransparentPanel();
-		add(panel_childrenList);
+		panel_viewChildrenDependecies.add(panel_childrenList, BorderLayout.CENTER);
 		panel_childrenList.setLayout(new BoxLayout(panel_childrenList, BoxLayout.LINE_AXIS));
 		
 		if(my_place != null) {
@@ -98,6 +112,7 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 		ObjectID newParent = null;
 		if(chckbxHasParent.isSelected()) {
 			newParent = ((ComboItem) cmbox_possibleParents.getSelectedItem()).getValue();
+			lblParentSaveHint.setText("Parent '" + Book.getInstance().getWorld().getPlace(newParent).getName() + "' was saved.");
 		}
 		my_place.setParent(newParent);
 	}

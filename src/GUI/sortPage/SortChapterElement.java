@@ -50,23 +50,25 @@ public class SortChapterElement extends TransparentPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.makeToChapter();
 				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu();
+				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
 			}
 		});
 		panel_move.add(btn_makeToChapter, BorderLayout.WEST);
 		
 		TransparentPanel panel_buttonplacer = new TransparentPanel();
 		panel_move.add(panel_buttonplacer, BorderLayout.CENTER);
-		panel_buttonplacer.setLayout(new BorderLayout(5, 5));
+		panel_buttonplacer.setLayout(new BorderLayout(1, 1));
 		
 		JButton btn_moveSectionUp = new JButton("^");
 		btn_moveSectionUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.sortUp();
 				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu();
+				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
 			}
 		});
+		btn_moveSectionUp.setEnabled(!my_section.isFirstSection());
+		
 		panel_buttonplacer.add(btn_moveSectionUp, BorderLayout.NORTH);
 		
 		JButton btn_moveSectionDown = new JButton("v");
@@ -74,19 +76,11 @@ public class SortChapterElement extends TransparentPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.sortDown();
 				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu();
+				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
 			}
 		});
-		panel_buttonplacer.add(btn_moveSectionDown, BorderLayout.SOUTH);	
-		
-		JButton btnDelete = new JButton("x");
-		btnDelete.setEnabled(false);
-		//TODO: Hier sollte eine Sicherheitsabfrage kommen! Außerdem müssen dann auch Referenzen gelöscht werden???
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panel_buttonplacer.add(btnDelete, BorderLayout.CENTER);
+		panel_buttonplacer.add(btn_moveSectionDown, BorderLayout.SOUTH);
+		btn_moveSectionDown.setEnabled(!my_section.isLastSection());
 		
 		JButton btn_removeChapterStatus = new JButton(">");
 		btn_removeChapterStatus.setEnabled(my_section.isChapter() || my_section.isUnsorted());
@@ -94,7 +88,7 @@ public class SortChapterElement extends TransparentPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.removeChapterStatus();
 				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu();
+				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
 			}
 		});
 		panel_move.add(btn_removeChapterStatus, BorderLayout.EAST);

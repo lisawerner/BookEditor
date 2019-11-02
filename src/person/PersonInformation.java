@@ -60,6 +60,12 @@ public class PersonInformation {
 		return my_nickname;
 	}
 	
+	public String getRealNickname() {
+		if(my_nickname == null) { return "";}
+		if("".equals(my_nickname)) { return "";}
+		return my_nickname;
+	}
+	
 	public String getAge() {
 		return my_age;
 	}

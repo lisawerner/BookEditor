@@ -248,4 +248,12 @@ public class Section extends SerializedObject {
 	public void setNotes(String newNotes) {
 		my_notes = newNotes;
 	}
+
+	public boolean isFirstSection() {
+		return Book.getInstance().getSectionList().getSections().get(0).getID().equals(getID());
+	}
+
+	public boolean isLastSection() {
+		return Book.getInstance().getSectionList().getSections().get(Book.getInstance().getSectionList().getSections().size()-1).getID().equals(getID());
+	}
 }

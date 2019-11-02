@@ -1,6 +1,10 @@
 package GUI.sectionChangePage;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
@@ -31,6 +35,15 @@ public class SectionTitleCard extends TransparentPanel {
 		txt_sectionTitle = new SimpleTextfield();
 		if(my_section != null) {txt_sectionTitle.setText(my_section.getName());}
 		add(txt_sectionTitle);
+		txt_sectionTitle.addKeyListener(new KeyAdapter() {
+	        @Override
+            public void keyPressed(KeyEvent e) {
+                if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
+                	save();
+                }
+            }
+
+	    });
 		
 		lblChapterTitle = new SimpleLabel("Section Title:");
 		add(lblChapterTitle, BorderLayout.WEST);
@@ -40,7 +53,10 @@ public class SectionTitleCard extends TransparentPanel {
 		
 		TransparentPanel panel_footer = new TransparentPanel();
 		add(panel_footer, BorderLayout.SOUTH);
-		panel_footer.setLayout(new BorderLayout(0, 0));
+		panel_footer.setLayout(new GridLayout(0, 1, 2, 2));
+		
+		SimpleLabel lbl_saveHint = new SimpleLabel("You can also save by pushing 'STRG+S' when the curser is inside the textarea!");
+		panel_footer.add(lbl_saveHint, BorderLayout.NORTH);
 		
 		JButton btnSaveChapter = new JButton("Create new Section");
 		if(my_section != null) {btnSaveChapter.setText("Save new Title");}

@@ -64,7 +64,7 @@ public class PersonInformationCard extends TransparentPanel {
 		
 		txtTxtnickname = new SimpleTextfield();
 		panel_nameTextfields.add(txtTxtnickname);
-		if(my_person != null) {txtTxtnickname.setText(my_person.getInformation().getNickname());}
+		if(my_person != null) {txtTxtnickname.setText(my_person.getInformation().getRealNickname());}
 		
 		InfoButton hint_nickname = new InfoButton("<html>If it is possible always the nickname will shown instead of the fullname<br/>"
 				+ "everywhere outside the Person-Menu.</html>");

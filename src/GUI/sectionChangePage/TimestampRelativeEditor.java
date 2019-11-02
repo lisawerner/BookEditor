@@ -12,6 +12,9 @@ import time.RelativeDate;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
@@ -125,14 +128,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		lblWARNING.setWarning(true);
 		add(lblWARNING);
 		
-		
-		txt_days.addActionListener(e -> updateRsult());
-		txt_weeks.addActionListener(e -> updateRsult());
-		txt_months.addActionListener(e -> updateRsult());
-		txt_years.addActionListener(e -> updateRsult());
-		rdbtnBefore.addActionListener(e -> updateRsult());
-		rdbtnAfter.addActionListener(e -> updateRsult());
-		comboBox.addActionListener(e -> updateRsult());
+		setUpdateListener();
 	}
 	
 	public void switchEnabled(boolean enable) {
@@ -202,6 +198,60 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		txt_years.setText("" + unspecificDate.getDistYears());
 		updateRsult();
 		lblWARNING.setText("");
+	}
+	
+	private void setUpdateListener() {
+		txt_days.addActionListener(e -> updateRsult());
+		txt_weeks.addActionListener(e -> updateRsult());
+		txt_months.addActionListener(e -> updateRsult());
+		txt_years.addActionListener(e -> updateRsult());
+		rdbtnBefore.addActionListener(e -> updateRsult());
+		rdbtnAfter.addActionListener(e -> updateRsult());
+		comboBox.addActionListener(e -> updateRsult());
+		txt_days.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+		});
+		txt_weeks.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+		});
+		txt_months.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+		});
+		txt_years.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateRsult();
+			}
+		});
 	}
 	
 	private void updateRsult() {
