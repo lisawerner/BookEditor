@@ -11,7 +11,7 @@ public class PlaceEditor extends Page {
 	
 	private Place my_place;
 	
-	public PlaceEditor(Place place) {
+	public PlaceEditor(Place place, boolean isSecondFrame) {
 		super("World, States, Regions, Citys, Places, ...");
 		my_place = place;
 		
@@ -37,6 +37,6 @@ public class PlaceEditor extends Page {
 		
 		//****************************************************************************************
 		//****************************************************************************************
-		setMenu(new PlaceMenu());
+		if(!isSecondFrame) {setMenu(new PlaceMenu());}
 	}	
 }

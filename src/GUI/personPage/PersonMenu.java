@@ -19,24 +19,24 @@ public class PersonMenu extends PageMenu {
 		btnPersonFilter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new FilterPersonPage()));
 		
 		JButton btnAddNew = this.addButtonToTopMenu("Add new");
-		btnAddNew.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(null)));
+		btnAddNew.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(null, false)));
 		
 		this.addBetweenTitle("Super Main Characters");
 		for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
 			JButton btnOpenPerson = this.addLinkedListButton(person.getInformation().getName());
-			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
+			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false)));
 		}
 		
 		this.addBetweenTitle("'Important' Characters");
 		for(Person person : Book.getInstance().getSociety().getPersonListImportantCharacters()) {
 			JButton btnOpenPerson = this.addLinkedListButton(person.getInformation().getName());
-			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
+			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false)));
 		}
 		
 		this.addBetweenTitle("Somebody");
 		for(Person person : Book.getInstance().getSociety().getPersonListTheRest()) {
 			JButton btnOpenPerson = this.addLinkedListButton(person.getInformation().getName());
-			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
+			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false)));
 		}
 	}
 }

@@ -18,7 +18,7 @@ public class PlaceMenu extends PageMenu {
 		btnViewMap.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewWorldmapPage()));
 
 		JButton btnAddPlace = this.addButtonToTopMenu("Add Place");
-		btnAddPlace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(null)));
+		btnAddPlace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(null, false)));
 		
 		
 		//*****************************************************************************
@@ -26,7 +26,7 @@ public class PlaceMenu extends PageMenu {
 		this.addBetweenTitle("List of Places");
 		for(Place place : Book.getInstance().getWorld().getPlaces()) {
 			JButton btnPlace = this.addLinkedListButton(place.getName());
-			btnPlace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(place)));
+			btnPlace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(place, false)));
 		}
 	}
 }

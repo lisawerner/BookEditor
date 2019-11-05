@@ -30,8 +30,8 @@ public class BookSettingsPage extends Page {
 		addCard(new StructureCard("Change Timeline-Settings", new CalendarSettingsCard()));
 		
 		//********************************************************************
-		//CARD change Color-Theme
-		addCard(new StructureCard("Change Color Theme of Editor:", new ThemeSettingsCard()));
+		//CARD change Design settings like: Color-Theme and screenSize
+		addCard(new StructureCard("Change Color Theme of Editor:", new DesignSettingsCard()));
 
 		//********************************************************************
 		//CARD change Print Settings

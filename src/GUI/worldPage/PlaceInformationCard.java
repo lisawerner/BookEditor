@@ -95,10 +95,10 @@ public class PlaceInformationCard extends TransparentPanel {
 							UserSettings.getInstance().getTutorial().createFirstPlace = true;
 							UserSettings.getInstance().save();
 						}
-						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
+						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
 					} else {
 						my_place.editPlace(name, txtPlacetype.getText());
-						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place));
+						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
 					}
 				}
 			}

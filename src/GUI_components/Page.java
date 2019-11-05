@@ -61,16 +61,6 @@ public class Page extends TransparentPanel {
 	public void addCard(Card newStructureCard) {
 		my_body.addCard(newStructureCard);
 	}
-	
-//	public void changeBody(PageBody newBody) {
-//		BorderLayout layout = (BorderLayout)getLayout();
-//		if(layout.getLayoutComponent(BorderLayout.CENTER) != null) {			
-//			remove(layout.getLayoutComponent(BorderLayout.CENTER));
-//		}
-//		add(newBody, BorderLayout.CENTER);
-//		revalidate();
-//		repaint();
-//	}
 		
 	public void setMenu(PageMenu newnMenu) {
 		add(newnMenu, BorderLayout.EAST);

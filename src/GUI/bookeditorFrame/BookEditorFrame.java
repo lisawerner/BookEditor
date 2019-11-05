@@ -2,8 +2,10 @@ package GUI.bookeditorFrame;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,6 +14,7 @@ import GUI_components.BookFooter;
 import GUI_components.HeaderBook;
 import GUI_components.Page;
 import GUI_components.ThemeList;
+import GUI_components.TransparentPanel;
 import book.Book;
 import global.Constant;
 
@@ -21,6 +24,7 @@ public class BookEditorFrame extends JFrame {
 	private static BookEditorFrame instance = null;
 	
 	private JPanel contentPane;
+	private TransparentPanel contentBody;
 	
 	private HeaderBook lblBookTitle;
 	private EditorMenu panel_menu;
@@ -50,6 +54,9 @@ public class BookEditorFrame extends JFrame {
 		panel_menu = new EditorMenu();
 		contentPane.add(panel_menu, BorderLayout.WEST);
 		
+		contentBody = new TransparentPanel();
+		contentPane.add(contentBody, BorderLayout.CENTER);
+		contentBody.setLayout(new GridLayout(1, 0, 5, 5));
 		switchBody(new HomePage());
 		
 		panel_footer = new BookFooter();
@@ -64,13 +71,32 @@ public class BookEditorFrame extends JFrame {
 	}
 		
 	public void switchBody(Page newBody){
-		BorderLayout layout = (BorderLayout)contentPane.getLayout();
-		if(layout.getLayoutComponent(BorderLayout.CENTER) != null) {			
-			contentPane.remove(layout.getLayoutComponent(BorderLayout.CENTER));
-		}
-		contentPane.add(newBody, BorderLayout.CENTER);
+		contentBody.removeAll();
+		contentBody.setLayout(new GridLayout(1, 0, 5, 5));
+		
+		contentBody.add(newBody);
+
 		revalidate();
 		repaint();
+	}
+	
+	public void switchBody(Page mainBody, Page secondBody) {
+		contentBody.removeAll();
+		contentBody.setLayout(new GridLayout(1, 0, 5, 5));
+		
+		contentBody.add(mainBody);
+		
+		TransparentPanel secondFrame = new TransparentPanel();
+		secondFrame.setLayout(new BorderLayout(5, 5));
+		secondFrame.add(secondBody, BorderLayout.CENTER);
+		JButton closeSecondFrame = new JButton("Close Second Frame");
+		closeSecondFrame.addActionListener(e -> switchBody(mainBody)); //TODO: Problem: Die Änderungen im secondFrame werden dabei nicht übernommen... Da muss irgendwie ein reload stattfinden o.O
+		secondFrame.add(closeSecondFrame, BorderLayout.NORTH);
+		contentBody.add(secondFrame);
+		
+		revalidate();
+		repaint();
+		
 	}
 	
 	private void changeTheme() {

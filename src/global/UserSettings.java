@@ -6,9 +6,11 @@ public class UserSettings {
 	private final static String my_filename = "usersettings.json";
 	
 	private Tutorial user_tutorial;
+	private boolean bigScreenSize;
 	
 	private UserSettings() {
 		user_tutorial = new Tutorial();
+		bigScreenSize = false;
 	}
 	
 	public static UserSettings getInstance() {
@@ -29,9 +31,17 @@ public class UserSettings {
 		user_tutorial = new Tutorial();
 		save();
 	}
+	
+	public void setDisplaySettings(boolean setDisplayToScreenSizeSettings) {
+		bigScreenSize = setDisplayToScreenSizeSettings;
+		save();
+	}
 
+	public boolean getDisplaySettings() {
+		return bigScreenSize;
+	}
+	
 	public void save() {
 		FileManager.saveJSONFile(my_filename, this);
 	}
-
 }

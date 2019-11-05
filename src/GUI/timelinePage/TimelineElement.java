@@ -47,7 +47,7 @@ public class TimelineElement extends TimelineItem {
 		List<Person> personTags = my_section.getPersonByTag();
 		for(Person tag : personTags) {
 			LinkButton tagName = new LinkButton(tag.getInformation().getNickname());
-			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(tag)));
+			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(tag, false)));
 			panel_personTags.add(tagName);
 			panel_personTags.add(new SimpleLabel(";  "));
 		}
@@ -61,7 +61,7 @@ public class TimelineElement extends TimelineItem {
 		List<Place> placeTags = my_section.getPelaceByTag();
 		for(Place tag : placeTags) {
 			LinkButton tagName = new LinkButton(tag.getName());
-			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(tag)));
+			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(tag, false)));
 			panel_placeTags.add(tagName);
 			panel_placeTags.add(new SimpleLabel(";  "));
 		}

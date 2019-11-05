@@ -18,7 +18,7 @@ public class PersonEditorPage extends Page {
 	
 	private Person my_person = null;
 
-	public PersonEditorPage(Person person) {
+	public PersonEditorPage(Person person, boolean isSecondFrame) {
 		super("Persons, Relationships, ...");
 		
 		my_person = person;
@@ -63,7 +63,7 @@ public class PersonEditorPage extends Page {
 		
 		//*********************************************************************************
 		//*********************************************************************************
-		setMenu(new PersonMenu());
+		if(!isSecondFrame) {setMenu(new PersonMenu());}
 	}
 
 }

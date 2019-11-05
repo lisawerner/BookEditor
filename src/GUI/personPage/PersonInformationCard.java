@@ -182,7 +182,7 @@ public class PersonInformationCard extends TransparentPanel {
 							UserSettings.getInstance().getTutorial().createFirstPerson = true;
 							UserSettings.getInstance().save();
 						}
-						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person));
+						BookEditorFrame.getInstance().switchBody(new PersonEditorPage(my_person, false));
 						
 					} else {
 						my_person.getInformation().editInformation(name, newNickname, newAge, ageFromBookstart, ageFirstEnter, rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 

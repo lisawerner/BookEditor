@@ -33,7 +33,7 @@ public class PersonRelationshipCard extends TransparentPanel {
 				Person relPerson = Book.getInstance().getSociety().getPerson(relship.getOtherPerson(my_person.getID()));
 				LinkButton lbtnRelPerson = new LinkButton(relPerson.getInformation().getNickname());
 				relationPanel.add(lbtnRelPerson);
-				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(relPerson)));
+				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(relPerson, false)));
 			}
 		}
 	}

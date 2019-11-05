@@ -15,6 +15,7 @@ import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import book.DevelopmentStatus;
 import book.Section;
+import global.UserSettings;
 import person.Person;
 import person.Relationship;
 import world.Place;
@@ -39,7 +40,7 @@ public class SectionInformationMenu extends PageMenu {
 			btnEdit.setEnabled(false);
 			btnEdit.setToolTipText("You have to create a section first.");
 		}
-		btnEdit.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionEditorPage(my_section)));
+		btnEdit.addActionListener(e -> openSectionEditor());
 		
 		//***************************************************************************************************************************
 		this.addBetweenTitle("General Information");
@@ -82,7 +83,7 @@ public class SectionInformationMenu extends PageMenu {
 			List<Person> personTags = my_section.getPersonByTag();
 			for(Person person : personTags) {
 				JButton personButton = this.addLinkedListButton(person.getInformation().getNickname());
-				personButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person)));
+				personButton.addActionListener(e -> openPersonEditor(person));
 			}
 		}
 		
@@ -100,12 +101,36 @@ public class SectionInformationMenu extends PageMenu {
 		List<Place> placeTags = my_section.getPelaceByTag();
 			for(Place tag : placeTags) {
 				JButton placeButton = this.addLinkedListButton(tag.getName());
-				placeButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(tag)));
+				placeButton.addActionListener(e -> openPlaceEditor(tag));
 			}
 		}
 
 	}
 	
+	private void openPlaceEditor(Place place) {
+		if(UserSettings.getInstance().getDisplaySettings()) {
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section), new PlaceEditor(place, true));
+		} else {
+			BookEditorFrame.getInstance().switchBody(new PlaceEditor(place, false));		
+		}
+	}
+
+	private void openPersonEditor(Person person) {
+		if(UserSettings.getInstance().getDisplaySettings()) {
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section), new PersonEditorPage(person, true));
+		} else {
+			BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false));			
+		}
+	}
+
+	private void openSectionEditor() {
+		if(UserSettings.getInstance().getDisplaySettings()) {
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section), new SectionEditorPage(my_section));
+		} else {
+			BookEditorFrame.getInstance().switchBody(new SectionEditorPage(my_section));			
+		}
+	}
+
 	private ArrayList<String> splitNotes() {
 		ArrayList<String> splittedNotes = new ArrayList<String>();
 		String notes = my_section.getNotes();

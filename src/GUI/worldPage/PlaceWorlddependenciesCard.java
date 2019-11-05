@@ -99,7 +99,7 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 			} else {
 				for(Place childInfo : childrenInfos) {
 					LinkButton lblChildInfo = new LinkButton(childInfo.getName());
-					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(childInfo)));
+					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(childInfo, false)));
 					panel_childrenList.add(lblChildInfo);
 					panel_childrenList.add(new SimpleLabel(";  "));
 				}				
