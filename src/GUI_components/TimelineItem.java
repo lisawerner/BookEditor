@@ -118,6 +118,25 @@ public class TimelineItem extends TransparentPanel {
 		
 		changeTheme();
 	}
+	
+	public TimelineItem(boolean leftPosition, int gabHight) {
+		setLayout(new BorderLayout(0, 0));
+		
+		topRightGab = new JPanel();
+		if(leftPosition) {
+			add(topRightGab, BorderLayout.EAST);
+		} else {			
+			add(topRightGab, BorderLayout.WEST);
+		}
+		Component topGab = Box.createRigidArea(new Dimension(58, gabHight));
+		topRightGab.add(topGab);
+		
+		my_body = new TransparentPanel();
+		contactArrow = new SimpleLabel("");
+		contactDate = new SimpleLabel("");
+		
+		changeTheme();
+	}
 
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {

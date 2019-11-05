@@ -26,26 +26,38 @@ public class TimelineCard extends TransparentPanel {
 		
 		
 		boolean leftPosition = true;
-		ArrayList<Section> sectionsSortedByTimestamp = Book.getInstance().getSectionList().getTimeSortedSections();
-		if((sectionsSortedByTimestamp.size()%2)==0) {
+		ArrayList<Section> sectionsSortedByTimestamp_FILTERED = Book.getInstance().getSectionList().filterTimelineSections();
+		if((sectionsSortedByTimestamp_FILTERED.size()%2)==0) {
 			panel_rightTimeline.add(new TimelineItem(false));
 		} else {
 			panel_rightTimeline.add(new TimelineItem(false));
 		}
 		
-		for(Section section : Book.getInstance().getSectionList().getTimeSortedSections()) {
+		for(Section section : sectionsSortedByTimestamp_FILTERED) {
 			if(section.hasTimestamp()) {
-				if(leftPosition) {					
-					panel_leftTimeline.add(new TimelineElement(section, leftPosition));
+				TimelineElement currentElement = null;
+				if(leftPosition) {
+					currentElement = new TimelineElement(section, leftPosition);
+					panel_leftTimeline.add(currentElement);
 				} else {
-					panel_rightTimeline.add(new TimelineElement(section, leftPosition));
+					currentElement = new TimelineElement(section, leftPosition);
+					panel_rightTimeline.add(currentElement);
+				}
+				int currentHeight = currentElement.getPreferredSize().height;
+				if(currentHeight > 121) {
+					int diffrence = currentHeight - 121;
+					if(leftPosition) {
+						panel_rightTimeline.add(new TimelineItem(false, diffrence));
+					} else {
+						panel_leftTimeline.add(new TimelineItem(true, diffrence));
+					}
 				}
 				leftPosition = !leftPosition;
 			}
 
 		}
 		
-		if((sectionsSortedByTimestamp.size()%2)==0) {
+		if((sectionsSortedByTimestamp_FILTERED.size()%2)==0) {
 			panel_leftTimeline.add(new TimelineItem(true));
 		} else {
 			panel_rightTimeline.add(new TimelineItem(false));

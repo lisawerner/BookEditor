@@ -4,6 +4,7 @@ import global.ObjectID;
 import global.SerializedObject;
 import person.Relationship;
 import person.Society;
+import time.Timestuff;
 import world.World;
 import GUI_components.Theme;
 import global.FileManager;
@@ -20,7 +21,7 @@ public class Book extends SerializedObject {
 	
 	private World my_world;
 	private Society my_society;
-	private boolean useGregorianCalendar;
+	private Timestuff my_timeline;
 
 	// About Print-Settings:
 	private boolean isWorktitle;
@@ -40,6 +41,8 @@ public class Book extends SerializedObject {
 		my_society = new Society();
 		
 		my_world = new World();
+		
+		my_timeline = new Timestuff();
 		
 		my_theme = null;
 	}
@@ -80,10 +83,6 @@ public class Book extends SerializedObject {
 		my_title = newTitle;
 		isWorktitle = isNewTitleWorktitle;
 		save();
-	}
-		
-	public boolean useGregorianCalendar() {
-		return useGregorianCalendar;
 	}
 
 	public Theme getTheme() {
@@ -135,6 +134,10 @@ public class Book extends SerializedObject {
 	public Society getSociety() {
 		return my_society;
 	}
+	
+	public Timestuff getTimeline() {
+		return my_timeline;
+	}
 
 	public void changePrintSettings(boolean chapterPrintName) {
 		printChapterName = chapterPrintName;
@@ -143,11 +146,6 @@ public class Book extends SerializedObject {
 
 	public void changeBookTheme(Theme newTheme) {
 		my_theme = newTheme;
-		save();
-	}
-
-	public void changeCalendarSettings(boolean newGregorainCalendarSettings) {
-		useGregorianCalendar = newGregorainCalendarSettings;
 		save();
 	}
 	

@@ -28,7 +28,7 @@ public class CalendarSettingsCard extends TransparentPanel {
 		add(panel_timelineCalendarType);
 		panel_timelineCalendarType.setLayout(new GridLayout(1, 0, 10, 10));
 		rdbtnGregorianCalendar = new SimpleRadiobutton("Use: Gregorian Calendar");
-		rdbtnGregorianCalendar.setSelected(Book.getInstance().useGregorianCalendar());
+		rdbtnGregorianCalendar.setSelected(Book.getInstance().getTimeline().useGregorianCalendar());
 		btngrCalendarType.add(rdbtnGregorianCalendar);
 		panel_timelineCalendarType.add(rdbtnGregorianCalendar);
 		rdbtnGregorianCalendar.addActionListener(e -> save());
@@ -49,7 +49,7 @@ public class CalendarSettingsCard extends TransparentPanel {
 	}
 	
 	private void save() {
-		Book.getInstance().changeCalendarSettings(rdbtnGregorianCalendar.isSelected());
+		Book.getInstance().getTimeline().changeCalendarSettings(rdbtnGregorianCalendar.isSelected());
 	}
 
 }

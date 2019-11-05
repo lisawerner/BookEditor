@@ -26,7 +26,13 @@ public class SimpleRadiobutton extends JRadioButton {
 //			System.out.println("Change Theme in Component to: Default");
 		}
 	}
-	
-	//TODO: add to all Active-Components (Textfield, Textarea, Radiobutton, Checkbox, Buttons, Comboboxes, ...) warning(true/false) and change Border to Red or Foreground to Red
 
+	public void setWarning(boolean activateWarning) {
+		if(activateWarning) {
+			setForeground(ThemeList.currentTheme.warningTutorialCardLayout);
+		} else {
+			changeTheme();
+		}
+		
+	}
 }

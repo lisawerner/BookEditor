@@ -74,8 +74,8 @@ public class TimelineElement extends TimelineItem {
 		panel_relationshipSwitchs.add(lblRelationshipSwitchs);
 		ArrayList<Relationship> relSwitches = my_section.getRelationships();
 		for(Relationship rel : relSwitches) {
-			SimpleLabel lblRel = new SimpleLabel("<html>" + rel.getSwitchToString() + "; </html>");
-			panel_relationshipSwitchs.add(lblRel);
+			SimpleLabel lblRel = new SimpleLabel("<html>&emsp; &emsp;" + rel.getSwitchToString() + "; </html>");
+			this.addToBody(lblRel);
 		}
 
 	}

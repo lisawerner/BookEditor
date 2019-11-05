@@ -239,6 +239,18 @@ public class Section extends SerializedObject {
 		Book.getInstance().getSociety().getPerson(relationship.getPersonB()).removeRelationship(relationship.getID());
 		Book.getInstance().save();
 	}
+	
+	public void removeRelationship(Person person) {
+		ArrayList<Relationship> removeThisRelationships = new ArrayList<Relationship>();
+		for(Relationship currentRelship : my_relationshipSwitches) {
+			if(currentRelship.getPersonA().equals(person.getID()) || currentRelship.getPersonB().equals(person.getID())) {
+				removeThisRelationships.add(currentRelship);
+			}
+		}
+		for(Relationship deleteThis : removeThisRelationships) {
+			removeRelationship(deleteThis);
+		}
+	}
 
 	public String getNotes() {
 		if(my_notes == null) {return "";}
@@ -256,4 +268,14 @@ public class Section extends SerializedObject {
 	public boolean isLastSection() {
 		return Book.getInstance().getSectionList().getSections().get(Book.getInstance().getSectionList().getSections().size()-1).getID().equals(getID());
 	}
+
+	public boolean containsPerson(Person searchedPerson) {
+		for(Person taggedPerson : getPersonByTag()) {
+			if(taggedPerson.equals(searchedPerson)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

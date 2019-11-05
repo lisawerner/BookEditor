@@ -1,5 +1,6 @@
 package GUI.personPage;
 
+import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
@@ -18,15 +19,19 @@ public class PersonTagCard extends TransparentPanel {
 	
 	public PersonTagCard(Person person) {
 		my_person = person;
-		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+//		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+		setLayout(new GridLayout(0, 5, 5, 5));
 		
 		if(my_person != null) {			
 			for(Section section : Book.getInstance().getSectionList().getSections()) {
-				if(section.hasTag(my_person.getID())) {					
+				if(section.hasTag(my_person.getID())) {		
+					TransparentPanel panel = new TransparentPanel();
+					panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
+					add(panel);
 					LinkButton btnSectionTag = new LinkButton(section.getName());
 					btnSectionTag.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section)));
-					add(btnSectionTag);
-					add(new SimpleLabel(";  "));
+					panel.add(btnSectionTag);
+					panel.add(new SimpleLabel(";  "));
 				}
 			}
 		}

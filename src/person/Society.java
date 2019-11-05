@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import book.Book;
+import book.Section;
 import global.ObjectID;
 
 public class Society {
@@ -66,6 +67,101 @@ public class Society {
 			}
 		}
 		return null;
+	}
+
+	public List<Person> getPersonListNeverTagged() {
+		List<Person> filteredPersons = new ArrayList<Person>();
+		for(Person person : my_persons) {	
+			boolean neverTagged = true;
+			for(Section section : Book.getInstance().getSectionList().getSections()) {
+				if(section.containsPerson(person)) {
+					neverTagged = false;
+					break;
+				}
+
+			}
+			if(neverTagged) {				
+				filteredPersons.add(person);
+			}
+		}
+		return filteredPersons;
+	}
+
+	public List<Person> getPersonListWithMissingRelationship() {
+		List<Person> filteredPersons = new ArrayList<Person>();
+		
+		//TODO: thats crazy shit o.O -> move Relationship to single class for relationship list and only add relshipID to section -> do not search relationships over looking for each section o.O
+		for(Person person : my_persons) {
+			boolean hasMainRelationship = false;
+			for(ObjectID relPerson : person.getRelationships()) {
+				//Relationships are saved in every section -> for each section
+				for(Section section : Book.getInstance().getSectionList().getSections()) {
+					for(Relationship relship : section.getRelationships()) {
+						//Check if Relationship in Section is the relationship, of this person
+						if(relPerson.equals(relship.getID())) {							
+							if(Book.getInstance().getSociety().getPerson(relship.getOtherPerson(person.getID())).getInformation().isSuperMainChar()) {
+								hasMainRelationship = true;
+								break;
+							}
+						}
+					}
+					
+				}
+			}
+			if(!hasMainRelationship) {
+				filteredPersons.add(person);
+			}
+		}
+		return filteredPersons;
+	}
+
+	public List<Person> getPersonWithRelationshipToPerson(boolean relationType, Person checkingPerson) {
+		List<Person> filteredPersons = new ArrayList<Person>();
+		
+		if(checkingPerson != null) {			
+			//TODO: thats crazy shit o.O -> move Relationship to single class for relationship list and only add relshipID to section -> do not search relationships over looking for each section o.O
+			for(Person currentPerson : my_persons) {
+				if(!currentPerson.equals(checkingPerson)) {					
+					boolean hasRelationship = false;
+					
+					for(Section section : Book.getInstance().getSectionList().getSections()) {
+						for(Relationship relship : section.getRelationships()) {
+							if(relship.getOtherPerson(checkingPerson.getID()) != null) {								
+								if(relship.getOtherPerson(checkingPerson.getID()).equals(currentPerson.getID())) {
+									hasRelationship = true;
+									break;
+								}
+							}
+						}
+					}
+					
+					if((relationType && hasRelationship) || (!relationType && !hasRelationship)) {
+						filteredPersons.add(currentPerson);
+					}
+				}
+			}
+		}
+
+		return filteredPersons;
+	}
+
+	public void deletePerson(Person person) {
+		
+		for(Section section : Book.getInstance().getSectionList().getSections()) {
+			//Delete Tags
+			section.removeTag(person.getID());
+			//Delete Relationships
+			section.removeRelationship(person);
+		}
+		//Delete Person
+		ArrayList<Person> newList = new ArrayList<Person>();
+		for(Person currentPerson : my_persons) {
+			if(!currentPerson.equals(person)) {
+				newList.add(currentPerson);
+			}
+		}
+		my_persons = newList;
+		Book.getInstance().save();
 	}
 
 }

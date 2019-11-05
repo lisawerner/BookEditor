@@ -8,6 +8,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
 import GUI_components.LinkButton;
 import GUI_components.SimpleCheckbox;
+import GUI_components.SimpleRadiobutton;
 import GUI_components.TransparentPanel;
 import book.Book;
 import book.Section;
@@ -30,10 +31,10 @@ public class FilterPersonCard extends TransparentPanel {
 		TransparentPanel panel_listOfPersons = new TransparentPanel();
 		
 		add(panel_listOfPersons, BorderLayout.NORTH);
-		panel_listOfPersons.setLayout(new GridLayout(0, 1, 5, 5));
+		panel_listOfPersons.setLayout(new BorderLayout(5, 5));
 		
 		TransparentPanel panel_generalSettings = new TransparentPanel();
-		panel_listOfPersons.add(panel_generalSettings);
+		panel_listOfPersons.add(panel_generalSettings, BorderLayout.NORTH);
 		panel_generalSettings.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		SimpleCheckbox rdbtnAndOr = new SimpleCheckbox("Select only Sections with all Characters tagged inside");
@@ -42,12 +43,12 @@ public class FilterPersonCard extends TransparentPanel {
 		rdbtnAndOr.addActionListener(e -> setSelectAND(rdbtnAndOr.isSelected()));
 		
 		TransparentPanel panel_FilterSettings = new TransparentPanel();
-		panel_listOfPersons.add(panel_FilterSettings);
+		panel_listOfPersons.add(panel_FilterSettings, BorderLayout.CENTER);
 		panel_FilterSettings.setLayout(new GridLayout(0, 3, 5, 5));
 		
 		
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleCheckbox boxbtn_person = new SimpleCheckbox(person.getInformation().getNickname());
+			SimpleRadiobutton boxbtn_person = new SimpleRadiobutton(person.getInformation().getNickname());
 			panel_FilterSettings.add(boxbtn_person);
 			boxbtn_person.addActionListener(e -> addPersonToFilterlist(person, boxbtn_person.isSelected()));
 		}

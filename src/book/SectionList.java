@@ -223,5 +223,60 @@ public class SectionList {
 		return null;
 	}
 
+	public ArrayList<Section> filterTimelineSections() {
+		ArrayList<Section> sectionsSortedByTimestamp = Book.getInstance().getSectionList().getTimeSortedSections();
+		boolean filterForMainCharacters = Book.getInstance().getTimeline().getSettings().getMaincharacterFilter();
+		ArrayList<Section> filteredList = new ArrayList<Section>();
+		if(filterForMainCharacters) {
+			filteredList = filterForMainCharacters(sectionsSortedByTimestamp);
+		} else {
+			filteredList = sectionsSortedByTimestamp;
+		}
+		return filteredList;
+	}
+	
+	private ArrayList<Section> filterForMainCharacters(ArrayList<Section> unfilteredList){
+		ArrayList<Section> filteredList = new ArrayList<Section>();
+		for(Section section : unfilteredList) {
+			boolean foundSomething = false;
+			//TODO: Do not filter only for person Tag -> Filter also for Relationship with mainCharacters
+			for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
+				for(Person taggedPerson : section.getPersonByTag()) {					
+					if(taggedPerson.equals(person)) {
+						foundSomething = true;
+						break;
+					}
+				}
+				if(foundSomething) {
+					break;
+				}
+			}
+			if(foundSomething) {
+				filteredList.add(section);
+			}
+		}
+		return filteredList;
+	}
+
+	public List<Section> getSectionWithoutTaggedMaincharacters() {
+		ArrayList<Section> filteredList = new ArrayList<Section>();
+		for(Section section : my_sections) {
+			boolean hasNoMainCharacter = true;
+			for(Person sectionPerson : section.getPersonByTag()) {
+				if(sectionPerson.getInformation().isSuperMainChar()) {
+					hasNoMainCharacter = false;
+				}
+			}
+			if(hasNoMainCharacter) {				
+				filteredList.add(section);
+			}
+		}
+		return filteredList;
+	}
+
+	public List<Section> getSectionWithoutTimestamp() {
+		return my_sections.stream().filter(section -> !section.hasTimestamp()).collect(Collectors.toList());
+	}
+
 	
 }
