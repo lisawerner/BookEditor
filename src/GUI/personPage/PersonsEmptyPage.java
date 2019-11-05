@@ -11,7 +11,7 @@ public class PersonsEmptyPage extends Page {
 	private static final long serialVersionUID = 1L;
 
 	public PersonsEmptyPage() {
-		super("Persons, Relationships, ...");
+		super("Society: Persons, Relationships, ...");
 		
 		TransparentPanel panel_placeholder = new TransparentPanel();
 		SimpleLabel lblOpenAnExisting = new SimpleLabel("<html><div style='text-align: center;'><font size=\"5\">Open an existing person<br/>"

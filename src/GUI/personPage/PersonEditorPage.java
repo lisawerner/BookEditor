@@ -19,7 +19,7 @@ public class PersonEditorPage extends Page {
 	private Person my_person = null;
 
 	public PersonEditorPage(Person person, boolean isSecondFrame) {
-		super("Persons, Relationships, ...");
+		super("Society: Persons, Relationships, ...");
 		
 		my_person = person;
 		

@@ -28,7 +28,7 @@ public class EditorMenu extends MenuBook {
 		JButton btnOpenSettings = createMainButton("    Book Settings    ");
 		btnOpenSettings.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new BookSettingsPage()));
 		
-		JButton btnOpenPersons = createMainButton("Persons");
+		JButton btnOpenPersons = createMainButton("Society");
 		btnOpenPersons.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonsEmptyPage()));
 		
 		JButton btnOpenPlaces = createMainButton("World");

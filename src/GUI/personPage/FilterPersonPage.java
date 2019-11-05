@@ -7,7 +7,7 @@ public class FilterPersonPage extends Page {
 	private static final long serialVersionUID = 1L;
 
 	public FilterPersonPage() {
-		super("Persons, Relationships, ...");
+		super("Society: Persons, Relationships, ...");
 		
 		//*********************************************************************************
 		//*********************************************************************************
