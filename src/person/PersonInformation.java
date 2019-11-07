@@ -1,6 +1,7 @@
 package person;
 
 import book.Book;
+import global.ObjectID;
 
 public class PersonInformation {
 
@@ -10,42 +11,59 @@ public class PersonInformation {
 	private String my_age;
 	private boolean age_startAtBook;
 	private boolean age_startAtFirstAppearance;
+	private boolean death_isDeathBeforeBookStart;
+	private String my_deathTime;
+	//TODO: Death-Information if Person was killed during book
 	
 	private boolean isSuperMainCharapter;
 	private boolean isMainCharapter;
 	
 	private String my_notes;
 	
-	protected PersonInformation(String newName, String newNickname, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
+	private ObjectID my_race;
+	
+	protected PersonInformation(String newName, String newNickname, 
+			String newAge, boolean ageBookStart, boolean ageFirstAppearance, boolean isDeathBeforeBookStart, String newDeathTime,
 			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
-			String newNotes) {
+			String newNotes, ObjectID newRace) {
 		my_name = newName;
 		my_nickname = newNickname;
 		
 		my_age = newAge;
 		age_startAtBook = ageBookStart;
 		age_startAtFirstAppearance = ageFirstAppearance;
+		death_isDeathBeforeBookStart = isDeathBeforeBookStart;
+		my_deathTime = newDeathTime;
 		
 		isSuperMainCharapter = newIsSuperMainCharapter;
 		isMainCharapter = newIsMainCharapter;
 		
 		my_notes = newNotes;
+		
+		my_race = newRace;
 	}
 	
-	public void editInformation(String newName, String newNickname, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
+	public void editInformation(String newName, String newNickname,
+			String newAge, boolean ageBookStart, boolean ageFirstAppearance, boolean isDeathBeforeBookStart, String newDeathTime,
 			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
-			String newNotes) {
+			String newNotes, ObjectID newRace, ObjectID OWNid) {
 		my_name = newName;
 		my_nickname = newNickname;
 		
 		my_age = newAge;
 		age_startAtBook = ageBookStart;
 		age_startAtFirstAppearance = ageFirstAppearance;
+		death_isDeathBeforeBookStart = isDeathBeforeBookStart;
+		my_deathTime = newDeathTime;
 		
 		isSuperMainCharapter = newIsSuperMainCharapter;
 		isMainCharapter = newIsMainCharapter;
 		
 		my_notes = newNotes;
+		
+		Book.getInstance().getSociety().updateRaceRepresantives(my_race, newRace, OWNid);
+		my_race = newRace;
+		
 		Book.getInstance().getSociety().sortPersons();
 		Book.getInstance().save();
 	}
@@ -92,5 +110,18 @@ public class PersonInformation {
 
 	public boolean isSomebody() {
 		return !isSuperMainCharapter && !isMainCharapter;
+	}
+
+	public ObjectID getRace() {
+		return my_race;
+	}
+
+	public boolean isDeadBeforeBookStart() {
+		return death_isDeathBeforeBookStart;
+	}
+
+	public String getDeathTime() {
+		if(my_deathTime == null) { return "";}
+		return my_deathTime;
 	}	
 }

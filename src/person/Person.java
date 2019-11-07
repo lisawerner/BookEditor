@@ -3,6 +3,7 @@ package person;
 import java.util.ArrayList;
 import java.util.List;
 
+import book.Book;
 import global.ObjectID;
 import global.SerializedObject;
 
@@ -10,16 +11,22 @@ public class Person extends SerializedObject {
 	
 	private PersonInformation my_information;
 	
+	private FamiliarRelationship my_familiarRelationships;
+	
 	private ArrayList<ObjectID> my_relationships;
 	
-	public Person(String newName, String newNickname, String newAge, boolean ageBookStart, boolean ageFirstAppearance, 
+	public Person(String newName, String newNickname, 
+			String newAge, boolean ageBookStart, boolean ageFirstAppearance, boolean isDeathBeforeBookStart, String newDeathTime,
 			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
-			String newNotes) {
+			String newNotes, ObjectID newRace) {
 		super();
 		
-		my_information = new PersonInformation(newName, newNickname, newAge, ageBookStart, ageFirstAppearance, newIsSuperMainCharapter, newIsMainCharapter, newNotes);
-		
+		my_information = new PersonInformation(newName, newNickname, 
+				newAge, ageBookStart, ageFirstAppearance, isDeathBeforeBookStart, newDeathTime,
+				newIsSuperMainCharapter, newIsMainCharapter, newNotes, newRace);
+		Book.getInstance().getSociety().updateRaceRepresantives(newRace, this.getID());
 		my_relationships = new ArrayList<ObjectID>();
+		my_familiarRelationships = new FamiliarRelationship();
 	}
 	
 	
@@ -57,6 +64,11 @@ public class Person extends SerializedObject {
 
 	protected void setRelationships(List<ObjectID> filteredRelationships) {
 		my_relationships = (ArrayList<ObjectID>) filteredRelationships;	
+	}
+	
+	public FamiliarRelationship getFamiliarRelation() {
+		if(my_familiarRelationships == null) {my_familiarRelationships = new FamiliarRelationship();}
+		return my_familiarRelationships;
 	}
 
 }

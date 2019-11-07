@@ -8,9 +8,9 @@ public class ViewSocietyPage extends Page {
 
 	public ViewSocietyPage() {
 		super("Society: Persons, Relationships, ...");
+	
+		this.addCard(new StructureCard("Familiar Society", new SocietyFamiliarCard()));
 		
-		this.addCard(new StructureCard("General Person Information", new SocietyFilterCard()));
-
 		setMenu(new PersonMenu());
 	}
 

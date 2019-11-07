@@ -13,16 +13,18 @@ public class Place  extends SerializedObject{
 	
 	private String my_name;
 	private String my_type;
+	private String my_notes;
 	
 	private ObjectID my_parentPlace;
 	private ArrayList<ObjectID> my_childrenPlaces;
 	
 	
-	public Place(String newName, String newType) {
+	public Place(String newName, String newType, String newNotes) {
 		super();
 		
 		my_name = newName;
 		my_type = newType;
+		my_notes = newNotes;
 		
 		my_parentPlace = null;
 		my_childrenPlaces = new ArrayList<ObjectID>();
@@ -36,9 +38,10 @@ public class Place  extends SerializedObject{
 		return my_type;
 	}
 
-	public void editPlace(String newName, String newType) {
+	public void editPlace(String newName, String newType, String newNotes) {
 		my_name = newName;
 		my_type = newType;
+		my_notes = newNotes;
 		
 		Book.getInstance().getWorld().changePlace();
 	}
@@ -137,6 +140,10 @@ public class Place  extends SerializedObject{
 		}
 		
 		Book.getInstance().getWorld().changePlace();
+	}
+
+	public String getNotes() {
+		return my_notes;
 	}
 
 }

@@ -138,7 +138,7 @@ public class SectionInformationMenu extends PageMenu {
 		//TODO: W needs more space, then i, so notes has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
 		while(noteLength > 0) {
 			if(noteLength > 20) {
-				//TODO: Den Text irgendwie sinnvoll trennen o.O
+				//TODO: Den Text irgendwie sinnvoll trennen o.O; Eigentlich wären ja textArea mit wrap-Funktion sinnvoll, aber dann geht das GridLayout nicht mehr...
 				String newPart = notes.substring(0,18) + "...";
 				splittedNotes.add(newPart);
 				notes = notes.substring(18);

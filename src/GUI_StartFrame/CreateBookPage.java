@@ -2,6 +2,7 @@ package GUI_StartFrame;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import GUI_components.HeaderBook;
@@ -37,7 +38,7 @@ public class CreateBookPage extends JPanel {
 		
 		lblSaveWarning = new SimpleLabel(" ");
 		panel_footer.add(lblSaveWarning);
-		lblSaveWarning.setWarning(true);
+		lblSaveWarning.setForeground(Color.RED);
 		
 		JButton btnSpeichern = new JButton("Save");
 		btnSpeichern.addActionListener(new ActionListener() {

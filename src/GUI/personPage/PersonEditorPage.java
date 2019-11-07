@@ -44,6 +44,10 @@ public class PersonEditorPage extends Page {
 		//*********************************************************************************
 
 		if(my_person != null) {this.addCard(new StructureCard("Person was tagged in following sections", new PersonTagCard(my_person)));}
+		
+		//*********************************************************************************
+		
+		if(my_person != null) {this.addCard(new StructureCard("Person has following familiar Relationships", new PersonFamiliarRelationshipCard(my_person)));}
 			
 		//*********************************************************************************
 

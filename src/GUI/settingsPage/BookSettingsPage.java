@@ -26,6 +26,10 @@ public class BookSettingsPage extends Page {
 		addCard(new StructureCard("Change Book Title", new BooktitleSettingsCard()));
 		
 		//********************************************************************
+		//CARD change Book Society
+		addCard(new StructureCard("Change Society-Settings", new SocietySettingsCard()));
+		
+		//********************************************************************
 		//CARD change Timeline Settings
 		addCard(new StructureCard("Change Timeline-Settings", new CalendarSettingsCard()));
 		

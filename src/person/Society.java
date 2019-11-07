@@ -13,8 +13,14 @@ public class Society {
 	
 	private ArrayList<Person> my_persons;
 	
+	private boolean isAFantasyStory;
+	private ArrayList<Race> my_races;
+	
 	public Society() {
 		my_persons = new ArrayList<Person>();
+		
+		isAFantasyStory = false;
+		my_races = new ArrayList<Race>();
 	}
 	
 	public List<Person> getPersonListOfSuperMainCharacters() {
@@ -163,5 +169,79 @@ public class Society {
 		my_persons = newList;
 		Book.getInstance().save();
 	}
+
+	public void activateRaceSettings(boolean selected) {
+		isAFantasyStory = selected;
+		Book.getInstance().save();
+	}
+
+	public boolean isRaceSystemActivated() {
+		return isAFantasyStory;
+	}
+
+	public void addRace(Race race) {
+		if(my_races == null) { my_races = new ArrayList<Race>();}
+
+		my_races.add(race);
+		Book.getInstance().save();
+	}
+
+	public ArrayList<Race> getRaces() {
+		return my_races;
+	}
+	
+	public ArrayList<Person> getPersonListByRace(Race filteredRace) {
+		ArrayList<Person> filteredList = new ArrayList<Person>();
+		
+		for(Person person : my_persons) {
+			if(filteredRace == null) {
+				if(person.getInformation().getRace() == null) {
+					filteredList.add(person);
+				}
+			} else {				
+				if(person.getInformation().getRace() != null) {				
+					if(person.getInformation().getRace().equals(filteredRace.getID())) {
+						filteredList.add(person);
+					}
+				}
+			}
+		}
+		
+		return filteredList;
+	}
+
+	public void updateRaceRepresantives(ObjectID raceID, ObjectID personID) {
+		if(raceID != null) {			
+			getRace(raceID).addRepresentative(personID);
+		}
+	}
+
+	private Race getRace(ObjectID raceID) {
+		for(Race race : my_races) {
+			if(race.getID().equals(raceID)) {
+				return race;
+			}
+		}
+		return null;
+	}
+
+	public void updateRaceRepresantives(ObjectID oldRaceID, ObjectID newRace, ObjectID personID) {
+		if(oldRaceID != null) {			
+			getRace(oldRaceID).removeRepresentative(personID);
+		}
+		updateRaceRepresantives(newRace, personID);
+	}
+
+	public ArrayList<Person> getPersonListFirstAncestors() {
+		ArrayList<Person> ancestorList = new ArrayList<Person>();
+		for(Person person : my_persons) {
+			if(person.getFamiliarRelation().getParents().isEmpty() && person.getFamiliarRelation().getDistantAncestor().isEmpty()
+					&& (!person.getFamiliarRelation().getChildren().isEmpty() || !person.getFamiliarRelation().getDistantDescendant().isEmpty())) {
+				ancestorList.add(person);
+			}
+		}
+		return ancestorList;
+	}
+
 
 }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import global.ObjectID;
 import person.Person;
+import person.Relationship;
 
 public class SectionList {
 	
@@ -276,6 +277,17 @@ public class SectionList {
 
 	public List<Section> getSectionWithoutTimestamp() {
 		return my_sections.stream().filter(section -> !section.hasTimestamp()).collect(Collectors.toList());
+	}
+
+	public Section getSectionByRelationship(ObjectID relID) {
+		for(Section section : my_sections) {
+			for(Relationship relship : section.getRelationships()) {
+				if(relship.getID().equals(relID)) {
+					return section;
+				}
+			}
+		}
+		return null;
 	}
 
 	

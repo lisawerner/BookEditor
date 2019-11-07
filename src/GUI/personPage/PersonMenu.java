@@ -15,10 +15,15 @@ public class PersonMenu extends PageMenu {
 		JButton btnViewRelationships = this.addButtonToTopMenu("View Society");
 		btnViewRelationships.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewSocietyPage()));
 		
-		JButton btnPersonFilter = this.addButtonToTopMenu("Filter");
+		if(Book.getInstance().getSociety().isRaceSystemActivated()) {			
+			JButton btnAddRace = this.addButtonToTopMenu("Add new Race");
+			btnAddRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new RaceEditorPage(null)));
+		}
+		
+		JButton btnPersonFilter = this.addButtonToTopMenu("Filter Persons");
 		btnPersonFilter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new FilterPersonPage()));
 		
-		JButton btnAddNew = this.addButtonToTopMenu("Add new");
+		JButton btnAddNew = this.addButtonToTopMenu("Add new Person");
 		btnAddNew.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(null, false)));
 		
 		this.addBetweenTitle("Super Main Characters");

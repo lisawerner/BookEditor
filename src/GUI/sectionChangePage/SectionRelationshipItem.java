@@ -13,6 +13,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import java.awt.GridLayout;
 
@@ -61,6 +63,17 @@ public class SectionRelationshipItem extends TransparentPanel {
 		txt_relationshipType = new SimpleTextfield();
 		if(my_relationship != null) {txt_relationshipType.setText(my_relationship.getDescribingRelationshipType());}
 		panel_type.add(txt_relationshipType);
+		txt_relationshipType.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				updateSaveHint();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				updateSaveHint();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				updateSaveHint();
+			}
+		});
 
 		lblWARNING = new SimpleLabel(" ");
 		add(lblWARNING, BorderLayout.SOUTH);
@@ -115,10 +128,12 @@ public class SectionRelationshipItem extends TransparentPanel {
 	private void setPersonA() {
 		ComboItem item = (ComboItem) cmboxPersonA.getSelectedItem();
 		personA = Book.getInstance().getSociety().getPerson(item.getValue());
+		updateSaveHint();
 	}
 	private void setPersonB() {
 		ComboItem item = (ComboItem) cmboxPersonB.getSelectedItem();
 		personB = Book.getInstance().getSociety().getPerson(item.getValue());
+		updateSaveHint();
 	}
 	
 	private void save() {
@@ -145,17 +160,28 @@ public class SectionRelationshipItem extends TransparentPanel {
 				Relationship newRelationship = new Relationship(personA, personB, txt_relationshipType.getText());
 				my_body.addRelationship(newRelationship);
 				my_section.addRelationship(newRelationship);
+				txt_relationshipType.setText("");
+				my_relationship = null;
+				lblWARNING.setText("Succesfully saved!");
 			} else {
 				my_relationship.change(personA, personB, txt_relationshipType.getText());
 			}
-			txt_relationshipType.setText("");
-			my_relationship = null;
 		}
 	}
 	
 	private void delete() {
 		my_section.removeRelationship(my_relationship);
 		my_body.reloadRelationships(my_section);
+	}
+	
+	private void updateSaveHint() {
+		if(my_relationship != null) {
+			if(!personA.equals(my_relationship.getPersonA())
+					|| !personB.equals(my_relationship.getPersonB())
+					|| !txt_relationshipType.getText().equals(my_relationship.getDescribingRelationshipType())) {				
+				lblWARNING.setText("Attention: Unsaved information!");
+			}
+		}
 	}
 
 }

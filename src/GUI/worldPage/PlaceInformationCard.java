@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
+import GUI_components.SimpleTextarea;
 import GUI_components.SimpleTextfield;
 import GUI_components.TransparentPanel;
 import book.Book;
@@ -24,6 +25,7 @@ public class PlaceInformationCard extends TransparentPanel {
 	private SimpleTextfield txt_placename;
 	private SimpleLabel lblPlacename;
 	private SimpleTextfield txtPlacetype;
+	private SimpleTextarea txtNotes;
 
 	public PlaceInformationCard(Place place) {
 		my_place = place;
@@ -63,6 +65,17 @@ public class PlaceInformationCard extends TransparentPanel {
 			txtPlacetype.setText(my_place.getType());
 		}
 		
+		TransparentPanel panel_notes = new TransparentPanel();
+		add(panel_notes);
+		panel_notes.setLayout(new BorderLayout(0, 0));
+		
+		SimpleLabel lblNotesResearch = new SimpleLabel("Notes, Research, ...:");
+		panel_notes.add(lblNotesResearch, BorderLayout.NORTH);
+		
+		txtNotes = new SimpleTextarea();
+		panel_notes.add(txtNotes, BorderLayout.CENTER);
+		if(my_place != null) {txtNotes.setText(my_place.getNotes());}
+		
 		//*****************************************************************************************
 		//*****************************************************************************************
 		TransparentPanel footer = new TransparentPanel();
@@ -89,7 +102,7 @@ public class PlaceInformationCard extends TransparentPanel {
 							
 				if(canSave) {
 					if(my_place == null) {
-						my_place = new Place(name, txtPlacetype.getText());
+						my_place = new Place(name, txtPlacetype.getText(), txtNotes.getText());
 						Book.getInstance().getWorld().addPlace(my_place);
 						if(!UserSettings.getInstance().getTutorial().createFirstPlace) {
 							UserSettings.getInstance().getTutorial().createFirstPlace = true;
@@ -97,7 +110,7 @@ public class PlaceInformationCard extends TransparentPanel {
 						}
 						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
 					} else {
-						my_place.editPlace(name, txtPlacetype.getText());
+						my_place.editPlace(name, txtPlacetype.getText(), txtNotes.getText());
 						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
 					}
 				}
