@@ -13,7 +13,15 @@ public class SortChapterCard extends TransparentPanel {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		for(Section section : Book.getInstance().getSectionList().getSections()) {			
-			add(new SortChapterElement(section));
+			add(new SortChapterElement(section, this));
+		}
+	}
+
+	public void reload() {
+		removeAll();
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		for(Section section : Book.getInstance().getSectionList().getSections()) {			
+			add(new SortChapterElement(section, this));
 		}
 	}
 

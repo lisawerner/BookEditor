@@ -7,10 +7,12 @@ public class UserSettings {
 	
 	private Tutorial user_tutorial;
 	private boolean bigScreenSize;
+	private int textareaFontSize;
 	
 	private UserSettings() {
 		user_tutorial = new Tutorial();
 		bigScreenSize = false;
+		textareaFontSize = 12;
 	}
 	
 	public static UserSettings getInstance() {
@@ -21,6 +23,10 @@ public class UserSettings {
 			my_instance = new UserSettings();
 		}
 		return my_instance;
+	}
+	
+	public void save() {
+		FileManager.saveJSONFile(my_filename, this);
 	}
 	
 	public Tutorial getTutorial() {
@@ -41,7 +47,12 @@ public class UserSettings {
 		return bigScreenSize;
 	}
 	
-	public void save() {
-		FileManager.saveJSONFile(my_filename, this);
+	public int getTextareaFontSize() {
+		return textareaFontSize;
+	}
+	
+	public void setTextAreaSize(int newTextareaFontSize) {
+		textareaFontSize = newTextareaFontSize;
+		save();
 	}
 }

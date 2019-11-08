@@ -15,8 +15,12 @@ public class SortChapterElement extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
+	
+	private SimpleLabel lblChapterSpace;
+	private JButton btn_makeToChapter;
+	private JButton btn_removeChapterStatus;
 
-	public SortChapterElement(Section section) {
+	public SortChapterElement(Section section, SortChapterCard parentBody) {
 		my_section = section;
 		setLayout(new BorderLayout(5, 5));
 		
@@ -24,16 +28,8 @@ public class SortChapterElement extends TransparentPanel {
 		add(panel_sectionInfo, BorderLayout.CENTER);
 		panel_sectionInfo.setLayout(new BorderLayout(5, 5));
 		
-		SimpleLabel lblChapterSpace = new SimpleLabel("    ??     ");
-		if(my_section.isUnsorted()) {
-			lblChapterSpace.setText("    ??     ");
-		} else {
-			if(my_section.isChapter()) {
-				lblChapterSpace.setText(">>   ");
-			} else {
-				lblChapterSpace.setText("         >>>>     ");
-			}
-		}
+		lblChapterSpace = new SimpleLabel("    ??     ");
+		fillChapterSpace();
 		panel_sectionInfo.add(lblChapterSpace, BorderLayout.WEST);
 		
 		SimpleLabel lblSectionName = new SimpleLabel(my_section.getName());
@@ -44,13 +40,15 @@ public class SortChapterElement extends TransparentPanel {
 		add(panel_move, BorderLayout.WEST);
 		panel_move.setLayout(new BorderLayout(5, 5));
 		
-		JButton btn_makeToChapter = new JButton("<");
+		btn_makeToChapter = new JButton("<");
 		btn_makeToChapter.setEnabled(!my_section.isChapter() || my_section.isUnsorted());
 		btn_makeToChapter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.makeToChapter();
-				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
+				fillChapterSpace();
+				btn_makeToChapter.setEnabled(!my_section.isChapter() || my_section.isUnsorted());
+				btn_removeChapterStatus.setEnabled(my_section.isChapter() || my_section.isUnsorted());
+				BookEditorFrame.getInstance().reloadMenu();
 			}
 		});
 		panel_move.add(btn_makeToChapter, BorderLayout.WEST);
@@ -63,8 +61,8 @@ public class SortChapterElement extends TransparentPanel {
 		btn_moveSectionUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.sortUp();
-				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
+				parentBody.reload();
+				BookEditorFrame.getInstance().reloadMenu();
 			}
 		});
 		btn_moveSectionUp.setEnabled(!my_section.isFirstSection());
@@ -75,27 +73,39 @@ public class SortChapterElement extends TransparentPanel {
 		btn_moveSectionDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.sortDown();
-				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
+				parentBody.reload();
+				BookEditorFrame.getInstance().reloadMenu();
 			}
 		});
 		panel_buttonplacer.add(btn_moveSectionDown, BorderLayout.SOUTH);
 		btn_moveSectionDown.setEnabled(!my_section.isLastSection());
 		
-		JButton btn_removeChapterStatus = new JButton(">");
+		btn_removeChapterStatus = new JButton(">");
 		btn_removeChapterStatus.setEnabled(my_section.isChapter() || my_section.isUnsorted());
 		btn_removeChapterStatus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				my_section.removeChapterStatus();
-				BookEditorFrame.getInstance().switchBody(new SortChaptersPage());
-				BookEditorFrame.getInstance().reloadMenu(); //TODO: Anstelle des Reload irgendwas, wo der ViewFocus von der Scrollbar nicht verloren geht?
+				fillChapterSpace();
+				btn_makeToChapter.setEnabled(!my_section.isChapter() || my_section.isUnsorted());
+				btn_removeChapterStatus.setEnabled(my_section.isChapter() || my_section.isUnsorted());
+				BookEditorFrame.getInstance().reloadMenu();
 			}
 		});
 		panel_move.add(btn_removeChapterStatus, BorderLayout.EAST);
-		
-		//TODO: Disable all buttons, which can not be used for that section; if is last one in sorted list, can not move down;
-		
-		//TODO: Something with Buttons for move completeChapter or Move only Chapter-Section!; I thing both is needed, so do not delete or change singleMove; i thing add another button for completeMove
+				
+		//TODO: Something with Buttons for move completeChapter or Move only Chapter-Section!; I thing both is needed, so do not delete or change singleMove; i think add another button for completeMove
+	}
+	
+	private void fillChapterSpace() {
+		if(my_section.isUnsorted()) {
+			lblChapterSpace.setText("    ??     ");
+		} else {
+			if(my_section.isChapter()) {
+				lblChapterSpace.setText(">>   ");
+			} else {
+				lblChapterSpace.setText("         >>>>     ");
+			}
+		}
 	}
 
 }

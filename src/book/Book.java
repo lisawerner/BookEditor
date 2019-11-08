@@ -17,7 +17,6 @@ public class Book extends SerializedObject {
 	
 	private static Book my_instance;
 	private String my_filename;
-	private Theme my_theme;
 	
 	private String my_title;
 	private Content my_sectionlist;
@@ -27,6 +26,9 @@ public class Book extends SerializedObject {
 	private Timestuff my_timeline;
 	
 	private ArrayList<GeneralNote> my_notes;
+	
+	// About Editor-Settings:
+	private Theme my_theme;
 
 	// About Print-Settings:
 	private boolean isWorktitle;
