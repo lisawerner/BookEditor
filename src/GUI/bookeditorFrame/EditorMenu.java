@@ -3,6 +3,7 @@ package GUI.bookeditorFrame;
 import javax.swing.JButton;
 
 import GUI.filterPage.FilterChaptersPage;
+import GUI.miscPage.NotesPage;
 import GUI.personPage.PersonsEmptyPage;
 import GUI.printPage.PrintPage;
 import GUI.sectionChangePage.CreateSectionPage;
@@ -36,6 +37,9 @@ public class EditorMenu extends MenuBook {
 		
 		JButton btnOpenTimeline = createMainButton("Timeline");
 		btnOpenTimeline.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new TimelinePage()));
+		
+		JButton btnOpenNoteStuff = createMainButton("Notes");
+		btnOpenNoteStuff.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new NotesPage()));
 		
 		JButton btnOpenPrint = createMainButton("Print & Export");
 		btnOpenPrint.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PrintPage()));

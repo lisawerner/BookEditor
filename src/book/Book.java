@@ -2,10 +2,14 @@ package book;
 
 import global.ObjectID;
 import global.SerializedObject;
+import notes.GeneralNote;
 import person.Relationship;
 import person.Society;
 import time.Timestuff;
 import world.World;
+
+import java.util.ArrayList;
+
 import GUI_components.Theme;
 import global.FileManager;
 
@@ -16,12 +20,13 @@ public class Book extends SerializedObject {
 	private Theme my_theme;
 	
 	private String my_title;
-	private SectionList my_sectionlist;
-
+	private Content my_sectionlist;
 	
 	private World my_world;
 	private Society my_society;
 	private Timestuff my_timeline;
+	
+	private ArrayList<GeneralNote> my_notes;
 
 	// About Print-Settings:
 	private boolean isWorktitle;
@@ -36,13 +41,15 @@ public class Book extends SerializedObject {
 		
 		my_filename = "empty.json";
 		
-		my_sectionlist = new SectionList();
+		my_sectionlist = new Content();
 		
 		my_society = new Society();
 		
 		my_world = new World();
 		
 		my_timeline = new Timestuff();
+		
+		my_notes = new ArrayList<GeneralNote>();
 		
 		my_theme = null;
 	}
@@ -123,7 +130,7 @@ public class Book extends SerializedObject {
 		return null;
 	}
 
-	public SectionList getSectionList() {
+	public Content getSectionList() {
 		return my_sectionlist;
 	}
 	
@@ -147,6 +154,18 @@ public class Book extends SerializedObject {
 	public void changeBookTheme(Theme newTheme) {
 		my_theme = newTheme;
 		save();
+	}
+
+	public void addNote(GeneralNote generalNote) {
+		if(my_notes == null) {my_notes = new ArrayList<GeneralNote>();}
+		
+		my_notes.add(generalNote);
+		save();
+	}
+
+	public ArrayList<GeneralNote> getNotes() {
+		if(my_notes == null) {return new ArrayList<GeneralNote>();}
+		return my_notes;
 	}
 	
 }

@@ -8,11 +8,11 @@ import global.ObjectID;
 import person.Person;
 import person.Relationship;
 
-public class SectionList {
+public class Content {
 	
 	private ArrayList<Section> my_sections;
 	
-	public SectionList() {
+	public Content() {
 		my_sections = new ArrayList<Section>();
 	}
 
