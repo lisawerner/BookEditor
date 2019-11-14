@@ -1,6 +1,7 @@
 package GUI.sectionChangePage;
 
 import GUI_components.ComboItem;
+import GUI_components.InfoButton;
 import GUI_components.SimpleIntegerTextfield;
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
@@ -23,6 +24,8 @@ public class TimestampRelativeEditor extends TransparentPanel {
 	
 	private Section my_section;
 	
+	private int dayOfWeek = 0;
+	
 	private SimpleIntegerTextfield txt_days;
 	private SimpleIntegerTextfield txt_weeks;
 	private SimpleIntegerTextfield txt_months;
@@ -39,6 +42,14 @@ public class TimestampRelativeEditor extends TransparentPanel {
 	private SimpleLabel lblYears;
 	private SimpleLabel lblResult;
 	private SimpleLabel lblWARNING;
+	private SimpleRadiobutton rdbtnNoDay;
+	private SimpleRadiobutton rdbtnMonday;
+	private SimpleRadiobutton rdbtnTuseday;
+	private SimpleRadiobutton rdbtnWednesday;
+	private SimpleRadiobutton rdbtnThursday;
+	private SimpleRadiobutton rdbtnFriday;
+	private SimpleRadiobutton rdbtnSaturday;
+	private SimpleRadiobutton rdbtnSunday;
 
 	public TimestampRelativeEditor(Section openedSection) {
 		my_section = openedSection;
@@ -117,6 +128,64 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		txt_years = new SimpleIntegerTextfield();
 		panel_distanceBODY.add(txt_years);
 		
+		TransparentPanel panel_setWeekday = new TransparentPanel();
+		add(panel_setWeekday);
+		panel_setWeekday.setLayout(new BorderLayout(0, 0));
+		
+		SimpleLabel lblSetConcreteDay = new SimpleLabel("Set concrete Day of the week");
+		panel_setWeekday.add(lblSetConcreteDay, BorderLayout.NORTH);
+		
+		InfoButton btnI = new InfoButton("<html>If you set a specific day of the week, then the timestamp will first add"
+				+ "<br/>(or in case of earlyer timestamp deduct)"
+				+ "<br/>the distance to related timestamp and then take the next day of week.</html>");
+		panel_setWeekday.add(btnI, BorderLayout.EAST);
+		
+		TransparentPanel panel_wekDays = new TransparentPanel();
+		panel_setWeekday.add(panel_wekDays, BorderLayout.CENTER);
+		panel_wekDays.setLayout(new GridLayout(0, 4, 5, 5));
+		
+		ButtonGroup btngroup_dayOfTheWeek = new ButtonGroup();
+		
+		rdbtnNoDay = new SimpleRadiobutton("-");
+		panel_wekDays.add(rdbtnNoDay);
+		btngroup_dayOfTheWeek.add(rdbtnNoDay);
+		rdbtnNoDay.addActionListener(e -> setDayOfWeek(-1));
+		
+		rdbtnMonday = new SimpleRadiobutton("Monday");
+		panel_wekDays.add(rdbtnMonday);
+		btngroup_dayOfTheWeek.add(rdbtnMonday);
+		rdbtnMonday.addActionListener(e -> setDayOfWeek(2));
+		
+		rdbtnTuseday = new SimpleRadiobutton("Tuseday");
+		panel_wekDays.add(rdbtnTuseday);
+		btngroup_dayOfTheWeek.add(rdbtnTuseday);
+		rdbtnTuseday.addActionListener(e -> setDayOfWeek(3));
+		
+		rdbtnWednesday = new SimpleRadiobutton("Wednesday");
+		panel_wekDays.add(rdbtnWednesday);
+		btngroup_dayOfTheWeek.add(rdbtnWednesday);
+		rdbtnWednesday.addActionListener(e -> setDayOfWeek(4));
+		
+		rdbtnThursday = new SimpleRadiobutton("Thursday");
+		panel_wekDays.add(rdbtnThursday);
+		btngroup_dayOfTheWeek.add(rdbtnThursday);
+		rdbtnThursday.addActionListener(e -> setDayOfWeek(5));
+		
+		rdbtnFriday = new SimpleRadiobutton("Friday");
+		panel_wekDays.add(rdbtnFriday);
+		btngroup_dayOfTheWeek.add(rdbtnFriday);
+		rdbtnFriday.addActionListener(e -> setDayOfWeek(6));
+		
+		rdbtnSaturday = new SimpleRadiobutton("Saturday");
+		panel_wekDays.add(rdbtnSaturday);
+		btngroup_dayOfTheWeek.add(rdbtnSaturday);
+		rdbtnSaturday.addActionListener(e -> setDayOfWeek(7));
+		
+		rdbtnSunday = new SimpleRadiobutton("Sunday");
+		panel_wekDays.add(rdbtnSunday);
+		btngroup_dayOfTheWeek.add(rdbtnSunday);
+		rdbtnSunday.addActionListener(e -> setDayOfWeek(1));
+		
 		TransparentPanel panel_result = new TransparentPanel();
 		add(panel_result);
 		panel_result.setLayout(new GridLayout(1, 0, 0, 0));
@@ -131,6 +200,11 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		setUpdateListener();
 	}
 	
+	private void setDayOfWeek(int newDay) {
+		dayOfWeek = newDay;
+		updateRsult();
+	}
+
 	public void switchEnabled(boolean enable) {
 		this.setEnabled(enable);
 		lblSelectASection.setEnabled(enable);
@@ -179,7 +253,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 			return null;
 		}
 		
-		return new RelativeDate(selectedSection.getID(), isAfter, distDays, distWeeks, distMonths, distYears);
+		return new RelativeDate(selectedSection.getID(), isAfter, distDays, distWeeks, distMonths, distYears, dayOfWeek);
 	}
 
 	public void activate(RelativeDate unspecificDate) {
@@ -196,6 +270,36 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		txt_weeks.setText("" + unspecificDate.getDistWeeks());
 		txt_months.setText("" + unspecificDate.getDistMonths());
 		txt_years.setText("" + unspecificDate.getDistYears());
+		switch(unspecificDate.getDayOfWeek()) {
+		case 1:
+			rdbtnMonday.setSelected(true);
+			setDayOfWeek(2);
+			break;
+		case 2:
+			rdbtnTuseday.setSelected(true);
+			setDayOfWeek(3);
+			break;
+		case 3:
+			rdbtnWednesday.setSelected(true);
+			setDayOfWeek(4);
+			break;
+		case 4:
+			rdbtnThursday.setSelected(true);
+			setDayOfWeek(5);
+			break;
+		case 5:
+			rdbtnFriday.setSelected(true);
+			setDayOfWeek(6);
+			break;
+		case 6:
+			rdbtnSaturday.setSelected(true);
+			setDayOfWeek(7);
+			break;
+		case 7:
+			rdbtnSunday.setSelected(true);
+			setDayOfWeek(1);
+			break;
+		}
 		updateRsult();
 		lblWARNING.setText("");
 	}

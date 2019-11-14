@@ -15,14 +15,16 @@ public class RelativeDate {
 	private int my_weeksDistance;
 	private int my_monthsDistance;
 	private int my_yearsDistance;
+	private int my_dayOfTheWeek;
 	
-	public RelativeDate(ObjectID selectedSection, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears) {
+	public RelativeDate(ObjectID selectedSection, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears, int dayOfWeek) {
 		relatedToSection = selectedSection;
 		isAfter = newIsAfter;
 		my_daysDistance = distDays;
 		my_weeksDistance = distWeeks;
 		my_monthsDistance = distMonths;
 		my_yearsDistance = distYears;
+		my_dayOfTheWeek = dayOfWeek;
 	}
 	
 	public String toString() {	
@@ -56,6 +58,10 @@ public class RelativeDate {
 	public ObjectID getRelatedSectionID() {
 		return relatedToSection;
 	}
+	
+	public int getDayOfWeek() {
+		return my_dayOfTheWeek;
+	}	
 
 	public SpecificDate generateSpecificDate() {
 		Section relatedSection = Book.getInstance().getSectionList().getSection(relatedToSection);
@@ -87,9 +93,17 @@ public class RelativeDate {
 		    cal.set(Calendar.YEAR, myYear);
 		    cal.add(Calendar.MONTH, my_monthsDistance);
 			cal.add(Calendar.DATE, addDays); // Adding x days
-			myYear = cal.get(Calendar.YEAR);
-			myMonth = cal.get(Calendar.MONTH);
-			myDay = cal.get(Calendar.DAY_OF_MONTH);
+			if(my_dayOfTheWeek > 0) {
+				int currentDayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+				int difference = 0;
+				if(currentDayOfWeek < my_dayOfTheWeek) {					
+					difference = my_dayOfTheWeek - currentDayOfWeek;
+				} else {
+					difference = (7 - currentDayOfWeek) + my_dayOfTheWeek;
+				}
+				cal.add(Calendar.DATE, difference); // Adding x days
+				cal.get(Calendar.DAY_OF_WEEK);
+			}
 		} else {
 			if(relatedDate.isAnnoDomini()) {				
 				myYear -= my_yearsDistance;
@@ -102,16 +116,27 @@ public class RelativeDate {
 		    cal.set(Calendar.YEAR, myYear);
 		    cal.add(Calendar.MONTH, -my_monthsDistance);
 			cal.add(Calendar.DATE, -addDays); // Adding x days
-			myYear = cal.get(Calendar.YEAR);
-			myMonth = cal.get(Calendar.MONTH);
-			myDay = cal.get(Calendar.DAY_OF_MONTH);
+			
+			if(my_dayOfTheWeek > 0) {
+				int currentDayOfWeek = cal.get(Calendar.DAY_OF_WEEK) -1;
+				int difference = 0;
+				if(currentDayOfWeek < my_dayOfTheWeek) {					
+					difference = my_dayOfTheWeek - currentDayOfWeek;
+				} else {
+					difference = (7 - currentDayOfWeek) + my_dayOfTheWeek;
+				}
+				cal.add(Calendar.DATE, difference); // Adding x days
+			}
 		}
+		myYear = cal.get(Calendar.YEAR);
+		myMonth = cal.get(Calendar.MONTH);
+		myDay = cal.get(Calendar.DAY_OF_MONTH);
 
 		if(!isAnnoDomini) {
 			myYear = Math.abs(myYear);
 		}
-	    
+			    
 		return new SpecificDate(myDay, myMonth, myYear, isAnnoDomini);
-	}	
+	}
 
 }
