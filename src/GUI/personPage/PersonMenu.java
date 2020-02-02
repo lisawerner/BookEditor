@@ -28,7 +28,7 @@ public class PersonMenu extends PageMenu {
 		
 		this.addBetweenTitle("Super Main Characters");
 		for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
-			JButton btnOpenPerson = this.addLinkedListButton(person.getInformation().getName());
+			JButton btnOpenPerson = this.addLinkedListButton(person.getInformation().getNickname());
 			btnOpenPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false)));
 		}
 		

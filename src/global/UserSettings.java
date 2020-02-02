@@ -8,11 +8,13 @@ public class UserSettings {
 	private Tutorial user_tutorial;
 	private boolean bigScreenSize;
 	private int textareaFontSize;
+	private String lastOpenedBookfile;
 	
 	private UserSettings() {
 		user_tutorial = new Tutorial();
 		bigScreenSize = false;
 		textareaFontSize = 12;
+		lastOpenedBookfile = "";
 	}
 	
 	public static UserSettings getInstance() {
@@ -53,6 +55,15 @@ public class UserSettings {
 	
 	public void setTextAreaSize(int newTextareaFontSize) {
 		textareaFontSize = newTextareaFontSize;
+		save();
+	}
+	
+	public String getLastOpenedBookfile() {
+		return lastOpenedBookfile;
+	}
+
+	public void setLastOpenedBookfile(String selectedBook) {
+		lastOpenedBookfile = selectedBook;
 		save();
 	}
 }

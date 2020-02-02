@@ -15,6 +15,7 @@ import book.Book;
 import java.util.ArrayList;
 
 import global.FileManager;
+import global.UserSettings;
 
 import javax.swing.JRadioButton;
 import java.awt.BorderLayout;
@@ -58,15 +59,30 @@ public class StartPage extends JPanel {
 					btnOpenBook.setEnabled(true);
 				}
 			});
+			
+			// Set selection of a book
 			if(booklist.size() == 1) {
+				// Select one and only
 				radiobtnNewCheckBox.setSelected(true);
 				selectedBook = book.getFilename();
 				selectionDone = true;
-			}
-			if(!selectionDone) {
-				radiobtnNewCheckBox.setSelected(true);
-				selectedBook = book.getFilename();
-				selectionDone = true;
+			} else {
+				String lastOpenedBookfile = UserSettings.getInstance().getLastOpenedBookfile();
+				if("".equals(lastOpenedBookfile)) {
+					// Select any (=first) book					
+					if(!selectionDone) {
+						radiobtnNewCheckBox.setSelected(true);
+						selectedBook = book.getFilename();
+						selectionDone = true;
+					}
+				} else {
+					// Select book which was last time opened
+					if(lastOpenedBookfile.equals(book.getFilename())) {
+						radiobtnNewCheckBox.setSelected(true);
+						selectedBook = book.getFilename();
+						selectionDone = true;
+					}
+				}
 			}
 			
 		}
@@ -102,6 +118,7 @@ public class StartPage extends JPanel {
 		btnOpenBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Book.getInstance().loadFromFile(selectedBook);
+				UserSettings.getInstance().setLastOpenedBookfile(selectedBook);
 				StartFrame.getInstance().openBookEditor();
 			}
 		});

@@ -1,5 +1,7 @@
 package GUI_components;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 
 public class SimpleLabel extends JLabel{
@@ -25,7 +27,11 @@ public class SimpleLabel extends JLabel{
 	
 	public void setWarning(boolean activateWarning) {
 		if(activateWarning) {
-			setForeground(ThemeList.currentTheme.warningTutorialCardLayout);
+			if(ThemeList.currentTheme != null) {			
+				setForeground(ThemeList.currentTheme.warningTutorialCardLayout);
+			} else {
+				setForeground(Color.RED);
+			}
 			revalidate();
 			repaint();
 		} else {

@@ -47,10 +47,10 @@ public class EditorMenu extends MenuBook {
 		JButton btnAddChapter = createContentButton("Add new Section");
 		btnAddChapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new CreateSectionPage()));
 
-		JButton btnSort = createContentButton("Sort Content");
+		JButton btnSort = createContentButton("View & Sort Content");
 		btnSort.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SortChaptersPage()));
 		
-		JButton btnFilter = createContentButton("Filter");
+		JButton btnFilter = createContentButton("Filter Content");
 		btnFilter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new FilterChaptersPage()));
 
 

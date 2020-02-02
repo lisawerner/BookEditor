@@ -21,6 +21,12 @@ public class Content {
 		my_sections.add(newSection);
 		Book.getInstance().save();
 	}
+	
+	public void deleteSection(Section delSection) {
+		if(my_sections == null) {my_sections = new ArrayList<Section>();}
+		my_sections.remove(delSection);
+		Book.getInstance().save();
+	}
 		
 	public void resortSections() {
 		if(my_sections == null) {my_sections = new ArrayList<Section>();}
@@ -289,6 +295,5 @@ public class Content {
 		}
 		return null;
 	}
-
 	
 }

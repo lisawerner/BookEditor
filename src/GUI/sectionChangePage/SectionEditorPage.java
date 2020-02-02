@@ -55,6 +55,9 @@ public class SectionEditorPage extends Page {
 		
 		//********************************************************************************
 		addCard(new StructureCard("Change your Personal-Tags", new SectionPersonaltagCard(my_section)));
+		
+		//********************************************************************************
+		addCard(new StructureCard("Delete Section", new DeleteSectionCard(my_section)));
 	
 		//********************************************************************************
 		//********************************************************************************

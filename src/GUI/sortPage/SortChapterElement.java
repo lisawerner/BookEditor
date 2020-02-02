@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.sectionPage.SectionPage;
+import GUI_components.LinkButton;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import book.Section;
@@ -26,14 +29,15 @@ public class SortChapterElement extends TransparentPanel {
 		
 		TransparentPanel panel_sectionInfo = new TransparentPanel();
 		add(panel_sectionInfo, BorderLayout.CENTER);
-		panel_sectionInfo.setLayout(new BorderLayout(5, 5));
+		panel_sectionInfo.setLayout(new BoxLayout(panel_sectionInfo, BoxLayout.LINE_AXIS));
 		
 		lblChapterSpace = new SimpleLabel("    ??     ");
 		fillChapterSpace();
-		panel_sectionInfo.add(lblChapterSpace, BorderLayout.WEST);
+		panel_sectionInfo.add(lblChapterSpace);
 		
-		SimpleLabel lblSectionName = new SimpleLabel(my_section.getName());
-		panel_sectionInfo.add(lblSectionName, BorderLayout.CENTER);
+		LinkButton lblSectionName = new LinkButton(my_section.getName());
+		panel_sectionInfo.add(lblSectionName);
+		lblSectionName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(my_section)));
 		lblSectionName.setToolTipText("<html>Preview Text:<br>" + my_section.getShortTextPreview() + "</html>");
 		
 		TransparentPanel panel_move = new TransparentPanel();
