@@ -7,6 +7,7 @@ import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.TransparentPanel;
 import book.Book;
+import book.Chapter;
 import book.Section;
 import time.RelativeDate;
 
@@ -68,9 +69,11 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		
 		comboBox = new JComboBox<ComboItem>();
 		panel_selectRelativeSection.add(comboBox);
-		for(Section section : Book.getInstance().getSectionList().getSections()) {
-			if(!my_section.equals(section)) {				
-				comboBox.addItem(new ComboItem(section.getName(), section.getID()));
+		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
+			for(Section section : chapter.getSections()) {
+				if(!my_section.equals(section)) {				
+					comboBox.addItem(new ComboItem(section.getName(), section.getID()));
+				}
 			}
 		}
 		
@@ -247,7 +250,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 			return null;
 		}
 		ComboItem item = (ComboItem)comboBox.getSelectedItem();
-		Section selectedSection = Book.getInstance().getSectionList().getSection(item.getValue());
+		Section selectedSection = Book.getInstance().getTableOfContent().getSection(item.getValue());
 		if(selectedSection == null) {
 			lblWARNING.setText("You can not Save! Select an existing section");
 			return null;

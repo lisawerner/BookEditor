@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import book.Book;
+import book.Chapter;
 import book.Section;
 import global.ObjectID;
 
@@ -79,12 +80,14 @@ public class Society {
 		List<Person> filteredPersons = new ArrayList<Person>();
 		for(Person person : my_persons) {	
 			boolean neverTagged = true;
-			for(Section section : Book.getInstance().getSectionList().getSections()) {
-				if(section.containsPerson(person)) {
-					neverTagged = false;
-					break;
+			for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {				
+				for(Section section : chapter.getSections()) {
+					if(section.containsPerson(person)) {
+						neverTagged = false;
+						break;
+					}
+					
 				}
-
 			}
 			if(neverTagged) {				
 				filteredPersons.add(person);
@@ -101,17 +104,19 @@ public class Society {
 			boolean hasMainRelationship = false;
 			for(ObjectID relPerson : person.getRelationships()) {
 				//Relationships are saved in every section -> for each section
-				for(Section section : Book.getInstance().getSectionList().getSections()) {
-					for(Relationship relship : section.getRelationships()) {
-						//Check if Relationship in Section is the relationship, of this person
-						if(relPerson.equals(relship.getID())) {							
-							if(Book.getInstance().getSociety().getPerson(relship.getOtherPerson(person.getID())).getInformation().isSuperMainChar()) {
-								hasMainRelationship = true;
-								break;
+				for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {					
+					for(Section section : chapter.getSections()) {
+						for(Relationship relship : section.getRelationships()) {
+							//Check if Relationship in Section is the relationship, of this person
+							if(relPerson.equals(relship.getID())) {							
+								if(Book.getInstance().getSociety().getPerson(relship.getOtherPerson(person.getID())).getInformation().isSuperMainChar()) {
+									hasMainRelationship = true;
+									break;
+								}
 							}
 						}
+						
 					}
-					
 				}
 			}
 			if(!hasMainRelationship) {
@@ -129,13 +134,14 @@ public class Society {
 			for(Person currentPerson : my_persons) {
 				if(!currentPerson.equals(checkingPerson)) {					
 					boolean hasRelationship = false;
-					
-					for(Section section : Book.getInstance().getSectionList().getSections()) {
-						for(Relationship relship : section.getRelationships()) {
-							if(relship.getOtherPerson(checkingPerson.getID()) != null) {								
-								if(relship.getOtherPerson(checkingPerson.getID()).equals(currentPerson.getID())) {
-									hasRelationship = true;
-									break;
+					for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {						
+						for(Section section : chapter.getSections()) {
+							for(Relationship relship : section.getRelationships()) {
+								if(relship.getOtherPerson(checkingPerson.getID()) != null) {								
+									if(relship.getOtherPerson(checkingPerson.getID()).equals(currentPerson.getID())) {
+										hasRelationship = true;
+										break;
+									}
 								}
 							}
 						}
@@ -152,12 +158,13 @@ public class Society {
 	}
 
 	public void deletePerson(Person person) {
-		
-		for(Section section : Book.getInstance().getSectionList().getSections()) {
-			//Delete Tags
-			section.removeTag(person.getID());
-			//Delete Relationships
-			section.removeRelationship(person);
+		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
+			for(Section section : chapter.getSections()) {
+				//Delete Tags
+				section.removeTag(person.getID());
+				//Delete Relationships
+				section.removeRelationship(person);
+			}
 		}
 		//Delete Person
 		ArrayList<Person> newList = new ArrayList<Person>();

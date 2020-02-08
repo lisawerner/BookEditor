@@ -37,10 +37,10 @@ public class PersonRelationshipCard extends TransparentPanel {
 				relationPanel.add(lbtnRelPerson);
 				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(relPerson, false)));
 				relationPanel.add(new SimpleLabel(" [Switched in Section: "));
-				Section switchSection = Book.getInstance().getSectionList().getSectionByRelationship(relID);
+				Section switchSection = Book.getInstance().getTableOfContent().getSectionByRelationship(relID);
 				LinkButton lbtnSection = new LinkButton(switchSection.getName());
 				relationPanel.add(lbtnSection);
-				lbtnSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(switchSection)));
+				lbtnSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(switchSection, Book.getInstance().getTableOfContent().getChapter(switchSection.getParentChapterID()))));
 				relationPanel.add(new SimpleLabel("]"));
 			}
 		}

@@ -7,6 +7,7 @@ import GUI.sectionPage.SectionPage;
 import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
+import book.Chapter;
 import book.DevelopmentStatus;
 import book.Section;
 import global.UserSettings;
@@ -15,6 +16,7 @@ public class SectionDevstatusCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
+	private Chapter my_parentChapter;
 	
 	private SimpleLabel lblDevStatus;
 	private InfoButton hint_devStatus;
@@ -23,8 +25,9 @@ public class SectionDevstatusCard extends TransparentPanel {
 	private JButton btnIncreaseDevStatus;
 	private InfoButton ibtnIncrease;
 
-	public SectionDevstatusCard(Section section) {
+	public SectionDevstatusCard(Section section, Chapter chapter) {
 		my_section = section;
+		my_parentChapter = chapter;
 		setLayout(new BorderLayout(5, 5));
 		
 		lblDevStatus = new SimpleLabel("Current Development Status: unkown");
@@ -77,7 +80,7 @@ public class SectionDevstatusCard extends TransparentPanel {
 		if(!UserSettings.getInstance().getTutorial().setDevelopmentStatus) {
 			UserSettings.getInstance().getTutorial().setDevelopmentStatus = true;
 			UserSettings.getInstance().save();
-			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section));
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter));
 		}
 	}
 

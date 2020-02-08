@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import book.Book;
+import book.Chapter;
 import book.Section;
 
 public class HomeStatisticsCard extends TransparentPanel {
@@ -13,14 +14,21 @@ public class HomeStatisticsCard extends TransparentPanel {
 	public HomeStatisticsCard() {
 		setLayout(new GridLayout(0, 1, 5, 5));
 		
-		SimpleLabel lblSectionStatistics = new SimpleLabel("Chapters: " + Book.getInstance().getSectionList().getCountChapters() + " + with Sections: " + Book.getInstance().getSectionList().getSections().size());
+		int countSections = 0;
+		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {
+			countSections += chapter.getSections().size();
+		}
+		
+		SimpleLabel lblSectionStatistics = new SimpleLabel("Chapters: " + Book.getInstance().getTableOfContent().getCountChapters() + " + with Sections: " + countSections);
 		add(lblSectionStatistics);
 		
 		int countWords = 0;
 		int countChars = 0;
-		for(Section section : Book.getInstance().getSectionList().getSections()) {
-			countWords += section.getCountWords();
-			countChars += section.getText().length();
+		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
+			for(Section section : chapter.getSections()) {
+				countWords += section.getCountWords();
+				countChars += section.getText().length();
+			}
 		}
 		SimpleLabel lblContentStatistics = new SimpleLabel("Words: " + countWords + "; Chars: " + countChars);
 		add(lblContentStatistics);

@@ -28,7 +28,7 @@ public class RelativeDate {
 	}
 	
 	public String toString() {	
-		Section relatedSection = Book.getInstance().getSectionList().getSection(relatedToSection);
+		Section relatedSection = Book.getInstance().getTableOfContent().getSection(relatedToSection);
 		if(!relatedSection.hasTimestamp()){
 			return "Related to Section: " + relatedSection.getName() +" (which has no Timestamp set)";
 		}
@@ -64,7 +64,7 @@ public class RelativeDate {
 	}	
 
 	public SpecificDate generateSpecificDate() {
-		Section relatedSection = Book.getInstance().getSectionList().getSection(relatedToSection);
+		Section relatedSection = Book.getInstance().getTableOfContent().getSection(relatedToSection);
 		if(!relatedSection.hasTimestamp()){
 			return null;
 		}

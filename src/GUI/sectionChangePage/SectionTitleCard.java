@@ -13,7 +13,7 @@ import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextfield;
 import GUI_components.TransparentPanel;
-import book.Book;
+import book.Chapter;
 import book.Section;
 import global.UserSettings;
 
@@ -21,14 +21,16 @@ public class SectionTitleCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
+	private Chapter my_parentChapter;
 	
 	private SimpleTextfield txt_sectionTitle;
 	private SimpleLabel lbl_saveWarning;
 	private SimpleLabel lblChapterTitle;
 
 
-	public SectionTitleCard(Section section) {
+	public SectionTitleCard(Section section, Chapter chapter) {
 		my_section = section;
+		my_parentChapter = chapter;
 		setLayout(new BorderLayout(5, 5));
 		
 		
@@ -85,13 +87,13 @@ public class SectionTitleCard extends TransparentPanel {
 		if(canSave) {
 			lbl_saveWarning.setWarning(false);
 			if(my_section == null) {
-				my_section = new Section(txt_sectionTitle.getText());
-				Book.getInstance().getSectionList().addSection(my_section);
+				my_section = new Section(my_parentChapter, txt_sectionTitle.getText());
+				my_parentChapter.addSection(my_section);
 				if(!UserSettings.getInstance().getTutorial().createFirstSection) {
 					UserSettings.getInstance().getTutorial().createFirstSection = true;
 					UserSettings.getInstance().save();
 				}
-				BookEditorFrame.getInstance().switchBody(new SectionPage(my_section));
+				BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter));
 			} else {
 				my_section.setTitle(txt_sectionTitle.getText());
 				lbl_saveWarning.setWarning(false);

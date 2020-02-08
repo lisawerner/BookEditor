@@ -4,6 +4,7 @@ import GUI_components.Page;
 import GUI_components.StructureCard;
 import GUI_components.TextPreview;
 import GUI_components.TutorialCard;
+import book.Chapter;
 import book.Section;
 import global.UserSettings;
 
@@ -12,7 +13,7 @@ public class SectionPage extends Page {
 	
 	private Section my_section;
 	
-	public SectionPage(Section section) {
+	public SectionPage(Section section, Chapter chapter) {
 		super("Edit Section: " + section.getName());
 		my_section = section;
 				
@@ -42,9 +43,12 @@ public class SectionPage extends Page {
 		//****************************************************************************************
 		//****************************************************************************************
 		if(my_section != null) {
-			String preText = my_section.getPreText();
-			if(!"".equals(preText)) {				
-				addCard(new StructureCard("Review Content", new TextPreview(preText, true, true)));
+			Section preSection = my_section.getPreSection();
+			if(preSection != null) {				
+				String preText = preSection.getText();
+				if(!"".equals(preText)) {				
+					addCard(new StructureCard("Review Content", new TextPreview(preText, true, true)));
+				}
 			}
 		}
 		
@@ -53,15 +57,18 @@ public class SectionPage extends Page {
 		}
 		
 		if(my_section != null) {
-			String preText = my_section.getPostText();
-			if(!"".equals(preText)) {				
-				addCard(new StructureCard("Preview Content", new TextPreview(preText, false, true)));
+			Section postSection = my_section.getPostSection();
+			if(postSection != null) {				
+				String preText = postSection.getText();
+				if(!"".equals(preText)) {				
+					addCard(new StructureCard("Preview Content", new TextPreview(preText, false, true)));
+				}
 			}
 		}
 	
 		//****************************************************************************************
 		//****************************************************************************************
-		setMenu(new SectionInformationMenu(my_section));
+		setMenu(new SectionInformationMenu(my_section, chapter));
 	}
 	
 }

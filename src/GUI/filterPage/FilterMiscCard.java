@@ -58,7 +58,7 @@ public class FilterMiscCard extends TransparentPanel {
 	private void fill(List<Section> sectionList) {
 		for(Section section : sectionList) {
 			LinkButton sectionBTN = new LinkButton(section.getName());
-			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section)));
+			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
 			panel_unfinishedFilteredSections.add(sectionBTN);
 		}
 		panel_unfinishedFilteredSections.revalidate();
@@ -67,27 +67,27 @@ public class FilterMiscCard extends TransparentPanel {
 	
 	private void filterEmpty(){
 		clear();
-		fill(Book.getInstance().getSectionList().getEmptySections());
+		fill(Book.getInstance().getTableOfContent().getEmptySections());
 	}
 	
 	private void filterUnsorted() {
 		clear();
-		fill(Book.getInstance().getSectionList().getUnsortedSections());
+		fill(Book.getInstance().getTableOfContent().getUnsortedSections());
 	}
 	
 	private void filterUnfinished() {
 		clear();
-		fill(Book.getInstance().getSectionList().getUnfinishedSections());
+		fill(Book.getInstance().getTableOfContent().getUnfinishedSections());
 	}
 	
 	private void filterNoMaincharachter() {
 		clear();
-		fill(Book.getInstance().getSectionList().getSectionWithoutTaggedMaincharacters());
+		fill(Book.getInstance().getTableOfContent().getSectionWithoutTaggedMaincharacters());
 	}
 	
 	private void filterNoTimestamp() {
 		clear();
-		fill(Book.getInstance().getSectionList().getSectionWithoutTimestamp());
+		fill(Book.getInstance().getTableOfContent().getSectionWithoutTimestamp());
 	}
 
 }

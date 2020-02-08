@@ -14,11 +14,12 @@ import world.Place;
 
 public class Section extends SerializedObject {
 	
+	private ObjectID my_parentChapter;
+	
 	//Text and Structure
 	private String my_name;
 	private String my_text;
 	private boolean isUnsorted;
-	private boolean isChapterStart;
 	
 	//Tagged Informations
 	private ArrayList<Tag> my_tags; //TODO: Persönlich/Privat Tags die von den Nutzern spezifisch angelegt wurden
@@ -27,14 +28,14 @@ public class Section extends SerializedObject {
 	private int my_devStatus;
 	private String my_notes;
 	
-	public Section(String newName) {
+	public Section(Chapter parentChapter, String newName) {
 		super();
-		
+		my_parentChapter = parentChapter.getID();
+	
 		my_name = newName;
 		my_text = "";
 		
 		isUnsorted = true;
-		isChapterStart = false;
 		
 		my_tags = new ArrayList<Tag>();
 		my_relationshipSwitches = new ArrayList<Relationship>();
@@ -119,44 +120,6 @@ public class Section extends SerializedObject {
 	public boolean isUnsorted() {
 		return isUnsorted;
 	}
-	
-	public void makeToChapter() {
-		isChapterStart = true;
-		if(isUnsorted) {
-			isUnsorted = false;
-			Book.getInstance().getSectionList().resortSections();
-		}
-	}
-	
-	public void removeChapterStatus() {
-		isChapterStart = false;
-		if(isUnsorted) {
-			isUnsorted = false;
-			Book.getInstance().getSectionList().resortSections();
-		}
-	}
-	
-	public boolean isChapter() {
-		return isChapterStart;
-	}
-	
-	public void sortUp() {
-		if(isUnsorted) {
-			isUnsorted = false;
-			Book.getInstance().getSectionList().resortSections();
-		} else {
-			Book.getInstance().getSectionList().sortSectionUp(this.my_uID);
-		}
-	}
-	
-	public void sortDown() {
-		if(isUnsorted) {
-			isUnsorted = false;
-			Book.getInstance().getSectionList().resortSections();
-		} else {
-			Book.getInstance().getSectionList().sortSectionDown(this.my_uID);
-		}
-	}
 
 	public void setTimestamp(Timestamp newTimestamp) {
 		my_timestamp = newTimestamp;
@@ -215,22 +178,32 @@ public class Section extends SerializedObject {
 		return this.my_uID.getIDtoString().equals(otherSection.getIDtoString());
 	}
 
-	public String getPreText() {
-		Section preSection = Book.getInstance().getSectionList().getPreSection(this);
-		String result = "";
-		if(preSection != null) {
-			result = preSection.getText();
+	public Section getPreSection() {
+		Section preSection = null;
+		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
+			for(Section currentSection : chapter.getSections()) {
+				if(currentSection.getID().equals(this.getID())) {
+					return preSection;
+				}
+				preSection = currentSection;
+			}
 		}
-		return result;
+		return null;
 	}
-
-	public String getPostText() {
-		Section preSection = Book.getInstance().getSectionList().getPostSection(this);
-		String result = "";
-		if(preSection != null) {
-			result = preSection.getText();
+	
+	public Section getPostSection() {
+		boolean foundInputSection = false;
+		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
+			for(Section currentSection : chapter.getSections()) {
+				if(foundInputSection) {
+					return currentSection;
+				}
+				if(currentSection.getID().equals(this.getID())) {
+					foundInputSection = true;
+				}
+			}
 		}
-		return result;
+		return null;
 	}
 
 	public void removeRelationship(Relationship relationship) {
@@ -262,11 +235,13 @@ public class Section extends SerializedObject {
 	}
 
 	public boolean isFirstSection() {
-		return Book.getInstance().getSectionList().getSections().get(0).getID().equals(getID());
+		return Book.getInstance().getTableOfContent().getChapters().get(0).getSections().get(0).getID().equals(this.getID());
 	}
 
 	public boolean isLastSection() {
-		return Book.getInstance().getSectionList().getSections().get(Book.getInstance().getSectionList().getSections().size()-1).getID().equals(getID());
+		ArrayList<Chapter> chapters = Book.getInstance().getTableOfContent().getChapters();
+		ArrayList<Section> sections = chapters.get(chapters.size()-1).getSections();
+		return sections.get(sections.size()-1).getID().equals(this.getID());
 	}
 
 	public boolean containsPerson(Person searchedPerson) {
@@ -276,6 +251,10 @@ public class Section extends SerializedObject {
 			}
 		}
 		return false;
+	}
+
+	public ObjectID getParentChapterID() {
+		return my_parentChapter;
 	}
 
 }

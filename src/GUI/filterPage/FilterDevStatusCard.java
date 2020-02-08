@@ -72,9 +72,9 @@ public class FilterDevStatusCard extends TransparentPanel {
 	private void filterSectionsByDevStatus() {
 		panel_devFilteredSections.removeAll();
 		panel_devFilteredSections.setLayout(new GridLayout(0, 5, 5, 5));
-		for(Section section :  Book.getInstance().getSectionList().getSectionsByDevStatus(currentDevStatus, devStatusDown)) {
+		for(Section section :  Book.getInstance().getTableOfContent().getSectionsByDevStatus(currentDevStatus, devStatusDown)) {
 			LinkButton sectionBTN = new LinkButton(section.getName());
-			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section)));
+			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
 			panel_devFilteredSections.add(sectionBTN);
 		}
 		panel_devFilteredSections.revalidate();

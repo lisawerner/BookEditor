@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.chapter.Page_viewChapter;
 import GUI.personPage.PersonEditorPage;
 import GUI.sectionChangePage.SectionEditorPage;
 import GUI.worldPage.PlaceEditor;
@@ -13,6 +14,7 @@ import GUI_components.InfoButton;
 import GUI_components.PageMenu;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
+import book.Chapter;
 import book.DevelopmentStatus;
 import book.Section;
 import global.UserSettings;
@@ -24,16 +26,17 @@ public class SectionInformationMenu extends PageMenu {
 	private static final long serialVersionUID = 1L;
 
 	private Section my_section;
+	private Chapter my_parentChapter;
 	
 	private JButton btnEdit;
 	
 	private SimpleLabel lblDevStatus;
 	private InfoButton hint_devStatus;
 	
-	public SectionInformationMenu(Section section) {
+	public SectionInformationMenu(Section section, Chapter chapter) {
 		super("Section Information");
 		my_section = section;
-		
+		my_parentChapter = chapter;
 		
 		btnEdit = this.addButtonToTopMenu("Change");
 		if(my_section == null) {
@@ -55,6 +58,9 @@ public class SectionInformationMenu extends PageMenu {
 		} else {
 			this.addText("Timestamp: ??");
 		}
+		this.addText("Parent Chapter:");
+		JButton btn_parentChapter = this.addLinkedListButton(my_parentChapter.getTitle());
+		btn_parentChapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(my_parentChapter)));
 		
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Current Development Status:");
@@ -109,7 +115,7 @@ public class SectionInformationMenu extends PageMenu {
 	
 	private void openPlaceEditor(Place place) {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section), new PlaceEditor(place, true));
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new PlaceEditor(place, true));
 		} else {
 			BookEditorFrame.getInstance().switchBody(new PlaceEditor(place, false));		
 		}
@@ -117,7 +123,7 @@ public class SectionInformationMenu extends PageMenu {
 
 	private void openPersonEditor(Person person) {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section), new PersonEditorPage(person, true));
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new PersonEditorPage(person, true));
 		} else {
 			BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false));			
 		}
@@ -125,9 +131,9 @@ public class SectionInformationMenu extends PageMenu {
 
 	private void openSectionEditor() {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section), new SectionEditorPage(my_section));
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new SectionEditorPage(my_section, my_parentChapter));
 		} else {
-			BookEditorFrame.getInstance().switchBody(new SectionEditorPage(my_section));			
+			BookEditorFrame.getInstance().switchBody(new SectionEditorPage(my_section, my_parentChapter));			
 		}
 	}
 

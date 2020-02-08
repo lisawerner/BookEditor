@@ -27,21 +27,23 @@ public class PrintHintCard extends TransparentPanel {
 		if(Book.getInstance().printChapterName()) {lblChapter.setText("Chapters will printed with their names you add for Table of Content");}
 		add(lblChapter);
 
-		SimpleLabel lblSectionless = new SimpleLabel("Warning: You have no Sections and no Text!");
+		SimpleLabel lblSectionless = new SimpleLabel("Warning: You have no Chapters and no Text!");
 		lblSectionless.setWarning(true);
-		if(Book.getInstance().getSectionList().getSections().size() == 0) {add(lblSectionless);}
+		if(Book.getInstance().getTableOfContent().getChapters().size() == 0) {add(lblSectionless);}
+		
+		//TODO: WArnng for missing Sections in Chapters!
 		
 		SimpleLabel lblSectionUnfinished = new SimpleLabel("Warning: You have Sections, which are not finished! Filter for Sections with DevelopmentStatus != Finish");
 		lblSectionUnfinished.setWarning(true);
-		if(Book.getInstance().getSectionList().getUnfinishedSections().size() > 0) {add(lblSectionUnfinished);}
+		if(Book.getInstance().getTableOfContent().getUnfinishedSections().size() > 0) {add(lblSectionUnfinished);}
 		
 		SimpleLabel lblSectionsEmpty = new SimpleLabel("Warning: You have Sections, which have no text! Filter for Sections without text");
 		lblSectionsEmpty.setWarning(true);
-		if(Book.getInstance().getSectionList().getEmptySections().size() > 0) {add(lblSectionsEmpty);}
+		if(Book.getInstance().getTableOfContent().getEmptySections().size() > 0) {add(lblSectionsEmpty);}
 		
 		SimpleLabel lblSectionsUnsorted = new SimpleLabel("Warning: You have Sections, which are not sorted inside table of content! Filter for these unsorted Sections");
 		lblSectionsUnsorted.setWarning(true);
-		if(Book.getInstance().getSectionList().getUnsortedSections().size() > 0) {add(lblSectionsUnsorted);}
+		if(Book.getInstance().getTableOfContent().getUnsortedSections().size() > 0) {add(lblSectionsUnsorted);}
 	}
 
 }

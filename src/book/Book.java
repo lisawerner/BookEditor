@@ -19,7 +19,7 @@ public class Book extends SerializedObject {
 	private String my_filename;
 	
 	private String my_title;
-	private Content my_sectionlist;
+	private Content my_tableOfContent;
 	
 	private World my_world;
 	private Society my_society;
@@ -32,8 +32,7 @@ public class Book extends SerializedObject {
 
 	// About Print-Settings:
 	private boolean isWorktitle;
-	private boolean printChapterName;
-		
+	private boolean printChapterName;	
 	
 	private Book() {
 		super();
@@ -43,7 +42,7 @@ public class Book extends SerializedObject {
 		
 		my_filename = "empty.json";
 		
-		my_sectionlist = new Content();
+		my_tableOfContent = new Content();
 		
 		my_society = new Society();
 		
@@ -105,35 +104,37 @@ public class Book extends SerializedObject {
 	public boolean exportToTXT() {
 		String book_text = my_title + "\n" + "\n";
 		int countChapters = 1;
-		for(Section section : my_sectionlist.getSections()) {
-			if(section.isChapter()) {
-				book_text += "\n" + "\n" + "*******************************************************************************" + "\n" ;
-				if(printChapterName) {
-					book_text += "###" + section.getName() + "###" + "\n" + "\n";
-				} else {
-					book_text += "Chapter " + countChapters + "\n" + "\n";
-					countChapters++;
-				}
+		for(Chapter chapter : my_tableOfContent.getChapters()) {			
+			book_text += "\n" +  "\n" + "*******************************************************************************" + "\n" ;
+			if(printChapterName) {
+				book_text += "###" + chapter.getTitle() + "###" + "\n" + "\n";
+			} else {
+				book_text += "Chapter " + countChapters + "\n" + "\n";
+				countChapters++;
 			}
-			book_text += section.getText() + "\n" + "\n";
+			for(Section section : chapter.getSections()) {
+				book_text += section.getText() + "\n" + "\n";
+			}
 		}
 		return FileManager.exportTXTfile(my_title + ".txt", book_text);
 		
 	}
 	
 	public Relationship getRelationship(ObjectID relID) {
-		for(Section section : my_sectionlist.getSections()) {
-			for(Relationship relationship : section.getRelationships()) {
-				if(relID.getIDtoString().equals(relationship.getID().getIDtoString())) {
-					return relationship;
+		for(Chapter chapter : my_tableOfContent.getChapters()) {			
+			for(Section section : chapter.getSections()) {
+				for(Relationship relationship : section.getRelationships()) {
+					if(relID.getIDtoString().equals(relationship.getID().getIDtoString())) {
+						return relationship;
+					}
 				}
 			}
 		}
 		return null;
 	}
 
-	public Content getSectionList() {
-		return my_sectionlist;
+	public Content getTableOfContent() {
+		return my_tableOfContent;
 	}
 	
 	public World getWorld() {

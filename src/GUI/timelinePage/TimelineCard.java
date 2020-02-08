@@ -26,7 +26,7 @@ public class TimelineCard extends TransparentPanel {
 		
 		
 		boolean leftPosition = true;
-		ArrayList<Section> sectionsSortedByTimestamp_FILTERED = Book.getInstance().getSectionList().filterTimelineSections();
+		ArrayList<Section> sectionsSortedByTimestamp_FILTERED = Book.getInstance().getTableOfContent().filterTimelineSections();
 		if((sectionsSortedByTimestamp_FILTERED.size()%2)==0) {
 			panel_rightTimeline.add(new TimelineItem(false));
 		} else {

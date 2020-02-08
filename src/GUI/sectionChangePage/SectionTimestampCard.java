@@ -16,6 +16,7 @@ import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.TransparentPanel;
 import book.Book;
+import book.Chapter;
 import book.Section;
 import time.RelativeDate;
 import time.SpecificDate;
@@ -32,7 +33,7 @@ public class SectionTimestampCard extends TransparentPanel {
 	private TimestampSpecificEditor panel_specificBODY;
 	private TimestampRelativeEditor panel_unspecificBODY;
 	
-	public SectionTimestampCard(Section section) {
+	public SectionTimestampCard(Section section, Chapter chapter) {
 		my_section = section;
 		setLayout(new BorderLayout(10, 10));
 		//TODO: Change Forumlar, if Custom Calendar is selected!
@@ -41,13 +42,13 @@ public class SectionTimestampCard extends TransparentPanel {
 		//*****************************************************************************************************************
 		TransparentPanel panel_helpfullInformationInNorth = new TransparentPanel();
 		add(panel_helpfullInformationInNorth, BorderLayout.NORTH);
-		Section preSection = Book.getInstance().getSectionList().getPreSection(my_section);
+		Section preSection = my_section.getPreSection();
 		if(preSection != null) {			
 			if(preSection.hasTimestamp()) {				
 				panel_helpfullInformationInNorth.setLayout(new BoxLayout(panel_helpfullInformationInNorth, BoxLayout.LINE_AXIS));
 				panel_helpfullInformationInNorth.add(new SimpleLabel("Section before '"));
 				LinkButton btnPresection = new LinkButton(preSection.getName());
-				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection)));
+				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection, chapter)));
 				panel_helpfullInformationInNorth.add(btnPresection);
 				panel_helpfullInformationInNorth.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toCompleteString()));
 			}
