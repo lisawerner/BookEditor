@@ -2,8 +2,8 @@ package GUI.bookeditorFrame;
 
 import javax.swing.JButton;
 
-import GUI.Content.Page_sortContent;
 import GUI.chapter.Page_viewChapter;
+import GUI.content.Page_sortContent;
 import GUI.filterPage.FilterChaptersPage;
 import GUI.miscPage.NotesPage;
 import GUI.personPage.PersonsEmptyPage;

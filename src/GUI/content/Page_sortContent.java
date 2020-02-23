@@ -1,4 +1,4 @@
-package GUI.Content;
+package GUI.content;
 
 import GUI_components.Page;
 import GUI_components.StructureCard;

@@ -1,10 +1,11 @@
-package GUI.personPage;
+package GUI.race;
 
 import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.personPage.PersonEditorPage;
 import GUI_components.LinkButton;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
@@ -12,12 +13,12 @@ import book.Book;
 import person.Person;
 import person.Race;
 
-public class RaceRepresentativesCard extends TransparentPanel {
+public class Card_ViewRaceRepresentatives extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Race my_race;
 
-	public RaceRepresentativesCard(Race givenRace) {
+	public Card_ViewRaceRepresentatives(Race givenRace) {
 		my_race = givenRace;
 		
 		setLayout(new GridLayout(0, 1, 5, 5));

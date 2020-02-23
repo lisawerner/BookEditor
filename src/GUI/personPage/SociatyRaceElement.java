@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.race.Page_EditRace;
 import GUI_components.LinkButton;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
@@ -27,7 +28,7 @@ public class SociatyRaceElement extends TransparentPanel {
 		
 		LinkButton btnLinkbuttonrace = new LinkButton(race.getName());
 		panel_race.add(btnLinkbuttonrace);
-		btnLinkbuttonrace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new RaceEditorPage(race)));
+		btnLinkbuttonrace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race)));
 		
 		SimpleLabel lblMemberListOf = new SimpleLabel("Member-List: ");
 		panel_race.add(lblMemberListOf);

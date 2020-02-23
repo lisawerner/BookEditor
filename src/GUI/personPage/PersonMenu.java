@@ -2,6 +2,7 @@ package GUI.personPage;
 
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.race.Page_RaceSystem;
 import GUI_components.PageMenu;
 import book.Book;
 import person.Person;
@@ -15,11 +16,11 @@ public class PersonMenu extends PageMenu {
 		JButton btnViewRelationships = this.addButtonToTopMenu("View Society");
 		btnViewRelationships.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewSocietyPage()));
 		
-		if(Book.getInstance().getSociety().isRaceSystemActivated()) {			
-			JButton btnAddRace = this.addButtonToTopMenu("Add new Race");
-			btnAddRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new RaceEditorPage(null)));
+		if(Book.getInstance().getSociety().isRaceSystemActivated()){			
+			JButton btnViewRaceSystem = this.addButtonToTopMenu("View Race-System");
+			btnViewRaceSystem.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_RaceSystem()));
 		}
-		
+				
 		JButton btnPersonFilter = this.addButtonToTopMenu("Filter Persons");
 		btnPersonFilter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new FilterPersonPage()));
 		

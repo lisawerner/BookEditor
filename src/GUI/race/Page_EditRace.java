@@ -1,29 +1,33 @@
-package GUI.personPage;
+package GUI.race;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import GUI.personPage.PersonMenu;
 import GUI_components.Page;
 import GUI_components.StructureCard;
 import person.Race;
 
-public class RaceEditorPage extends Page {
+public class Page_EditRace extends Page {
 	private static final long serialVersionUID = 1L;
 	
 	private Race my_race;
 
-	public RaceEditorPage(Race givenRace) {
+	public Page_EditRace(Race givenRace) {
 		super("Society: Persons, Relationships, Races...");
 		
 		my_race = givenRace;
 		
 		//****************************************************************************************
-		this.addCard(new StructureCard("Edit Race", new RaceCreateCard(my_race)));
+		this.addCard(new StructureCard("Edit Race", new Card_CreateRace(my_race)));
 		
 		//****************************************************************************************
-		if(my_race != null) {this.addCard(new StructureCard("Race Representatives", new RaceRepresentativesCard(my_race)));}
+		if(my_race != null) {
+			this.addCard(new StructureCard("Race Representatives", new Card_ViewRaceRepresentatives(my_race)));
+			this.addCard(new StructureCard("Edit Race Development", new Card_RaceDevelopment(my_race)));
+		}
 		
 		//****************************************************************************************
 		//****************************************************************************************

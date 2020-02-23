@@ -7,8 +7,8 @@ import book.Section;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import GUI.Content.Page_sortContent;
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.content.Page_sortContent;
 
 public class DeleteSectionCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

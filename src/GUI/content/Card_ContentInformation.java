@@ -1,4 +1,4 @@
-package GUI.Content;
+package GUI.content;
 
 import GUI_components.TransparentPanel;
 import javax.swing.JButton;

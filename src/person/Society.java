@@ -223,7 +223,7 @@ public class Society {
 		}
 	}
 
-	private Race getRace(ObjectID raceID) {
+	public Race getRace(ObjectID raceID) {
 		for(Race race : my_races) {
 			if(race.getID().equals(raceID)) {
 				return race;

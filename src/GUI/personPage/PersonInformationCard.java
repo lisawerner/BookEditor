@@ -10,6 +10,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.race.Page_EditRace;
 import GUI_components.InfoButton;
 import GUI_components.LinkButton;
 import GUI_components.SimpleCheckbox;
@@ -258,7 +259,7 @@ public class PersonInformationCard extends TransparentPanel {
 			}
 			LinkButton openRace = new LinkButton("<html>&#8663</html>");
 			panel_singleRace.add(openRace);
-			openRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new RaceEditorPage(race)));
+			openRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race)));
 		}
 		
 		//*********************************************************************************

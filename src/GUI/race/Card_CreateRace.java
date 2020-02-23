@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.race;
 
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextarea;
@@ -14,7 +14,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 
 import java.awt.GridLayout;
 
-public class RaceCreateCard extends TransparentPanel {
+public class Card_CreateRace extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Race my_race;
@@ -24,7 +24,7 @@ public class RaceCreateCard extends TransparentPanel {
 	
 	private SimpleLabel lblSaveHint;
 
-	public RaceCreateCard(Race givenRace) {
+	public Card_CreateRace(Race givenRace) {
 		my_race = givenRace;
 		
 		
@@ -79,7 +79,7 @@ public class RaceCreateCard extends TransparentPanel {
 			if(my_race == null) {
 				my_race = new Race(txt_raceName.getText(), txt_raceNotes.getText());
 				Book.getInstance().getSociety().addRace(my_race);
-				BookEditorFrame.getInstance().switchBody(new RaceEditorPage(my_race));
+				BookEditorFrame.getInstance().switchBody(new Page_EditRace(my_race));
 			} else {
 				my_race.edit(txt_raceName.getText(), txt_raceNotes.getText());
 			}
