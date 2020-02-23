@@ -249,6 +249,10 @@ public class PersonInformationCard extends TransparentPanel {
 			panel_raceSelection.add(panel_singleRace);
 			
 			SimpleRadiobutton chbox_race = new SimpleRadiobutton(race.getName());
+			ObjectID parentRace = race.getParentRace();
+			if(parentRace != null){
+				chbox_race.setText("[" + Book.getInstance().getSociety().getRace(parentRace).getName() + ":] " + race.getName());
+			}
 			panel_singleRace.add(chbox_race);
 			btngroup_races.add(chbox_race);
 			chbox_race.addActionListener(e -> setRace(race));

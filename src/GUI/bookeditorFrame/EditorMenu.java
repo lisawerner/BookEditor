@@ -6,11 +6,11 @@ import GUI.chapter.Page_viewChapter;
 import GUI.content.Page_sortContent;
 import GUI.filterPage.FilterChaptersPage;
 import GUI.miscPage.NotesPage;
-import GUI.personPage.PersonsEmptyPage;
+import GUI.personPage.ViewSocietyPage;
 import GUI.printPage.PrintPage;
 import GUI.settingsPage.BookSettingsPage;
 import GUI.timelinePage.TimelinePage;
-import GUI.worldPage.WorldPage;
+import GUI.worldPage.ViewWorldmapPage;
 import GUI_components.MenuBook;
 import book.Book;
 import book.Chapter;
@@ -29,10 +29,10 @@ public class EditorMenu extends MenuBook {
 		btnOpenSettings.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new BookSettingsPage()));
 		
 		JButton btnOpenPersons = createMainButton("Society");
-		btnOpenPersons.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonsEmptyPage()));
+		btnOpenPersons.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewSocietyPage()));
 		
 		JButton btnOpenPlaces = createMainButton("World");
-		btnOpenPlaces.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new WorldPage()));
+		btnOpenPlaces.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewWorldmapPage()));
 		
 		JButton btnOpenTimeline = createMainButton("Timeline");
 		btnOpenTimeline.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new TimelinePage()));

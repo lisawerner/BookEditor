@@ -20,7 +20,7 @@ import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Dimension;
 
-public class Card_RaceDevelopment extends TransparentPanel {
+public class Card_RaceEditDevelopment extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private Race my_race;
@@ -31,7 +31,7 @@ public class Card_RaceDevelopment extends TransparentPanel {
 	private JComboBox<ComboItem> cmbox_possibleParentRaces;
 	private TransparentPanel panel_allInfos;
 	
-	public Card_RaceDevelopment(Race givenRace) {
+	public Card_RaceEditDevelopment(Race givenRace) {
 		my_race = givenRace;
 		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));

@@ -11,15 +11,20 @@ import person.Race;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+
 import java.awt.GridLayout;
 import javax.swing.JSeparator;
 
-public class Card_RaceOverview extends TransparentPanel {
+public class Card_RaceDevelopmentTree extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	public Card_RaceOverview() {
+	public Card_RaceDevelopmentTree() {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
+		JButton btnAddRace = new JButton("Add new Race");
+		this.add(btnAddRace);
+		btnAddRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(null)));
 		
 		for(Race rootRace : getRootRaces()){
 			TransparentPanel panel_raceTree = new TransparentPanel();
@@ -69,9 +74,10 @@ public class Card_RaceOverview extends TransparentPanel {
 				LinkButton btnSubtype = new LinkButton(subtype.getName());
 				btnSubtype.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype)));
 				panel_RaceWithSubtypes.add(btnSubtype);
+				panel_RaceWithSubtypes.add(new SimpleLabel("; "));
 			}
 			
-			SimpleLabel lbl_rightBrace = new SimpleLabel(" ]");
+			SimpleLabel lbl_rightBrace = new SimpleLabel("]");
 			panel_RaceWithSubtypes.add(lbl_rightBrace);
 		}
 		

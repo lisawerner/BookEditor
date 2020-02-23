@@ -60,7 +60,7 @@ public class PersonEditorPage extends Page {
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Book.getInstance().getSociety().deletePerson(my_person);
-				BookEditorFrame.getInstance().switchBody(new PersonsEmptyPage());
+				BookEditorFrame.getInstance().switchBody(new ViewSocietyPage());
 			}
 		});
 		setFooter(btnDelete);

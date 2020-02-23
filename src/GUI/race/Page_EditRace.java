@@ -26,7 +26,7 @@ public class Page_EditRace extends Page {
 		//****************************************************************************************
 		if(my_race != null) {
 			this.addCard(new StructureCard("Race Representatives", new Card_ViewRaceRepresentatives(my_race)));
-			this.addCard(new StructureCard("Edit Race Development", new Card_RaceDevelopment(my_race)));
+			this.addCard(new StructureCard("Edit Race Development", new Card_RaceEditDevelopment(my_race)));
 		}
 		
 		//****************************************************************************************

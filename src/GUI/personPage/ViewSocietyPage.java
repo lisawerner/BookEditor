@@ -1,5 +1,6 @@
 package GUI.personPage;
 
+import GUI.race.Card_RaceSociety;
 import GUI_components.Page;
 import GUI_components.StructureCard;
 import book.Book;
@@ -13,7 +14,7 @@ public class ViewSocietyPage extends Page {
 		this.addCard(new StructureCard("Familiar Society", new SocietyFamiliarCard()));
 		
 		if(Book.getInstance().getSociety().isRaceSystemActivated()) {
-			this.addCard(new StructureCard("Race Society", new SocietyRaceCard()));
+			this.addCard(new StructureCard("Race Society", new Card_RaceSociety()));
 		}
 		
 		setMenu(new PersonMenu());

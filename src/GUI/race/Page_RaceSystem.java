@@ -1,7 +1,6 @@
 package GUI.race;
 
 import GUI.personPage.PersonMenu;
-import GUI.personPage.SocietyRaceCard;
 import GUI_components.Page;
 import GUI_components.StructureCard;
 
@@ -11,9 +10,9 @@ public class Page_RaceSystem extends Page {
 	public Page_RaceSystem() {
 		super("Society: Persons, Relationships, Races...");
 		
-		this.addCard(new StructureCard("Race System", new Card_RaceOverview()));
+		this.addCard(new StructureCard("Race development tree", new Card_RaceDevelopmentTree()));
 		
-		this.addCard(new StructureCard("Race Society", new SocietyRaceCard()));
+		this.addCard(new StructureCard("Race representantives", new Card_RaceSociety()));
 		
 		setMenu(new PersonMenu());
 	}
