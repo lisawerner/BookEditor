@@ -40,10 +40,6 @@ public class PrintHintCard extends TransparentPanel {
 		SimpleLabel lblSectionsEmpty = new SimpleLabel("Warning: You have Sections, which have no text! Filter for Sections without text");
 		lblSectionsEmpty.setWarning(true);
 		if(Book.getInstance().getTableOfContent().getEmptySections().size() > 0) {add(lblSectionsEmpty);}
-		
-		SimpleLabel lblSectionsUnsorted = new SimpleLabel("Warning: You have Sections, which are not sorted inside table of content! Filter for these unsorted Sections");
-		lblSectionsUnsorted.setWarning(true);
-		if(Book.getInstance().getTableOfContent().getUnsortedSections().size() > 0) {add(lblSectionsUnsorted);}
 	}
 
 }

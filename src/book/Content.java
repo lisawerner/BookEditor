@@ -86,14 +86,6 @@ public class Content {
 		return sectionList;
 	}
 	
-	public List<Section> getUnsortedSections(){
-		ArrayList<Section> sectionList = new ArrayList<Section>();
-		for(Chapter chapter : my_chapters) {
-			sectionList.addAll(chapter.getSections().stream().filter(section -> section.isUnsorted()).collect(Collectors.toList()));
-		}
-		return sectionList;
-	}
-	
 	public List<Section> getSectionsByDevStatus(int devStatus, boolean andSmaller){
 		ArrayList<Section> sectionList = new ArrayList<Section>();
 		for(Chapter chapter : my_chapters) {
@@ -261,6 +253,23 @@ public class Content {
 			}
 		}
 		return null;
+	}
+
+	public ArrayList<Section> getAllSectionsWhichUsesThatSectionAsTimeRelation(ObjectID maybeRelatedSection) {
+		ArrayList<Section> listOfUsers = new ArrayList<Section>();
+		for(Chapter chapter : my_chapters){
+			for(Section section : chapter.getSections()){
+				if(section.hasTimestamp()){
+					Section relSection = section.getTimestamp().getRelationSection();
+					if(relSection != null){						
+						if(relSection.getID().equals(maybeRelatedSection)){
+							listOfUsers.add(section);
+						}
+					}
+				}
+			}
+		}
+		return listOfUsers;
 	}
 	
 }

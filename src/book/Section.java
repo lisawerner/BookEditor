@@ -19,7 +19,6 @@ public class Section extends SerializedObject {
 	//Text and Structure
 	private String my_name;
 	private String my_text;
-	private boolean isUnsorted;
 	
 	//Tagged Informations
 	private ArrayList<Tag> my_tags; //TODO: Persönlich/Privat Tags die von den Nutzern spezifisch angelegt wurden
@@ -34,8 +33,6 @@ public class Section extends SerializedObject {
 	
 		my_name = newName;
 		my_text = "";
-		
-		isUnsorted = true;
 		
 		my_tags = new ArrayList<Tag>();
 		my_relationshipSwitches = new ArrayList<Relationship>();
@@ -115,10 +112,6 @@ public class Section extends SerializedObject {
 			return my_text.substring(0, 200) + "...";
 		}
 		return my_text;
-	}
-	
-	public boolean isUnsorted() {
-		return isUnsorted;
 	}
 
 	public void setTimestamp(Timestamp newTimestamp) {

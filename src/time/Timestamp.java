@@ -2,6 +2,9 @@ package time;
 
 import java.util.Date;
 
+import book.Book;
+import book.Section;
+
 public class Timestamp {
 	
 	//Ideen:
@@ -44,8 +47,14 @@ public class Timestamp {
 	public String toCompleteString() {
 		if(my_specificDate != null) {
 			return my_specificDate.toCompleteString();
+		} else if(my_relativeDate != null) {
+			SpecificDate convertedSpecificDate = my_relativeDate.generateSpecificDate();
+			if(convertedSpecificDate != null){				
+				return convertedSpecificDate.toCompleteString();			
+			}
+			return null;
 		} else {
-			return my_relativeDate.generateSpecificDate().toCompleteString();
+			return null;
 		}
 	}
 	
@@ -75,6 +84,17 @@ public class Timestamp {
 
 	public RelativeDate getUnspecificDate() {
 		return my_relativeDate;
+	}
+
+	public Section getRelationSection() {
+		if(my_specificDate != null){
+			return null;
+		} else if(my_relativeDate != null){
+			Section relatedSection = Book.getInstance().getTableOfContent().getSection(my_relativeDate.getRelatedSectionID());		
+			return relatedSection;
+		} else {
+			return null;
+		}
 	}
 	
 

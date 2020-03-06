@@ -10,6 +10,7 @@ import book.Book;
 import book.Chapter;
 import book.Section;
 import time.RelativeDate;
+import time.SpecificDate;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -363,7 +364,11 @@ public class TimestampRelativeEditor extends TransparentPanel {
 	
 	private void updateRsult() {
 		if(getResult() != null) {
-			String restultText = "<html>Result: " + getResult().generateSpecificDate().toCompleteString() + "</html>";
+			SpecificDate specDate = getResult().generateSpecificDate();
+			String restultText = "Result: can not be calculated because related date does not have a timestamp";
+			if(specDate != null){				
+				restultText = "<html>Result: " + getResult().generateSpecificDate().toCompleteString() + "</html>";
+			}
 			lblResult.setText(restultText);
 		}
 	}

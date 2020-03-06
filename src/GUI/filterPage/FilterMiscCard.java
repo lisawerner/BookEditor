@@ -30,10 +30,6 @@ public class FilterMiscCard extends TransparentPanel {
 		unfinishedFilter.add(rdbtn_EmptyText);
 		btngroup_unfinished.add(rdbtn_EmptyText);
 		rdbtn_EmptyText.addActionListener(e -> filterEmpty());
-		SimpleRadiobutton rdbtn_UnsortedText = new SimpleRadiobutton("Unsorted Sections");
-		unfinishedFilter.add(rdbtn_UnsortedText);
-		btngroup_unfinished.add(rdbtn_UnsortedText);
-		rdbtn_UnsortedText.addActionListener(e -> filterUnsorted());
 		SimpleRadiobutton rdbtn_Unfinished = new SimpleRadiobutton("Unfinished Sections");
 		unfinishedFilter.add(rdbtn_Unfinished);
 		btngroup_unfinished.add(rdbtn_Unfinished);
@@ -68,11 +64,6 @@ public class FilterMiscCard extends TransparentPanel {
 	private void filterEmpty(){
 		clear();
 		fill(Book.getInstance().getTableOfContent().getEmptySections());
-	}
-	
-	private void filterUnsorted() {
-		clear();
-		fill(Book.getInstance().getTableOfContent().getUnsortedSections());
 	}
 	
 	private void filterUnfinished() {

@@ -14,6 +14,7 @@ import GUI_components.InfoButton;
 import GUI_components.PageMenu;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
+import book.Book;
 import book.Chapter;
 import book.DevelopmentStatus;
 import book.Section;
@@ -54,7 +55,19 @@ public class SectionInformationMenu extends PageMenu {
 		}
 		this.addText("Name: " + name);
 		if(my_section.hasTimestamp()) {
-			this.addText("Timestamp: " + my_section.getTimestamp().toCompleteString());
+			String timestamp = my_section.getTimestamp().toCompleteString();
+			if(timestamp != null){				
+				this.addText("Timestamp: " + timestamp);		
+			} else {
+				Section timeSection = my_section.getTimestamp().getRelationSection();
+				if(timeSection != null){					
+					this.addText("Timestamp relates to: ");
+					JButton timeButton = this.addLinkedListButton(timeSection.getName());
+					timeButton.addActionListener(e -> this.openOtherSection(timeSection));
+				} else {
+					this.addText("Timestamp: ??");
+				}
+			}
 		} else {
 			this.addText("Timestamp: ??");
 		}
@@ -113,6 +126,10 @@ public class SectionInformationMenu extends PageMenu {
 
 	}
 	
+	private void openOtherSection(Section otherSection) {
+		BookEditorFrame.getInstance().switchBody(new SectionPage(otherSection, Book.getInstance().getTableOfContent().getChapter(otherSection.getParentChapterID())));
+	}
+
 	private void openPlaceEditor(Place place) {
 		if(UserSettings.getInstance().getDisplaySettings()) {
 			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new PlaceEditor(place, true));

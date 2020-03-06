@@ -65,10 +65,16 @@ public class RelativeDate {
 
 	public SpecificDate generateSpecificDate() {
 		Section relatedSection = Book.getInstance().getTableOfContent().getSection(relatedToSection);
+		if(relatedSection == null){
+			return null;
+		}
 		if(!relatedSection.hasTimestamp()){
 			return null;
 		}
 		SpecificDate relatedDate = relatedSection.getTimestamp().getSpecificDate();
+		if(relatedDate == null){
+			return null;
+		}
 		int myYear = relatedDate.getYear();
 		int myMonth = relatedDate.getMonth();
 		int myDay = relatedDate.getDay();
