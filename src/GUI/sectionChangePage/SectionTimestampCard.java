@@ -54,62 +54,8 @@ public class SectionTimestampCard extends TransparentPanel {
 			}
 		}
 		
-		
-		//*****************************************************************************************************************
-		TransparentPanel panel_BODY = new TransparentPanel();
-		add(panel_BODY, BorderLayout.CENTER);
-		panel_BODY.setLayout(new GridLayout(1, 0, 20, 20));
-		
 		ButtonGroup btngrTimestampType = new ButtonGroup();
-		
-		TransparentPanel panel_unspecific = new TransparentPanel();
-		panel_BODY.add(panel_unspecific);
-		panel_unspecific.setLayout(new BorderLayout(10, 10));
-		
-		rdbtnUnspecificTimestamp = new SimpleRadiobutton("Unspecific Timestamp");
-		rdbtnUnspecificTimestamp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				switchSpecificAndUnspecific();
-			}
-		});
-		btngrTimestampType.add(rdbtnUnspecificTimestamp);
-		panel_unspecific.add(rdbtnUnspecificTimestamp, BorderLayout.NORTH);
-		
-		panel_unspecificBODY = new TimestampRelativeEditor(my_section);
-		if(my_section.hasTimestamp()) {
-			if(!my_section.getTimestamp().isSpecificDate()) {
-				panel_unspecificBODY.activate(my_section.getTimestamp().getUnspecificDate());
-				rdbtnUnspecificTimestamp.setSelected(true);
-				panel_unspecificBODY.switchEnabled(true);
-			}
-		}
-		panel_unspecific.add(panel_unspecificBODY, BorderLayout.CENTER);
-		
-		//*****************************************************************************************************
-		
-		TransparentPanel panel_specific = new TransparentPanel();
-		panel_BODY.add(panel_specific);
-		panel_specific.setLayout(new BorderLayout(10, 10));
-		
-		rdbtnSpecificTimestamp = new SimpleRadiobutton("Specific Timestamp");
-		rdbtnSpecificTimestamp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				switchSpecificAndUnspecific();
-			}
-		});
-		btngrTimestampType.add(rdbtnSpecificTimestamp);
-		panel_specific.add(rdbtnSpecificTimestamp, BorderLayout.NORTH);
-				
-		panel_specificBODY = new TimestampSpecificEditor(my_section);
-		panel_specific.add(panel_specificBODY, BorderLayout.CENTER);
-		
-		if(my_section.hasTimestamp()) {
-			if(my_section.getTimestamp().isSpecificDate()) {
-				rdbtnSpecificTimestamp.setSelected(true);
-				panel_specificBODY.switchEnabled(true);
-			}
-		}
-		
+
 		//*****************************************************************************************************
 		TransparentPanel panel_FOOTER = new TransparentPanel();
 		add(panel_FOOTER, BorderLayout.SOUTH);
@@ -120,6 +66,41 @@ public class SectionTimestampCard extends TransparentPanel {
 		
 		SimpleLabel lblSaveWarning = new SimpleLabel(" ");
 		panel_FOOTER.add(lblSaveWarning, BorderLayout.NORTH);
+		
+		TransparentPanel panel_newBody = new TransparentPanel();
+		add(panel_newBody, BorderLayout.CENTER);
+		panel_newBody.setLayout(new BorderLayout(10, 10));
+		
+		TransparentPanel panel_switchBetweenTimestamptypes = new TransparentPanel();
+		panel_switchBetweenTimestamptypes.setLayout(new GridLayout(1, 0, 5, 5));
+		panel_newBody.add(panel_switchBetweenTimestamptypes, BorderLayout.NORTH);
+		
+		rdbtnUnspecificTimestamp = new SimpleRadiobutton("Unspecific Timestamp");
+		panel_switchBetweenTimestamptypes.add(rdbtnUnspecificTimestamp);
+		rdbtnUnspecificTimestamp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				switchSpecificAndUnspecific();
+			}
+		});
+		btngrTimestampType.add(rdbtnUnspecificTimestamp);
+		
+		rdbtnSpecificTimestamp = new SimpleRadiobutton("Specific Timestamp");
+		panel_switchBetweenTimestamptypes.add(rdbtnSpecificTimestamp);
+		rdbtnSpecificTimestamp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				switchSpecificAndUnspecific();
+			}
+		});
+		btngrTimestampType.add(rdbtnSpecificTimestamp);
+		
+		TransparentPanel panel_switchableBody = new TransparentPanel();
+		panel_newBody.add(panel_switchableBody, BorderLayout.CENTER);
+		
+		panel_unspecificBODY = new TimestampRelativeEditor(my_section);
+		panel_switchableBody.add(panel_unspecificBODY);
+		
+		panel_specificBODY = new TimestampSpecificEditor(my_section);
+		panel_switchableBody.add(panel_specificBODY);
 		btnSaveTimestamp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean canSave = true;
@@ -146,14 +127,29 @@ public class SectionTimestampCard extends TransparentPanel {
 			}
 		});
 		
+		if(my_section.hasTimestamp()) {
+			if(!my_section.getTimestamp().isSpecificDate()) {
+				panel_unspecificBODY.activate(my_section.getTimestamp().getUnspecificDate());
+				rdbtnUnspecificTimestamp.setSelected(true);
+				panel_unspecificBODY.switchEnabled(true);
+			}
+		}
+		
+		if(my_section.hasTimestamp()) {
+			if(my_section.getTimestamp().isSpecificDate()) {
+				rdbtnSpecificTimestamp.setSelected(true);
+				panel_specificBODY.switchEnabled(true);
+			}
+		}
+		
 		switchSpecificAndUnspecific();
 	}
 
 	private void switchSpecificAndUnspecific() {
 		//System.out.println("Set Specific Time: " + rdbtnSpecificTimestamp.isSelected());
-		panel_specificBODY.switchEnabled(rdbtnSpecificTimestamp.isSelected());
+		panel_specificBODY.setVisible(rdbtnSpecificTimestamp.isSelected());
 		//System.out.println("Set UNspecific Time: " + rdbtnUnspecificTimestamp.isSelected());
-		panel_unspecificBODY.switchEnabled(rdbtnUnspecificTimestamp.isSelected());
+		panel_unspecificBODY.setVisible(rdbtnUnspecificTimestamp.isSelected());
 	}
 	
 }
