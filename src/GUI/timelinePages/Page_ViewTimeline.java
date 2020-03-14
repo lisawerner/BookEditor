@@ -1,13 +1,13 @@
-package GUI.timelinePage;
+package GUI.timelinePages;
 
 import GUI_components.Page;
 import GUI_components.StructureCard;
 import GUI_components.TutorialCard;
 import global.UserSettings;
-public class TimelinePage extends Page {
+public class Page_ViewTimeline extends Page {
 	private static final long serialVersionUID = 1L;
 	
-	public TimelinePage() {
+	public Page_ViewTimeline() {
 		super("Timeline");
 		
 		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
@@ -22,9 +22,11 @@ public class TimelinePage extends Page {
 
 		//*******************************************************************************************************************
 		//*******************************************************************************************************************
-		addCard(new StructureCard("Filter Timeline", new TimelineFilterCard()));
-		//*******************************************************************************************************************
 		addCard(new StructureCard("View Timeline", new TimelineCard()));
+		
+		//*******************************************************************************************************************
+		//*******************************************************************************************************************
+		setMenu(new TimelineMenu());
 	}
 
 }

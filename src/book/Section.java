@@ -123,7 +123,20 @@ public class Section extends SerializedObject {
 	}
 
 	public boolean hasTimestamp() {
-		return my_timestamp != null;
+		if(my_timestamp == null){
+			return false;
+		}
+		return my_timestamp.hasDate();
+	}
+	
+	public boolean hasSpecificTimestamp(){
+		if(my_timestamp == null){
+			return false;
+		}
+		if(my_timestamp.getSpecificDate() == null){
+			return false;
+		}
+		return true;
 	}
 
 	public int getDevelopmentStatus() {

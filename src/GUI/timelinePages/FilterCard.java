@@ -1,18 +1,18 @@
-package GUI.timelinePage;
+package GUI.timelinePages;
 
 import GUI_components.SimpleCheckbox;
 import GUI_components.TransparentPanel;
 import book.Book;
 import time.TimelineSettings;
 
-public class TimelineFilterCard extends TransparentPanel {
+public class FilterCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private TimelineSettings my_settings;
 	
 	private SimpleCheckbox chbox_filterMainCharacters;
 
-	public TimelineFilterCard() {
+	public FilterCard() {
 		my_settings = Book.getInstance().getTimeline().getSettings();
 		
 		//Thats so useless...

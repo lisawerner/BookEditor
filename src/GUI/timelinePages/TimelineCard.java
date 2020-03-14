@@ -1,4 +1,4 @@
-package GUI.timelinePage;
+package GUI.timelinePages;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class TimelineCard extends TransparentPanel {
 		}
 		
 		for(Section section : sectionsSortedByTimestamp_FILTERED) {
-			if(section.hasTimestamp()) {
+			if(section.hasSpecificTimestamp()) {
 				TimelineElement currentElement = null;
 				if(leftPosition) {
 					currentElement = new TimelineElement(section, leftPosition);
@@ -54,7 +54,6 @@ public class TimelineCard extends TransparentPanel {
 				}
 				leftPosition = !leftPosition;
 			}
-
 		}
 		
 		if((sectionsSortedByTimestamp_FILTERED.size()%2)==0) {

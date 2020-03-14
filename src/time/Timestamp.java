@@ -22,6 +22,10 @@ public class Timestamp {
 		my_relativeDate = newRelativeDate;
 	}
 	
+	public boolean hasDate(){
+		return my_specificDate != null || my_relativeDate != null;
+	}
+	
 	public SpecificDate getSpecificDate() {
 		if(my_specificDate != null) {
 			return my_specificDate;

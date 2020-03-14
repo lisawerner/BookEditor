@@ -26,6 +26,8 @@ public class TimelineItem extends TransparentPanel {
 	public TimelineItem(boolean leftPosition, String date, boolean isSpecific, boolean beforeChrist) {
 		setLayout(new BorderLayout(0, 0));
 		
+		System.out.println(date);
+		
 		if(date.length() < 10) {
 			String newDate = "";
 			if(date.indexOf(".") < 2) {

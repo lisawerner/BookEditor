@@ -24,7 +24,7 @@ public class Content {
 		ArrayList<Section> sortedSections = new ArrayList<Section>();
 		List<Section> UNsortedCops = new ArrayList<Section>();
 		for(Chapter chapter : my_chapters) {
-			UNsortedCops.addAll(chapter.getSections().stream().filter(section -> section.hasTimestamp()).collect(Collectors.toList()));
+			UNsortedCops.addAll(chapter.getSections().stream().filter(section -> section.hasSpecificTimestamp()).collect(Collectors.toList()));
 		}
 
 		while(UNsortedCops.size() != 0) {			

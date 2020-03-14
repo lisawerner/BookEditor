@@ -1,4 +1,4 @@
-package GUI.timelinePage;
+package GUI.timelinePages;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.personPage.PersonEditorPage;

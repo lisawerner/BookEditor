@@ -1,0 +1,53 @@
+package GUI.timelinePages;
+
+import java.awt.FlowLayout;
+
+import javax.swing.BoxLayout;
+
+import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.chapter.Page_viewChapter;
+import GUI.sectionPage.SectionPage;
+import GUI_components.LinkButton;
+import GUI_components.SimpleLabel;
+import GUI_components.TransparentPanel;
+import GUI_components.WrapLayout;
+import book.Book;
+import book.Chapter;
+import book.Section;
+
+public class Card_ContentWithoutTimestamp extends TransparentPanel {
+	private static final long serialVersionUID = 1L;
+
+	public Card_ContentWithoutTimestamp() {
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+
+		
+		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()){
+			TransparentPanel panel_chapter = new TransparentPanel();
+			panel_chapter.setLayout(new WrapLayout(FlowLayout.LEADING));
+			
+			panel_chapter.add(new SimpleLabel("Chapter: "));
+			
+			LinkButton btn_chapter = new LinkButton(chapter.getTitle());
+			panel_chapter.add(btn_chapter);
+			btn_chapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter)));
+			
+			panel_chapter.add(new SimpleLabel(" has following Sections without Timestamp: "));
+			
+			boolean hasMissingTimestamps = false;
+			for(Section section : chapter.getSections()){
+				if(!section.hasTimestamp()){
+					LinkButton btn_section = new LinkButton(chapter.getTitle());
+					panel_chapter.add(btn_section);
+					btn_section.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter)));
+					hasMissingTimestamps = true;
+				}
+			}
+			if(hasMissingTimestamps){
+				this.add(panel_chapter);
+			}
+		}
+
+	}
+
+}

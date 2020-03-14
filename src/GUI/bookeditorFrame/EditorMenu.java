@@ -9,7 +9,7 @@ import GUI.miscPage.NotesPage;
 import GUI.personPage.ViewSocietyPage;
 import GUI.printPage.PrintPage;
 import GUI.settingsPage.BookSettingsPage;
-import GUI.timelinePage.TimelinePage;
+import GUI.timelinePages.Page_ViewTimeline;
 import GUI.worldPage.ViewWorldmapPage;
 import GUI_components.MenuBook;
 import book.Book;
@@ -35,7 +35,7 @@ public class EditorMenu extends MenuBook {
 		btnOpenPlaces.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewWorldmapPage()));
 		
 		JButton btnOpenTimeline = createMainButton("Timeline");
-		btnOpenTimeline.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new TimelinePage()));
+		btnOpenTimeline.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_ViewTimeline()));
 		
 		JButton btnOpenNoteStuff = createMainButton("Notes");
 		btnOpenNoteStuff.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new NotesPage()));
