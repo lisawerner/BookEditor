@@ -1,14 +1,14 @@
 package GUI.sectionChangePage;
 
-import GUI_components.ComboItem;
-import GUI_components.InfoButton;
-import GUI_components.SimpleIntegerTextfield;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Chapter;
 import book.Section;
+import GUI.components.ComboItem;
+import GUI.components.InfoButton;
+import GUI.components.SimpleIntegerTextfield;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleRadiobutton;
+import GUI.components.TransparentPanel;
 import time.RelativeDate;
 import time.SpecificDate;
 

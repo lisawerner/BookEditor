@@ -1,11 +1,11 @@
 package GUI.sectionChangePage;
 
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Chapter;
 import book.Section;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.content.Page_sortContent;
+import GUI.pages.content.Page_sortContent;
 import GUI.sectionPage.SectionPage;
 
 public class DeleteSectionCard extends TransparentPanel {
@@ -67,7 +67,7 @@ public class DeleteSectionCard extends TransparentPanel {
 		      // Nothing to do
 		    } else if (response == JOptionPane.YES_OPTION) {
 		    	my_parentChapter.removeSection(my_section);
-		    	BookEditorFrame.getInstance().reloadMenu();
+//		    	BookEditorFrame.getInstance().reloadMenu();
 		    	BookEditorFrame.getInstance().switchBody(new Page_sortContent());
 		    } else if (response == JOptionPane.CLOSED_OPTION) {
 		      // Nothing to do

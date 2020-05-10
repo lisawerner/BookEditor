@@ -1,10 +1,10 @@
 package GUI.sectionChangePage;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
-import GUI_components.TutorialCard;
 import book.Chapter;
 import global.UserSettings;
+import GUI.components.Page;
+import GUI.components.StructureCard;
+import GUI.components.TutorialCard;
 
 public class CreateSectionPage extends Page {
 	private static final long serialVersionUID = 1L;

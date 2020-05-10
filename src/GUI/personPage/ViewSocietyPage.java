@@ -1,9 +1,9 @@
 package GUI.personPage;
 
 import GUI.race.Card_RaceSociety;
-import GUI_components.Page;
-import GUI_components.StructureCard;
 import book.Book;
+import GUI.components.Page;
+import GUI.components.StructureCard;
 
 public class ViewSocietyPage extends Page {
 	private static final long serialVersionUID = 1L;
@@ -16,8 +16,6 @@ public class ViewSocietyPage extends Page {
 		if(Book.getInstance().getSociety().isRaceSystemActivated()) {
 			this.addCard(new StructureCard("Race Society", new Card_RaceSociety()));
 		}
-		
-		setMenu(new PersonMenu());
 	}
 
 }

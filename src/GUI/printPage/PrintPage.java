@@ -1,7 +1,7 @@
 package GUI.printPage;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
+import GUI.components.Page;
+import GUI.components.StructureCard;
 
 public class PrintPage extends Page {
 	private static final long serialVersionUID = 1L;

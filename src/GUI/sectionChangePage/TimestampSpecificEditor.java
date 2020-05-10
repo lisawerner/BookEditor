@@ -14,13 +14,13 @@ import javax.swing.JComboBox;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import GUI_components.InfoButton;
-import GUI_components.Pair;
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
 import book.Section;
+import GUI.components.InfoButton;
+import GUI.components.Pair;
+import GUI.components.SimpleCheckbox;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextfield;
+import GUI.components.TransparentPanel;
 import time.SpecificDate;
 
 public class TimestampSpecificEditor extends TransparentPanel {

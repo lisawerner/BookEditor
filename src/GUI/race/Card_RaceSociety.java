@@ -1,7 +1,7 @@
 package GUI.race;
 
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.TransparentPanel;
 import person.Race;
 
 import javax.swing.BoxLayout;

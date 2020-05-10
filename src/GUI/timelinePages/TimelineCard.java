@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 
-import GUI_components.TimelineItem;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Section;
+import GUI.components.TimelineItem;
+import GUI.components.TransparentPanel;
 
 public class TimelineCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

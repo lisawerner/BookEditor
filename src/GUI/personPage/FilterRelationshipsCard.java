@@ -7,12 +7,12 @@ import java.util.List;
 import javax.swing.ButtonGroup;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI_components.ComboItem;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.ComboItem;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleRadiobutton;
+import GUI.components.TransparentPanel;
 import person.Person;
 import javax.swing.JComboBox;
 
@@ -115,7 +115,7 @@ public class FilterRelationshipsCard extends TransparentPanel {
 	private void fill(List<Person> personList) {
 		for(Person person : personList) {
 			LinkButton sectionBTN = new LinkButton(person.getInformation().getName());
-			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false)));
+			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(person, false));
 			panel_filterResult.add(sectionBTN);
 		}
 		panel_filterResult.revalidate();

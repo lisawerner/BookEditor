@@ -9,13 +9,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI_components.ComboItem;
-import GUI_components.LinkButton;
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
+import GUI.components.ComboItem;
+import GUI.components.LinkButton;
+import GUI.components.SimpleCheckbox;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import world.Place;
 
 public class PlaceWorlddependenciesCard extends TransparentPanel {
@@ -99,7 +99,7 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 			} else {
 				for(Place childInfo : childrenInfos) {
 					LinkButton lblChildInfo = new LinkButton(childInfo.getName());
-					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(childInfo, false)));
+					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().openPlacePage(childInfo, false));
 					panel_childrenList.add(lblChildInfo);
 					panel_childrenList.add(new SimpleLabel(";  "));
 				}				

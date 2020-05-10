@@ -8,12 +8,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JSeparator;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI_components.InfoButton;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
+import GUI.components.InfoButton;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import world.Place;
 
 public class WorldMapCard extends TransparentPanel {
@@ -52,7 +52,7 @@ public class WorldMapCard extends TransparentPanel {
 				panel_sortBody.add(panel_worldEntry);
 				
 				LinkButton lblPlaceInfo = new LinkButton(place.getName());
-				lblPlaceInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(place, false)));
+				lblPlaceInfo.addActionListener(e -> BookEditorFrame.getInstance().openPlacePage(place, false));
 				panel_worldEntry.add(lblPlaceInfo);
 				if(!place.getType().isEmpty()) {						
 					panel_worldEntry.add(new SimpleLabel(" [Type: " + place.getType() + "]"));
@@ -76,7 +76,7 @@ public class WorldMapCard extends TransparentPanel {
 				panel_worldEntry.add(new SimpleLabel(hierarchyDepth));
 				Place currentPlace = Book.getInstance().getWorld().getPlace(childID);
 				LinkButton lblPlaceInfo = new LinkButton(currentPlace.getName());
-				lblPlaceInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(currentPlace, false)));
+				lblPlaceInfo.addActionListener(e -> BookEditorFrame.getInstance().openPlacePage(currentPlace, false));
 				panel_worldEntry.add(lblPlaceInfo);
 				if(!currentPlace.getType().isEmpty()) {					
 					panel_worldEntry.add(new SimpleLabel(" [Type: " + currentPlace.getType() + "]"));

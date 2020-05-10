@@ -1,9 +1,9 @@
 package GUI.personPage;
 
-import GUI_components.LinkButton;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.LinkButton;
+import GUI.components.SimpleRadiobutton;
+import GUI.components.TransparentPanel;
 import person.Person;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -49,7 +49,7 @@ public class PersonFilterCard extends TransparentPanel {
 	private void fill(List<Person> personList) {
 		for(Person person : personList) {
 			LinkButton sectionBTN = new LinkButton(person.getInformation().getName());
-			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false)));
+			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(person, false));
 			panel_filterResult.add(sectionBTN);
 		}
 		panel_filterResult.revalidate();

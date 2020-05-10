@@ -1,8 +1,8 @@
 package GUI.timelinePages;
 
-import GUI_components.SimpleCheckbox;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.SimpleCheckbox;
+import GUI.components.TransparentPanel;
 import time.TimelineSettings;
 
 public class FilterCard extends TransparentPanel {

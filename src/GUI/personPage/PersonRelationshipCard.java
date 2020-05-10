@@ -6,12 +6,12 @@ import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Section;
 import global.ObjectID;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import person.Person;
 import person.Relationship;
 
@@ -35,7 +35,7 @@ public class PersonRelationshipCard extends TransparentPanel {
 				Person relPerson = Book.getInstance().getSociety().getPerson(relship.getOtherPerson(my_person.getID()));
 				LinkButton lbtnRelPerson = new LinkButton(relPerson.getInformation().getNickname());
 				relationPanel.add(lbtnRelPerson);
-				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(relPerson, false)));
+				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(relPerson, false));
 				relationPanel.add(new SimpleLabel(" [Switched in Section: "));
 				Section switchSection = Book.getInstance().getTableOfContent().getSectionByRelationship(relID);
 				LinkButton lbtnSection = new LinkButton(switchSection.getName());

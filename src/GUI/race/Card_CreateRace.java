@@ -1,10 +1,10 @@
 package GUI.race;
 
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextarea;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextarea;
+import GUI.components.SimpleTextfield;
+import GUI.components.TransparentPanel;
 import person.Race;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;

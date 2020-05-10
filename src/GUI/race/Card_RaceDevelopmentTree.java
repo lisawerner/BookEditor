@@ -2,14 +2,15 @@ package GUI.race;
 
 import java.util.ArrayList;
 
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import person.Race;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 

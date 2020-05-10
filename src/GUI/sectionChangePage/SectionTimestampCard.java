@@ -11,13 +11,13 @@ import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Chapter;
 import book.Section;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleRadiobutton;
+import GUI.components.TransparentPanel;
 import time.RelativeDate;
 import time.SpecificDate;
 import time.Timestamp;

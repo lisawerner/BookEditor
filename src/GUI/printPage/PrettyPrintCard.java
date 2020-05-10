@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 
-import GUI_components.TransparentPanel;
+import GUI.components.TransparentPanel;
 
 public class PrettyPrintCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

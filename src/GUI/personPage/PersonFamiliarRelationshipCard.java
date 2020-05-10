@@ -1,13 +1,13 @@
 package GUI.personPage;
 
-import GUI_components.ComboItem;
-import GUI_components.InfoButton;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
+import GUI.components.ComboItem;
+import GUI.components.InfoButton;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleRadiobutton;
+import GUI.components.TransparentPanel;
 import person.Person;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -139,7 +139,7 @@ public class PersonFamiliarRelationshipCard extends TransparentPanel {
 		panel_singleRelation.add(new SimpleLabel(relationDescription));
 		Person parent = Book.getInstance().getSociety().getPerson(otherPersonID);
 		LinkButton btnPersonlinkbutton = new LinkButton(parent.getInformation().getName());
-		btnPersonlinkbutton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(parent, false)));
+		btnPersonlinkbutton.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(parent, false));
 		panel_singleRelation.add(btnPersonlinkbutton);
 		
 		panel_singleRelation.add(new SimpleLabel("<html>; &emsp;</html>"));	

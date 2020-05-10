@@ -4,13 +4,12 @@ import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.personPage.PersonEditorPage;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
-import GUI_components.WrapLayout;
 import book.Book;
 import global.ObjectID;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
+import GUI.components.WrapLayout;
 import person.Person;
 import person.Race;
 import java.awt.Component;
@@ -90,7 +89,7 @@ public class Element_RaceSociety extends TransparentPanel {
 			for(Person raceMember : representantiveList) {
 				LinkButton btnPerson = new LinkButton(raceMember.getInformation().getName());
 				panel_raceMembers.add(btnPerson);
-				btnPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(raceMember, false)));
+				btnPerson.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(raceMember, false));
 				panel_raceMembers.add(new SimpleLabel(","));
 			}
 		}

@@ -9,13 +9,13 @@ import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
-import GUI_components.InfoButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
 import book.Chapter;
 import book.Section;
 import global.UserSettings;
+import GUI.components.InfoButton;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextfield;
+import GUI.components.TransparentPanel;
 
 public class SectionTitleCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -99,7 +99,7 @@ public class SectionTitleCard extends TransparentPanel {
 				lbl_saveWarning.setWarning(false);
 				lbl_saveWarning.setText("New title " + my_section.getName() + " is saved!");
 			}
-			BookEditorFrame.getInstance().reloadMenu();
+//			BookEditorFrame.getInstance().reloadMenu();
 		}
 	}
 	

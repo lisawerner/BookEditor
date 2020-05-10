@@ -2,9 +2,9 @@ package GUI.printPage;
 
 import java.awt.GridLayout;
 
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 
 public class PrintHintCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

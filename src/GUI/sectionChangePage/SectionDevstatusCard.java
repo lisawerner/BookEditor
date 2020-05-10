@@ -4,13 +4,13 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
-import GUI_components.InfoButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Chapter;
 import book.DevelopmentStatus;
 import book.Section;
 import global.UserSettings;
+import GUI.components.InfoButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 
 public class SectionDevstatusCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

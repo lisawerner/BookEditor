@@ -1,11 +1,11 @@
 package GUI.race;
 
-import GUI_components.ComboItem;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
+import GUI.components.ComboItem;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import person.Race;
 import javax.swing.BoxLayout;
 import javax.swing.JSeparator;

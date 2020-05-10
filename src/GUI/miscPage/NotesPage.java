@@ -1,8 +1,8 @@
 package GUI.miscPage;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
 import book.Book;
+import GUI.components.Page;
+import GUI.components.StructureCard;
 import notes.GeneralNote;
 
 public class NotesPage extends Page {

@@ -2,9 +2,9 @@ package GUI.settingsPage;
 
 import java.awt.GridLayout;
 
-import GUI_components.SimpleCheckbox;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.SimpleCheckbox;
+import GUI.components.TransparentPanel;
 
 public class PrintSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

@@ -1,12 +1,13 @@
 package GUI.sectionChangePage;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
-import GUI_components.TutorialCard;
 import book.Book;
 import book.Chapter;
 import book.Section;
 import global.UserSettings;
+import GUI.components.Page;
+import GUI.components.StructureCard;
+import GUI.components.TutorialCard;
+
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;

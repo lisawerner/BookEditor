@@ -8,13 +8,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI_components.InfoButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextarea;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.UserSettings;
+import GUI.components.InfoButton;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextarea;
+import GUI.components.SimpleTextfield;
+import GUI.components.TransparentPanel;
 import world.Place;
 
 public class PlaceInformationCard extends TransparentPanel {
@@ -55,7 +55,7 @@ public class PlaceInformationCard extends TransparentPanel {
 		SimpleLabel lblPlacetype = new SimpleLabel("Place-Type:");
 		panel_placetype.add(lblPlacetype, BorderLayout.NORTH);
 		
-		InfoButton btnPlaceTypeInfo = new InfoButton("<html>Enter something like city, state, village, parc, house, disco, ...<br/>"
+		InfoButton btnPlaceTypeInfo = new InfoButton("<html>Enter something like city, state, village, parc, house, disco, living room, ...<br/>"
 				+ "Can changed every time.</html>");
 		panel_placetype.add(btnPlaceTypeInfo, BorderLayout.EAST);
 		
@@ -108,11 +108,10 @@ public class PlaceInformationCard extends TransparentPanel {
 							UserSettings.getInstance().getTutorial().createFirstPlace = true;
 							UserSettings.getInstance().save();
 						}
-						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
 					} else {
 						my_place.editPlace(name, txtPlacetype.getText(), txtNotes.getText());
-						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
 					}
+					BookEditorFrame.getInstance().openPlacePage(my_place, false);
 				}
 			}
 		});

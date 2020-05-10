@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Section;
 import global.Tag;
+import GUI.components.SimpleCheckbox;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import world.Place;
 
 public class SectionPlacetagCard extends TransparentPanel {

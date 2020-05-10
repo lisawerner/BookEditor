@@ -1,12 +1,12 @@
 package GUI.sectionPage;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
-import GUI_components.TextPreview;
-import GUI_components.TutorialCard;
 import book.Chapter;
 import book.Section;
 import global.UserSettings;
+import GUI.components.Page;
+import GUI.components.StructureCard;
+import GUI.components.TextPreview;
+import GUI.components.TutorialCard;
 
 public class SectionPage extends Page {
 	private static final long serialVersionUID = 1L;

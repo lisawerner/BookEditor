@@ -6,15 +6,16 @@ import javax.swing.BoxLayout;
 import javax.swing.JSeparator;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.chapter.Page_viewChapter;
+import GUI.pages.chapter.Page_viewChapter;
 import GUI.sectionPage.SectionPage;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Chapter;
 import book.Section;
 import global.ObjectID;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
+
 import javax.swing.Box;
 import java.awt.Dimension;
 

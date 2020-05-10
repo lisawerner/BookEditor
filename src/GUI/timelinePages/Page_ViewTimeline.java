@@ -1,9 +1,9 @@
 package GUI.timelinePages;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
-import GUI_components.TutorialCard;
 import global.UserSettings;
+import GUI.components.Page;
+import GUI.components.StructureCard;
+import GUI.components.TutorialCard;
 public class Page_ViewTimeline extends Page {
 	private static final long serialVersionUID = 1L;
 	
@@ -24,9 +24,6 @@ public class Page_ViewTimeline extends Page {
 		//*******************************************************************************************************************
 		addCard(new StructureCard("View Timeline", new TimelineCard()));
 		
-		//*******************************************************************************************************************
-		//*******************************************************************************************************************
-		setMenu(new TimelineMenu());
 	}
 
 }

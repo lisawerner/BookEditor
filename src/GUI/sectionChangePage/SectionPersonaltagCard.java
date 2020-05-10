@@ -1,8 +1,8 @@
 package GUI.sectionChangePage;
 
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Section;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 
 public class SectionPersonaltagCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

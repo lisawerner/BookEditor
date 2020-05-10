@@ -1,13 +1,14 @@
 package GUI.personPage;
 
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import person.Person;
 import javax.swing.JSeparator;
 import GUI.bookeditorFrame.BookEditorFrame;
+
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class SocietyFamiliarCard extends TransparentPanel {
 		Person child = Book.getInstance().getSociety().getPerson(childID);
 		
 		LinkButton btnChild = new LinkButton(child.getInformation().getName());
-		btnChild.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(child, false)));
+		btnChild.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(child, false));
 		panel_child.add(btnChild);
 		
 		if(child.getInformation().isDeadBeforeBookStart()) {

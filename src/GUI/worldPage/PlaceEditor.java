@@ -1,9 +1,9 @@
 package GUI.worldPage;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
-import GUI_components.TutorialCard;
 import global.UserSettings;
+import GUI.components.Page;
+import GUI.components.StructureCard;
+import GUI.components.TutorialCard;
 import world.Place;
 
 public class PlaceEditor extends Page {
@@ -33,10 +33,6 @@ public class PlaceEditor extends Page {
 		//****************************************************************************************
 		if(my_place != null) {
 			this.addCard(new StructureCard("Place was tagged in Section(s)", new PlaceTagCard(my_place)));			
-		}		
-		
-		//****************************************************************************************
-		//****************************************************************************************
-		if(!isSecondFrame) {setMenu(new PlaceMenu());}
+		}
 	}	
 }

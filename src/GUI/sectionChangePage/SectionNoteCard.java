@@ -1,15 +1,17 @@
 package GUI.sectionChangePage;
 
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextarea;
-import GUI_components.TransparentPanel;
 import book.Section;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextarea;
+import GUI.components.TransparentPanel;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 import java.awt.BorderLayout;
 
 public class SectionNoteCard extends TransparentPanel {

@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import GUI.personPage.PersonMenu;
-import GUI_components.Page;
-import GUI_components.StructureCard;
+import GUI.components.Page;
+import GUI.components.StructureCard;
 import person.Race;
 
 public class Page_EditRace extends Page {
@@ -40,10 +39,7 @@ public class Page_EditRace extends Page {
 		});
 		btnDelete.setEnabled(false); //TODO!!
 		setFooter(btnDelete);
-		
-		//*********************************************************************************
-		//*********************************************************************************
-		setMenu(new PersonMenu());
+
 	}
 
 }

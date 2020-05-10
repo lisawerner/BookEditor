@@ -1,7 +1,7 @@
 package GUI.timelinePages;
 
-import GUI_components.Page;
-import GUI_components.StructureCard;
+import GUI.components.Page;
+import GUI.components.StructureCard;
 
 public class Page_TimelineFilter extends Page {
 	private static final long serialVersionUID = 1L;
@@ -11,8 +11,6 @@ public class Page_TimelineFilter extends Page {
 		
 		addCard(new StructureCard("Sections without a Timestamp:", new Card_ContentWithoutTimestamp()));
 		addCard(new StructureCard("Sections without a specific Timestamp:", new Card_ContentWithoutSpecificDate()));
-		
-		setMenu(new TimelineMenu());
 	}
 
 }

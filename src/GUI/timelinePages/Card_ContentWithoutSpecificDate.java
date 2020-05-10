@@ -5,15 +5,15 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.chapter.Page_viewChapter;
+import GUI.pages.chapter.Page_viewChapter;
 import GUI.sectionPage.SectionPage;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
-import GUI_components.WrapLayout;
 import book.Book;
 import book.Chapter;
 import book.Section;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
+import GUI.components.WrapLayout;
 
 public class Card_ContentWithoutSpecificDate extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

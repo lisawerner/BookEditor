@@ -5,11 +5,10 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.personPage.PersonEditorPage;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import person.Person;
 import person.Race;
 
@@ -29,7 +28,7 @@ public class Card_ViewRaceRepresentatives extends TransparentPanel {
 			this.add(personalPanel);
 			
 			LinkButton lnbtn_person = new LinkButton(person.getInformation().getName());
-			lnbtn_person.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(person, false)));
+			lnbtn_person.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(person, false));
 			personalPanel.add(lnbtn_person);
 			
 			personalPanel.add(new SimpleLabel("; "));

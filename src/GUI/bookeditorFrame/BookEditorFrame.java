@@ -10,13 +10,31 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import GUI_components.BookFooter;
-import GUI_components.HeaderBook;
-import GUI_components.Page;
-import GUI_components.ThemeList;
-import GUI_components.TransparentPanel;
+import GUI.miscPage.NotesPage;
+import GUI.pages.chapter.Page_viewChapter;
+import GUI.pages.content.Page_sortContent;
+import GUI.personPage.PersonEditorPage;
+import GUI.personPage.ViewSocietyPage;
+import GUI.printPage.PrintPage;
+import GUI.settingsPage.BookSettingsPage;
+import GUI.timelinePages.Page_ViewTimeline;
+import GUI.worldPage.PlaceEditor;
+import GUI.worldPage.ViewWorldmapPage;
 import book.Book;
+import book.Chapter;
 import global.Constant;
+import person.Person;
+import world.Place;
+import GUI.components.FrameFooter;
+import GUI.components.FrameHeader;
+import GUI.components.FrameMenu;
+import GUI.components.Page;
+import GUI.components.ThemeList;
+import GUI.components.TransparentPanel;
+import GUI.frame.menu.ContentMenu;
+import GUI.frame.menu.PlaceMenu;
+import GUI.frame.menu.SocietyMenu;
+import GUI.frame.menu.TimelineMenu;
 
 public class BookEditorFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -26,9 +44,9 @@ public class BookEditorFrame extends JFrame {
 	private JPanel contentPane;
 	private TransparentPanel contentBody;
 	
-	private HeaderBook lblBookTitle;
-	private EditorMenu panel_menu;
-	private BookFooter panel_footer;
+	private FrameHeader lblBookTitle;
+	private FrameMenu panel_mainMenu;
+	private FrameFooter panel_footer;
 
 	public BookEditorFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,18 +66,18 @@ public class BookEditorFrame extends JFrame {
 		ThemeList.setCurrentTheme(Book.getInstance().getTheme());
 		changeTheme();
 		
-		lblBookTitle = new HeaderBook(Book.getInstance().getTitle());
+		lblBookTitle = new FrameHeader(Book.getInstance().getTitle());
 		contentPane.add(lblBookTitle, BorderLayout.NORTH);
-		
-		panel_menu = new EditorMenu();
-		contentPane.add(panel_menu, BorderLayout.WEST);
+				
+		panel_mainMenu = new FrameMenu();
+		contentPane.add(panel_mainMenu, BorderLayout.WEST);
 		
 		contentBody = new TransparentPanel();
 		contentPane.add(contentBody, BorderLayout.CENTER);
 		contentBody.setLayout(new GridLayout(1, 0, 5, 5));
 		switchBody(new HomePage());
 		
-		panel_footer = new BookFooter();
+		panel_footer = new FrameFooter();
 		contentPane.add(panel_footer, BorderLayout.SOUTH);
 	}
 	
@@ -111,31 +129,74 @@ public class BookEditorFrame extends JFrame {
 	
 	public void repaintFrame() {
 		updateBookTitle();
-		reloadMenu();
 		panel_footer.changeTheme();
 		changeTheme();
 		revalidate();
 		repaint();
 	}
-	
-	public void reloadMenu() {
+		
+	public void updateBookTitle() {
 		BorderLayout layout = (BorderLayout)contentPane.getLayout();
-		if(layout.getLayoutComponent(BorderLayout.WEST) != null) {			
-			contentPane.remove(layout.getLayoutComponent(BorderLayout.WEST));
-		}
-		panel_menu = new EditorMenu();
-		contentPane.add(panel_menu, BorderLayout.WEST);
+		contentPane.remove(layout.getLayoutComponent(BorderLayout.NORTH));
+		lblBookTitle = new FrameHeader(Book.getInstance().getTitle());
+		contentPane.add(lblBookTitle, BorderLayout.NORTH);
 		revalidate();
 		repaint();
 	}
 	
-	public void updateBookTitle() {
-		BorderLayout layout = (BorderLayout)contentPane.getLayout();
-		contentPane.remove(layout.getLayoutComponent(BorderLayout.NORTH));
-		lblBookTitle = new HeaderBook(Book.getInstance().getTitle());
-		contentPane.add(lblBookTitle, BorderLayout.NORTH);
-		revalidate();
-		repaint();
+	public void openPrintPage(){
+		switchBody(new PrintPage());
+		panel_mainMenu.removeSubmenu();
+	}
+
+	public void openSettingsPage() {
+		switchBody(new BookSettingsPage());
+		panel_mainMenu.removeSubmenu();
+	}
+
+	public void openNotesPage() {
+		switchBody(new NotesPage());
+		panel_mainMenu.removeSubmenu();
+	}
+
+	public void openStartPage() {
+		switchBody(new HomePage());
+		panel_mainMenu.removeSubmenu();
+	}
+
+	public void openTableOfContentPage() {
+		switchBody(new Page_sortContent());
+		panel_mainMenu.changeSubmenuTo(new ContentMenu());
+	}
+	
+	public void openChapterPage(Chapter chapter){
+		switchBody(new Page_viewChapter(chapter));
+		panel_mainMenu.changeSubmenuTo(new ContentMenu());
+	}
+
+	public void openTimelinePage() {
+		switchBody(new Page_ViewTimeline());
+		panel_mainMenu.changeSubmenuTo(new TimelineMenu());
+	}
+
+	public void openWorldPage() {
+		switchBody(new ViewWorldmapPage());
+		panel_mainMenu.changeSubmenuTo(new PlaceMenu());
+	}
+	
+	public void openPlacePage(Place place, boolean isSecondFrame) {
+		switchBody(new PlaceEditor(place, isSecondFrame));
+		panel_mainMenu.changeSubmenuTo(new PlaceMenu());
+	}
+
+	public void openSocietyPage() {
+		switchBody(new ViewSocietyPage());
+		panel_mainMenu.changeSubmenuTo(new SocietyMenu());
+	}
+	
+	public void openPersonPage(Person person, boolean isSecondFrame){
+		switchBody(new PersonEditorPage(person, isSecondFrame));
+		panel_mainMenu.changeSubmenuTo(new SocietyMenu());
 	}
 
 }

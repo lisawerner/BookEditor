@@ -1,10 +1,10 @@
 package GUI.miscPage;
 
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextarea;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextarea;
+import GUI.components.SimpleTextfield;
+import GUI.components.TransparentPanel;
 import notes.GeneralNote;
 
 import java.awt.BorderLayout;

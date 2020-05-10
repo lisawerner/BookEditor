@@ -5,13 +5,14 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
-import GUI_components.WrapLayout;
+
 import book.Book;
 import book.Section;
 import global.Tag;
+import GUI.components.SimpleCheckbox;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
+import GUI.components.WrapLayout;
 import person.Person;
 
 public class SectionPersontagCard extends TransparentPanel {

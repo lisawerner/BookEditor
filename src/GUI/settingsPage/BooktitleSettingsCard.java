@@ -6,11 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.SimpleCheckbox;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextfield;
+import GUI.components.TransparentPanel;
 
 public class BooktitleSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

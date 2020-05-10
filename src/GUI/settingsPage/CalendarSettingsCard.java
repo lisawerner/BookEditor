@@ -5,11 +5,11 @@ import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
 
-import GUI_components.InfoButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.InfoButton;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleRadiobutton;
+import GUI.components.TransparentPanel;
 
 public class CalendarSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

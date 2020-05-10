@@ -2,10 +2,10 @@ package GUI.settingsPage;
 
 import java.awt.BorderLayout;
 
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
+import GUI.components.SimpleCheckbox;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 
 public class SocietySettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

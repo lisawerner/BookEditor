@@ -1,11 +1,11 @@
 package GUI.sectionChangePage;
 
-import GUI_components.ComboItem;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
 import book.Book;
 import book.Section;
+import GUI.components.ComboItem;
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextfield;
+import GUI.components.TransparentPanel;
 import person.Person;
 import person.Relationship;
 

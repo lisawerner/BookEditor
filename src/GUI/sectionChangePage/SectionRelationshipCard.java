@@ -2,8 +2,8 @@ package GUI.sectionChangePage;
 
 import javax.swing.BoxLayout;
 
-import GUI_components.TransparentPanel;
 import book.Section;
+import GUI.components.TransparentPanel;
 import person.Relationship;
 
 public class SectionRelationshipCard extends TransparentPanel {

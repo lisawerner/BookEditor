@@ -4,10 +4,10 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 
-import GUI_components.SimpleLabel;
-import GUI_components.TransparentPanel;
 import book.Book;
 import global.FileManager;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 
 public class ExportCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
