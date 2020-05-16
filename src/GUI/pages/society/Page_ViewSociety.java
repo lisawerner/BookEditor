@@ -12,9 +12,11 @@ public class Page_ViewSociety extends Page {
 	
 		this.addCard(new StructureCard("Familiar Society", new Card_SocietyFamiliar()));
 		
+		this.addCard(new StructureCard("Persons Importance", new Card_PersonImportance()));
+		
 		if(Book.getInstance().getSociety().isRaceSystemActivated()) {
 			this.addCard(new StructureCard("Race Society", new Card_RaceSociety()));
 		}
 	}
-
+	
 }
