@@ -1,4 +1,4 @@
-package GUI.race;
+package GUI.pages.society;
 
 import book.Book;
 import GUI.components.TransparentPanel;

@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.pages.society.filterPage;
 
 import book.Book;
 import GUI.components.LinkButton;
@@ -15,12 +15,12 @@ import javax.swing.ButtonGroup;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 
-public class FilterRaceCard extends TransparentPanel {
+public class Card_FilterRace extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private TransparentPanel panel_filterResult;
 
-	public FilterRaceCard() {
+	public Card_FilterRace() {
 		setLayout(new BorderLayout(0, 0));
 		
 		ButtonGroup btngroup_races = new ButtonGroup();

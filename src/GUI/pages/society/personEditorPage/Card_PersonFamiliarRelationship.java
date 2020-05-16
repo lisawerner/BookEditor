@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.pages.society.personEditorPage;
 
 import book.Book;
 import global.ObjectID;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import GUI.bookeditorFrame.BookEditorFrame;
 
-public class PersonFamiliarRelationshipCard extends TransparentPanel {
+public class Card_PersonFamiliarRelationship extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private Person my_person;
@@ -36,7 +36,7 @@ public class PersonFamiliarRelationshipCard extends TransparentPanel {
 	
 	private TransparentPanel panel_showExistingFamiliarRelationships;
 	
-	public PersonFamiliarRelationshipCard(Person givenPerson) {
+	public Card_PersonFamiliarRelationship(Person givenPerson) {
 		my_person = givenPerson;
 		setLayout(new BorderLayout(10, 10));
 		

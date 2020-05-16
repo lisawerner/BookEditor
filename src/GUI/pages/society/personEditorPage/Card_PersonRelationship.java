@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.pages.society.personEditorPage;
 
 import java.awt.GridLayout;
 
@@ -15,12 +15,12 @@ import GUI.components.TransparentPanel;
 import person.Person;
 import person.Relationship;
 
-public class PersonRelationshipCard extends TransparentPanel {
+public class Card_PersonRelationship extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private Person my_person;
 	
-	public PersonRelationshipCard(Person person) {
+	public Card_PersonRelationship(Person person) {
 		my_person = person;
 		
 		setLayout(new GridLayout(0, 1, 5, 5));

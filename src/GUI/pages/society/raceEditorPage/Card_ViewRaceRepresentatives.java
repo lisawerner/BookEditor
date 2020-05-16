@@ -1,4 +1,4 @@
-package GUI.race;
+package GUI.pages.society.raceEditorPage;
 
 import java.awt.GridLayout;
 

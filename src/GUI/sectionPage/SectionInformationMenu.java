@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.pages.chapter.Page_viewChapter;
-import GUI.personPage.PersonEditorPage;
+import GUI.pages.society.personEditorPage.Page_PersonEditor;
 import GUI.sectionChangePage.SectionEditorPage;
 import GUI.worldPage.PlaceEditor;
 import book.Book;
@@ -136,7 +136,7 @@ public class SectionInformationMenu extends PageMenu {
 
 	private void openPersonEditor(Person person) {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new PersonEditorPage(person, true));
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new Page_PersonEditor(person, true));
 		} else {
 			BookEditorFrame.getInstance().openPersonPage(person, false);	
 		}

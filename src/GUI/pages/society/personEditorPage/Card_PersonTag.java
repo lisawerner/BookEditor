@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.pages.society.personEditorPage;
 
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -13,12 +13,12 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import person.Person;
 
-public class PersonTagCard extends TransparentPanel {
+public class Card_PersonTag extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private Person my_person;
 	
-	public PersonTagCard(Person person) {
+	public Card_PersonTag(Person person) {
 		my_person = person;
 //		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 		setLayout(new GridLayout(0, 5, 5, 5));

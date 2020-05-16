@@ -1,7 +1,8 @@
-package GUI.race;
+package GUI.pages.society.raceSystemPage;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;
+import GUI.pages.society.Card_RaceSociety;
 
 public class Page_RaceSystem extends Page {
 	private static final long serialVersionUID = 1L;

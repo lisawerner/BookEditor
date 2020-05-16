@@ -13,8 +13,8 @@ import javax.swing.border.EmptyBorder;
 import GUI.miscPage.NotesPage;
 import GUI.pages.chapter.Page_viewChapter;
 import GUI.pages.content.Page_sortContent;
-import GUI.personPage.PersonEditorPage;
-import GUI.personPage.ViewSocietyPage;
+import GUI.pages.society.Page_ViewSociety;
+import GUI.pages.society.personEditorPage.Page_PersonEditor;
 import GUI.printPage.PrintPage;
 import GUI.settingsPage.BookSettingsPage;
 import GUI.timelinePages.Page_ViewTimeline;
@@ -190,12 +190,12 @@ public class BookEditorFrame extends JFrame {
 	}
 
 	public void openSocietyPage() {
-		switchBody(new ViewSocietyPage());
+		switchBody(new Page_ViewSociety());
 		panel_mainMenu.changeSubmenuTo(new SocietyMenu());
 	}
 	
 	public void openPersonPage(Person person, boolean isSecondFrame){
-		switchBody(new PersonEditorPage(person, isSecondFrame));
+		switchBody(new Page_PersonEditor(person, isSecondFrame));
 		panel_mainMenu.changeSubmenuTo(new SocietyMenu());
 	}
 

@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.pages.society;
 
 import book.Book;
 import global.ObjectID;
@@ -13,10 +13,10 @@ import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-public class SocietyFamiliarCard extends TransparentPanel {
+public class Card_SocietyFamiliar extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	public SocietyFamiliarCard() {
+	public Card_SocietyFamiliar() {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		for(Person firstAncestor : Book.getInstance().getSociety().getPersonListFirstAncestors()) {	

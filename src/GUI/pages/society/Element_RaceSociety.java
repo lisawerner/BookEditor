@@ -1,4 +1,4 @@
-package GUI.race;
+package GUI.pages.society;
 
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
@@ -10,6 +10,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
+import GUI.pages.society.raceEditorPage.Page_EditRace;
 import person.Person;
 import person.Race;
 import java.awt.Component;

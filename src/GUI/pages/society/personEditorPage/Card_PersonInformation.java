@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.pages.society.personEditorPage;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -10,7 +10,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.race.Page_EditRace;
 import book.Book;
 import global.ObjectID;
 import global.UserSettings;
@@ -22,10 +21,11 @@ import GUI.components.SimpleRadiobutton;
 import GUI.components.SimpleTextarea;
 import GUI.components.SimpleTextfield;
 import GUI.components.TransparentPanel;
+import GUI.pages.society.raceEditorPage.Page_EditRace;
 import person.Person;
 import person.Race;
 
-public class PersonInformationCard extends TransparentPanel {
+public class Card_PersonInformation extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private Person my_person = null;
@@ -50,7 +50,7 @@ public class PersonInformationCard extends TransparentPanel {
 	
 	private SimpleLabel lblWarning;
 	
-	public PersonInformationCard(Person person) {
+	public Card_PersonInformation(Person person) {
 		my_person = person;
 		if(Book.getInstance().getSociety().isRaceSystemActivated()) {
 			if(my_person != null) {				

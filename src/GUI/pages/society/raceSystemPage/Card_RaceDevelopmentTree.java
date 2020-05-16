@@ -1,4 +1,4 @@
-package GUI.race;
+package GUI.pages.society.raceSystemPage;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ import global.ObjectID;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import GUI.pages.society.raceEditorPage.Page_EditRace;
 import person.Race;
 
 import GUI.bookeditorFrame.BookEditorFrame;

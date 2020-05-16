@@ -1,4 +1,4 @@
-package GUI.personPage;
+package GUI.pages.society.filterPage;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -16,7 +16,7 @@ import GUI.components.TransparentPanel;
 import person.Person;
 import javax.swing.JComboBox;
 
-public class FilterRelationshipsCard extends TransparentPanel {
+public class Card_FilterRelationships extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private SimpleLabel lblHint;
@@ -29,7 +29,7 @@ public class FilterRelationshipsCard extends TransparentPanel {
 
 	private TransparentPanel panel_filterResult;
 	
-	public FilterRelationshipsCard() {
+	public Card_FilterRelationships() {
 		setLayout(new BorderLayout(10, 10));
 		
 		TransparentPanel panel_filterSettings = new TransparentPanel();
