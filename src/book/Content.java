@@ -203,6 +203,7 @@ public class Content {
 	public void addChapter(Chapter newChapter) {
 		if(my_chapters == null) {my_chapters = new ArrayList<Chapter>();}
 		my_chapters.add(newChapter);
+		Book.getInstance().save();
 	}
 
 	public Chapter getChapter(String name) {

@@ -134,6 +134,7 @@ public class Book extends SerializedObject {
 	}
 
 	public Content getTableOfContent() {
+		if(my_tableOfContent == null){my_tableOfContent = new Content();}
 		return my_tableOfContent;
 	}
 	

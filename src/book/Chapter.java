@@ -15,12 +15,11 @@ public class Chapter extends SerializedObject {
 		
 		my_name = newName;
 		my_sections = new ArrayList<Section>();
-		//Book.getInstance().save();
 	}
 	
 	public void addSection(Section newSection) {
 		my_sections.add(newSection);
-		//Book.getInstance().save();
+		Book.getInstance().save();
 	}
 
 	public String getTitle() {
