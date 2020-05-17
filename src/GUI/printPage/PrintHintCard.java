@@ -14,8 +14,7 @@ public class PrintHintCard extends TransparentPanel {
 		
 		SimpleLabel lblChapterSettings = new SimpleLabel("You can change all Settings in 'Book-Settings' in the left navigation menu");
 		add(lblChapterSettings);
-		
-		//TODO: LinkButton hier positionieren (wozu? zum Book-Settigns??? Weis nicht mehr, was der Kommentar sollte ^^""") 
+		 
 		SimpleLabel lblBookTitle = new SimpleLabel("Printed Title of the Book: " + Book.getInstance().getTitle());
 		add(lblBookTitle);
 		

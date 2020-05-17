@@ -10,9 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import GUI.miscPage.NotesPage;
 import GUI.pages.chapter.Page_viewChapter;
 import GUI.pages.content.Page_sortContent;
+import GUI.pages.notesPage.Page_singleNote;
+import GUI.pages.notesPage.Page_viewNotes;
 import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
 import GUI.printPage.PrintPage;
@@ -23,6 +24,7 @@ import GUI.worldPage.ViewWorldmapPage;
 import book.Book;
 import book.Chapter;
 import global.Constant;
+import notes.GeneralNote;
 import person.Person;
 import world.Place;
 import GUI.components.FrameFooter;
@@ -32,6 +34,7 @@ import GUI.components.Page;
 import GUI.components.ThemeList;
 import GUI.components.TransparentPanel;
 import GUI.frame.menu.ContentMenu;
+import GUI.frame.menu.NotesMenu;
 import GUI.frame.menu.PlaceMenu;
 import GUI.frame.menu.SocietyMenu;
 import GUI.frame.menu.TimelineMenu;
@@ -163,9 +166,14 @@ public class BookEditorFrame extends JFrame {
 		panel_mainMenu.removeSubmenu();
 	}
 
-	public void openNotesPage() {
-		switchBody(new NotesPage());
-		panel_mainMenu.removeSubmenu();
+	public void openNotesListPage() {
+		switchBody(new Page_viewNotes());
+		panel_mainMenu.changeSubmenuTo(new NotesMenu());
+	}
+	
+	public void openNotePage(GeneralNote note){
+		switchBody(new Page_singleNote(note));
+		panel_mainMenu.changeSubmenuTo(new NotesMenu());
 	}
 
 	public void openStartPage() {

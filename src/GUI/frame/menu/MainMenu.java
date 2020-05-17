@@ -22,7 +22,7 @@ public class MainMenu extends TransparentPanel {
 		
 		add(new MenuButton("Timeline", e -> BookEditorFrame.getInstance().openTimelinePage()));
 		
-		add(new MenuButton("Notes", e -> BookEditorFrame.getInstance().openNotesPage()));
+		add(new MenuButton("Notes", e -> BookEditorFrame.getInstance().openNotesListPage()));
 		
 		add(new MenuButton("Book Settings", e -> BookEditorFrame.getInstance().openSettingsPage()));
 		
