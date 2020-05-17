@@ -5,16 +5,20 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+import global.UserSettings;
+
 public class SimpleTextfield extends JTextField{
 	private static final long serialVersionUID = 1L;
 	
 	public SimpleTextfield() {
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		
 		changeTheme();
 	}
 	
 	public SimpleTextfield(String text) {
 		super(text);
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		
 		changeTheme();
 	}

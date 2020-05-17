@@ -2,11 +2,14 @@ package GUI.components;
 
 import javax.swing.JRadioButton;
 
+import global.UserSettings;
+
 public class SimpleRadiobutton extends JRadioButton {
 	private static final long serialVersionUID = 1L;
 	
 	public SimpleRadiobutton(String text) {
 		super(text);
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		
 		setOpaque(false);
 	

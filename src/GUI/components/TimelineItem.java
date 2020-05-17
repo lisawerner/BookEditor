@@ -7,6 +7,7 @@ import java.awt.Component;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.JLabel;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -16,7 +17,7 @@ public class TimelineItem extends TransparentPanel {
 	
 	private TransparentPanel my_body;
 	private SimpleLabel contactArrow;
-	private SimpleLabel contactDate;
+	private JLabel contactDate;
 	private JPanel topRightGab;
 	private TransparentPanel panelOverBody;
 	
@@ -56,9 +57,9 @@ public class TimelineItem extends TransparentPanel {
 		contactArrow = new SimpleLabel("");
 		contactArrow.setHorizontalTextPosition(SimpleLabel.CENTER);
 		contactArrow.setVerticalTextPosition(SimpleLabel.CENTER);
-		contactDate = new SimpleLabel("<html>" + date + "</html>");
-		contactDate.setHorizontalTextPosition(SimpleLabel.CENTER);
-		contactDate.setVerticalTextPosition(SimpleLabel.CENTER);
+		contactDate = new JLabel("<html>" + date + "</html>");
+		contactDate.setHorizontalTextPosition(JLabel.CENTER);
+		contactDate.setVerticalTextPosition(JLabel.CENTER);
 		if(leftPosition) {
 			//When Item is on left Side, contact must on right side
 			add(lineContact, BorderLayout.EAST);
@@ -116,7 +117,7 @@ public class TimelineItem extends TransparentPanel {
 		
 		my_body = new TransparentPanel();
 		contactArrow = new SimpleLabel("");
-		contactDate = new SimpleLabel("");
+		contactDate = new JLabel("");
 		
 		changeTheme();
 	}
@@ -135,7 +136,7 @@ public class TimelineItem extends TransparentPanel {
 		
 		my_body = new TransparentPanel();
 		contactArrow = new SimpleLabel("");
-		contactDate = new SimpleLabel("");
+		contactDate = new JLabel("");
 		
 		changeTheme();
 	}
@@ -146,6 +147,7 @@ public class TimelineItem extends TransparentPanel {
 			contactDate.setForeground(ThemeList.currentTheme.menuFontColor);
 			contactDate.setBackground(ThemeList.currentTheme.menuBackColor);
 			contactDate.setOpaque(true);
+//			contactDate.setForeground(ThemeList.currentTheme.darkForegroundColor);
 			my_body.setBorder(BorderFactory.createLineBorder(ThemeList.currentTheme.menuBackColor));
 			contactArrow.setForeground(ThemeList.currentTheme.menuBackColor);
 			revalidate();

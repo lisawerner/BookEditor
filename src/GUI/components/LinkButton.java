@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
+import global.UserSettings;
+
 public class LinkButton extends JButton{
 	private static final long serialVersionUID = 1L;
 	
@@ -19,6 +21,8 @@ public class LinkButton extends JButton{
 		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		setFont(font.deriveFont(attributes));
+	
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		
 		changeTheme();
 	}

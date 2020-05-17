@@ -2,11 +2,14 @@ package GUI.components;
 
 import javax.swing.JCheckBox;
 
+import global.UserSettings;
+
 public class SimpleCheckbox extends JCheckBox {
 	private static final long serialVersionUID = 1L;
 
 	public SimpleCheckbox(String text) {
 		super(text);
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		
 		setOpaque(false);
 		

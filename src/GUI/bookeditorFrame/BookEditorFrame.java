@@ -129,6 +129,7 @@ public class BookEditorFrame extends JFrame {
 	
 	public void repaintFrame() {
 		updateBookTitle();
+		updateBookMenu();
 		panel_footer.changeTheme();
 		changeTheme();
 		revalidate();
@@ -142,6 +143,14 @@ public class BookEditorFrame extends JFrame {
 		contentPane.add(lblBookTitle, BorderLayout.NORTH);
 		revalidate();
 		repaint();
+	}
+	
+	private void updateBookMenu(){
+		panel_mainMenu.removeAll();
+		panel_mainMenu = new FrameMenu();
+		contentPane.add(panel_mainMenu, BorderLayout.WEST);
+		panel_mainMenu.revalidate();
+		panel_mainMenu.repaint();
 	}
 	
 	public void openPrintPage(){

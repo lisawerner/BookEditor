@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 
+import global.UserSettings;
+
 public class TextPreview extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
@@ -34,6 +36,7 @@ public class TextPreview extends TransparentPanel {
 		viewport.setView(panel_viewport);
 		
 		lblText = new SimpleTextarea(text);
+		lblText.setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		panel_viewport.add(lblText);
 		lblText.setEditable(false);	
 		
