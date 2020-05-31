@@ -115,7 +115,7 @@ public class Timeline {
 	public void addTimestamp(Timestamp timestamp) {
 		if(my_times == null){my_times = new ArrayList<Timestamp>();}
 		my_times.add(timestamp);
-		Book.getInstance().save();
+//		Book.getInstance().save();
 	}
 
 	public Timestamp getTimestamp(ObjectID timestampID) {

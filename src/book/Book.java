@@ -7,7 +7,6 @@ import notes.GeneralNote;
 import person.Relationship;
 import person.Society;
 import time.Timeline;
-import time.Timestamp;
 import world.World;
 
 import java.util.ArrayList;
@@ -71,23 +70,7 @@ public class Book extends SerializedObject {
 		if(my_instance == null) {
 			my_instance = new Book();
 		}
-		my_instance.changeSomething();
 		return my_instance;
-	}
-	
-	private void changeSomething(){
-		for(Chapter chapter : my_tableOfContent.getChapters()){
-			for(Section section : chapter.getSections()){
-				if(section.hasTimestampOld()){
-					Timestamp t = section.getTimestamp();
-					t.setID();
-					t.setSection(section.getID());
-					section.setTimestampID(t.getID());
-					section.setTimestamp(null);
-					my_timeline.addTimestamp(t);
-				}
-			}
-		}
 	}
 	
 	public void save() {

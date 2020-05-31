@@ -9,7 +9,6 @@ import global.SerializedObject;
 import global.Tag;
 import person.Person;
 import person.Relationship;
-import time.Timestamp;
 import world.Place;
 
 public class Section extends SerializedObject {
@@ -23,8 +22,7 @@ public class Section extends SerializedObject {
 	//Tagged Informations
 	private ArrayList<Tag> my_tags; //TODO: Persönlich/Privat Tags die von den Nutzern spezifisch angelegt wurden
 	private ArrayList<Relationship> my_relationshipSwitches;
-	private Timestamp my_timestamp;
-	private ObjectID my_timestampXY;
+	private ObjectID my_timestamp;
 	private int my_devStatus;
 	private String my_notes;
 	
@@ -38,7 +36,6 @@ public class Section extends SerializedObject {
 		my_tags = new ArrayList<Tag>();
 		my_relationshipSwitches = new ArrayList<Relationship>();
 		my_timestamp = null;
-		my_timestampXY = null;
 		my_devStatus = -1;
 		my_notes = "";
 	}
@@ -116,31 +113,16 @@ public class Section extends SerializedObject {
 		return my_text;
 	}
 
-	public void setTimestamp(Timestamp newTimestamp) { //TODO remove this function /already remove from code only needed for transfer 
-		my_timestampXY = newTimestamp.getID();
-	}
-	
 	public void setTimestampID(ObjectID newTimestampID) {
-		my_timestampXY = newTimestampID;
+		my_timestamp = newTimestampID;
 	}
-	
-	public Timestamp getTimestamp() { //TODO remove this function /already remove from code only needed for transfer 
-		return my_timestamp;
-	}
-	
+
 	public ObjectID getTimestampID() {
-		return my_timestampXY;
+		return my_timestamp;
 	}
 
 	public boolean hasTimestamp(){
-		return my_timestampXY != null;
-	}
-	
-	public boolean hasTimestampOld() { //TODO Remove this function  /already remove from code only needed for transfer 
-		if(my_timestamp == null){
-			return false;
-		}
-		return my_timestamp.hasDate(); 
+		return my_timestamp != null;
 	}
 
 	public int getDevelopmentStatus() {
