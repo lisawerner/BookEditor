@@ -1,4 +1,4 @@
-package GUI.timelinePages;
+package GUI.pages.timeline;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;

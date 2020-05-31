@@ -1,4 +1,4 @@
-package GUI.timelinePages;
+package GUI.pages.timeline;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 
 import book.Book;
-import book.Section;
+import time.Timestamp;
 import GUI.components.TimelineItem;
 import GUI.components.TransparentPanel;
 
 public class TimelineCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	public TimelineCard() {
+	public TimelineCard(Timestamp startDate) {
 		setLayout(new GridLayout(1, 0, 0, 0));
 		
 		TransparentPanel panel_leftTimeline = new TransparentPanel();
@@ -26,37 +26,35 @@ public class TimelineCard extends TransparentPanel {
 		
 		
 		boolean leftPosition = true;
-		ArrayList<Section> sectionsSortedByTimestamp_FILTERED = Book.getInstance().getTableOfContent().filterTimelineSections();
-		if((sectionsSortedByTimestamp_FILTERED.size()%2)==0) {
+		ArrayList<Timestamp> sortedTimestamps_NOTfilteredYET = Book.getInstance().getTimeline().getTimelinePartBySplit(startDate); //TODO: sort timestampResult!!!
+		if((sortedTimestamps_NOTfilteredYET.size()%2)==0) {
 			panel_rightTimeline.add(new TimelineItem(false));
 		} else {
 			panel_rightTimeline.add(new TimelineItem(false));
 		}
 		
-		for(Section section : sectionsSortedByTimestamp_FILTERED) {
-			if(section.hasSpecificTimestamp()) {
-				TimelineElement currentElement = null;
-				if(leftPosition) {
-					currentElement = new TimelineElement(section, leftPosition);
-					panel_leftTimeline.add(currentElement);
-				} else {
-					currentElement = new TimelineElement(section, leftPosition);
-					panel_rightTimeline.add(currentElement);
-				}
-				int currentHeight = currentElement.getPreferredSize().height;
-				if(currentHeight > 121) {
-					int diffrence = currentHeight - 121;
-					if(leftPosition) {
-						panel_rightTimeline.add(new TimelineItem(false, diffrence));
-					} else {
-						panel_leftTimeline.add(new TimelineItem(true, diffrence));
-					}
-				}
-				leftPosition = !leftPosition;
+		for(Timestamp timestamp : sortedTimestamps_NOTfilteredYET) {
+			TimelineElement currentElement = null;
+			if(leftPosition) {
+				currentElement = new TimelineElement(timestamp, leftPosition);
+				panel_leftTimeline.add(currentElement);
+			} else {
+				currentElement = new TimelineElement(timestamp, leftPosition);
+				panel_rightTimeline.add(currentElement);
 			}
+			int currentHeight = currentElement.getPreferredSize().height;
+			if(currentHeight > 121) {
+				int diffrence = currentHeight - 121;
+				if(leftPosition) {
+					panel_rightTimeline.add(new TimelineItem(false, diffrence));
+				} else {
+					panel_leftTimeline.add(new TimelineItem(true, diffrence));
+				}
+			}
+			leftPosition = !leftPosition;
 		}
 		
-		if((sectionsSortedByTimestamp_FILTERED.size()%2)==0) {
+		if((sortedTimestamps_NOTfilteredYET.size()%2)==0) {
 			panel_leftTimeline.add(new TimelineItem(true));
 		} else {
 			panel_rightTimeline.add(new TimelineItem(false));

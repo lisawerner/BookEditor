@@ -4,9 +4,13 @@ import book.Book;
 
 public class TimelineSettings {
 	
+	private SplitCondition my_splitCondition;
+	
 	private boolean filter_maincharacters;
 	
 	public TimelineSettings() {
+		my_splitCondition = SplitCondition.NONE;
+		
 		filter_maincharacters = false;
 	}
 
@@ -18,4 +22,15 @@ public class TimelineSettings {
 	public boolean getMaincharacterFilter() {
 		return filter_maincharacters;
 	}
+	
+	public void setSplitCondition(SplitCondition newCondition){
+		my_splitCondition = newCondition;
+		Book.getInstance().save();
+	}
+	
+	public SplitCondition getSplitConditon(){
+		return my_splitCondition;
+	}
+
+	
 }

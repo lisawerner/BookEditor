@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import book.Book;
 import book.Section;
 import GUI.components.InfoButton;
 import GUI.components.Pair;
@@ -44,8 +45,9 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	public TimestampSpecificEditor(Section openedSection) {
 		my_section = openedSection;
 		if(my_section.hasTimestamp()) {
-			if(my_section.getTimestamp().isSpecificDate()) {
-				my_specificTimestamp = my_section.getTimestamp().getSpecificDate();
+			time.Timestamp time = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
+			if(time.isSpecificDate()) {
+				my_specificTimestamp = time.getSpecificDate();
 			}
 		}
 		

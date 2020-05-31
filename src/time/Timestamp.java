@@ -4,25 +4,32 @@ import java.util.Date;
 
 import book.Book;
 import book.Section;
+import global.ObjectID;
+import global.SerializedObject;
 
-public class Timestamp {
-	
-	//Ideen:
-	// Timestamp unbekannt!!! (Einfach, wenn kein Tag gesetzt ist?)
-	// Ungefährer Abstand zu einem anderen Timestamp/Section
-	// Konkretes Datum
+public class Timestamp extends SerializedObject{
 	
 	// Achtung: Was ist mit Geschichten/Welten, die eine andere Zeitrechnung haben?
+	
+	private ObjectID my_section;
 	
 	private SpecificDate my_specificDate;
 	private RelativeDate my_relativeDate;
 	
-	public Timestamp(SpecificDate newSpecificDate, RelativeDate newRelativeDate) {
+	public Timestamp(SpecificDate newSpecificDate, RelativeDate newRelativeDate, ObjectID sectionID) {
+		super();
+		
+		my_section = sectionID;
+		
 		my_specificDate = newSpecificDate;
 		my_relativeDate = newRelativeDate;
 	}
 	
-	public boolean hasDate(){
+	public void setSection(ObjectID sectionID){ //TODO delete this function
+		my_section = sectionID;
+	}
+	
+	public boolean hasDate(){ //TODO Remove if possible...
 		return my_specificDate != null || my_relativeDate != null;
 	}
 	
@@ -88,6 +95,10 @@ public class Timestamp {
 
 	public RelativeDate getUnspecificDate() {
 		return my_relativeDate;
+	}
+	
+	public ObjectID getSection(){
+		return my_section;
 	}
 
 	public Section getRelationSection() {

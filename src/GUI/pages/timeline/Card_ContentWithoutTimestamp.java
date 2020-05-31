@@ -1,4 +1,4 @@
-package GUI.timelinePages;
+package GUI.pages.timeline;
 
 import java.awt.FlowLayout;
 

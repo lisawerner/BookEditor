@@ -50,7 +50,7 @@ public class SectionTimestampCard extends TransparentPanel {
 				LinkButton btnPresection = new LinkButton(preSection.getName());
 				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection, chapter)));
 				panel_helpfullInformationInNorth.add(btnPresection);
-				panel_helpfullInformationInNorth.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toCompleteString()));
+				panel_helpfullInformationInNorth.add(new SimpleLabel("' has Timestamp: " + Book.getInstance().getTimeline().getTimestamp(preSection.getTimestampID()).toCompleteString()));
 			}
 		}
 		
@@ -119,8 +119,8 @@ public class SectionTimestampCard extends TransparentPanel {
 				}
 
 				if(canSave) {						
-					Timestamp newTimestamp = new Timestamp(specificDate, relativeDate);
-					my_section.setTimestamp(newTimestamp);
+					Timestamp newTimestamp = new Timestamp(specificDate, relativeDate, my_section.getID());
+					my_section.setTimestampID(newTimestamp.getID());
 					Book.getInstance().save();
 					lblSaveWarning.setText("New Timestamp was successfully saved!");
 				}
@@ -128,15 +128,12 @@ public class SectionTimestampCard extends TransparentPanel {
 		});
 		
 		if(my_section.hasTimestamp()) {
-			if(!my_section.getTimestamp().isSpecificDate()) {
-				panel_unspecificBODY.activate(my_section.getTimestamp().getUnspecificDate());
+			Timestamp time = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
+			if(!time.isSpecificDate()) {
+				panel_unspecificBODY.activate(time.getUnspecificDate());
 				rdbtnUnspecificTimestamp.setSelected(true);
 				panel_unspecificBODY.switchEnabled(true);
-			}
-		}
-		
-		if(my_section.hasTimestamp()) {
-			if(my_section.getTimestamp().isSpecificDate()) {
+			} else {
 				rdbtnSpecificTimestamp.setSelected(true);
 				panel_specificBODY.switchEnabled(true);
 			}

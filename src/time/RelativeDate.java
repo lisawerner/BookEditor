@@ -10,6 +10,9 @@ import global.ObjectID;
 public class RelativeDate {
 	
 	private ObjectID relatedToSection;
+	//TODO: Change -> should refere to another timestamp and not to another section!
+	//TODO: maybe switch relation... do not save single child date... save parent date which are the giver for the specific date...
+	
 	private boolean isAfter;
 	private int my_daysDistance;
 	private int my_weeksDistance;
@@ -32,7 +35,12 @@ public class RelativeDate {
 		if(!relatedSection.hasTimestamp()){
 			return "Related to Section: " + relatedSection.getName() +" (which has no Timestamp set)";
 		}
-		return generateSpecificDate().toString();
+		SpecificDate spec = generateSpecificDate();
+		if(spec != null){			
+			return spec.toString();
+		} else {
+			return "no specific date available";
+		}
 	}
 
 	public boolean isAfter() {
@@ -71,7 +79,7 @@ public class RelativeDate {
 		if(!relatedSection.hasTimestamp()){
 			return null;
 		}
-		SpecificDate relatedDate = relatedSection.getTimestamp().getSpecificDate();
+		SpecificDate relatedDate = Book.getInstance().getTimeline().getTimestamp(relatedSection.getTimestampID()).getSpecificDate();
 		if(relatedDate == null){
 			return null;
 		}
@@ -144,5 +152,5 @@ public class RelativeDate {
 			    
 		return new SpecificDate(myDay, myMonth, myYear, isAnnoDomini);
 	}
-
+	
 }

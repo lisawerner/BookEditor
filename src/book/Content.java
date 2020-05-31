@@ -19,54 +19,6 @@ public class Content {
 	public int getCountChapters() {
 		return my_chapters.size();
 	}
-		
-	public ArrayList<Section> getTimeSortedSections(){
-		ArrayList<Section> sortedSections = new ArrayList<Section>();
-		List<Section> UNsortedCops = new ArrayList<Section>();
-		for(Chapter chapter : my_chapters) {
-			UNsortedCops.addAll(chapter.getSections().stream().filter(section -> section.hasSpecificTimestamp()).collect(Collectors.toList()));
-		}
-
-		while(UNsortedCops.size() != 0) {			
-			Section smallestDateSection = getSectionWithSmallestTimestamp(UNsortedCops);
-			sortedSections.add(smallestDateSection);
-			UNsortedCops.remove(smallestDateSection);
-		}
-		
-		return sortedSections;
-	}
-	
-	private Section getSectionWithSmallestTimestamp(List<Section> restList) {
-		return restList.stream().reduce(this::getSmallerSection).get();
-	}
-	
-	private Section getSmallerSection(Section sectionA, Section sectionB) {
-		if(sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && !sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
-			//return sectionB, because sectionB is before christ and sectionA after christ
-			return sectionB;
-		}
-		if(!sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
-			//return sectionA, because sectionA is before christ and sectionB after christ
-			return sectionA;
-		}
-		if(!sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && !sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
-			//return section which is smaller, because both after christ
-			if(sectionB.getTimestamp().greaterThen(sectionA.getTimestamp())) {
-				return sectionB;
-			} else {
-				return sectionA;
-			}
-		}
-		if(sectionA.getTimestamp().getSpecificDate().isAnnoDomini() && sectionB.getTimestamp().getSpecificDate().isAnnoDomini()) {
-			//return section which is greater, because both before christ
-			if(sectionA.getTimestamp().greaterThen(sectionB.getTimestamp())) {
-				return sectionB;
-			} else {
-				return sectionA;
-			}
-		}
-		return null;
-	}
 	
 	public List<Section> getUnfinishedSections(){
 		ArrayList<Section> sectionList = new ArrayList<Section>();
@@ -124,41 +76,6 @@ public class Content {
 			}
 		}
 		return null;
-	}
-
-	public ArrayList<Section> filterTimelineSections() {
-		ArrayList<Section> sectionsSortedByTimestamp = Book.getInstance().getTableOfContent().getTimeSortedSections();
-		boolean filterForMainCharacters = Book.getInstance().getTimeline().getSettings().getMaincharacterFilter();
-		ArrayList<Section> filteredList = new ArrayList<Section>();
-		if(filterForMainCharacters) {
-			filteredList = filterForMainCharacters(sectionsSortedByTimestamp);
-		} else {
-			filteredList = sectionsSortedByTimestamp;
-		}
-		return filteredList;
-	}
-	
-	private ArrayList<Section> filterForMainCharacters(ArrayList<Section> unfilteredList){
-		ArrayList<Section> filteredList = new ArrayList<Section>();
-		for(Section section : unfilteredList) {
-			boolean foundSomething = false;
-			//TODO: Do not filter only for person Tag -> Filter also for Relationship with mainCharacters
-			for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
-				for(Person taggedPerson : section.getPersonByTag()) {					
-					if(taggedPerson.equals(person)) {
-						foundSomething = true;
-						break;
-					}
-				}
-				if(foundSomething) {
-					break;
-				}
-			}
-			if(foundSomething) {
-				filteredList.add(section);
-			}
-		}
-		return filteredList;
 	}
 
 	public List<Section> getSectionWithoutTaggedMaincharacters() {
@@ -261,7 +178,7 @@ public class Content {
 		for(Chapter chapter : my_chapters){
 			for(Section section : chapter.getSections()){
 				if(section.hasTimestamp()){
-					Section relSection = section.getTimestamp().getRelationSection();
+					Section relSection = Book.getInstance().getTimeline().getTimestamp(section.getTimestampID()).getRelationSection();
 					if(relSection != null){						
 						if(relSection.getID().equals(maybeRelatedSection)){
 							listOfUsers.add(section);

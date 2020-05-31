@@ -16,9 +16,9 @@ import GUI.pages.notesPage.Page_singleNote;
 import GUI.pages.notesPage.Page_viewNotes;
 import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
+import GUI.pages.timeline.Page_ViewTimeline;
 import GUI.printPage.PrintPage;
 import GUI.settingsPage.BookSettingsPage;
-import GUI.timelinePages.Page_ViewTimeline;
 import GUI.worldPage.PlaceEditor;
 import GUI.worldPage.ViewWorldmapPage;
 import book.Book;
@@ -26,6 +26,7 @@ import book.Chapter;
 import global.Constant;
 import notes.GeneralNote;
 import person.Person;
+import time.Timestamp;
 import world.Place;
 import GUI.components.FrameFooter;
 import GUI.components.FrameHeader;
@@ -191,8 +192,8 @@ public class BookEditorFrame extends JFrame {
 		panel_mainMenu.changeSubmenuTo(new ContentMenu());
 	}
 
-	public void openTimelinePage() {
-		switchBody(new Page_ViewTimeline());
+	public void openTimelinePage(Timestamp startDate) {
+		switchBody(new Page_ViewTimeline(startDate));
 		panel_mainMenu.changeSubmenuTo(new TimelineMenu());
 	}
 

@@ -1,4 +1,4 @@
-package GUI.timelinePages;
+package GUI.pages.timeline;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
@@ -10,7 +10,9 @@ import GUI.components.TimelineItem;
 import GUI.components.TransparentPanel;
 import person.Person;
 import person.Relationship;
+import time.Timestamp;
 import world.Place;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +23,9 @@ public class TimelineElement extends TimelineItem {
 
 	private Section my_section;
 	
-	public TimelineElement(Section section, boolean leftPosition) {
-		super(leftPosition, section.getTimestamp().toString(), section.getTimestamp().isSpecificDate(), !section.getTimestamp().getSpecificDate().isAnnoDomini());
-		my_section = section;
+	public TimelineElement(Timestamp timestamp, boolean leftPosition) {
+		super(leftPosition, timestamp);
+		my_section = Book.getInstance().getTableOfContent().getSection(timestamp.getSection());
 
 		//TODO: Filterfunktionen!!!!
 
