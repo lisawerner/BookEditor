@@ -25,14 +25,6 @@ public class Timestamp extends SerializedObject{
 		my_relativeDate = newRelativeDate;
 	}
 	
-	public void setSection(ObjectID sectionID){ //TODO delete this function
-		my_section = sectionID;
-	}
-	
-	public boolean hasDate(){ //TODO Remove if possible...
-		return my_specificDate != null || my_relativeDate != null;
-	}
-	
 	public SpecificDate getSpecificDate() {
 		if(my_specificDate != null) {
 			return my_specificDate;
