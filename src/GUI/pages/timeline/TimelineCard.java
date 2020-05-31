@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 
-import book.Book;
+import time.TimelineController;
 import time.Timestamp;
 import GUI.components.TimelineItem;
 import GUI.components.TransparentPanel;
@@ -26,7 +26,7 @@ public class TimelineCard extends TransparentPanel {
 		
 		
 		boolean leftPosition = true;
-		ArrayList<Timestamp> sortedTimestamps_NOTfilteredYET = Book.getInstance().getTimeline().getTimelinePartBySplit(startDate); //TODO: sort timestampResult!!!
+		ArrayList<Timestamp> sortedTimestamps_NOTfilteredYET = TimelineController.getPartOfTimelineWithSplit(startDate); //TODO: sort timestampResult!!!
 		if((sortedTimestamps_NOTfilteredYET.size()%2)==0) {
 			panel_rightTimeline.add(new TimelineItem(false));
 		} else {
