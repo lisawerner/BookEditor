@@ -61,7 +61,7 @@ public class Card_RelativeList extends TransparentPanel {
 	
 	private void addRelatedTimestamp(TransparentPanel parentPanel, Timestamp parentTimestamp, String space){
 		for(Timestamp timestamp : Book.getInstance().getTimeline().getAllTimestamps()){
-			if(timestamp.getRelationSection() != null){
+			if(!timestamp.isSpecificDate()){
 				if(timestamp.getRelationSection().getID().equals(parentTimestamp.getSection())){
 					
 					Section ownSection = Book.getInstance().getTableOfContent().getSection(timestamp.getSection());

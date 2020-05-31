@@ -2,7 +2,6 @@ package time;
 
 import java.util.Date;
 
-import book.Book;
 import book.Section;
 import global.ObjectID;
 import global.SerializedObject;
@@ -94,15 +93,15 @@ public class Timestamp extends SerializedObject{
 	}
 
 	public Section getRelationSection() {
-		if(my_specificDate != null){
+		return my_relativeDate.getRelationSection();
+	}
+
+	public ObjectID getRelationToTimestamp() {
+		if(my_relativeDate == null){
 			return null;
-		} else if(my_relativeDate != null){
-			Section relatedSection = Book.getInstance().getTableOfContent().getSection(my_relativeDate.getRelatedSectionID());		
-			return relatedSection;
 		} else {
-			return null;
+			return my_relativeDate.getRelationID();
 		}
 	}
-	
 
 }

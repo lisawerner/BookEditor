@@ -112,17 +112,31 @@ public class Timeline {
 		return my_times;
 	}
 
-	public void addTimestamp(Timestamp timestamp) {
+	public void addTimestamp(Timestamp newTimestamp) {
 		if(my_times == null){my_times = new ArrayList<Timestamp>();}
-		my_times.add(timestamp);
+		SpecificDate spec = newTimestamp.getSpecificDate();
+		if(spec == null){
+			my_times.add(newTimestamp);
+		} else {			
+			for(Timestamp timestamp : my_times){
+				if(spec.getDate().after(timestamp.getSpecificDate().getDate())){					
+					my_times.add(my_times.indexOf(timestamp), newTimestamp);
+					break;
+				}
+			}
+		}
 		Book.getInstance().save();
 	}
 
 	public Timestamp getTimestamp(ObjectID timestampID) {
-		for(Timestamp timestamp : my_times){
-			if(timestamp.getID().equals(timestampID)){
-				return timestamp;
-			}
+		if(timestampID != null){
+			for(Timestamp timestamp : my_times){
+				if(timestamp.getID() != null){				
+					if(timestamp.getID().equals(timestampID)){
+						return timestamp;
+					}
+				}
+			}			
 		}
 		return null;
 	}
@@ -184,6 +198,62 @@ public class Timeline {
 		}
 		return null;
 	}
+
+//	public void sort() {
+//		ArrayList<Timestamp> unsortedList = new ArrayList<Timestamp>();
+//		ArrayList<Timestamp> timeless = new ArrayList<Timestamp>();
+//		for(Timestamp time : my_times){
+//			if(time.getSpecificDate() != null){				
+//				unsortedList.add(time);
+//			} else {
+//				timeless.add(time);
+//			}
+//		}
+//		
+//		ArrayList<Timestamp> sortedList = new ArrayList<Timestamp>();
+//		while(!unsortedList.isEmpty()){
+//			Timestamp smallest = getSmallest(unsortedList);
+//			sortedList.add(smallest);
+//			unsortedList.remove(smallest);
+//		}
+//		
+//		//At least: add timeless
+//		sortedList.addAll(timeless);
+//		
+//		my_times = new ArrayList<Timestamp>();
+//		my_times.addAll(sortedList);
+//		Book.getInstance().save();
+//		
+//	}
+//	
+//	private Timestamp getSmallest(ArrayList<Timestamp> currentList){
+//		//Find smallest timestamp
+//		Timestamp smallestTimestamp = currentList.get(0);
+//		for(Timestamp time : currentList){
+//			SpecificDate smallestSpec = smallestTimestamp.getSpecificDate();
+//			SpecificDate currentSpec = time.getSpecificDate();
+//			if(smallestSpec == null){
+//				smallestTimestamp = time;
+//			} else {
+//				if(currentSpec != null){
+//					if(smallestSpec.getDate().equals(currentSpec.getDate()) ){
+//						//Achtung: Es gibt welche am selben Tag! Da zählt die Relationsreihenfolge!
+////						System.out.println("Gleiches Datum!");
+//						ObjectID smallRelId = smallestTimestamp.getRelationToTimestamp();
+//						if(smallRelId != null){
+//							if(time.getID().equals(smallRelId)){
+//								smallestTimestamp = time;
+//							}
+//						}
+//					} else if(smallestSpec.getDate().after(currentSpec.getDate())){
+//						smallestTimestamp = time;
+//					}
+//				}
+//			}
+//		}
+//		System.out.println(smallestTimestamp.toCompleteString());
+//		return smallestTimestamp;
+//	}
 
 	//TODO: Add filter. but this one was not so clever... maybe add other filter next time...
 	

@@ -9,9 +9,7 @@ import global.ObjectID;
 
 public class RelativeDate {
 	
-	private ObjectID relatedToSection;
-	//TODO: Change -> should refere to another timestamp and not to another section!
-	//TODO: maybe switch relation... do not save single child date... save parent date which are the giver for the specific date...
+	private ObjectID relatesToTimestamp;
 	
 	private boolean isAfter;
 	private int my_daysDistance;
@@ -20,8 +18,8 @@ public class RelativeDate {
 	private int my_yearsDistance;
 	private int my_dayOfTheWeek;
 	
-	public RelativeDate(ObjectID selectedSection, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears, int dayOfWeek) {
-		relatedToSection = selectedSection;
+	public RelativeDate( ObjectID relatedTimestamp, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears, int dayOfWeek) {
+		relatesToTimestamp = relatedTimestamp;
 		isAfter = newIsAfter;
 		my_daysDistance = distDays;
 		my_weeksDistance = distWeeks;
@@ -31,10 +29,6 @@ public class RelativeDate {
 	}
 	
 	public String toString() {	
-		Section relatedSection = Book.getInstance().getTableOfContent().getSection(relatedToSection);
-		if(!relatedSection.hasTimestamp()){
-			return "Related to Section: " + relatedSection.getName() +" (which has no Timestamp set)";
-		}
 		SpecificDate spec = generateSpecificDate();
 		if(spec != null){			
 			return spec.toString();
@@ -63,23 +57,15 @@ public class RelativeDate {
 		return my_yearsDistance;
 	}
 	
-	public ObjectID getRelatedSectionID() {
-		return relatedToSection;
-	}
-	
 	public int getDayOfWeek() {
 		return my_dayOfTheWeek;
 	}	
 
 	public SpecificDate generateSpecificDate() {
-		Section relatedSection = Book.getInstance().getTableOfContent().getSection(relatedToSection);
-		if(relatedSection == null){
+		if(relatesToTimestamp == null){
 			return null;
 		}
-		if(!relatedSection.hasTimestamp()){
-			return null;
-		}
-		SpecificDate relatedDate = Book.getInstance().getTimeline().getTimestamp(relatedSection.getTimestampID()).getSpecificDate();
+		SpecificDate relatedDate = Book.getInstance().getTimeline().getTimestamp(relatesToTimestamp).getSpecificDate();
 		if(relatedDate == null){
 			return null;
 		}
@@ -151,6 +137,14 @@ public class RelativeDate {
 		}
 			    
 		return new SpecificDate(myDay, myMonth, myYear, isAnnoDomini);
+	}
+
+	public ObjectID getRelationID() {
+		return relatesToTimestamp;
+	}
+
+	public Section getRelationSection() {
+		return Book.getInstance().getTableOfContent().getSection(Book.getInstance().getTimeline().getTimestamp(relatesToTimestamp).getSection());
 	}
 	
 }

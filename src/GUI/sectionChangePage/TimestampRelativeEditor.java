@@ -257,13 +257,13 @@ public class TimestampRelativeEditor extends TransparentPanel {
 			return null;
 		}
 		
-		return new RelativeDate(selectedSection.getID(), isAfter, distDays, distWeeks, distMonths, distYears, dayOfWeek);
+		return new RelativeDate(selectedSection.getTimestampID(), isAfter, distDays, distWeeks, distMonths, distYears, dayOfWeek);
 	}
 
 	public void activate(RelativeDate unspecificDate) {
 		for(int i = 0; i < comboBox.getItemCount(); i++) {
 			ComboItem item = (ComboItem)comboBox.getItemAt(i);
-			if(unspecificDate.getRelatedSectionID().getIDtoString().equals(item.getValue().getIDtoString())) {
+			if(unspecificDate.getRelationSection().getID().getIDtoString().equals(item.getValue().getIDtoString())) {
 				comboBox.setSelectedIndex(i);
 				break;
 			}
