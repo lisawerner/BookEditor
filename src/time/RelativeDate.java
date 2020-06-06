@@ -28,15 +28,6 @@ public class RelativeDate {
 		my_dayOfTheWeek = dayOfWeek;
 	}
 	
-	public String toString() {	
-		SpecificDate spec = generateSpecificDate();
-		if(spec != null){			
-			return spec.toString();
-		} else {
-			return "no specific date available";
-		}
-	}
-
 	public boolean isAfter() {
 		return isAfter;
 	}
@@ -59,6 +50,15 @@ public class RelativeDate {
 	
 	public int getDayOfWeek() {
 		return my_dayOfTheWeek;
+	}
+	
+	public String toString() {	
+		SpecificDate spec = generateSpecificDate();
+		if(spec != null){			
+			return spec.toString();
+		} else {
+			return "no specific date available";
+		}
 	}	
 
 	public SpecificDate generateSpecificDate() {
@@ -70,7 +70,7 @@ public class RelativeDate {
 			return null;
 		}
 		int myYear = relatedDate.getYear();
-		int myMonth = relatedDate.getMonth();
+		int myMonth = relatedDate.getMonth().getValue();
 		int myDay = relatedDate.getDay();
 		int addDays = my_daysDistance + (7 * my_weeksDistance);
 		
@@ -136,7 +136,7 @@ public class RelativeDate {
 			myYear = Math.abs(myYear);
 		}
 			    
-		return new SpecificDate(myDay, myMonth, myYear, isAnnoDomini);
+		return new SpecificDate(myDay, myMonth, myYear, isAnnoDomini, true);
 	}
 
 	public ObjectID getRelationID() {

@@ -33,7 +33,7 @@ public class Timeline {
 			my_times.add(newTimestamp);
 		} else {			
 			for(Timestamp timestamp : my_times){
-				if(spec.getDate().after(timestamp.getSpecificDate().getDate())){					
+				if(spec.getDate().isAfter(timestamp.getSpecificDate().getDate())){					
 					my_times.add(my_times.indexOf(timestamp), newTimestamp);
 					break;
 				}

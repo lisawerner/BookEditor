@@ -1,61 +1,52 @@
 package time;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 public class SpecificDate {
 	
-	private int my_specificDay;
-	private int my_specificMonth;
-	private int my_specificYear;
-	private boolean isAnnoDomini;
+	private LocalDate my_date;
+	private boolean hasConcreteYear;
 	
-	public SpecificDate(int newSpecificDay, int newSpecificMonth, int newSpecificYear, boolean newCalender) {
-		my_specificDay = newSpecificDay;
-		my_specificMonth = newSpecificMonth;
-		my_specificYear = newSpecificYear;
-		isAnnoDomini = newCalender;
-	}
-
-	public boolean isYearSet() {
-		return my_specificYear >= 0;
+	public SpecificDate(int specificDay, int specificMonth, int specificYear, boolean isAnnoDomini, boolean setConcreteYear) {
+		if(!isAnnoDomini){
+			specificYear = -specificYear;
+		}
+	    my_date = LocalDate.of(specificYear, specificMonth, specificDay);
+	    
+	    hasConcreteYear = setConcreteYear;
 	}
 
 	public int getYear() {
-		return my_specificYear;
+		return my_date.getYear();
 	}
 
-	public int getMonth() {
-		return my_specificMonth;
+	public Month getMonth() {
+		return my_date.getMonth();
 	}
 
 	public int getDay() {
-		return my_specificDay;
+		return my_date.getDayOfMonth();
 	}
 	
 	public boolean isAnnoDomini() {
-		return isAnnoDomini;
+		return my_date.getYear() >= 0;
+	}
+	
+	public boolean hasConcreteYear(){
+		return hasConcreteYear;
 	}
 	
 	public String toString() {
-		String result = "";
-		if(my_specificDay > 0) {
-			int correctMonth = my_specificMonth + 1;
-			result += my_specificDay + "." + correctMonth;
-		}
-		if(isYearSet()) {
-			if(!result.equals("")) {
-				result += ".";
-			}
-			result += my_specificYear;
-		}
-		return result;
+		return my_date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 	}
 	
 	public String toCompleteString() {
 		String result = toString();
-		if(isAnnoDomini) {
+		if(isAnnoDomini()) {
 			result += " (" + getDayOfWeek() + ")";
 		} else {
 			result += " (before christ)";
@@ -63,18 +54,12 @@ public class SpecificDate {
 		return result;
 	}
 
-	public Date getDate() {
-		Calendar cal = Calendar.getInstance();
-	    cal.set(Calendar.DAY_OF_MONTH, my_specificDay);
-	    cal.set(Calendar.MONTH, my_specificMonth);
-	    cal.set(Calendar.YEAR, my_specificYear);
-	    Date my_date = cal.getTime();
-		return my_date;
+	public String getDayOfWeek() {
+		return my_date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
 	}
 
-	public String getDayOfWeek() {
-		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE");
-		return simpleDateformat.format(getDate());
+	public LocalDate getDate() {
+		return my_date;
 	}
 
 }

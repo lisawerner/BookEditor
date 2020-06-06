@@ -1,6 +1,6 @@
 package time;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import book.Section;
 import global.ObjectID;
@@ -61,19 +61,19 @@ public class Timestamp extends SerializedObject{
 	}
 	
 	public boolean greaterThen(Timestamp otherTimestamp) {
-		Date my_date = new Date();
+		LocalDate my_date = LocalDate.now();
 		if(my_specificDate != null) {
 			my_date = my_specificDate.getDate();
 		} else {
 			my_date = my_relativeDate.generateSpecificDate().getDate();
 		}
-		Date other_date = new Date();
+		LocalDate other_date = LocalDate.now();
 		if(otherTimestamp.isSpecificDate()) {
 			other_date = otherTimestamp.getSpecificDate().getDate();
 		} else {
 			other_date = otherTimestamp.getSpecificDate().getDate();
 		}
-		return my_date.after(other_date);
+		return my_date.isAfter(other_date);
 	}
 	
 	public String getDayOfWeek() {

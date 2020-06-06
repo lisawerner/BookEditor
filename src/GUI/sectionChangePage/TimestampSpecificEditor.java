@@ -82,7 +82,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	    if(my_specificTimestamp != null) {
 	    	for (int i = 0; i < cmb_month.getItemCount(); i++){
 				Pair item = cmb_month.getItemAt(i);
-				if (item.getValue() == my_specificTimestamp.getMonth()){
+				if (item.getValue() == my_specificTimestamp.getMonth().getValue()){
 					cmb_month.setSelectedIndex(i);
 					break;
 				}
@@ -134,7 +134,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	    
 		txt_year = new SimpleTextfield();
 		if(my_specificTimestamp != null) {
-			if(my_specificTimestamp.isYearSet()) {				
+			if(my_specificTimestamp.hasConcreteYear()) {				
 				txt_year.setText(my_specificTimestamp.getYear() + "");
 			}
 		}
@@ -324,7 +324,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 			return null;
 		}
 		
-		return new SpecificDate(currentSelectedDay, currentSelectedMonth, currentSelectedYear, chckbxAnnoDomini.isSelected());
+		return new SpecificDate(currentSelectedDay, currentSelectedMonth, currentSelectedYear, chckbxAnnoDomini.isSelected(), currentSelectedYear != -1);
 	}
 
 }

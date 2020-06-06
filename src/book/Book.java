@@ -72,7 +72,7 @@ public class Book extends SerializedObject {
 		}
 		return my_instance;
 	}
-		
+	
 	public void save() {
 		if(!"".equals(my_title)) {			
 			FileManager.saveJSONFile(my_filename, this);
