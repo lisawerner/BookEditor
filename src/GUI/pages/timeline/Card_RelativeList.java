@@ -48,7 +48,7 @@ public class Card_RelativeList extends TransparentPanel {
 				panel_child.add(btnChapter);
 				btnChapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter)));
 				
-				panel_child.add(new SimpleLabel("] has specific Date: " + timestamp.getSpecificDate().toString() + " and is related by: "));
+				panel_child.add(new SimpleLabel("] has specific Date: " + timestamp.toString() + " and is related by: "));
 				
 				addRelatedTimestamp(panel_TimeRelationTree, timestamp, "  >>");
 				
@@ -60,9 +60,18 @@ public class Card_RelativeList extends TransparentPanel {
 	}
 	
 	private void addRelatedTimestamp(TransparentPanel parentPanel, Timestamp parentTimestamp, String space){
+		if(parentTimestamp == null){
+			return;
+		}
+		if(parentTimestamp.getSection() == null){
+			return;
+		}
 		for(Timestamp timestamp : Book.getInstance().getTimeline().getAllTimestamps()){
 			if(!timestamp.isSpecificDate()){
-				if(timestamp.getRelationSection().getID().equals(parentTimestamp.getSection())){
+				if(timestamp.getUnspecificDate().getRelationSection() == null){
+					continue;
+				}
+				if(timestamp.getUnspecificDate().getRelationSection().getID().equals(parentTimestamp.getSection())){
 					
 					Section ownSection = Book.getInstance().getTableOfContent().getSection(timestamp.getSection());
 					Chapter chapter = Book.getInstance().getTableOfContent().getChapter(ownSection.getParentChapterID());

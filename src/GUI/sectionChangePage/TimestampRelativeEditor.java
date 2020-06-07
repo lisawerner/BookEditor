@@ -10,7 +10,7 @@ import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
 import time.RelativeDate;
-import time.SpecificDate;
+import time.Timestamp;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -364,7 +364,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 	
 	private void updateRsult() {
 		if(getResult() != null) {
-			SpecificDate specDate = getResult().generateSpecificDate();
+			Timestamp specDate = getResult().generateSpecificDate();
 			String restultText = "Result: can not be calculated because related date does not have a timestamp";
 			if(specDate != null){				
 				restultText = "<html>Result: " + getResult().generateSpecificDate().toCompleteString() + "</html>";

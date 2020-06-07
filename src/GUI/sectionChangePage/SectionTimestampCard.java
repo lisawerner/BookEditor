@@ -19,7 +19,6 @@ import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
 import time.RelativeDate;
-import time.SpecificDate;
 import time.Timestamp;
 
 public class SectionTimestampCard extends TransparentPanel {
@@ -106,7 +105,7 @@ public class SectionTimestampCard extends TransparentPanel {
 				boolean canSave = true;
 				lblSaveWarning.setText(" ");
 				
-				SpecificDate specificDate = null;
+				Timestamp specificDate = null;
 				RelativeDate relativeDate = null;
 				if(rdbtnUnspecificTimestamp.isSelected()) {
 					relativeDate = panel_unspecificBODY.getResult();
@@ -118,8 +117,13 @@ public class SectionTimestampCard extends TransparentPanel {
 					canSave = false;
 				}
 
-				if(canSave) {						
-					Timestamp newTimestamp = new Timestamp(specificDate, relativeDate, my_section.getID());
+				if(canSave) {				
+					Timestamp newTimestamp = null;
+					if(specificDate != null){
+						newTimestamp = specificDate;
+					} else {						
+						newTimestamp = new Timestamp(relativeDate, my_section.getID());
+					}
 					my_section.setTimestampID(newTimestamp.getID());
 					Book.getInstance().save();
 					lblSaveWarning.setText("New Timestamp was successfully saved!");

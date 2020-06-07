@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import global.ObjectID;
 import person.Person;
 import person.Relationship;
+import time.Timestamp;
 
 public class Content {
 	
@@ -178,10 +179,13 @@ public class Content {
 		for(Chapter chapter : my_chapters){
 			for(Section section : chapter.getSections()){
 				if(section.hasTimestamp()){
-					Section relSection = Book.getInstance().getTimeline().getTimestamp(section.getTimestampID()).getRelationSection();
-					if(relSection != null){						
-						if(relSection.getID().equals(maybeRelatedSection)){
-							listOfUsers.add(section);
+					Timestamp timestamp = Book.getInstance().getTimeline().getTimestamp(section.getTimestampID());
+					if(!timestamp.isSpecificDate()){						
+						Section relSection = timestamp.getUnspecificDate().getRelationSection();
+						if(relSection != null){						
+							if(relSection.getID().equals(maybeRelatedSection)){
+								listOfUsers.add(section);
+							}
 						}
 					}
 				}

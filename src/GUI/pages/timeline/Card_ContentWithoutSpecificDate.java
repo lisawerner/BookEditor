@@ -32,10 +32,13 @@ public class Card_ContentWithoutSpecificDate extends TransparentPanel {
 		
 		//TODO: Gut wäre es hier den Anfang der Kette nur anzuzeigen und nicht die ganze Kette...
 		for(Timestamp timestamp : Book.getInstance().getTimeline().getAllTimestamps()){
-			if(timestamp.getSpecificDate() == null){
+			if(timestamp.getDate() == null){
 				Section section = Book.getInstance().getTableOfContent().getSection(timestamp.getSection());
 				Chapter chapter = Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID());
-				Section relatedSection = timestamp.getRelationSection();
+				Section relatedSection = timestamp.getUnspecificDate().getRelationSection();
+				if(relatedSection == null){
+					continue;
+				}
 				Chapter chapterOfRelatedSection = Book.getInstance().getTableOfContent().getChapter(relatedSection.getParentChapterID());
 				
 				TransparentPanel panel_unspecificSection = new TransparentPanel();

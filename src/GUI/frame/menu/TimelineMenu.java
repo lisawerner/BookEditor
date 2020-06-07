@@ -1,5 +1,7 @@
 package GUI.frame.menu;
 
+import java.time.LocalDate;
+
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.FrameSubmenu;
 import GUI.components.MenuButton;
@@ -8,7 +10,6 @@ import GUI.pages.timeline.Page_RelativeDateListView;
 import GUI.pages.timeline.Page_TimelineFilter;
 import GUI.pages.timeline.settingsPage.Page_TimelineSettings;
 import book.Book;
-import time.SpecificDate;
 import time.TimelineController;
 import time.Timestamp;
 
@@ -24,9 +25,9 @@ public class TimelineMenu extends FrameSubmenu {
 		addButton(new MenuButton("View Relative Dates", e -> BookEditorFrame.getInstance().switchBody(new Page_RelativeDateListView())));
 		
 		for(Timestamp date : TimelineController.getTimelineWithSplit()){
-			SpecificDate specificDate = date.getSpecificDate();
+			LocalDate specificDate = date.getDate();
 			if(specificDate != null){				
-				addListEntry(new MenuListButton(specificDate.toCompleteString(), e -> BookEditorFrame.getInstance().openTimelinePage(date)));
+				addListEntry(new MenuListButton(date.toCompleteString(), e -> BookEditorFrame.getInstance().openTimelinePage(date)));
 			} else {
 				addListEntry(new MenuListButton(Book.getInstance().getTableOfContent().getSection(date.getSection()).getName(), e -> BookEditorFrame.getInstance().openTimelinePage(date)));
 			}

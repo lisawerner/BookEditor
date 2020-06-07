@@ -39,9 +39,8 @@ public class TimelineController {
 		ArrayList<Integer> years = new ArrayList<Integer>();
 		
 		for(Timestamp timestamp : timelist){
-			SpecificDate spec = timestamp.getSpecificDate();
-			if(spec != null){				
-				int timestampYear =  spec.getYear();
+			if(timestamp.getDate() != null){				
+				int timestampYear =  timestamp.getYear();
 				if(!years.contains(timestampYear)){
 					filteredList.add(timestamp);
 					years.add(timestampYear);
@@ -65,16 +64,12 @@ public class TimelineController {
 		if(startDate == null){
 			//TODO get first year in Timeline
 		} else {			
-			SpecificDate specificStart = startDate.getSpecificDate();
-			if(specificStart != null){
-				year = specificStart.getYear();
-			}
+			year = startDate.getYear();
 		}
 		
 		for(Timestamp timestamp : timelist){
-			SpecificDate spec = timestamp.getSpecificDate();
-			if(spec != null){
-				int timestampYear =  spec.getYear();
+			if(timestamp.getDate() != null){				
+				int timestampYear =  timestamp.getYear();
 				if(year == timestampYear){
 					filteredList.add(timestamp);
 				}

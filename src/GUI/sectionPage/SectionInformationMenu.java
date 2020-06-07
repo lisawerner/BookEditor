@@ -61,7 +61,7 @@ public class SectionInformationMenu extends PageMenu {
 			if(timestampString != null){				
 				this.addText("Timestamp: " + timestampString);		
 			} else {
-				Section timeSection = timestamp.getRelationSection();
+				Section timeSection = timestamp.getUnspecificDate().getRelationSection();
 				if(timeSection != null){					
 					this.addText("Timestamp relates to: ");
 					this.addLinkedListButton(new MenuListButton(timeSection.getName(), e -> this.openOtherSection(timeSection)));

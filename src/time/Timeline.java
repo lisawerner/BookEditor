@@ -71,11 +71,8 @@ public class Timeline {
 
 //	public void fix() {
 //		for(Timestamp time : my_times){
-//			if(time.isSpecificDate()){				
-//				time.fix();
-//			}
-//		}
-//		
+//			time.fix(my_times);
+//		}	
 //	}
 
 }
