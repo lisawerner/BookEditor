@@ -51,11 +51,11 @@ public class TimelineItem extends TransparentPanel {
 		}
 		dateString = "&nbsp;" + dateString + "&nbsp;";
 		
-		if(timestamp.getSpecificDate() != null){			
-			if(!timestamp.getSpecificDate().isAnnoDomini()){
-				dateString += "<br/>&emsp;&emsp;b.c.";
-			}
+		
+		if(!timestamp.isAnnoDomini()){
+			dateString += "<br/>&emsp;&emsp;b.c.";
 		}
+
 		
 		TransparentPanel lineContact = new TransparentPanel();
 		lineContact.setOpaque(false);

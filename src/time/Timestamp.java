@@ -1,6 +1,10 @@
 package time;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 import book.Section;
 import global.ObjectID;
@@ -10,78 +14,42 @@ public class Timestamp extends SerializedObject{
 	
 	// Achtung: Was ist mit Geschichten/Welten, die eine andere Zeitrechnung haben?
 	
+	private LocalDate my_date;
+	private boolean hasConcreteYear;
+	
 	private ObjectID my_section;
 	
-	private SpecificDate my_specificDate;
 	private RelativeDate my_relativeDate;
 	
-	public Timestamp(SpecificDate newSpecificDate, RelativeDate newRelativeDate, ObjectID sectionID) {
+	public Timestamp(int specificDay, int specificMonth, int specificYear, boolean isAnnoDomini, boolean setConcreteYear) {
+		super();
+		
+		if(!isAnnoDomini){
+			specificYear = -specificYear;
+		}
+	    my_date = LocalDate.of(specificYear, specificMonth, specificDay);
+	    
+	    hasConcreteYear = setConcreteYear;
+	}
+	
+	public Timestamp(RelativeDate newRelativeDate, ObjectID sectionID) {
 		super();
 		
 		my_section = sectionID;
 		
-		my_specificDate = newSpecificDate;
 		my_relativeDate = newRelativeDate;
 	}
 	
-	public SpecificDate getSpecificDate() {
-		if(my_specificDate != null) {
-			return my_specificDate;
-		}
-		if(my_relativeDate != null) {
-			return my_relativeDate.generateSpecificDate();
-		}
-		return null;
-	}
-
-	public boolean isSpecificDate() {
-		return my_specificDate != null;
-	}
-	
-	public String toString() {
-		if(my_specificDate != null) {
-			return my_specificDate.toString();
-		} else {
-			return my_relativeDate.toString();
-		}
-	}
-	
-	public String toCompleteString() {
-		if(my_specificDate != null) {
-			return my_specificDate.toCompleteString();
-		} else if(my_relativeDate != null) {
-			SpecificDate convertedSpecificDate = my_relativeDate.generateSpecificDate();
-			if(convertedSpecificDate != null){				
-				return convertedSpecificDate.toCompleteString();			
-			}
-			return null;
-		} else {
-			return null;
-		}
-	}
-	
 	public boolean greaterThen(Timestamp otherTimestamp) {
-		LocalDate my_date = LocalDate.now();
-		if(my_specificDate != null) {
-			my_date = my_specificDate.getDate();
+		LocalDate ownDate = LocalDate.now();
+		if(my_relativeDate == null) {
+			ownDate = my_date;
 		} else {
-			my_date = my_relativeDate.generateSpecificDate().getDate();
+			ownDate = my_relativeDate.generateSpecificDate().getDate();
 		}
-		LocalDate other_date = LocalDate.now();
-		if(otherTimestamp.isSpecificDate()) {
-			other_date = otherTimestamp.getSpecificDate().getDate();
-		} else {
-			other_date = otherTimestamp.getSpecificDate().getDate();
-		}
-		return my_date.isAfter(other_date);
-	}
-	
-	public String getDayOfWeek() {
-		if(my_specificDate != null) {
-			return my_specificDate.getDayOfWeek();
-		} else {
-			return my_relativeDate.generateSpecificDate().getDayOfWeek();
-		}
+		LocalDate other_date = otherTimestamp.getDate();
+
+		return ownDate.isAfter(other_date);
 	}
 
 	public RelativeDate getUnspecificDate() {
@@ -93,7 +61,10 @@ public class Timestamp extends SerializedObject{
 	}
 
 	public Section getRelationSection() {
-		return my_relativeDate.getRelationSection();
+		if(my_relativeDate != null){			
+			return my_relativeDate.getRelationSection();
+		}
+		return null;
 	}
 
 	public ObjectID getRelationToTimestamp() {
@@ -103,5 +74,94 @@ public class Timestamp extends SerializedObject{
 			return my_relativeDate.getRelationID();
 		}
 	}
+	
+	public int getYear() {
+		if(my_relativeDate != null){
+			return my_relativeDate.generateSpecificDate().getYear();
+		}
+		return my_date.getYear();
+	}
+
+	public Month getMonth() {
+		if(my_relativeDate != null){
+			return my_relativeDate.generateSpecificDate().getMonth();
+		}
+		return my_date.getMonth();
+	}
+
+	public int getDay() {
+		if(my_relativeDate != null){
+			return my_relativeDate.generateSpecificDate().getDate().getDayOfMonth();
+		}
+		return my_date.getDayOfMonth();
+	}
+	
+	public boolean isAnnoDomini() {
+		if(my_relativeDate != null){
+			return my_relativeDate.generateSpecificDate().getYear() >= 0;
+		}
+		return my_date.getYear() >= 0;
+	}
+	
+	public boolean hasConcreteYear(){
+		return hasConcreteYear;
+	}
+	
+	public String toString() {
+		if(my_relativeDate == null) {
+			return my_date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		} else {
+			return my_relativeDate.toString();
+		}
+	}
+	
+	public String toCompleteString() {		
+		if(my_relativeDate == null) {
+			String result = toString();
+			if(isAnnoDomini()) {
+				result += " (" + getDayOfWeek() + ")";
+			} else {
+				result += " (before christ)";
+			}
+			return result;
+		} else if(my_relativeDate != null) {
+			Timestamp convertedSpecificDate = my_relativeDate.generateSpecificDate();
+			if(convertedSpecificDate != null){				
+				return convertedSpecificDate.toCompleteString();			
+			}
+			return null;
+		} else {
+			return null;
+		}
+	}
+
+	public String getDayOfWeek() {
+		if(my_relativeDate == null) {
+			return my_date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
+		} else {
+			return my_relativeDate.generateSpecificDate().getDayOfWeek();
+		}
+	}
+
+	public LocalDate getDate() {
+		if(my_relativeDate != null){
+			Timestamp rel = my_relativeDate.generateSpecificDate();
+			if(rel != null ){
+				return rel.getDate();
+			} else {
+				return null;
+			}
+		}
+		return my_date;
+	}
+
+	public boolean isSpecificDate() {
+		return my_relativeDate == null;
+	}
+
+//	public void fix() {
+//		my_date = my_specificDate.getDate();
+//		hasConcreteYear = my_specificDate.hasConcreteYear();
+//	}
 
 }

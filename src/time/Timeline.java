@@ -27,18 +27,18 @@ public class Timeline {
 	}
 	
 	public void addTimestamp(Timestamp newTimestamp) {
-		if(my_times == null){my_times = new ArrayList<Timestamp>();}
-		SpecificDate spec = newTimestamp.getSpecificDate();
-		if(spec == null){
+		if(my_times == null){
+			my_times = new ArrayList<Timestamp>();
 			my_times.add(newTimestamp);
-		} else {			
-			for(Timestamp timestamp : my_times){
-				if(spec.getDate().isAfter(timestamp.getSpecificDate().getDate())){					
-					my_times.add(my_times.indexOf(timestamp), newTimestamp);
-					break;
-				}
+		}
+			
+		for(Timestamp timestamp : my_times){
+			if(newTimestamp.getDate().isAfter(timestamp.getDate())){					
+				my_times.add(my_times.indexOf(timestamp), newTimestamp);
+				break;
 			}
 		}
+		
 		Book.getInstance().save();
 	}
 
@@ -68,5 +68,14 @@ public class Timeline {
 	public SplitCondition getSplitConditon(){
 		return my_splitCondition;
 	}
+
+//	public void fix() {
+//		for(Timestamp time : my_times){
+//			if(time.isSpecificDate()){				
+//				time.fix();
+//			}
+//		}
+//		
+//	}
 
 }

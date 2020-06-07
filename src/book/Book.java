@@ -70,6 +70,8 @@ public class Book extends SerializedObject {
 		if(my_instance == null) {
 			my_instance = new Book();
 		}
+//		my_instance.my_timeline.fix();
+//		my_instance.save();
 		return my_instance;
 	}
 	
