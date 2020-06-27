@@ -1,7 +1,6 @@
-package GUI.timelinePages;
+package GUI.pages.timeline;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Section;
 import GUI.components.LinkButton;
@@ -10,7 +9,9 @@ import GUI.components.TimelineItem;
 import GUI.components.TransparentPanel;
 import person.Person;
 import person.Relationship;
+import time.Timestamp;
 import world.Place;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class TimelineElement extends TimelineItem {
 
 	private Section my_section;
 	
-	public TimelineElement(Section section, boolean leftPosition) {
-		super(leftPosition, section.getTimestamp().toString(), section.getTimestamp().isSpecificDate(), !section.getTimestamp().getSpecificDate().isAnnoDomini());
-		my_section = section;
+	public TimelineElement(Timestamp timestamp, boolean leftPosition) {
+		super(leftPosition, timestamp);
+		my_section = Book.getInstance().getTableOfContent().getSection(timestamp.getSection());
 
 		//TODO: Filterfunktionen!!!!
 
@@ -33,7 +34,7 @@ public class TimelineElement extends TimelineItem {
 		SimpleLabel lblSection = new SimpleLabel("Section:  ");
 		panel_sectionName.add(lblSection);
 		LinkButton btnOpenSection = new LinkButton(my_section.getName());
-		btnOpenSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, Book.getInstance().getTableOfContent().getChapter(my_section.getParentChapterID()))));
+		btnOpenSection.addActionListener(e -> BookEditorFrame.getInstance().openSectionPage(my_section, Book.getInstance().getTableOfContent().getChapter(my_section.getParentChapterID())));
 		panel_sectionName.add(btnOpenSection);
 		this.setSection(panel_sectionName);
 	

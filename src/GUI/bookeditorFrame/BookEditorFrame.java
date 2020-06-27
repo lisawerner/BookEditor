@@ -10,20 +10,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import GUI.miscPage.NotesPage;
 import GUI.pages.chapter.Page_viewChapter;
 import GUI.pages.content.Page_sortContent;
+import GUI.pages.notesPage.Page_singleNote;
+import GUI.pages.notesPage.Page_viewNotes;
 import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
+import GUI.pages.timeline.Page_ViewTimeline;
 import GUI.printPage.PrintPage;
+import GUI.sectionPage.SectionPage;
 import GUI.settingsPage.BookSettingsPage;
-import GUI.timelinePages.Page_ViewTimeline;
 import GUI.worldPage.PlaceEditor;
 import GUI.worldPage.ViewWorldmapPage;
 import book.Book;
 import book.Chapter;
+import book.Section;
 import global.Constant;
+import notes.GeneralNote;
 import person.Person;
+import time.Timestamp;
 import world.Place;
 import GUI.components.FrameFooter;
 import GUI.components.FrameHeader;
@@ -32,6 +37,7 @@ import GUI.components.Page;
 import GUI.components.ThemeList;
 import GUI.components.TransparentPanel;
 import GUI.frame.menu.ContentMenu;
+import GUI.frame.menu.NotesMenu;
 import GUI.frame.menu.PlaceMenu;
 import GUI.frame.menu.SocietyMenu;
 import GUI.frame.menu.TimelineMenu;
@@ -129,6 +135,7 @@ public class BookEditorFrame extends JFrame {
 	
 	public void repaintFrame() {
 		updateBookTitle();
+		updateBookMenu();
 		panel_footer.changeTheme();
 		changeTheme();
 		revalidate();
@@ -144,6 +151,14 @@ public class BookEditorFrame extends JFrame {
 		repaint();
 	}
 	
+	private void updateBookMenu(){
+		panel_mainMenu.removeAll();
+		panel_mainMenu = new FrameMenu();
+		contentPane.add(panel_mainMenu, BorderLayout.WEST);
+		panel_mainMenu.revalidate();
+		panel_mainMenu.repaint();
+	}
+	
 	public void openPrintPage(){
 		switchBody(new PrintPage());
 		panel_mainMenu.removeSubmenu();
@@ -154,9 +169,14 @@ public class BookEditorFrame extends JFrame {
 		panel_mainMenu.removeSubmenu();
 	}
 
-	public void openNotesPage() {
-		switchBody(new NotesPage());
-		panel_mainMenu.removeSubmenu();
+	public void openNotesListPage() {
+		switchBody(new Page_viewNotes());
+		panel_mainMenu.changeSubmenuTo(new NotesMenu());
+	}
+	
+	public void openNotePage(GeneralNote note){
+		switchBody(new Page_singleNote(note));
+		panel_mainMenu.changeSubmenuTo(new NotesMenu());
 	}
 
 	public void openStartPage() {
@@ -173,9 +193,14 @@ public class BookEditorFrame extends JFrame {
 		switchBody(new Page_viewChapter(chapter));
 		panel_mainMenu.changeSubmenuTo(new ContentMenu());
 	}
+	
+	public void openSectionPage(Section section, Chapter chapter){
+		switchBody(new SectionPage(section, chapter));
+		panel_mainMenu.changeSubmenuTo(new ContentMenu());
+	}
 
-	public void openTimelinePage() {
-		switchBody(new Page_ViewTimeline());
+	public void openTimelinePage(Timestamp startDate) {
+		switchBody(new Page_ViewTimeline(startDate));
 		panel_mainMenu.changeSubmenuTo(new TimelineMenu());
 	}
 

@@ -4,12 +4,14 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+import global.UserSettings;
+
 public class SimpleLabel extends JLabel{
 	private static final long serialVersionUID = 1L;
 	
 	public SimpleLabel(String text) {
 		super(text);
-		
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		changeTheme();
 	}
 	
@@ -38,8 +40,5 @@ public class SimpleLabel extends JLabel{
 			changeTheme();
 		}
 	}
-
-	//TODO: Alle JLabel sollten etwas größere Schrift haben (nicht viel, aber bisschen! :D )
-	//TODO: Alle JLabel sollten automatisch in <html> </html> Tags eingeschloßen werden :D
 
 }

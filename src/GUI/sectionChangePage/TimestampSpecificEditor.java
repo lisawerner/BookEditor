@@ -14,20 +14,21 @@ import javax.swing.JComboBox;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import book.Book;
 import book.Section;
+import time.Timestamp;
 import GUI.components.InfoButton;
 import GUI.components.Pair;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleTextfield;
 import GUI.components.TransparentPanel;
-import time.SpecificDate;
 
 public class TimestampSpecificEditor extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
-	private SpecificDate my_specificTimestamp;
+	private Timestamp my_specificTimestamp;
 	
 	private SimpleTextfield txt_year;
 	private JComboBox<Pair> cmb_month;
@@ -44,8 +45,9 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	public TimestampSpecificEditor(Section openedSection) {
 		my_section = openedSection;
 		if(my_section.hasTimestamp()) {
-			if(my_section.getTimestamp().isSpecificDate()) {
-				my_specificTimestamp = my_section.getTimestamp().getSpecificDate();
+			time.Timestamp time = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
+			if(time.isSpecificDate()) {
+				my_specificTimestamp = time;
 			}
 		}
 		
@@ -80,7 +82,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	    if(my_specificTimestamp != null) {
 	    	for (int i = 0; i < cmb_month.getItemCount(); i++){
 				Pair item = cmb_month.getItemAt(i);
-				if (item.getValue() == my_specificTimestamp.getMonth()){
+				if (item.getValue() == my_specificTimestamp.getMonth().getValue()){
 					cmb_month.setSelectedIndex(i);
 					break;
 				}
@@ -132,7 +134,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	    
 		txt_year = new SimpleTextfield();
 		if(my_specificTimestamp != null) {
-			if(my_specificTimestamp.isYearSet()) {				
+			if(my_specificTimestamp.hasConcreteYear()) {				
 				txt_year.setText(my_specificTimestamp.getYear() + "");
 			}
 		}
@@ -304,7 +306,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		lblDayOfWeek.setEnabled(selected);
 	}
 
-	public SpecificDate getResult() {
+	public Timestamp getResult() {
 		int currentSelectedDay = -1;
 		if(cmb_day.getSelectedIndex() != -1) {
 			currentSelectedDay = Integer.parseInt(cmb_day.getSelectedItem().toString());
@@ -322,7 +324,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 			return null;
 		}
 		
-		return new SpecificDate(currentSelectedDay, currentSelectedMonth, currentSelectedYear, chckbxAnnoDomini.isSelected());
+		return new Timestamp(my_section.getID(), currentSelectedDay, currentSelectedMonth, currentSelectedYear, chckbxAnnoDomini.isSelected(), currentSelectedYear != -1);
 	}
 
 }

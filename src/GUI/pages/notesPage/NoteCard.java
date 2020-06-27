@@ -1,4 +1,4 @@
-package GUI.miscPage;
+package GUI.pages.notesPage;
 
 import book.Book;
 import GUI.components.SimpleLabel;
@@ -68,7 +68,7 @@ public class NoteCard extends TransparentPanel {
 		if(canSave) {			
 			if(my_note == null) {
 				Book.getInstance().addNote(new GeneralNote(txt_name.getText(), txt_noteContent.getText()));
-				BookEditorFrame.getInstance().switchBody(new NotesPage());
+				BookEditorFrame.getInstance().switchBody(new Page_viewNotes());
 				//TODO: Reload bug: Ändert man ein existierendes Note ohne es zu speichern, geht diese Änderung verloren, wenn ein neues Note erzeugt wird!
 			} else {
 				my_note.edit(txt_name.getText(), txt_noteContent.getText());

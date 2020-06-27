@@ -1,4 +1,4 @@
-package GUI.timelinePages;
+package GUI.pages.timeline.settingsPage;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;
@@ -9,7 +9,7 @@ public class Page_TimelineSettings extends Page {
 	public Page_TimelineSettings() {
 		super("Timeline Filter-Settings");
 		
-		addCard(new StructureCard("Set Filter to the Timeline", new FilterCard()));
+		addCard(new StructureCard("Split timeline by following condition:", new Card_splitTimelineCondition()));
 	}
 
 }

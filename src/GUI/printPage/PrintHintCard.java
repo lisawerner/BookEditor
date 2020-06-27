@@ -14,8 +14,7 @@ public class PrintHintCard extends TransparentPanel {
 		
 		SimpleLabel lblChapterSettings = new SimpleLabel("You can change all Settings in 'Book-Settings' in the left navigation menu");
 		add(lblChapterSettings);
-		
-		//TODO: LinkButton hier positionieren (wozu? zum Book-Settigns??? Weis nicht mehr, was der Kommentar sollte ^^""") 
+		 
 		SimpleLabel lblBookTitle = new SimpleLabel("Printed Title of the Book: " + Book.getInstance().getTitle());
 		add(lblBookTitle);
 		
@@ -27,10 +26,12 @@ public class PrintHintCard extends TransparentPanel {
 		if(Book.getInstance().printChapterName()) {lblChapter.setText("Chapters will printed with their names you add for Table of Content");}
 		add(lblChapter);
 
-		SimpleLabel lblSectionless = new SimpleLabel("Warning: You have no Chapters and no Text!");
-		lblSectionless.setWarning(true);
-		if(Book.getInstance().getTableOfContent().getChapters().size() == 0) {add(lblSectionless);}
+		SimpleLabel lblNoChapter = new SimpleLabel("Warning: You have no Chapters and no Text!");
+		lblNoChapter.setWarning(true);
+		if(Book.getInstance().getTableOfContent().getChapters().size() == 0) {add(lblNoChapter);}
 		
+		SimpleLabel lblChapterWithoutSection = new SimpleLabel("Warning: Some chapters does not have a section");
+		lblChapterWithoutSection.setWarning(true);
 		//TODO: WArnng for missing Sections in Chapters!
 		
 		SimpleLabel lblSectionUnfinished = new SimpleLabel("Warning: You have Sections, which are not finished! Filter for Sections with DevelopmentStatus != Finish");

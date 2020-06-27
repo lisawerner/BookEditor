@@ -3,10 +3,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JPanel;
+
+import time.Timestamp;
+
 import java.awt.Component;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.JLabel;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -16,39 +20,42 @@ public class TimelineItem extends TransparentPanel {
 	
 	private TransparentPanel my_body;
 	private SimpleLabel contactArrow;
-	private SimpleLabel contactDate;
+	private JLabel contactDate;
 	private JPanel topRightGab;
 	private TransparentPanel panelOverBody;
 	
 	private String frontTag = "<html><font size=\"9\">";
 	private String backTag = "</size></html>";
 
-	public TimelineItem(boolean leftPosition, String date, boolean isSpecific, boolean beforeChrist) {
+	public TimelineItem(boolean leftPosition, Timestamp timestamp) {
 		setLayout(new BorderLayout(0, 0));
 		
-		System.out.println(date);
+		String dateString = timestamp.toString();
+		System.out.println(dateString);
 		
-		if(date.length() < 10) {
+		if(dateString.length() < 10) {
 			String newDate = "";
-			if(date.indexOf(".") < 2) {
-				newDate = "0" + date.substring(0, 2); 
-				date = date.substring(2);
+			if(dateString.indexOf(".") < 2) {
+				newDate = "0" + dateString.substring(0, 2); 
+				dateString = dateString.substring(2);
 			}else {
-				newDate = date.substring(0, 3); 
-				date = date.substring(3);
+				newDate = dateString.substring(0, 3); 
+				dateString = dateString.substring(3);
 			}
-			if(date.indexOf(".") < 2) {
-				newDate += "0" + date.substring(0, 2); 
-				date = date.substring(2);
+			if(dateString.indexOf(".") < 2) {
+				newDate += "0" + dateString.substring(0, 2); 
+				dateString = dateString.substring(2);
 			}
-			newDate += date;
-			date = newDate;
+			newDate += dateString;
+			dateString = newDate;
 		}
-		date = "&nbsp;" + date + "&nbsp;";
+		dateString = "&nbsp;" + dateString + "&nbsp;";
 		
-		if(beforeChrist){
-			date += "<br/>&emsp;&emsp;b.c.";
+		
+		if(!timestamp.isAnnoDomini()){
+			dateString += "<br/>&emsp;&emsp;b.c.";
 		}
+
 		
 		TransparentPanel lineContact = new TransparentPanel();
 		lineContact.setOpaque(false);
@@ -56,9 +63,9 @@ public class TimelineItem extends TransparentPanel {
 		contactArrow = new SimpleLabel("");
 		contactArrow.setHorizontalTextPosition(SimpleLabel.CENTER);
 		contactArrow.setVerticalTextPosition(SimpleLabel.CENTER);
-		contactDate = new SimpleLabel("<html>" + date + "</html>");
-		contactDate.setHorizontalTextPosition(SimpleLabel.CENTER);
-		contactDate.setVerticalTextPosition(SimpleLabel.CENTER);
+		contactDate = new JLabel("<html>" + dateString + "</html>");
+		contactDate.setHorizontalTextPosition(JLabel.CENTER);
+		contactDate.setVerticalTextPosition(JLabel.CENTER);
 		if(leftPosition) {
 			//When Item is on left Side, contact must on right side
 			add(lineContact, BorderLayout.EAST);
@@ -82,7 +89,7 @@ public class TimelineItem extends TransparentPanel {
 		
 		SimpleLabel lblIsSpecific = new SimpleLabel("");
 		my_body.add(lblIsSpecific);
-		if(isSpecific) {
+		if(timestamp.isSpecificDate()) {
 			lblIsSpecific.setText("Specific Date");
 		} else {
 			lblIsSpecific.setText("Unspecific Date");
@@ -116,7 +123,7 @@ public class TimelineItem extends TransparentPanel {
 		
 		my_body = new TransparentPanel();
 		contactArrow = new SimpleLabel("");
-		contactDate = new SimpleLabel("");
+		contactDate = new JLabel("");
 		
 		changeTheme();
 	}
@@ -135,7 +142,7 @@ public class TimelineItem extends TransparentPanel {
 		
 		my_body = new TransparentPanel();
 		contactArrow = new SimpleLabel("");
-		contactDate = new SimpleLabel("");
+		contactDate = new JLabel("");
 		
 		changeTheme();
 	}
@@ -146,6 +153,7 @@ public class TimelineItem extends TransparentPanel {
 			contactDate.setForeground(ThemeList.currentTheme.menuFontColor);
 			contactDate.setBackground(ThemeList.currentTheme.menuBackColor);
 			contactDate.setOpaque(true);
+//			contactDate.setForeground(ThemeList.currentTheme.darkForegroundColor);
 			my_body.setBorder(BorderFactory.createLineBorder(ThemeList.currentTheme.menuBackColor));
 			contactArrow.setForeground(ThemeList.currentTheme.menuBackColor);
 			revalidate();

@@ -10,7 +10,7 @@ import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
 import time.RelativeDate;
-import time.SpecificDate;
+import time.Timestamp;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -55,9 +55,8 @@ public class TimestampRelativeEditor extends TransparentPanel {
 
 	public TimestampRelativeEditor(Section openedSection) {
 		my_section = openedSection;
+		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		
-		
 		
 		ButtonGroup btngroup_afterORbefore = new ButtonGroup();
 		
@@ -226,9 +225,17 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		txt_months.setEnabled(enable);
 		txt_years.setEnabled(enable);
 		lblResult.setEnabled(enable);
+		rdbtnNoDay.setEnabled(enable);
+		rdbtnMonday.setEnabled(enable);
+		rdbtnTuseday.setEnabled(enable);
+		rdbtnWednesday.setEnabled(enable);
+		rdbtnThursday.setEnabled(enable);
+		rdbtnFriday.setEnabled(enable);
+		rdbtnSaturday.setEnabled(enable);
+		rdbtnSunday.setEnabled(enable);
 	}
 	
-	public RelativeDate getResult() {
+	public Timestamp getResult() {
 		lblWARNING.setText("");
 		
 		int distDays = txt_days.getInteger();
@@ -257,13 +264,22 @@ public class TimestampRelativeEditor extends TransparentPanel {
 			return null;
 		}
 		
-		return new RelativeDate(selectedSection.getID(), isAfter, distDays, distWeeks, distMonths, distYears, dayOfWeek);
+		RelativeDate relativeResult = new RelativeDate(selectedSection.getTimestampID(), isAfter, distDays, distWeeks, distMonths, distYears, dayOfWeek);
+		
+		Timestamp my_timestamp = null;
+		if(my_section.getTimestampID() != null){
+			my_timestamp = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
+			my_timestamp.setRelativeDate(relativeResult);
+		} else {			
+			my_timestamp = new Timestamp(relativeResult, my_section.getID());
+		}
+		return my_timestamp;
 	}
 
 	public void activate(RelativeDate unspecificDate) {
 		for(int i = 0; i < comboBox.getItemCount(); i++) {
 			ComboItem item = (ComboItem)comboBox.getItemAt(i);
-			if(unspecificDate.getRelatedSectionID().getIDtoString().equals(item.getValue().getIDtoString())) {
+			if(unspecificDate.getRelationSection().getID().getIDtoString().equals(item.getValue().getIDtoString())) {
 				comboBox.setSelectedIndex(i);
 				break;
 			}
@@ -364,10 +380,10 @@ public class TimestampRelativeEditor extends TransparentPanel {
 	
 	private void updateRsult() {
 		if(getResult() != null) {
-			SpecificDate specDate = getResult().generateSpecificDate();
+			Timestamp specDate = getResult();
 			String restultText = "Result: can not be calculated because related date does not have a timestamp";
 			if(specDate != null){				
-				restultText = "<html>Result: " + getResult().generateSpecificDate().toCompleteString() + "</html>";
+				restultText = "<html>Result: " + getResult().toCompleteString() + "</html>";
 			}
 			lblResult.setText(restultText);
 		}

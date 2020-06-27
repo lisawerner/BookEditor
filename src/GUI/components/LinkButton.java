@@ -1,6 +1,7 @@
 package GUI.components;
 
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +9,15 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
+import global.UserSettings;
+
 public class LinkButton extends JButton{
 	private static final long serialVersionUID = 1L;
 	
-	
+	//TODO: in einem anderen comitt hier das Mal ausbauen aber nicht jetzt
+	/**
+	 *deprecated
+	 */
 	public LinkButton(String text) {
 		setText(text);
 		
@@ -19,6 +25,22 @@ public class LinkButton extends JButton{
 		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		setFont(font.deriveFont(attributes));
+	
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
+		
+		changeTheme();
+	}
+	
+	public LinkButton(String text, ActionListener a) {
+		setText(text);
+		addActionListener(a);
+		
+		Font font = getFont();
+		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		setFont(font.deriveFont(attributes));
+	
+		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		
 		changeTheme();
 	}

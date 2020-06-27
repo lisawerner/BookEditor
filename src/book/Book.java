@@ -6,7 +6,7 @@ import GUI.components.Theme;
 import notes.GeneralNote;
 import person.Relationship;
 import person.Society;
-import time.Timestuff;
+import time.Timeline;
 import world.World;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class Book extends SerializedObject {
 	
 	private World my_world;
 	private Society my_society;
-	private Timestuff my_timeline;
+	private Timeline my_timeline;
 	
 	private ArrayList<GeneralNote> my_notes;
 	
@@ -48,7 +48,7 @@ public class Book extends SerializedObject {
 		
 		my_world = new World();
 		
-		my_timeline = new Timestuff();
+		my_timeline = new Timeline();
 		
 		my_notes = new ArrayList<GeneralNote>();
 		
@@ -70,6 +70,8 @@ public class Book extends SerializedObject {
 		if(my_instance == null) {
 			my_instance = new Book();
 		}
+//		my_instance.my_timeline.fix();
+//		my_instance.save();
 		return my_instance;
 	}
 	
@@ -146,7 +148,7 @@ public class Book extends SerializedObject {
 		return my_society;
 	}
 	
-	public Timestuff getTimeline() {
+	public Timeline getTimeline() {
 		return my_timeline;
 	}
 

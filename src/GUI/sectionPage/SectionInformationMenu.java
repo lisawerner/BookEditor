@@ -22,6 +22,7 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import person.Person;
 import person.Relationship;
+import time.Timestamp;
 import world.Place;
 
 public class SectionInformationMenu extends PageMenu {
@@ -55,11 +56,12 @@ public class SectionInformationMenu extends PageMenu {
 		}
 		this.addText("Name: " + name);
 		if(my_section.hasTimestamp()) {
-			String timestamp = my_section.getTimestamp().toCompleteString();
-			if(timestamp != null){				
-				this.addText("Timestamp: " + timestamp);		
+			Timestamp timestamp = Book.getInstance().getTimeline().getTimestamp(section.getTimestampID());
+			String timestampString = timestamp.toCompleteString();
+			if(timestampString != null){				
+				this.addText("Timestamp: " + timestampString);		
 			} else {
-				Section timeSection = my_section.getTimestamp().getRelationSection();
+				Section timeSection = timestamp.getUnspecificDate().getRelationSection();
 				if(timeSection != null){					
 					this.addText("Timestamp relates to: ");
 					this.addLinkedListButton(new MenuListButton(timeSection.getName(), e -> this.openOtherSection(timeSection)));

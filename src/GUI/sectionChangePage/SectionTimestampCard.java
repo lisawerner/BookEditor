@@ -18,8 +18,6 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import time.RelativeDate;
-import time.SpecificDate;
 import time.Timestamp;
 
 public class SectionTimestampCard extends TransparentPanel {
@@ -50,7 +48,7 @@ public class SectionTimestampCard extends TransparentPanel {
 				LinkButton btnPresection = new LinkButton(preSection.getName());
 				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection, chapter)));
 				panel_helpfullInformationInNorth.add(btnPresection);
-				panel_helpfullInformationInNorth.add(new SimpleLabel("' has Timestamp: " + preSection.getTimestamp().toCompleteString()));
+				panel_helpfullInformationInNorth.add(new SimpleLabel("' has Timestamp: " + Book.getInstance().getTimeline().getTimestamp(preSection.getTimestampID()).toCompleteString()));
 			}
 		}
 		
@@ -95,6 +93,7 @@ public class SectionTimestampCard extends TransparentPanel {
 		
 		TransparentPanel panel_switchableBody = new TransparentPanel();
 		panel_newBody.add(panel_switchableBody, BorderLayout.CENTER);
+		panel_switchableBody.setLayout(new GridLayout(1,0,5,5));
 		
 		panel_unspecificBODY = new TimestampRelativeEditor(my_section);
 		panel_switchableBody.add(panel_unspecificBODY);
@@ -106,21 +105,27 @@ public class SectionTimestampCard extends TransparentPanel {
 				boolean canSave = true;
 				lblSaveWarning.setText(" ");
 				
-				SpecificDate specificDate = null;
-				RelativeDate relativeDate = null;
+				Timestamp newTimestamp = null;
 				if(rdbtnUnspecificTimestamp.isSelected()) {
-					relativeDate = panel_unspecificBODY.getResult();
+					newTimestamp = panel_unspecificBODY.getResult();
 				} else if(rdbtnSpecificTimestamp.isSelected()) {
-					specificDate = panel_specificBODY.getResult();
+					newTimestamp = panel_specificBODY.getResult();
 				} else {
 					//TODO: Add Warning-Question-Window, before SAVING NOTHING?! :D
 					lblSaveWarning.setText("You have selected Nothing! -> Timestamp will remove from Section!");
 					canSave = false;
 				}
-
-				if(canSave) {						
-					Timestamp newTimestamp = new Timestamp(specificDate, relativeDate);
-					my_section.setTimestamp(newTimestamp);
+				
+				if(canSave) {
+					if(my_section.getTimestampID() == null){
+						//Save new one? Then save also in Timeline of Book!
+						Book.getInstance().getTimeline().addTimestamp(newTimestamp);
+					} else if(!my_section.getTimestampID().equals(newTimestamp.getID())){
+						//Save new one because of switch between specific and relative? Then delete old one ans save new one in Timeline of Book!
+						Book.getInstance().getTimeline().addTimestamp(newTimestamp);
+						Book.getInstance().getTimeline().removeTimestamp(my_section.getTimestampID());
+					}
+					my_section.setTimestampID(newTimestamp.getID());
 					Book.getInstance().save();
 					lblSaveWarning.setText("New Timestamp was successfully saved!");
 				}
@@ -128,17 +133,12 @@ public class SectionTimestampCard extends TransparentPanel {
 		});
 		
 		if(my_section.hasTimestamp()) {
-			if(!my_section.getTimestamp().isSpecificDate()) {
-				panel_unspecificBODY.activate(my_section.getTimestamp().getUnspecificDate());
+			Timestamp time = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
+			if(!time.isSpecificDate()) {
+				panel_unspecificBODY.activate(time.getUnspecificDate());
 				rdbtnUnspecificTimestamp.setSelected(true);
-				panel_unspecificBODY.switchEnabled(true);
-			}
-		}
-		
-		if(my_section.hasTimestamp()) {
-			if(my_section.getTimestamp().isSpecificDate()) {
+			} else {
 				rdbtnSpecificTimestamp.setSelected(true);
-				panel_specificBODY.switchEnabled(true);
 			}
 		}
 		
@@ -146,10 +146,8 @@ public class SectionTimestampCard extends TransparentPanel {
 	}
 
 	private void switchSpecificAndUnspecific() {
-		//System.out.println("Set Specific Time: " + rdbtnSpecificTimestamp.isSelected());
-		panel_specificBODY.setVisible(rdbtnSpecificTimestamp.isSelected());
-		//System.out.println("Set UNspecific Time: " + rdbtnUnspecificTimestamp.isSelected());
-		panel_unspecificBODY.setVisible(rdbtnUnspecificTimestamp.isSelected());
+		panel_specificBODY.switchEnabled(rdbtnSpecificTimestamp.isSelected());
+		panel_unspecificBODY.switchEnabled(rdbtnUnspecificTimestamp.isSelected());
 	}
 	
 }

@@ -97,7 +97,6 @@ public class StartPage extends JPanel {
 		//TODO: Add Preselection-User-Setting
 		//TODO: Preselect book, which was last open; Preselect book, which is favorite; Standard preselect: first in List
 
-		//TODO: Disable openButton if no Book is selected/available
 		btnOpenBook = new JButton("Open Book");
 		panel_buttons.add(btnOpenBook);
 		btnOpenBook.setEnabled(!booklist.isEmpty() && !selectedBook.equals(""));

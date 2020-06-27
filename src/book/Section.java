@@ -9,7 +9,6 @@ import global.SerializedObject;
 import global.Tag;
 import person.Person;
 import person.Relationship;
-import time.Timestamp;
 import world.Place;
 
 public class Section extends SerializedObject {
@@ -23,7 +22,7 @@ public class Section extends SerializedObject {
 	//Tagged Informations
 	private ArrayList<Tag> my_tags; //TODO: Persönlich/Privat Tags die von den Nutzern spezifisch angelegt wurden
 	private ArrayList<Relationship> my_relationshipSwitches;
-	private Timestamp my_timestamp;
+	private ObjectID my_timestamp;
 	private int my_devStatus;
 	private String my_notes;
 	
@@ -114,29 +113,16 @@ public class Section extends SerializedObject {
 		return my_text;
 	}
 
-	public void setTimestamp(Timestamp newTimestamp) {
-		my_timestamp = newTimestamp;
+	public void setTimestampID(ObjectID newTimestampID) {
+		my_timestamp = newTimestampID;
 	}
-	
-	public Timestamp getTimestamp() {
+
+	public ObjectID getTimestampID() {
 		return my_timestamp;
 	}
 
-	public boolean hasTimestamp() {
-		if(my_timestamp == null){
-			return false;
-		}
-		return my_timestamp.hasDate();
-	}
-	
-	public boolean hasSpecificTimestamp(){
-		if(my_timestamp == null){
-			return false;
-		}
-		if(my_timestamp.getSpecificDate() == null){
-			return false;
-		}
-		return true;
+	public boolean hasTimestamp(){
+		return my_timestamp != null;
 	}
 
 	public int getDevelopmentStatus() {

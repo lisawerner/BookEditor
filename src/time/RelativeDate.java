@@ -1,5 +1,7 @@
 package time;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -9,7 +11,8 @@ import global.ObjectID;
 
 public class RelativeDate {
 	
-	private ObjectID relatedToSection;
+	private ObjectID isRelatedToTimestamp;
+	
 	private boolean isAfter;
 	private int my_daysDistance;
 	private int my_weeksDistance;
@@ -17,8 +20,8 @@ public class RelativeDate {
 	private int my_yearsDistance;
 	private int my_dayOfTheWeek;
 	
-	public RelativeDate(ObjectID selectedSection, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears, int dayOfWeek) {
-		relatedToSection = selectedSection;
+	public RelativeDate(ObjectID relatesToTimestamp, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears, int dayOfWeek) {
+		isRelatedToTimestamp = relatesToTimestamp;
 		isAfter = newIsAfter;
 		my_daysDistance = distDays;
 		my_weeksDistance = distWeeks;
@@ -27,14 +30,6 @@ public class RelativeDate {
 		my_dayOfTheWeek = dayOfWeek;
 	}
 	
-	public String toString() {	
-		Section relatedSection = Book.getInstance().getTableOfContent().getSection(relatedToSection);
-		if(!relatedSection.hasTimestamp()){
-			return "Related to Section: " + relatedSection.getName() +" (which has no Timestamp set)";
-		}
-		return generateSpecificDate().toString();
-	}
-
 	public boolean isAfter() {
 		return isAfter;
 	}
@@ -55,29 +50,26 @@ public class RelativeDate {
 		return my_yearsDistance;
 	}
 	
-	public ObjectID getRelatedSectionID() {
-		return relatedToSection;
-	}
-	
 	public int getDayOfWeek() {
 		return my_dayOfTheWeek;
-	}	
+	}
 
-	public SpecificDate generateSpecificDate() {
-		Section relatedSection = Book.getInstance().getTableOfContent().getSection(relatedToSection);
-		if(relatedSection == null){
+	public Timestamp generateSpecificDate() {
+		if(isRelatedToTimestamp == null){
+			System.out.println("Relation to timestamp is null");
 			return null;
 		}
-		if(!relatedSection.hasTimestamp()){
-			return null;
-		}
-		SpecificDate relatedDate = relatedSection.getTimestamp().getSpecificDate();
+		System.out.println(">>Relation to timestamp is NOT null");
+		Timestamp relatedDate = Book.getInstance().getTimeline().getTimestamp(isRelatedToTimestamp);
 		if(relatedDate == null){
+			System.out.println("Parent timestamp is not specific");
 			return null;
 		}
-		int myYear = relatedDate.getYear();
-		int myMonth = relatedDate.getMonth();
-		int myDay = relatedDate.getDay();
+		System.out.println("Parent timestamp is found and specific");
+		LocalDate parentDate = relatedDate.getDate();
+		int myYear = parentDate.getYear();
+		int myMonth = parentDate.getMonth().getValue();
+		int myDay = parentDate.getDayOfMonth();
 		int addDays = my_daysDistance + (7 * my_weeksDistance);
 		
 		Calendar cal = Calendar.getInstance();
@@ -141,8 +133,92 @@ public class RelativeDate {
 		if(!isAnnoDomini) {
 			myYear = Math.abs(myYear);
 		}
-			    
-		return new SpecificDate(myDay, myMonth, myYear, isAnnoDomini);
+		
+		//TODO: DONT SAVE THAT! you will delete the relation to the section!
+		return new Timestamp(null, myDay, myMonth, myYear, isAnnoDomini, relatedDate.hasConcreteYear());
 	}
 
+	public ObjectID getRelationID() {
+		return isRelatedToTimestamp;
+	}
+
+	public Section getRelationSection() {
+		if(isRelatedToTimestamp == null){
+			return null;
+		}
+		ObjectID parentRel = Book.getInstance().getTimeline().getTimestamp(isRelatedToTimestamp).getSection();
+		if(parentRel != null){			
+			return Book.getInstance().getTableOfContent().getSection(parentRel);
+		}
+		return null;
+	}
+	
+	public LocalDate fix(ArrayList<Timestamp> copyList){
+		if(isRelatedToTimestamp == null){
+//			System.out.println("!!Relation to timestamp is null");
+			return null;
+		}
+//		System.out.println(">>Relation to timestamp is NOT null");
+		
+		Timestamp relatedDate = copyList.stream().filter(timestamp -> timestamp.getID().equals(isRelatedToTimestamp)).findAny().get();
+		if(relatedDate == null){
+//			System.out.println("!! !!Parent timestamp is NOT specific");
+			return null;
+		}
+//		System.out.println(">> >>Select specific parent");
+		
+		LocalDate parentDate = relatedDate.getDate();
+		if(parentDate == null){
+//			System.out.println("!! !! !! Date of ParentTimestamp was not set yet");
+			return null;
+		}
+//		System.out.println(">> >> >>ParentTimestamp get date!");
+		
+		LocalDate ownNewDate = parentDate;
+		if(isAfter) {
+			ownNewDate = ownNewDate.plusDays(my_daysDistance);			
+		} else {
+			ownNewDate = ownNewDate.minusDays(my_daysDistance);
+		}
+		
+		if(isAfter) {
+			ownNewDate = ownNewDate.plusWeeks(my_weeksDistance);			
+		} else {
+			ownNewDate = ownNewDate.minusWeeks(my_weeksDistance);
+		}
+		
+		if(isAfter) {
+			ownNewDate = ownNewDate.plusMonths(my_monthsDistance);			
+		} else {
+			ownNewDate = ownNewDate.minusMonths(my_monthsDistance);
+		}
+		
+		if(isAfter) {
+			ownNewDate = ownNewDate.plusYears(my_yearsDistance);			
+		} else {
+			ownNewDate = ownNewDate.minusYears(my_yearsDistance);
+		}
+		
+		if(my_dayOfTheWeek != 0){
+//			System.out.println("!! Day of week .......");
+			
+			if(isAfter){				
+				int currentDayOfWeek = ownNewDate.getDayOfWeek().getValue();
+				int difference = 0;
+				if(currentDayOfWeek < my_dayOfTheWeek) {					
+					difference = my_dayOfTheWeek - currentDayOfWeek;
+				} else {
+					difference = (7 - currentDayOfWeek) + my_dayOfTheWeek;
+				}
+				ownNewDate = ownNewDate.plusDays(difference);
+			} else{
+				System.out.println("Shit... day of week BEFORE!");
+			}
+			
+		}
+		
+		System.out.println("Change done!");
+		return ownNewDate;
+	}
+	
 }
