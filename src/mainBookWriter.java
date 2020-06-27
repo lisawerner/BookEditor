@@ -1,6 +1,6 @@
 import java.awt.EventQueue;
 
-import GUI.startFrame.StartFrame;
+import GUI.launcherFrame.StartFrame;
 
 public class mainBookWriter {
 

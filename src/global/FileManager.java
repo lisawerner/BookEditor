@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import GUI.startFrame.LoadBookPair;
+import GUI.launcherFrame.LoadBookPair;
 import book.Book;
 
 public class FileManager {
@@ -78,33 +78,17 @@ public class FileManager {
 	}
 	
 	public static boolean exportTXTfile(String filename, String text) {
-		if(!text.equals("")) {			
-			try {
-				//WRITE new File
-				FileWriter saveFile = new FileWriter(filename);
-				
-				saveFile.write(text);
-				
-				saveFile.close();
-				
-				return true;
-			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			}
-		} else {
-			Path path = new File(filename).toPath();
-			if (Files.exists(path)) {
-				try {
-					Files.delete(path);
-				} catch (IOException e) {
-					System.out.println("ERROR: can not delete File! [CLASS: FileManager]");
-					e.printStackTrace();
-					return false;
-				}
-			}
+		FileWriter saveFile = null;
+		try {
+			//WRITE new File
+			saveFile = new FileWriter(filename);
+			saveFile.write(text);
+			saveFile.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 	
 	public static String getSavingPath() {

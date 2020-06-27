@@ -6,9 +6,15 @@ public class UserSettings {
 	private final static String my_filename = "usersettings.json";
 	
 	private Tutorial user_tutorial;
+	private boolean bigScreenSize;
+	private int textareaFontSize;
+	private String lastOpenedBookfile;
 	
 	private UserSettings() {
 		user_tutorial = new Tutorial();
+		bigScreenSize = false;
+		textareaFontSize = 12;
+		lastOpenedBookfile = "";
 	}
 	
 	public static UserSettings getInstance() {
@@ -21,12 +27,43 @@ public class UserSettings {
 		return my_instance;
 	}
 	
-	public Tutorial getTutorial() {
-		return user_tutorial;
-	}
-
 	public void save() {
 		FileManager.saveJSONFile(my_filename, this);
 	}
+	
+	public Tutorial getTutorial() {
+		return user_tutorial;
+	}
+	
+	public void restartTutorial() {
+		user_tutorial = new Tutorial();
+		save();
+	}
+	
+	public void setDisplaySettings(boolean setDisplayToScreenSizeSettings) {
+		bigScreenSize = setDisplayToScreenSizeSettings;
+		save();
+	}
 
+	public boolean getDisplaySettings() {
+		return bigScreenSize;
+	}
+	
+	public int getTextareaFontSize() {
+		return textareaFontSize;
+	}
+	
+	public void setTextAreaSize(int newTextareaFontSize) {
+		textareaFontSize = newTextareaFontSize;
+		save();
+	}
+	
+	public String getLastOpenedBookfile() {
+		return lastOpenedBookfile;
+	}
+
+	public void setLastOpenedBookfile(String selectedBook) {
+		lastOpenedBookfile = selectedBook;
+		save();
+	}
 }
