@@ -3,6 +3,7 @@ package GUI.frame.menu;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.pages.chapter.Page_viewChapter;
 import GUI.pages.content.Page_sortContent;
+import GUI.pages.content.settings.Page_ContentSettings;
 import GUI.pages.filterPage.FilterChaptersPage;
 import book.Book;
 import book.Chapter;
@@ -18,6 +19,7 @@ public class ContentMenu extends FrameSubmenu {
 				
 		addButton(new MenuButton("Change Content", e -> BookEditorFrame.getInstance().switchBody(new Page_sortContent())));
 		addButton(new MenuButton("Filter Content", e -> BookEditorFrame.getInstance().switchBody(new FilterChaptersPage())));
+		addButton(new MenuButton("Content Settings", e -> BookEditorFrame.getInstance().switchBody(new Page_ContentSettings())));
 
 		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {
 			addListEntry(new MenuListButton(chapter.getTitle(), e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter))));

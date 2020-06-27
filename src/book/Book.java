@@ -29,6 +29,8 @@ public class Book extends SerializedObject {
 	
 	// About Editor-Settings:
 	private Theme my_theme;
+	private boolean showWordCountInSectionLists;
+	private boolean showDevStatusinSectionLists;
 
 	// About Print-Settings:
 	private boolean isWorktitle;
@@ -174,4 +176,21 @@ public class Book extends SerializedObject {
 		return my_notes;
 	}
 	
+	public boolean showWordCountInSectionLists(){
+		return showWordCountInSectionLists;
+	}
+	
+	public boolean showDevStatusinSectionLists(){
+		return showDevStatusinSectionLists;
+	}
+
+	public void setShowWordCountInSectionLists(boolean hasToShowWordCountInSectionLists) {
+		showWordCountInSectionLists = hasToShowWordCountInSectionLists;
+		save();
+	}
+
+	public void setShowDevStatusinSectionLists(boolean hasToShowDevStatusinSectionLists) {
+		showDevStatusinSectionLists = hasToShowDevStatusinSectionLists;
+		save();
+	}
 }

@@ -5,7 +5,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
+import book.Book;
 import book.Chapter;
+import book.DevelopmentStatus;
 import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
@@ -38,6 +40,8 @@ public class Listelement_Section extends TransparentPanel {
 		lblSectionName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter)));
 		lblSectionName.setToolTipText("<html>Preview Text:<br>" + my_section.getShortTextPreview() + "</html>");
 		
+		panel_sectionInfo.add(new SimpleLabel((getAdditionalSectionInformation(section))));
+		
 		TransparentPanel panel_move = new TransparentPanel();
 		add(panel_move, BorderLayout.WEST);
 		panel_move.setLayout(new GridLayout(0, 1, 1, 1));
@@ -57,5 +61,22 @@ public class Listelement_Section extends TransparentPanel {
 		my_parentChapter.moveSection(my_section, moveSectionUp);
 		parentBody.reload();
 //		BookEditorFrame.getInstance().reloadMenu();
+	}
+	
+	private String getAdditionalSectionInformation(Section section){
+		String additionalInformation = "";
+		if(Book.getInstance().showWordCountInSectionLists()){
+			additionalInformation += "    (Words: " + section.getCountWords() + ";";
+			if(!Book.getInstance().showDevStatusinSectionLists()){
+				additionalInformation += ")";
+			}
+		}
+		if(Book.getInstance().showDevStatusinSectionLists()){
+			if(additionalInformation.isEmpty()){
+				additionalInformation +=  "    (";
+			}
+			additionalInformation += " Status: " + DevelopmentStatus.getDevStatus(section.getDevelopmentStatus()) + ")";
+		}
+		return additionalInformation;
 	}
 }
