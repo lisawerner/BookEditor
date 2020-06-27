@@ -18,11 +18,13 @@ import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
 import GUI.pages.timeline.Page_ViewTimeline;
 import GUI.printPage.PrintPage;
+import GUI.sectionPage.SectionPage;
 import GUI.settingsPage.BookSettingsPage;
 import GUI.worldPage.PlaceEditor;
 import GUI.worldPage.ViewWorldmapPage;
 import book.Book;
 import book.Chapter;
+import book.Section;
 import global.Constant;
 import notes.GeneralNote;
 import person.Person;
@@ -189,6 +191,11 @@ public class BookEditorFrame extends JFrame {
 	
 	public void openChapterPage(Chapter chapter){
 		switchBody(new Page_viewChapter(chapter));
+		panel_mainMenu.changeSubmenuTo(new ContentMenu());
+	}
+	
+	public void openSectionPage(Section section, Chapter chapter){
+		switchBody(new SectionPage(section, chapter));
 		panel_mainMenu.changeSubmenuTo(new ContentMenu());
 	}
 

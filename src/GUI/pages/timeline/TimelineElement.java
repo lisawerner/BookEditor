@@ -1,7 +1,6 @@
 package GUI.pages.timeline;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Section;
 import GUI.components.LinkButton;
@@ -35,7 +34,7 @@ public class TimelineElement extends TimelineItem {
 		SimpleLabel lblSection = new SimpleLabel("Section:  ");
 		panel_sectionName.add(lblSection);
 		LinkButton btnOpenSection = new LinkButton(my_section.getName());
-		btnOpenSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, Book.getInstance().getTableOfContent().getChapter(my_section.getParentChapterID()))));
+		btnOpenSection.addActionListener(e -> BookEditorFrame.getInstance().openSectionPage(my_section, Book.getInstance().getTableOfContent().getChapter(my_section.getParentChapterID())));
 		panel_sectionName.add(btnOpenSection);
 		this.setSection(panel_sectionName);
 	
