@@ -1,6 +1,8 @@
 package time;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import book.Book;
 import global.ObjectID;
 
@@ -67,6 +69,11 @@ public class Timeline {
 	
 	public SplitCondition getSplitConditon(){
 		return my_splitCondition;
+	}
+
+	public void removeTimestamp(ObjectID timestampID) {
+		my_times.stream().filter(timestamp -> timestamp.getID() != timestampID).collect(Collectors.toList());
+		Book.getInstance().save();
 	}
 
 //	public void fix() {

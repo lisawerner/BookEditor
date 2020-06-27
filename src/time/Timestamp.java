@@ -54,6 +54,13 @@ public class Timestamp extends SerializedObject{
 		my_relativeDate = newRelativeDate;
 	}
 	
+
+	public void setRelativeDate(RelativeDate newRelativeDate) {		
+		my_relativeDate = newRelativeDate;
+		
+		my_date = my_relativeDate.generateSpecificDate().getDate();
+	}
+	
 	public boolean greaterThen(Timestamp otherTimestamp) {
 		return my_date.isAfter(otherTimestamp.getDate());
 	}
@@ -110,6 +117,10 @@ public class Timestamp extends SerializedObject{
 
 	public boolean isSpecificDate() {
 		return my_relativeDate == null;
+	}
+
+	public void setSectionID(ObjectID sectionID) {
+		my_section = sectionID;
 	}
 
 }
