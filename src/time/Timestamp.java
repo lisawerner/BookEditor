@@ -26,21 +26,25 @@ public class Timestamp extends SerializedObject{
 	public Timestamp(ObjectID sectionID, int specificDay, int specificMonth, int specificYear, boolean isAnnoDomini, boolean setConcreteYear) {
 		super();
 		
-		my_relativeDate = null;
+		my_section = sectionID;
 		
+		my_relativeDate = null;
+
+		hasConcreteYear = setConcreteYear;
+		if(!hasConcreteYear){
+			specificYear = LocalDate.now().getYear();
+		}
 		if(!isAnnoDomini){
 			specificYear = -specificYear;
 		}
 	    my_date = LocalDate.of(specificYear, specificMonth, specificDay);
 	    
-	    hasConcreteYear = setConcreteYear;
 	}
 	
 	public Timestamp(ObjectID sectionID, ObjectID relatesToTimestamp, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears, int dayOfWeek, boolean setConcreteYear){
 		my_section = sectionID;
 		
 		my_relativeDate = new RelativeDate(relatesToTimestamp, newIsAfter, distDays, distWeeks, distMonths, distYears, dayOfWeek);
-		
 		my_date = my_relativeDate.generateSpecificDate().getDate();
 		
 		hasConcreteYear = setConcreteYear;
@@ -52,6 +56,7 @@ public class Timestamp extends SerializedObject{
 		my_section = sectionID;
 		
 		my_relativeDate = newRelativeDate;
+		my_date = my_relativeDate.generateSpecificDate().getDate();
 	}
 	
 
@@ -86,6 +91,9 @@ public class Timestamp extends SerializedObject{
 	}
 	
 	public boolean isAnnoDomini() {
+		if(my_date == null){
+			return true;
+		}
 		return my_date.getYear() >= 0;
 	}
 	
@@ -94,6 +102,9 @@ public class Timestamp extends SerializedObject{
 	}
 	
 	public String toString() {
+		if(my_date == null){
+			return "";
+		}
 		return my_date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 	}
 	
@@ -108,6 +119,9 @@ public class Timestamp extends SerializedObject{
 	}
 
 	public String getDayOfWeek() {
+		if(my_date == null){
+			return "";
+		}
 		return my_date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
 	}
 

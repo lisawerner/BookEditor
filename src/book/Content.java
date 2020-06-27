@@ -71,7 +71,7 @@ public class Content {
 	public Section getSection(ObjectID sectionID) {
 		for(Chapter chapter : my_chapters) {			
 			for(Section section : chapter.getSections()) {
-				if(section.equals(sectionID)) {
+				if(section.getID().equals(sectionID)) {
 					return section;
 				}
 			}

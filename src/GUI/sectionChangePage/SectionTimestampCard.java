@@ -100,7 +100,6 @@ public class SectionTimestampCard extends TransparentPanel {
 		
 		panel_specificBODY = new TimestampSpecificEditor(my_section);
 		panel_switchableBody.add(panel_specificBODY);
-		btnSaveTimestamp.setEnabled(false);
 		btnSaveTimestamp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean canSave = true;
@@ -116,7 +115,7 @@ public class SectionTimestampCard extends TransparentPanel {
 					lblSaveWarning.setText("You have selected Nothing! -> Timestamp will remove from Section!");
 					canSave = false;
 				}
-
+				
 				if(canSave) {
 					if(my_section.getTimestampID() == null){
 						//Save new one? Then save also in Timeline of Book!
@@ -138,10 +137,8 @@ public class SectionTimestampCard extends TransparentPanel {
 			if(!time.isSpecificDate()) {
 				panel_unspecificBODY.activate(time.getUnspecificDate());
 				rdbtnUnspecificTimestamp.setSelected(true);
-				panel_unspecificBODY.switchEnabled(true);
 			} else {
 				rdbtnSpecificTimestamp.setSelected(true);
-				panel_specificBODY.switchEnabled(true);
 			}
 		}
 		

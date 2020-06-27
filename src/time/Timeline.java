@@ -31,14 +31,19 @@ public class Timeline {
 	public void addTimestamp(Timestamp newTimestamp) {
 		if(my_times == null){
 			my_times = new ArrayList<Timestamp>();
-			my_times.add(newTimestamp);
 		}
-			
-		for(Timestamp timestamp : my_times){
-			if(newTimestamp.getDate().isAfter(timestamp.getDate())){					
-				my_times.add(my_times.indexOf(timestamp), newTimestamp);
-				break;
+		if(my_times.isEmpty()){
+			my_times.add(newTimestamp);			
+		} else {			
+			for(Timestamp timestamp : my_times){
+				if(newTimestamp.getDate().isAfter(timestamp.getDate())){					
+					my_times.add(my_times.indexOf(timestamp), newTimestamp);
+					break;
+				}
 			}
+		}
+		if(!my_times.contains(newTimestamp)){
+			my_times.add(newTimestamp);
 		}
 		
 		Book.getInstance().save();
