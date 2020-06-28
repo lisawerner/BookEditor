@@ -1,4 +1,4 @@
-package GUI.settingsPage;
+package GUI.pages.timeline.settingsPage;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -31,7 +31,7 @@ public class CalendarSettingsCard extends TransparentPanel {
 		rdbtnGregorianCalendar.setSelected(Book.getInstance().getTimeline().useGregorianCalendar());
 		btngrCalendarType.add(rdbtnGregorianCalendar);
 		panel_timelineCalendarType.add(rdbtnGregorianCalendar);
-		rdbtnGregorianCalendar.addActionListener(e -> save());
+		rdbtnGregorianCalendar.addActionListener(e -> Book.getInstance().getTimeline().changeCalendarSettings(rdbtnGregorianCalendar.isSelected()));
 		
 		TransparentPanel rdbtnWithInfoBtn = new TransparentPanel();
 		panel_timelineCalendarType.add(rdbtnWithInfoBtn);
@@ -47,9 +47,4 @@ public class CalendarSettingsCard extends TransparentPanel {
 		//TODO: Default? = Gregorian!
 		//TODO: Change/Save/Hint Labal
 	}
-	
-	private void save() {
-		Book.getInstance().getTimeline().changeCalendarSettings(rdbtnGregorianCalendar.isSelected());
-	}
-
 }

@@ -42,7 +42,7 @@ public class Listelement_Chapter extends TransparentPanel {
 		LinkButton lblChapterTitle = new LinkButton(my_chapter.getTitle());
 		lblChapterTitle.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(my_chapter)));
 		panel_chapterTitle.add(lblChapterTitle);
-		if(Book.getInstance().showWordSumInChapterLists()){			
+		if(Book.getInstance().getTableOfContent().showWordSumInChapterLists()){			
 			panel_chapterTitle.add(new SimpleLabel("    (Words: " + chapter.getCountOfWords() + ")"));
 		}
 		

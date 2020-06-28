@@ -1,4 +1,4 @@
-package GUI.settingsPage;
+package GUI.pages.settings;
 
 import java.awt.GridLayout;
 

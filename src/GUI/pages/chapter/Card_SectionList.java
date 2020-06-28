@@ -41,13 +41,13 @@ public class Card_SectionList extends TransparentPanel {
 	
 	private String getAdditionalSectionInformation(Section section){
 		String additionalInformation = "";
-		if(Book.getInstance().showWordCountInSectionLists()){
+		if(Book.getInstance().getTableOfContent().showWordCountInSectionLists()){
 			additionalInformation += "    (Words: " + section.getCountWords() + ";";
-			if(!Book.getInstance().showDevStatusinSectionLists()){
+			if(!Book.getInstance().getTableOfContent().showDevStatusinSectionLists()){
 				additionalInformation += ")";
 			}
 		}
-		if(Book.getInstance().showDevStatusinSectionLists()){
+		if(Book.getInstance().getTableOfContent().showDevStatusinSectionLists()){
 			if(additionalInformation.isEmpty()){
 				additionalInformation +=  "    (";
 			}

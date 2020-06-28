@@ -9,6 +9,8 @@ public class Page_TimelineSettings extends Page {
 	public Page_TimelineSettings() {
 		super("Timeline Filter-Settings");
 		
+		addCard(new StructureCard("Change Timeline-Settings", new CalendarSettingsCard()));
+		
 		addCard(new StructureCard("Split timeline by following condition:", new Card_splitTimelineCondition()));
 	}
 

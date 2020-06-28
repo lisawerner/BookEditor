@@ -12,6 +12,11 @@ import time.Timestamp;
 public class Content {
 	
 	private ArrayList<Chapter> my_chapters;
+	
+	// Settings
+	private boolean showWordCountInSectionLists;
+	private boolean showDevStatusinSectionLists;
+	private boolean showWordSumInChapterLists;
 		
 	public Content() {
 		my_chapters = new ArrayList<Chapter>();
@@ -192,6 +197,33 @@ public class Content {
 			}
 		}
 		return listOfUsers;
+	}
+	
+	public boolean showWordCountInSectionLists(){
+		return showWordCountInSectionLists;
+	}
+	
+	public void setShowWordCountInSectionLists(boolean hasToShowWordCountInSectionLists) {
+		showWordCountInSectionLists = hasToShowWordCountInSectionLists;
+		Book.getInstance().save();
+	}
+	
+	public boolean showDevStatusinSectionLists(){
+		return showDevStatusinSectionLists;
+	}
+
+	public void setShowDevStatusinSectionLists(boolean hasToShowDevStatusinSectionLists) {
+		showDevStatusinSectionLists = hasToShowDevStatusinSectionLists;
+		Book.getInstance().save();
+	}
+	
+	public boolean showWordSumInChapterLists(){
+		return showWordSumInChapterLists;
+	}
+	
+	public void setShowWordSumInChapterLists(boolean hasToShowWordSumInChapterLists) {
+		showWordSumInChapterLists = hasToShowWordSumInChapterLists;
+		Book.getInstance().save();
 	}
 	
 }

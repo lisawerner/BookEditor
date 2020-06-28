@@ -15,20 +15,20 @@ public class Card_ListSettings extends TransparentPanel {
 		add(new SimpleLabel("Show additional information for sections in list views:"));
 
 		SimpleCheckbox chckbxShowCountOfWords = new SimpleCheckbox("Show count of words");
-		chckbxShowCountOfWords.setSelected(Book.getInstance().showWordCountInSectionLists());
-		chckbxShowCountOfWords.addActionListener(e -> Book.getInstance().setShowWordCountInSectionLists(chckbxShowCountOfWords.isSelected()));
+		chckbxShowCountOfWords.setSelected(Book.getInstance().getTableOfContent().showWordCountInSectionLists());
+		chckbxShowCountOfWords.addActionListener(e -> Book.getInstance().getTableOfContent().setShowWordCountInSectionLists(chckbxShowCountOfWords.isSelected()));
 		add(chckbxShowCountOfWords);
 		
 		SimpleCheckbox chckbxShowDevelopmentStatus = new SimpleCheckbox("Show development status");
-		chckbxShowDevelopmentStatus.setSelected(Book.getInstance().showDevStatusinSectionLists());
-		chckbxShowDevelopmentStatus.addActionListener(e -> Book.getInstance().setShowDevStatusinSectionLists(chckbxShowDevelopmentStatus.isSelected()));
+		chckbxShowDevelopmentStatus.setSelected(Book.getInstance().getTableOfContent().showDevStatusinSectionLists());
+		chckbxShowDevelopmentStatus.addActionListener(e -> Book.getInstance().getTableOfContent().setShowDevStatusinSectionLists(chckbxShowDevelopmentStatus.isSelected()));
 		add(chckbxShowDevelopmentStatus);
 
 		add(new SimpleLabel("Show additional information for chapters in list views:"));
 		
 		SimpleCheckbox chckbxShowSumWords = new SimpleCheckbox("Show summary of words");
-		chckbxShowSumWords.setSelected(Book.getInstance().showWordSumInChapterLists());
-		chckbxShowSumWords.addActionListener(e -> Book.getInstance().setShowWordSumInChapterLists(chckbxShowSumWords.isSelected()));
+		chckbxShowSumWords.setSelected(Book.getInstance().getTableOfContent().showWordSumInChapterLists());
+		chckbxShowSumWords.addActionListener(e -> Book.getInstance().getTableOfContent().setShowWordSumInChapterLists(chckbxShowSumWords.isSelected()));
 		add(chckbxShowSumWords);
 		
 	}

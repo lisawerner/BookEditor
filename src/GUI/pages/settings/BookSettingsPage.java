@@ -1,4 +1,4 @@
-package GUI.settingsPage;
+package GUI.pages.settings;
 
 import global.UserSettings;
 import GUI.components.Page;
@@ -28,10 +28,6 @@ public class BookSettingsPage extends Page {
 		//********************************************************************
 		//CARD change Book Society
 		addCard(new StructureCard("Change Society-Settings", new SocietySettingsCard()));
-		
-		//********************************************************************
-		//CARD change Timeline Settings
-		addCard(new StructureCard("Change Timeline-Settings", new CalendarSettingsCard()));
 		
 		//********************************************************************
 		//CARD change Design settings like: Color-Theme and screenSize and fontSize
