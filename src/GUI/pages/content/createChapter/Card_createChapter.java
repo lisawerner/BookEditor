@@ -1,4 +1,4 @@
-package GUI.pages.chapter;
+package GUI.pages.content.createChapter;
 
 import book.Book;
 import book.Chapter;
@@ -13,19 +13,14 @@ import GUI.bookeditorFrame.BookEditorFrame;
 
 import java.awt.GridLayout;
 
-public class Card_chapterInformation extends TransparentPanel {
+public class Card_createChapter extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Chapter my_chapter;
-	
 	private SimpleLabel lblWarning;
 	private SimpleTextfield txt_chapterTitle;
 	
-	public Card_chapterInformation(Chapter chapter) {
-		my_chapter = chapter;
+	public Card_createChapter() {
 		setLayout(new GridLayout(0, 1, 10, 10));
-		
-		//TODO: Es sollte eine Info kommen, wenn der Titel ungespeichert ist! Diese sollte sich irgendwie unterscheiden von der kurzen Info, dass gespeichert ist; Vlt. so machen wie beim Sectiontext
 		
 		TransparentPanel panel_chapterTitle = new TransparentPanel();
 		add(panel_chapterTitle);
@@ -35,16 +30,10 @@ public class Card_chapterInformation extends TransparentPanel {
 		panel_chapterTitle.add(lblChapterTitle, BorderLayout.WEST);
 		
 		txt_chapterTitle = new SimpleTextfield("");
-		if(my_chapter != null) {
-			txt_chapterTitle.setText(my_chapter.getTitle());
-		}
 		panel_chapterTitle.add(txt_chapterTitle, BorderLayout.CENTER);
 		
-		JButton btnChange = new JButton("Save changes");
+		JButton btnChange = new JButton("Create changes");
 		btnChange.addActionListener(e -> createChapter());
-		if(my_chapter == null) {
-			btnChange.setText("Create Chapter");
-		}
 		panel_chapterTitle.add(btnChange, BorderLayout.EAST);
 		
 		lblWarning = new SimpleLabel(" ");
@@ -59,16 +48,9 @@ public class Card_chapterInformation extends TransparentPanel {
 		} else {
 			lblWarning.setText(" ");
 			
-			if(my_chapter == null) {				
-				my_chapter = new Chapter(txt_chapterTitle.getText());
-				Book.getInstance().getTableOfContent().addChapter(my_chapter);
-//				BookEditorFrame.getInstance().reloadMenu();
-				BookEditorFrame.getInstance().openChapterPage(my_chapter);
-			} else {
-				my_chapter.editTitle(txt_chapterTitle.getText());
-//				BookEditorFrame.getInstance().reloadMenu();
-				lblWarning.setText("Title successfully changed!");
-			}
+			Chapter newChapter = new Chapter(txt_chapterTitle.getText());
+			Book.getInstance().getTableOfContent().addChapter(newChapter);
+			BookEditorFrame.getInstance().openChapterPage(newChapter);
 		}
 	}
 

@@ -1,9 +1,9 @@
 package GUI.frame.menu;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.pages.chapter.Page_viewChapter;
 import GUI.pages.content.Page_sortContent;
 import GUI.pages.content.settings.Page_ContentSettings;
+import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.filterPage.FilterChaptersPage;
 import book.Book;
 import book.Chapter;

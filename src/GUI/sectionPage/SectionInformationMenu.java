@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.pages.chapter.Page_viewChapter;
+import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
 import GUI.sectionChangePage.SectionEditorPage;
 import GUI.worldPage.PlaceEditor;

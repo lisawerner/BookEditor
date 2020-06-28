@@ -1,4 +1,4 @@
-package GUI.pages.chapter;
+package GUI.pages.content.viewChapter;
 
 import book.Chapter;
 import GUI.components.Page;
@@ -10,7 +10,7 @@ public class Page_viewChapter extends Page {
 	public Page_viewChapter(Chapter chapter) {
 		super("View complete Chapter");
 		
-		addCard(new StructureCard("Chapter Information", new Card_chapterInformation(chapter)));
+		addCard(new StructureCard("Chapter Information", new Card_viewChapterInformation(chapter)));
 		addCard(new StructureCard("List of Sections", new Card_SectionList(chapter)));
 		
 	}

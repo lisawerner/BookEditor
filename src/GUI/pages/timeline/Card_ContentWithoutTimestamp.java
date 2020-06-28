@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.pages.chapter.Page_viewChapter;
 import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Chapter;
@@ -14,6 +13,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
+import GUI.pages.content.viewChapter.Page_viewChapter;
 
 public class Card_ContentWithoutTimestamp extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

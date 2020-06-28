@@ -8,13 +8,13 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.pages.chapter.Page_viewChapter;
 import book.Book;
 import book.Chapter;
 import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import GUI.pages.content.viewChapter.Page_viewChapter;
 
 import java.awt.GridLayout;
 

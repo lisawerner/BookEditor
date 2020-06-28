@@ -1,4 +1,4 @@
-package GUI.pages.chapter;
+package GUI.pages.content.viewChapter;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionChangePage.CreateSectionPage;

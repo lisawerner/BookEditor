@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import GUI.pages.chapter.Page_viewChapter;
 import GUI.pages.content.Page_sortContent;
+import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.notesPage.Page_singleNote;
 import GUI.pages.notesPage.Page_viewNotes;
 import GUI.pages.settings.BookSettingsPage;

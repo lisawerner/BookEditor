@@ -1,4 +1,4 @@
-package GUI.pages.chapter;
+package GUI.pages.content.createChapter;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;
@@ -9,7 +9,7 @@ public class Page_createChapter extends Page {
 	public Page_createChapter() {
 		super("Create a new Chapter");
 		
-		addCard(new StructureCard("Chapter Information", new Card_chapterInformation(null)));
+		addCard(new StructureCard("Chapter Information", new Card_createChapter()));
 
 	}
 

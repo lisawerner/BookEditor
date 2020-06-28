@@ -3,8 +3,8 @@ package GUI.pages.content;
 import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.pages.chapter.Page_createChapter;
 import GUI.components.TransparentPanel;
+import GUI.pages.content.createChapter.Page_createChapter;
 
 public class Card_ContentInformation extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
