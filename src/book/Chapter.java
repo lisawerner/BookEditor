@@ -73,5 +73,13 @@ public class Chapter extends SerializedObject {
 		my_sections.remove(section);
 		Book.getInstance().save();
 	}
+
+	public int getCountOfWords() {
+		int sum = 0;
+		for(Section section : my_sections){
+			sum += section.getCountWords();
+		}
+		return sum;
+	}
 	
 }
