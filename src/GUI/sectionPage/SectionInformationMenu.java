@@ -8,8 +8,8 @@ import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
+import GUI.pages.world.viewPlace.Page_viewPlace;
 import GUI.sectionChangePage.SectionEditorPage;
-import GUI.worldPage.PlaceEditor;
 import book.Book;
 import book.Chapter;
 import book.DevelopmentStatus;
@@ -130,7 +130,7 @@ public class SectionInformationMenu extends PageMenu {
 
 	private void openPlaceEditor(Place place) {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new PlaceEditor(place, true));
+			BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter), new Page_viewPlace(place, true));
 		} else {
 			BookEditorFrame.getInstance().openPlacePage(place, false);	
 		}

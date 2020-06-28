@@ -14,7 +14,7 @@ public class PlaceMenu extends FrameSubmenu {
 		super("World:", "List of Places:");
 
 		addButton(new MenuButton("View Map", e -> BookEditorFrame.getInstance().openWorldPage()));
-		addButton(new MenuButton("Add Place", e -> BookEditorFrame.getInstance().openPlacePage(null, false)));
+		addButton(new MenuButton("Add Place", e -> BookEditorFrame.getInstance().openCreatePlacePage()));
 				
 		for(Place place : Book.getInstance().getWorld().getPlaces()) {
 			addListEntry(new MenuListButton(place.getName(), e -> BookEditorFrame.getInstance().openPlacePage(place, false)));

@@ -18,7 +18,7 @@ public class Card_viewChapterInformation extends TransparentPanel {
 		my_chapter = chapter;
 		setLayout(new GridLayout(0, 1, 10, 10));
 
-		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", my_chapter.getTitle(), this::createChapter);
+		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", my_chapter.getTitle(), this::createChapter, true, true);
 		add(txt_chapterTitle);		
 		
 		TransparentPanel panel_furtherInformation = new TransparentPanel();

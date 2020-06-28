@@ -1,4 +1,4 @@
-package GUI.worldPage;
+package GUI.pages.world.viewPlace;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -18,7 +18,7 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import world.Place;
 
-public class PlaceWorlddependenciesCard extends TransparentPanel {
+public class Card_placeWorldDependencies extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Place my_place;
@@ -27,7 +27,7 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 	private SimpleCheckbox chckbxHasParent;
 	private JComboBox<ComboItem> cmbox_possibleParents;
 
-	public PlaceWorlddependenciesCard(Place place) {
+	public Card_placeWorldDependencies(Place place) {
 		my_place = place;
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));

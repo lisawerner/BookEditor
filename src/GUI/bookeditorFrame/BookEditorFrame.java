@@ -18,9 +18,10 @@ import GUI.pages.settings.BookSettingsPage;
 import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
 import GUI.pages.timeline.Page_ViewTimeline;
+import GUI.pages.world.createPlace.Page_createPlace;
+import GUI.pages.world.viewPlace.Page_viewPlace;
 import GUI.printPage.PrintPage;
 import GUI.sectionPage.SectionPage;
-import GUI.worldPage.PlaceEditor;
 import GUI.worldPage.ViewWorldmapPage;
 import book.Book;
 import book.Chapter;
@@ -210,7 +211,12 @@ public class BookEditorFrame extends JFrame {
 	}
 	
 	public void openPlacePage(Place place, boolean isSecondFrame) {
-		switchBody(new PlaceEditor(place, isSecondFrame));
+		switchBody(new Page_viewPlace(place, isSecondFrame));
+		panel_mainMenu.changeSubmenuTo(new PlaceMenu());
+	}
+	
+	public void openCreatePlacePage() {
+		switchBody(new Page_createPlace());
 		panel_mainMenu.changeSubmenuTo(new PlaceMenu());
 	}
 

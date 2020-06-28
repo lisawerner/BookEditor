@@ -1,4 +1,4 @@
-package GUI.worldPage;
+package GUI.pages.world.viewPlace;
 
 import javax.swing.BoxLayout;
 
@@ -12,12 +12,12 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import world.Place;
 
-public class PlaceTagCard extends TransparentPanel {
+public class Card_placeTags extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Place my_place;
 
-	public PlaceTagCard(Place place) {
+	public Card_placeTags(Place place) {
 		my_place = place;
 		
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
