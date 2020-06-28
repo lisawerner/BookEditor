@@ -89,9 +89,13 @@ public class Book extends SerializedObject {
 		return isWorktitle;
 	}
 	
-	public void changeBooktitleSettings(String newTitle, boolean isNewTitleWorktitle) {
+	public void setIsWorkTitle(boolean currentTitleIsWorktitle){
+		isWorktitle = currentTitleIsWorktitle;
+		save();
+	}
+	
+	public void setTitle(String newTitle) {
 		my_title = newTitle;
-		isWorktitle = isNewTitleWorktitle;
 		save();
 	}
 
