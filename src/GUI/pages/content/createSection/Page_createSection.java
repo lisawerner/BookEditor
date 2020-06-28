@@ -1,4 +1,4 @@
-package GUI.sectionChangePage;
+package GUI.pages.content.createSection;
 
 import book.Chapter;
 import global.UserSettings;
@@ -6,10 +6,10 @@ import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
 
-public class CreateSectionPage extends Page {
+public class Page_createSection extends Page {
 	private static final long serialVersionUID = 1L;
 
-	public CreateSectionPage(Chapter chapter) {
+	public Page_createSection(Chapter chapter) {
 		super("Create Section");
 		
 		if(UserSettings.getInstance().getTutorial().chooseFirstColorTheme && !UserSettings.getInstance().getTutorial().createFirstSection) {			
@@ -20,7 +20,7 @@ public class CreateSectionPage extends Page {
 		}
 		
 		//****************************************************************************************
-		addCard(new StructureCard("Section Title", new SectionTitleCard(null, chapter)));
+		addCard(new StructureCard("Section Title", new Card_createSectionByTitle(chapter)));
 	}
 
 }

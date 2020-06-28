@@ -18,7 +18,7 @@ public class Card_viewChapterInformation extends TransparentPanel {
 		my_chapter = chapter;
 		setLayout(new GridLayout(0, 1, 10, 10));
 
-		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", my_chapter.getTitle(), this::createChapter, false);
+		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", my_chapter.getTitle(), this::createChapter);
 		add(txt_chapterTitle);		
 		
 		TransparentPanel panel_furtherInformation = new TransparentPanel();
@@ -33,7 +33,7 @@ public class Card_viewChapterInformation extends TransparentPanel {
 	}
 
 	private void createChapter() {
-		if(!"".equals(txt_chapterTitle.getText())) {			
+		if(!txt_chapterTitle.getText().isEmpty()) {			
 			my_chapter.editTitle(txt_chapterTitle.getText());
 //			TODO: BookEditorFrame.getInstance().reloadMenu();
 		}

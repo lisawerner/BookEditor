@@ -1,7 +1,6 @@
 package GUI.pages.content.viewChapter;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionChangePage.CreateSectionPage;
 import GUI.sectionPage.SectionPage;
 
 import java.awt.FlowLayout;
@@ -15,6 +14,7 @@ import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import GUI.pages.content.createSection.Page_createSection;
 
 public class Card_SectionList extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class Card_SectionList extends TransparentPanel {
 		
 		JButton btn_createSection = new JButton("Create a new textsection for that chapter");
 		add(btn_createSection);
-		btn_createSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new CreateSectionPage(chapter)));
+		btn_createSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_createSection(chapter)));
 		
 		for(Section section : chapter.getSections()) {
 			TransparentPanel panel_section = new TransparentPanel();

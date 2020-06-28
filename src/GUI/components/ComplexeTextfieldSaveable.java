@@ -18,15 +18,13 @@ public class ComplexeTextfieldSaveable extends TransparentPanel {
 	private String originalText;
 	
 	private JButton btnSave;
-	private boolean isSaveableWithoutText;
+
 	private SimpleLabel lblSaveWarning;
 
-	public ComplexeTextfieldSaveable(String textfieldLabel, String text, Runnable newSaveFunction, boolean saveableWithoutText) {
+	public ComplexeTextfieldSaveable(String textfieldLabel, String text, Runnable newSaveFunction) {
 		setLayout(new BorderLayout(5, 5));
 		
 		saveFunction = newSaveFunction;
-		
-		isSaveableWithoutText = saveableWithoutText;
 		
 		lblTextfieldlabel = new SimpleLabel(textfieldLabel);
 		add(lblTextfieldlabel, BorderLayout.WEST);
@@ -68,8 +66,8 @@ public class ComplexeTextfieldSaveable extends TransparentPanel {
 	}
 	
 	private boolean checkSavebility(){
-		if(!isSaveableWithoutText && textField.getText().isEmpty()){
-    		lblSaveWarning.setText("Enter text bevore saving");
+		if(textField.getText().isEmpty()){
+    		lblSaveWarning.setText("Enter text before saving");
     		return false;
     	} else {                		
     		lblSaveWarning.setText(" ");
