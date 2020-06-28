@@ -38,15 +38,13 @@ public class Card_RelativeList extends TransparentPanel {
 				panel_child.setLayout(new BoxLayout(panel_child, BoxLayout.LINE_AXIS));
 				panel_TimeRelationTree.add(panel_child);
 				
-				LinkButton btnSpecificDateSection = new LinkButton(section.getName());
-				panel_child.add(btnSpecificDateSection);
-				btnSpecificDateSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter)));
+				panel_child.add(new LinkButton(section.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter))));
 				
 				panel_child.add(new SimpleLabel("  [Chapter: "));
 				
-				LinkButton btnChapter = new LinkButton(chapter.getTitle());
-				panel_child.add(btnChapter);
-				btnChapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter)));
+				panel_child.add(new LinkButton(chapter.getTitle(),
+						e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter))));
 				
 				panel_child.add(new SimpleLabel("] has specific Date: " + timestamp.toString() + " and is related by: "));
 				
@@ -83,15 +81,13 @@ public class Card_RelativeList extends TransparentPanel {
 					
 					panel_child.add(new SimpleLabel(space + " "));
 					
-					LinkButton btnSpecificDateSection = new LinkButton(ownSection.getName());
-					panel_child.add(btnSpecificDateSection);
-					btnSpecificDateSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(ownSection, chapter)));
+					panel_child.add(new LinkButton(ownSection.getName(),
+							e -> BookEditorFrame.getInstance().switchBody(new SectionPage(ownSection, chapter))));
 					
 					panel_child.add(new SimpleLabel("  [Chapter: "));
 					
-					LinkButton btnChapter = new LinkButton(chapter.getTitle());
-					panel_child.add(btnChapter);
-					btnChapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter)));
+					panel_child.add(new LinkButton(chapter.getTitle(),
+							e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter))));
 					
 					panel_child.add(new SimpleLabel("] and is also related by: "));
 					

@@ -138,8 +138,8 @@ public class Card_PersonFamiliarRelationship extends TransparentPanel {
 		
 		panel_singleRelation.add(new SimpleLabel(relationDescription));
 		Person parent = Book.getInstance().getSociety().getPerson(otherPersonID);
-		LinkButton btnPersonlinkbutton = new LinkButton(parent.getInformation().getName());
-		btnPersonlinkbutton.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(parent, false));
+		LinkButton btnPersonlinkbutton = new LinkButton(parent.getInformation().getName(),
+				e -> BookEditorFrame.getInstance().openPersonPage(parent, false));
 		panel_singleRelation.add(btnPersonlinkbutton);
 		
 		panel_singleRelation.add(new SimpleLabel("<html>; &emsp;</html>"));	

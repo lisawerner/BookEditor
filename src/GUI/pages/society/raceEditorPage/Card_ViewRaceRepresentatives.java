@@ -27,9 +27,8 @@ public class Card_ViewRaceRepresentatives extends TransparentPanel {
 			personalPanel.setLayout(new BoxLayout(personalPanel, BoxLayout.LINE_AXIS));
 			this.add(personalPanel);
 			
-			LinkButton lnbtn_person = new LinkButton(person.getInformation().getName());
-			lnbtn_person.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(person, false));
-			personalPanel.add(lnbtn_person);
+			personalPanel.add(new LinkButton(person.getInformation().getName(),
+					e -> BookEditorFrame.getInstance().openPersonPage(person, false)));
 			
 			personalPanel.add(new SimpleLabel("; "));
 		}

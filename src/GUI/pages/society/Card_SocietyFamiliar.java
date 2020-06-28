@@ -42,9 +42,8 @@ public class Card_SocietyFamiliar extends TransparentPanel {
 		
 		Person child = Book.getInstance().getSociety().getPerson(childID);
 		
-		LinkButton btnChild = new LinkButton(child.getInformation().getName());
-		btnChild.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(child, false));
-		panel_child.add(btnChild);
+		panel_child.add(new LinkButton(child.getInformation().getName(),
+				e -> BookEditorFrame.getInstance().openPersonPage(child, false)));
 		
 		if(child.getInformation().isDeadBeforeBookStart()) {
 			String deathTime = "&dagger;";

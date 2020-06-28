@@ -1,5 +1,6 @@
 package GUI.pages.society;
 
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
@@ -24,7 +25,8 @@ public class Card_PersonImportance extends TransparentPanel {
 		panel_main.add(lblMainCharacters);
 		
 		for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()){
-			panel_main.add(new LinkButton(person.getInformation().getName()));
+			panel_main.add(new LinkButton(person.getInformation().getName(),
+					e -> BookEditorFrame.getInstance().openPersonPage(person, false)));
 			panel_main.add(new SimpleLabel(", "));
 		}
 		
@@ -36,7 +38,8 @@ public class Card_PersonImportance extends TransparentPanel {
 		panel_important.add(lblOtherImportantCharacters);
 		
 		for(Person person : Book.getInstance().getSociety().getPersonListImportantCharacters()){
-			panel_important.add(new LinkButton(person.getInformation().getName()));
+			panel_important.add(new LinkButton(person.getInformation().getName(),
+					e -> BookEditorFrame.getInstance().openPersonPage(person, false)));
 			panel_important.add(new SimpleLabel(", "));
 		}
 		
@@ -48,7 +51,8 @@ public class Card_PersonImportance extends TransparentPanel {
 		panel_rest.add(lblRest);
 
 		for(Person person : Book.getInstance().getSociety().getPersonListTheRest()){
-			panel_rest.add(new LinkButton(person.getInformation().getName()));
+			panel_rest.add(new LinkButton(person.getInformation().getName(),
+					e -> BookEditorFrame.getInstance().openPersonPage(person, false)));
 			panel_rest.add(new SimpleLabel(", "));
 		}
 		

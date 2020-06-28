@@ -79,9 +79,8 @@ public class FilterPersonCard extends TransparentPanel {
 		panel_listOfFilteredSections.setLayout(new GridLayout(0, 5, 5, 5));
 		if(selectedPersons.size() > 0) {			
 			for(Section section :  Book.getInstance().getTableOfContent().getSectionsByPersons(selectedPersons, selectAND)) {
-				LinkButton sectionBTN = new LinkButton(section.getName());
-				sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
-				panel_listOfFilteredSections.add(sectionBTN);
+				panel_listOfFilteredSections.add(new LinkButton(section.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 			}
 		}
 		panel_listOfFilteredSections.revalidate();

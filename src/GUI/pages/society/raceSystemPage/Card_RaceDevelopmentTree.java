@@ -63,9 +63,8 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 		}
 		panel_RaceWithSubtypes.add(lbl_space);
 		
-		LinkButton lblRacename = new LinkButton(currentRace.getName());
-		panel_RaceWithSubtypes.add(lblRacename);
-		lblRacename.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(currentRace)));
+		panel_RaceWithSubtypes.add(new LinkButton(currentRace.getName(),
+				e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(currentRace))));
 		
 		if(!currentRace.getSubtypes().isEmpty()){			
 			SimpleLabel lbl_leftBrace = new SimpleLabel("   [ ");
@@ -73,9 +72,8 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 			
 			for(ObjectID subtypeID : currentRace.getSubtypes()){
 				Race subtype = Book.getInstance().getSociety().getRace(subtypeID);
-				LinkButton btnSubtype = new LinkButton(subtype.getName());
-				btnSubtype.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype)));
-				panel_RaceWithSubtypes.add(btnSubtype);
+				panel_RaceWithSubtypes.add(new LinkButton(subtype.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype))));
 				panel_RaceWithSubtypes.add(new SimpleLabel("; "));
 			}
 			

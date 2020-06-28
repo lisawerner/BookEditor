@@ -46,9 +46,8 @@ public class DeleteSectionCard extends TransparentPanel {
 			timePanel.add(new SimpleLabel("You can not delete that section, because following sections use it as relation for their timestamps:"));
 			add(lblYouCanNot);
 			for(Section relationships : relatedSection){
-				LinkButton relBtn = new LinkButton(relationships.getName());
-				relBtn.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(relationships, Book.getInstance().getTableOfContent().getChapter(relationships.getParentChapterID()))));
-				timePanel.add(relBtn);
+				timePanel.add(new LinkButton(relationships.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new SectionPage(relationships, Book.getInstance().getTableOfContent().getChapter(relationships.getParentChapterID())))));
 			}
 		}
 

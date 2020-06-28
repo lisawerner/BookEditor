@@ -53,9 +53,8 @@ public class FilterMiscCard extends TransparentPanel {
 	
 	private void fill(List<Section> sectionList) {
 		for(Section section : sectionList) {
-			LinkButton sectionBTN = new LinkButton(section.getName());
-			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
-			panel_unfinishedFilteredSections.add(sectionBTN);
+			panel_unfinishedFilteredSections.add(new LinkButton(section.getName(),
+					e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 		}
 		panel_unfinishedFilteredSections.revalidate();
 		panel_unfinishedFilteredSections.repaint();

@@ -28,18 +28,16 @@ public class Card_ContentWithoutTimestamp extends TransparentPanel {
 			
 			panel_chapter.add(new SimpleLabel("Chapter: "));
 			
-			LinkButton btn_chapter = new LinkButton(chapter.getTitle());
-			panel_chapter.add(btn_chapter);
-			btn_chapter.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter)));
+			panel_chapter.add(new LinkButton(chapter.getTitle(),
+					e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter))));
 			
 			panel_chapter.add(new SimpleLabel(" has following Sections without Timestamp: "));
 			
 			boolean hasMissingTimestamps = false;
 			for(Section section : chapter.getSections()){
 				if(!section.hasTimestamp()){
-					LinkButton btn_section = new LinkButton(chapter.getTitle());
-					panel_chapter.add(btn_section);
-					btn_section.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter)));
+					panel_chapter.add(new LinkButton(chapter.getTitle(),
+							e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter))));
 					hasMissingTimestamps = true;
 				}
 			}

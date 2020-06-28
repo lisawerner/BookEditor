@@ -114,9 +114,8 @@ public class Card_FilterRelationships extends TransparentPanel {
 	
 	private void fill(List<Person> personList) {
 		for(Person person : personList) {
-			LinkButton sectionBTN = new LinkButton(person.getInformation().getName());
-			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(person, false));
-			panel_filterResult.add(sectionBTN);
+			panel_filterResult.add(new LinkButton(person.getInformation().getName(),
+					e -> BookEditorFrame.getInstance().openPersonPage(person, false)));
 		}
 		panel_filterResult.revalidate();
 		panel_filterResult.repaint();

@@ -35,9 +35,9 @@ public class Listelement_Section extends TransparentPanel {
 		lblChapterSpace = new SimpleLabel(" >>>>     ");
 		panel_sectionInfo.add(lblChapterSpace);
 		
-		LinkButton lblSectionName = new LinkButton(my_section.getName());
+		LinkButton lblSectionName = new LinkButton(my_section.getName(),
+				e -> BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter)));
 		panel_sectionInfo.add(lblSectionName);
-		lblSectionName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_parentChapter)));
 		lblSectionName.setToolTipText("<html>Preview Text:<br>" + my_section.getShortTextPreview() + "</html>");
 		
 		panel_sectionInfo.add(new SimpleLabel((getAdditionalSectionInformation(section))));

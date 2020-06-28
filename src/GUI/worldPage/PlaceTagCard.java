@@ -25,9 +25,8 @@ public class PlaceTagCard extends TransparentPanel {
 		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
 			for(Section section : chapter.getSections()) {
 				if(section.hasTag(my_place.getID())) {
-					LinkButton btnSectionTag = new LinkButton(section.getName());
-					btnSectionTag.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
-					add(btnSectionTag);
+					add(new LinkButton(section.getName(),
+							e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 					add(new SimpleLabel(";  "));
 				}
 			}

@@ -39,8 +39,8 @@ public class Listelement_Chapter extends TransparentPanel {
 		panel_chapterTitle.setLayout(new FlowLayout(FlowLayout.LEADING));
 		SimpleLabel lblChapterSpace = new SimpleLabel(">>   ");
 		panel_chapterTitle.add(lblChapterSpace);
-		LinkButton lblChapterTitle = new LinkButton(my_chapter.getTitle());
-		lblChapterTitle.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(my_chapter)));
+		LinkButton lblChapterTitle = new LinkButton(my_chapter.getTitle(),
+				e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(my_chapter)));
 		panel_chapterTitle.add(lblChapterTitle);
 		if(Book.getInstance().getTableOfContent().showWordSumInChapterLists()){			
 			panel_chapterTitle.add(new SimpleLabel("    (Words: " + chapter.getCountOfWords() + ")"));

@@ -33,9 +33,8 @@ public class TimelineElement extends TimelineItem {
 		panel_sectionName.setLayout(new BoxLayout(panel_sectionName, BoxLayout.LINE_AXIS));
 		SimpleLabel lblSection = new SimpleLabel("Section:  ");
 		panel_sectionName.add(lblSection);
-		LinkButton btnOpenSection = new LinkButton(my_section.getName());
-		btnOpenSection.addActionListener(e -> BookEditorFrame.getInstance().openSectionPage(my_section, Book.getInstance().getTableOfContent().getChapter(my_section.getParentChapterID())));
-		panel_sectionName.add(btnOpenSection);
+		panel_sectionName.add(new LinkButton(my_section.getName(),
+				e -> BookEditorFrame.getInstance().openSectionPage(my_section, Book.getInstance().getTableOfContent().getChapter(my_section.getParentChapterID()))));
 		this.setSection(panel_sectionName);
 	
 		//*****************************************************************************************************
@@ -46,9 +45,8 @@ public class TimelineElement extends TimelineItem {
 		panel_personTags.add(lblPersons);
 		List<Person> personTags = my_section.getPersonByTag();
 		for(Person tag : personTags) {
-			LinkButton tagName = new LinkButton(tag.getInformation().getNickname());
-			tagName.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(tag, false));
-			panel_personTags.add(tagName);
+			panel_personTags.add(new LinkButton(tag.getInformation().getNickname(),
+					e -> BookEditorFrame.getInstance().openPersonPage(tag, false)));
 			panel_personTags.add(new SimpleLabel(";  "));
 		}
 		
@@ -60,9 +58,8 @@ public class TimelineElement extends TimelineItem {
 		panel_placeTags.add(lblPlaces);
 		List<Place> placeTags = my_section.getPelaceByTag();
 		for(Place tag : placeTags) {
-			LinkButton tagName = new LinkButton(tag.getName());
-			tagName.addActionListener(e -> BookEditorFrame.getInstance().openPlacePage(tag, false));
-			panel_placeTags.add(tagName);
+			panel_placeTags.add(new LinkButton(tag.getName(),
+					e -> BookEditorFrame.getInstance().openPlacePage(tag, false)));
 			panel_placeTags.add(new SimpleLabel(";  "));
 		}
 		

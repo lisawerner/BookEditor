@@ -31,8 +31,8 @@ public class Card_SectionList extends TransparentPanel {
 			panel_section.setLayout(new FlowLayout(FlowLayout.LEADING));
 			add(panel_section);
 			
-			LinkButton lbl_sectionTitle = new LinkButton(section.getName());
-			lbl_sectionTitle.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter)));
+			LinkButton lbl_sectionTitle = new LinkButton(section.getName(),
+					e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter)));
 			panel_section.add(lbl_sectionTitle);
 			
 			panel_section.add(new SimpleLabel((getAdditionalSectionInformation(section))));

@@ -261,9 +261,8 @@ public class Card_PersonInformation extends TransparentPanel {
 					chbox_race.setSelected(my_person.getInformation().getRace().equals(race.getID()));
 				}
 			}
-			LinkButton openRace = new LinkButton("<html>&#8663</html>");
-			panel_singleRace.add(openRace);
-			openRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race)));
+			panel_singleRace.add(new LinkButton("<html>&#8663</html>",
+					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race))));
 		}
 		
 		//*********************************************************************************

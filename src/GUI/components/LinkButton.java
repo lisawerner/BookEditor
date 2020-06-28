@@ -14,23 +14,6 @@ import global.UserSettings;
 public class LinkButton extends JButton{
 	private static final long serialVersionUID = 1L;
 	
-	//TODO: in einem anderen comitt hier das Mal ausbauen aber nicht jetzt
-	/**
-	 *deprecated
-	 */
-	public LinkButton(String text) {
-		setText(text);
-		
-		Font font = getFont();
-		Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-		setFont(font.deriveFont(attributes));
-	
-		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
-		
-		changeTheme();
-	}
-	
 	public LinkButton(String text, ActionListener a) {
 		setText(text);
 		addActionListener(a);

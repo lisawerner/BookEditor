@@ -52,9 +52,8 @@ public class Card_FilterRace extends TransparentPanel {
 		panel_filterResult.setLayout(new GridLayout(0, 5, 5, 5));
 		
 		for(Person person : Book.getInstance().getSociety().getPersonListByRace(race)) {
-			LinkButton sectionBTN = new LinkButton(person.getInformation().getName());
-			sectionBTN.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(person, false));
-			panel_filterResult.add(sectionBTN);
+			panel_filterResult.add(new LinkButton(person.getInformation().getName(),
+					e -> BookEditorFrame.getInstance().openPersonPage(person, false)));
 		}
 		
 		panel_filterResult.revalidate();

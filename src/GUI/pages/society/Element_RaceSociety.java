@@ -29,9 +29,8 @@ public class Element_RaceSociety extends TransparentPanel {
 		add(panel_parent);
 		panel_parent.setLayout(new FlowLayout(FlowLayout.LEADING));
 		
-		LinkButton btnLinkbuttonrace = new LinkButton(race.getName());
-		panel_parent.add(btnLinkbuttonrace);
-		btnLinkbuttonrace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race)));
+		panel_parent.add(new LinkButton(race.getName(),
+				e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race))));
 		
 		if(race.getSubtypes().isEmpty()){
 			TransparentPanel panel_subtypeMemberlist = new TransparentPanel();
@@ -56,9 +55,8 @@ public class Element_RaceSociety extends TransparentPanel {
 				SimpleLabel lblMemberListOf = new SimpleLabel("Member-List of: ");
 				panel_subtypeMemberlist.add(lblMemberListOf);
 				
-				LinkButton btnSubtype = new LinkButton(subtype.getName());
-				panel_subtypeMemberlist.add(btnSubtype);
-				btnSubtype.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype)));
+				panel_subtypeMemberlist.add(new LinkButton(subtype.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype))));
 				
 				TransparentPanel panel_raceMembers = new TransparentPanel();
 				add(panel_raceMembers, BorderLayout.CENTER);
@@ -88,9 +86,8 @@ public class Element_RaceSociety extends TransparentPanel {
 			panel_raceMembers.add(new SimpleLabel("Race does not have any member"));
 		} else {					
 			for(Person raceMember : representantiveList) {
-				LinkButton btnPerson = new LinkButton(raceMember.getInformation().getName());
-				panel_raceMembers.add(btnPerson);
-				btnPerson.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(raceMember, false));
+				panel_raceMembers.add(new LinkButton(raceMember.getInformation().getName(),
+						e -> BookEditorFrame.getInstance().openPersonPage(raceMember, false)));
 				panel_raceMembers.add(new SimpleLabel(","));
 			}
 		}

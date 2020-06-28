@@ -30,9 +30,8 @@ public class Card_PersonTag extends TransparentPanel {
 						TransparentPanel panel = new TransparentPanel();
 						panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 						add(panel);
-						LinkButton btnSectionTag = new LinkButton(section.getName());
-						btnSectionTag.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
-						panel.add(btnSectionTag);
+						panel.add(new LinkButton(section.getName(),
+								e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 						panel.add(new SimpleLabel(";  "));
 					}
 				}

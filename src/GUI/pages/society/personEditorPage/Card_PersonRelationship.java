@@ -33,14 +33,12 @@ public class Card_PersonRelationship extends TransparentPanel {
 				relationPanel.setLayout(new BoxLayout(relationPanel, BoxLayout.LINE_AXIS));
 				relationPanel.add(new SimpleLabel("Has Relationship '" + relship.getDescribingRelationshipType() + "' with Person "));
 				Person relPerson = Book.getInstance().getSociety().getPerson(relship.getOtherPerson(my_person.getID()));
-				LinkButton lbtnRelPerson = new LinkButton(relPerson.getInformation().getNickname());
-				relationPanel.add(lbtnRelPerson);
-				lbtnRelPerson.addActionListener(e -> BookEditorFrame.getInstance().openPersonPage(relPerson, false));
+				relationPanel.add(new LinkButton(relPerson.getInformation().getNickname(),
+						e -> BookEditorFrame.getInstance().openPersonPage(relPerson, false)));
 				relationPanel.add(new SimpleLabel(" [Switched in Section: "));
 				Section switchSection = Book.getInstance().getTableOfContent().getSectionByRelationship(relID);
-				LinkButton lbtnSection = new LinkButton(switchSection.getName());
-				relationPanel.add(lbtnSection);
-				lbtnSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(switchSection, Book.getInstance().getTableOfContent().getChapter(switchSection.getParentChapterID()))));
+				relationPanel.add(new LinkButton(switchSection.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new SectionPage(switchSection, Book.getInstance().getTableOfContent().getChapter(switchSection.getParentChapterID())))));
 				relationPanel.add(new SimpleLabel("]"));
 			}
 		}

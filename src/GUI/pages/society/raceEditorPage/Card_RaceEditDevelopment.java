@@ -107,12 +107,9 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		for(ObjectID descendantID : my_race.getDescendants()) {
 			Race descendant = Book.getInstance().getSociety().getRace(descendantID);
 			
-			LinkButton btnLinkbutton = new LinkButton(descendant.getName());
-			panel_crazyDescendantStrucutrePanel.add(btnLinkbutton);
-			btnLinkbutton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(descendant)));
-			
-			SimpleLabel label = new SimpleLabel("; ");
-			panel_crazyDescendantStrucutrePanel.add(label);
+			panel_crazyDescendantStrucutrePanel.add(new LinkButton(descendant.getName(),
+					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(descendant))));
+			panel_crazyDescendantStrucutrePanel.add(new SimpleLabel("; "));
 		}
 		
 		if(my_race.getDescendants().isEmpty()) {
@@ -180,9 +177,8 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		if(my_race.hasAscendants()) {
 			lbl_noAscendants.setText("     '" + my_race.getName() + "' is descendant of: ");
 			
-			LinkButton btn_ascendant = new LinkButton(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant()).getName());
-			panel_showAscendantInformation.add(btn_ascendant);
-			btn_ascendant.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant()))));
+			panel_showAscendantInformation.add(new LinkButton(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant()).getName(),
+					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant())))));
 		} else {
 			lbl_noAscendants = new SimpleLabel("     '" + my_race.getName() + "' is first of its kind!");
 		}
@@ -206,12 +202,9 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 				panel_children.setLayout(new BoxLayout(panel_children, BoxLayout.X_AXIS));
 				
 				Race child = Book.getInstance().getSociety().getRace(childID);
-				LinkButton btnChild = new LinkButton(child.getName());
-				panel_children.add(btnChild);
-				btnChild.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(child)));
-				
-				SimpleLabel lblNewLabel = new SimpleLabel(";");
-				panel_children.add(lblNewLabel);
+				panel_children.add(new LinkButton(child.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(child))));
+				panel_children.add(new SimpleLabel(";"));
 			}
 		}
 		
@@ -224,9 +217,8 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 			panel_parentType.add(lblIsSubtypeOf);
 			
 			Race parent = Book.getInstance().getSociety().getRace(my_race.getParentRace());
-			LinkButton btnParent = new LinkButton(parent.getName());
-			panel_parentType.add(btnParent);
-			btnParent.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(parent)));
+			panel_parentType.add(new LinkButton(parent.getName(),
+					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(parent))));
 		}
 		
 		panel_allInfos.revalidate();

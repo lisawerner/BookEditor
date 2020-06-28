@@ -45,9 +45,8 @@ public class SectionTimestampCard extends TransparentPanel {
 			if(preSection.hasTimestamp()) {				
 				panel_helpfullInformationInNorth.setLayout(new BoxLayout(panel_helpfullInformationInNorth, BoxLayout.LINE_AXIS));
 				panel_helpfullInformationInNorth.add(new SimpleLabel("Section before '"));
-				LinkButton btnPresection = new LinkButton(preSection.getName());
-				btnPresection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection, chapter)));
-				panel_helpfullInformationInNorth.add(btnPresection);
+				panel_helpfullInformationInNorth.add(new LinkButton(preSection.getName(),
+						e -> BookEditorFrame.getInstance().switchBody(new SectionPage(preSection, chapter))));
 				panel_helpfullInformationInNorth.add(new SimpleLabel("' has Timestamp: " + Book.getInstance().getTimeline().getTimestamp(preSection.getTimestampID()).toCompleteString()));
 			}
 		}
