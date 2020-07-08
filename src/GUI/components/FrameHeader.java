@@ -3,6 +3,8 @@ package GUI.components;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import GUI.theme.ThemeList;
+
 public class FrameHeader extends JPanel{
 	private static final long serialVersionUID = 1L;
 	

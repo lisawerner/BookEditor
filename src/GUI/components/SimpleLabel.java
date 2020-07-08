@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+import GUI.theme.ThemeList;
 import global.UserSettings;
 
 public class SimpleLabel extends JLabel{

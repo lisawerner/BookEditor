@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import GUI.HelpFrame;
+import GUI.theme.ThemeList;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

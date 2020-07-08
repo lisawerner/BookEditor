@@ -1,4 +1,4 @@
-package GUI.components;
+package GUI.theme;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -33,11 +33,19 @@ public class ThemeList {
 			Color.GRAY, new Color(165, 215, 105),
 			new Color(200,195,140));
 	
+	public final static Theme WhiteMagic = new Theme("White Magic", Color.WHITE, new Color(60, 80, 80),
+			Color.WHITE, new Color(205, 225, 225), Color.DARK_GRAY, Color.WHITE,
+			Color.WHITE, new Color(60, 80, 80), new Color(155, 255, 255), new Color(60, 80, 80), new Color(155, 255, 255),
+			new Color(205, 225, 225), new Color(60, 80, 80),
+			new Color(205, 225, 225), new Color(205, 225, 225),
+			new Color(205, 225, 225));
+	
 	public static ArrayList<Theme> getThemes() {
 		ArrayList<Theme> completeList = new ArrayList<Theme>();
 		completeList.add(BluePhoenixTheme);
 		completeList.add(RedPhoenixTheme);
 		completeList.add(ADifferentWorldTheme);
+		completeList.add(WhiteMagic);
 		return completeList;
 	}
 	

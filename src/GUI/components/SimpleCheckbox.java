@@ -2,6 +2,7 @@ package GUI.components;
 
 import javax.swing.JCheckBox;
 
+import GUI.theme.ThemeList;
 import global.UserSettings;
 
 public class SimpleCheckbox extends JCheckBox {

@@ -2,6 +2,8 @@ package GUI.components;
 
 import javax.swing.JLabel;
 
+import GUI.theme.ThemeList;
+
 public class MenuSubheader extends JLabel {
 	private static final long serialVersionUID = 1L;
 

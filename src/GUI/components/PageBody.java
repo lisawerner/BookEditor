@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 
+import GUI.theme.ThemeList;
+
 public class PageBody extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 	

@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JViewport;
 
+import GUI.theme.ThemeList;
+
 public class PageMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	

@@ -5,6 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+
+import GUI.theme.ThemeList;
+
 import java.awt.Component;
 import javax.swing.Box;
 

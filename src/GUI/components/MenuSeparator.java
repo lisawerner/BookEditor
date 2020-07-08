@@ -2,6 +2,8 @@ package GUI.components;
 
 import javax.swing.JSeparator;
 
+import GUI.theme.ThemeList;
+
 public class MenuSeparator extends JSeparator {
 	private static final long serialVersionUID = 1L;
 

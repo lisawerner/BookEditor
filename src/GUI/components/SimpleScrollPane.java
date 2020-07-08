@@ -3,6 +3,8 @@ package GUI.components;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 
+import GUI.theme.ThemeList;
+
 public class SimpleScrollPane extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 	

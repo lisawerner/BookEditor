@@ -16,9 +16,9 @@ import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleIntegerTextfield;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
-import GUI.components.Theme;
-import GUI.components.ThemeList;
 import GUI.components.TransparentPanel;
+import GUI.theme.Theme;
+import GUI.theme.ThemeList;
 
 import java.awt.Component;
 import javax.swing.Box;

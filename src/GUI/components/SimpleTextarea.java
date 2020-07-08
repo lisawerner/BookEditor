@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
 
+import GUI.theme.ThemeList;
 import global.UserSettings;
 
 public class SimpleTextarea extends JTextArea{

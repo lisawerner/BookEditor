@@ -2,6 +2,7 @@ package GUI.components;
 
 import javax.swing.JRadioButton;
 
+import GUI.theme.ThemeList;
 import global.UserSettings;
 
 public class SimpleRadiobutton extends JRadioButton {

@@ -2,6 +2,9 @@ package GUI.components;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.EtchedBorder;
+
+import GUI.theme.ThemeList;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.Box;

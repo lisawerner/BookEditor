@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 
 import GUI.frame.menu.MainMenu;
+import GUI.theme.ThemeList;
 
 public class FrameMenu extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

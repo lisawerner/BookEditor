@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 
+import GUI.theme.ThemeList;
 import global.UserSettings;
 
 public class TextPreview extends TransparentPanel {

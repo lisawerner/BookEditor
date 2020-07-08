@@ -2,7 +2,6 @@ package book;
 
 import global.ObjectID;
 import global.SerializedObject;
-import GUI.components.Theme;
 import notes.GeneralNote;
 import person.Relationship;
 import person.Society;
@@ -11,6 +10,7 @@ import world.World;
 
 import java.util.ArrayList;
 
+import GUI.theme.Theme;
 import global.FileManager;
 
 public class Book extends SerializedObject {

@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
+import GUI.theme.ThemeList;
 import global.UserSettings;
 
 public class LinkButton extends JButton{

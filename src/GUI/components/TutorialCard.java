@@ -11,6 +11,8 @@ import global.UserSettings;
 
 import javax.swing.JButton;
 
+import GUI.theme.ThemeList;
+
 public class TutorialCard extends Card {
 	private static final long serialVersionUID = 1L;
 	
