@@ -19,7 +19,7 @@ public class Page_createPlace extends Page {
 		}
 		
 		//****************************************************************************************
-		this.addCard(new StructureCard("Change Place Name", new Card_createPlace()));
+		this.addCard(new StructureCard("Enter Place Name", new Card_createPlace()));
 	}
 }
 
