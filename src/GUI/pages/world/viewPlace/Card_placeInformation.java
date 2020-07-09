@@ -2,28 +2,36 @@ package GUI.pages.world.viewPlace;
 
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.components.ComplexeTextfieldSaveable;
+import GUI.components.FormButton;
+import GUI.components.FormTextfield;
 import GUI.components.InfoButton;
+import GUI.components.SimpleFormular;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleTextarea;
 import GUI.components.TransparentPanel;
 import world.Place;
+import javax.swing.Box;
+import java.awt.Dimension;
 
 public class Card_placeInformation extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Place my_place;
 	
-	private ComplexeTextfieldSaveable txt_placename;
-	private ComplexeTextfieldSaveable txtPlacetype;
+	private FormTextfield txt_placename;
+	private FormTextfield txtPlacetype;
 	private SimpleTextarea txtNotes;
 
 	public Card_placeInformation(Place place) {
 		my_place = place;
 		setLayout(new BorderLayout(5, 5));
+		
+		FormButton btnSave = new FormButton("Save Place", e -> savePlace());
+		add(btnSave, BorderLayout.SOUTH);
+		
+		SimpleFormular saveFormular = new SimpleFormular(this::savePlace, btnSave);
 
 		//*****************************************************************************************
 		//*****************************************************************************************
@@ -31,8 +39,12 @@ public class Card_placeInformation extends TransparentPanel {
 		add(panel_bodyForFurtherInfomations, BorderLayout.CENTER);
 		panel_bodyForFurtherInfomations.setLayout(new BoxLayout(panel_bodyForFurtherInfomations, BoxLayout.PAGE_AXIS));
 				
-		txt_placename = new ComplexeTextfieldSaveable("Placename:", my_place.getName(), this::savePlace, false, true);
+		txt_placename = new FormTextfield("Placename:", my_place.getName(), true);
 		panel_bodyForFurtherInfomations.add(txt_placename);
+		saveFormular.addInput(txt_placename);
+		txt_placename.add(Box.createRigidArea(new Dimension(11, 11)), BorderLayout.EAST);
+		
+		panel_bodyForFurtherInfomations.add(Box.createRigidArea(new Dimension(5, 5)));
 		
 		TransparentPanel panel_placetype = new TransparentPanel();
 		panel_bodyForFurtherInfomations.add(panel_placetype);
@@ -42,8 +54,9 @@ public class Card_placeInformation extends TransparentPanel {
 				+ "Can changed every time.</html>");
 		panel_placetype.add(btnPlaceTypeInfo, BorderLayout.EAST);
 		
-		txtPlacetype = new ComplexeTextfieldSaveable("Place-Type:", my_place.getType(), this::savePlace, false, false);
+		txtPlacetype = new FormTextfield("Place-Type:", my_place.getType(), false);
 		panel_placetype.add(txtPlacetype, BorderLayout.CENTER);
+		saveFormular.addInput(txtPlacetype);
 		
 		TransparentPanel panel_notes = new TransparentPanel();
 		panel_bodyForFurtherInfomations.add(panel_notes);
@@ -54,12 +67,6 @@ public class Card_placeInformation extends TransparentPanel {
 		
 		txtNotes = new SimpleTextarea(my_place.getNotes());
 		panel_notes.add(txtNotes, BorderLayout.CENTER);
-		
-		//*****************************************************************************************
-		//*****************************************************************************************
-		JButton btnSave = new JButton("Save Place");
-		btnSave.addActionListener(e -> savePlace());
-		add(btnSave, BorderLayout.SOUTH);
 	}
 	
 	private void savePlace(){

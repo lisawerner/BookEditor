@@ -16,7 +16,6 @@ import global.UserSettings;
 import world.Place;
 import javax.swing.Box;
 import java.awt.Dimension;
-import java.awt.Component;
 
 public class Card_createPlace extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

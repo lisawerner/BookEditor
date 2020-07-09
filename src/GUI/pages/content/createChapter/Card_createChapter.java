@@ -16,7 +16,7 @@ public class Card_createChapter extends TransparentPanel {
 	public Card_createChapter() {
 		setLayout(new BorderLayout(5, 5));
 		
-		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", "", this::createChapter, true, true);
+		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", "", this::createChapter);
 		add(txt_chapterTitle, BorderLayout.CENTER);
 	}
 

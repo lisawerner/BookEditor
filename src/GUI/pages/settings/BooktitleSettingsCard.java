@@ -17,7 +17,7 @@ public class BooktitleSettingsCard extends TransparentPanel {
 	public BooktitleSettingsCard() {
 		setLayout(new GridLayout(0, 1, 5, 5));
 
-		txt_title = new ComplexeTextfieldSaveable("Title:", Book.getInstance().getTitle(), this::saveTitle, true, true);
+		txt_title = new ComplexeTextfieldSaveable("Title:", Book.getInstance().getTitle(), this::saveTitle);
 		add(txt_title);
 		
 		rdbtnIsWorkTitle = new SimpleCheckbox("This is only a worktitle. Please remember me changing it, before publishing book.");

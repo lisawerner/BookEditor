@@ -18,7 +18,7 @@ public class SectionTitleCard extends TransparentPanel {
 		my_section = section;
 		setLayout(new BorderLayout(5, 5));
 		
-		txt_sectionTitle = new ComplexeTextfieldSaveable("Section Title:", my_section.getName(), this::save, true, true);
+		txt_sectionTitle = new ComplexeTextfieldSaveable("Section Title:", my_section.getName(), this::save);
 		add(txt_sectionTitle);
 		
 		add(new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every time.</html>"), 

@@ -22,7 +22,7 @@ public class Card_createSectionByTitle extends TransparentPanel {
 		my_parentChapter = chapter;
 		setLayout(new BorderLayout(5, 5));
 		
-		txt_sectionTitle = new ComplexeTextfieldSaveable("Section Title:", "", this::save, true, true);
+		txt_sectionTitle = new ComplexeTextfieldSaveable("Section Title:", "", this::save);
 		add(txt_sectionTitle);
 		
 		add(new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every time.</html>"),
