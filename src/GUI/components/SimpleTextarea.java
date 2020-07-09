@@ -37,6 +37,9 @@ public class SimpleTextarea extends JTextArea{
 			setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		}
 	}
+
+	public void setWarning(boolean hasChanges) {
+		//TODO: add to all Active-Components (Textfield, Textarea, Radiobutton, Checkbox, Buttons, Comboboxes, ...) warning(true/false) and change Border to Red or Foreground to Red
+	}
 	
-	//TODO: add to all Active-Components (Textfield, Textarea, Radiobutton, Checkbox, Buttons, Comboboxes, ...) warning(true/false) and change Border to Red or Foreground to Red
 }

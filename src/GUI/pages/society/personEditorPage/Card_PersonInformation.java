@@ -21,7 +21,6 @@ import GUI.components.SimpleRadiobutton;
 import GUI.components.SimpleTextarea;
 import GUI.components.SimpleTextfield;
 import GUI.components.TransparentPanel;
-import GUI.pages.society.raceEditorPage.Page_EditRace;
 import person.Person;
 import person.Race;
 
@@ -262,7 +261,7 @@ public class Card_PersonInformation extends TransparentPanel {
 				}
 			}
 			panel_singleRace.add(new LinkButton("<html>&#8663</html>",
-					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race))));
+					e -> BookEditorFrame.getInstance().openRacePage(race)));
 		}
 		
 		//*********************************************************************************

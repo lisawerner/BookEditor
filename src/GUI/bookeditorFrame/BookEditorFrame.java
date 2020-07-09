@@ -12,11 +12,14 @@ import javax.swing.border.EmptyBorder;
 
 import GUI.pages.content.Page_sortContent;
 import GUI.pages.content.viewChapter.Page_viewChapter;
-import GUI.pages.notesPage.Page_singleNote;
+import GUI.pages.notes.createNote.Page_createNote;
+import GUI.pages.notes.viewNote.Page_singleNote;
 import GUI.pages.notesPage.Page_viewNotes;
 import GUI.pages.settings.BookSettingsPage;
 import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
+import GUI.pages.society.raceCreate.Page_createRace;
+import GUI.pages.society.raceView.Page_EditRace;
 import GUI.pages.timeline.Page_ViewTimeline;
 import GUI.pages.world.createPlace.Page_createPlace;
 import GUI.pages.world.viewPlace.Page_viewPlace;
@@ -30,6 +33,7 @@ import book.Section;
 import global.Constant;
 import notes.GeneralNote;
 import person.Person;
+import person.Race;
 import time.Timestamp;
 import world.Place;
 import GUI.components.FrameFooter;
@@ -179,6 +183,11 @@ public class BookEditorFrame extends JFrame {
 		switchBody(new Page_singleNote(note));
 		panel_mainMenu.changeSubmenuTo(new NotesMenu());
 	}
+	
+	public void openCreateNotePage(){
+		switchBody(new Page_createNote());
+		panel_mainMenu.changeSubmenuTo(new NotesMenu());
+	}
 
 	public void openStartPage() {
 		switchBody(new HomePage());
@@ -227,6 +236,16 @@ public class BookEditorFrame extends JFrame {
 	
 	public void openPersonPage(Person person, boolean isSecondFrame){
 		switchBody(new Page_PersonEditor(person, isSecondFrame));
+		panel_mainMenu.changeSubmenuTo(new SocietyMenu());
+	}
+	
+	public void openRacePage(Race race){
+		switchBody(new Page_EditRace(race));
+		panel_mainMenu.changeSubmenuTo(new SocietyMenu());
+	}
+	
+	public void openCreateRacePage(){
+		switchBody(new Page_createRace());
 		panel_mainMenu.changeSubmenuTo(new SocietyMenu());
 	}
 

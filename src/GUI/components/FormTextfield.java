@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class FormTextfield extends TransparentPanel {
+public class FormTextfield extends FormInput {
 	private static final long serialVersionUID = 1L;
 
 	private boolean isNeededForSaving;
@@ -17,8 +17,6 @@ public class FormTextfield extends TransparentPanel {
 	private SimpleTextfield textField;
 	private String originalText;
 	
-	private SimpleFormular parentForm;
-
 	/**
 	 * Creates a text field with an own label for naming the text field
 	 * 
@@ -64,10 +62,7 @@ public class FormTextfield extends TransparentPanel {
 		});
 	}
 	
-	protected void setParentForm(SimpleFormular newParentFormular){
-		parentForm = newParentFormular;
-	}
-	
+	@Override
 	protected boolean checkSavebility(){
 		return (!isNeededForSaving) 
 				|| (isNeededForSaving && !getText().isEmpty());
@@ -83,6 +78,7 @@ public class FormTextfield extends TransparentPanel {
 		textField.setWarning(hasChanges);
 	}
 	
+	@Override
 	protected void actionWasCalled(){
 		textField.setWarning(false);
 		lblTextfieldlabel.setWarning(false);

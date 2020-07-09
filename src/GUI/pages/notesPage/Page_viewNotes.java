@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;
+import GUI.pages.notes.createNote.Card_createNote;
+import GUI.pages.notes.viewNote.Card_editNote;
 import notes.GeneralNote;
 
 public class Page_viewNotes extends Page {
@@ -17,12 +19,12 @@ public class Page_viewNotes extends Page {
 		//******************************************************************************************
 		ArrayList<GeneralNote> notes = Book.getInstance().getNotes();
 		for(GeneralNote note : notes) {
-			addCard(new StructureCard("View and Edit Note", new NoteCard(note)));
+			addCard(new StructureCard("View and Edit Note", new Card_editNote(note)));
 		}
 
 		//******************************************************************************************
 		if(notes.isEmpty()){
-			addCard(new StructureCard("Create new Note", new NoteCard(null)));	
+			addCard(new StructureCard("Create new Note", new Card_createNote()));	
 		}
 		
 	}

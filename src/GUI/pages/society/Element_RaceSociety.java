@@ -10,7 +10,6 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
-import GUI.pages.society.raceEditorPage.Page_EditRace;
 import person.Person;
 import person.Race;
 import java.awt.Component;
@@ -30,7 +29,7 @@ public class Element_RaceSociety extends TransparentPanel {
 		panel_parent.setLayout(new FlowLayout(FlowLayout.LEADING));
 		
 		panel_parent.add(new LinkButton(race.getName(),
-				e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race))));
+				e -> BookEditorFrame.getInstance().openRacePage(race)));
 		
 		if(race.getSubtypes().isEmpty()){
 			TransparentPanel panel_subtypeMemberlist = new TransparentPanel();
@@ -56,7 +55,7 @@ public class Element_RaceSociety extends TransparentPanel {
 				panel_subtypeMemberlist.add(lblMemberListOf);
 				
 				panel_subtypeMemberlist.add(new LinkButton(subtype.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype))));
+						e -> BookEditorFrame.getInstance().openRacePage(subtype)));
 				
 				TransparentPanel panel_raceMembers = new TransparentPanel();
 				add(panel_raceMembers, BorderLayout.CENTER);

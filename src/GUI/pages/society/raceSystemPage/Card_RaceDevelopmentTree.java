@@ -7,7 +7,6 @@ import global.ObjectID;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import GUI.pages.society.raceEditorPage.Page_EditRace;
 import person.Race;
 
 import GUI.bookeditorFrame.BookEditorFrame;
@@ -26,7 +25,7 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 		
 		JButton btnAddRace = new JButton("Add new Race");
 		this.add(btnAddRace);
-		btnAddRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(null)));
+		btnAddRace.addActionListener(e -> BookEditorFrame.getInstance().openCreateRacePage());
 		
 		for(Race rootRace : getRootRaces()){
 			TransparentPanel panel_raceTree = new TransparentPanel();
@@ -64,7 +63,7 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 		panel_RaceWithSubtypes.add(lbl_space);
 		
 		panel_RaceWithSubtypes.add(new LinkButton(currentRace.getName(),
-				e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(currentRace))));
+				e -> BookEditorFrame.getInstance().openRacePage(currentRace)));
 		
 		if(!currentRace.getSubtypes().isEmpty()){			
 			SimpleLabel lbl_leftBrace = new SimpleLabel("   [ ");
@@ -73,7 +72,7 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 			for(ObjectID subtypeID : currentRace.getSubtypes()){
 				Race subtype = Book.getInstance().getSociety().getRace(subtypeID);
 				panel_RaceWithSubtypes.add(new LinkButton(subtype.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype))));
+						e -> BookEditorFrame.getInstance().openRacePage(subtype)));
 				panel_RaceWithSubtypes.add(new SimpleLabel("; "));
 			}
 			

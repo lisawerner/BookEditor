@@ -14,7 +14,7 @@ public class NotesMenu extends FrameSubmenu {
 		super("Notes", "List of Notes:");
 		
 		addButton(new MenuButton("View Notes", e -> BookEditorFrame.getInstance().openNotesListPage()));
-		addButton(new MenuButton("Add Note", e -> BookEditorFrame.getInstance().openNotePage(null)));
+		addButton(new MenuButton("Add Note", e -> BookEditorFrame.getInstance().openCreateNotePage()));
 		
 		for(GeneralNote note : Book.getInstance().getNotes()){
 			addListEntry(new MenuListButton(note.getName(), e -> BookEditorFrame.getInstance().openNotePage(note)));

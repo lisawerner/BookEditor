@@ -1,4 +1,4 @@
-package GUI.pages.society.raceEditorPage;
+package GUI.pages.society.raceView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,17 +20,15 @@ public class Page_EditRace extends Page {
 		my_race = givenRace;
 		
 		//****************************************************************************************
-		this.addCard(new StructureCard("Edit Race", new Card_CreateRace(my_race)));
+		this.addCard(new StructureCard("Edit Race", new Card_raceDefaultInformation(my_race)));
 		
 		//****************************************************************************************
-		if(my_race != null) {
-			this.addCard(new StructureCard("Race Representatives", new Card_ViewRaceRepresentatives(my_race)));
-			this.addCard(new StructureCard("Edit Race Development", new Card_RaceEditDevelopment(my_race)));
-		}
-		
+		this.addCard(new StructureCard("Race Representatives", new Card_ViewRaceRepresentatives(my_race)));
+		this.addCard(new StructureCard("Edit Race Development", new Card_RaceEditDevelopment(my_race)));
+
 		//****************************************************************************************
 		//****************************************************************************************
-		//TODO: Bestätungs Panel
+		//TODO: Bestaetungs Panel
 		JButton btnDelete = new JButton("Delete Race");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

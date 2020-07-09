@@ -1,4 +1,4 @@
-package GUI.pages.society.raceEditorPage;
+package GUI.pages.society.raceView;
 
 import book.Book;
 import global.ObjectID;
@@ -108,7 +108,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 			Race descendant = Book.getInstance().getSociety().getRace(descendantID);
 			
 			panel_crazyDescendantStrucutrePanel.add(new LinkButton(descendant.getName(),
-					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(descendant))));
+					e -> BookEditorFrame.getInstance().openRacePage(descendant)));
 			panel_crazyDescendantStrucutrePanel.add(new SimpleLabel("; "));
 		}
 		
@@ -178,7 +178,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 			lbl_noAscendants.setText("     '" + my_race.getName() + "' is descendant of: ");
 			
 			panel_showAscendantInformation.add(new LinkButton(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant()).getName(),
-					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant())))));
+					e -> BookEditorFrame.getInstance().openRacePage(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant()))));
 		} else {
 			lbl_noAscendants = new SimpleLabel("     '" + my_race.getName() + "' is first of its kind!");
 		}
@@ -203,7 +203,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 				
 				Race child = Book.getInstance().getSociety().getRace(childID);
 				panel_children.add(new LinkButton(child.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(child))));
+						e -> BookEditorFrame.getInstance().openRacePage(child)));
 				panel_children.add(new SimpleLabel(";"));
 			}
 		}
@@ -218,7 +218,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 			
 			Race parent = Book.getInstance().getSociety().getRace(my_race.getParentRace());
 			panel_parentType.add(new LinkButton(parent.getName(),
-					e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(parent))));
+					e -> BookEditorFrame.getInstance().openRacePage(parent)));
 		}
 		
 		panel_allInfos.revalidate();
