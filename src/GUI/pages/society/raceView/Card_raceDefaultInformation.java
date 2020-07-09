@@ -6,7 +6,6 @@ import GUI.components.FormTextfield;
 import GUI.components.SimpleFormular;
 import GUI.components.TransparentPanel;
 import person.Race;
-import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 
 public class Card_raceDefaultInformation extends TransparentPanel {

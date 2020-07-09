@@ -11,17 +11,17 @@ import GUI.components.TutorialCard;
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class SectionEditorPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
+	private Chapter my_chapter;
 
 	public SectionEditorPage( Section section, Chapter chapter) {
 		super("Edit Section: " + section.getName());
 		my_section = section;
+		my_chapter = chapter;
 		
 		if(UserSettings.getInstance().getTutorial().sortSectionsAndChapters && !UserSettings.getInstance().getTutorial().setTimestamps) {			
 			addCard(new TutorialCard(9, false));
@@ -33,6 +33,11 @@ public class SectionEditorPage extends Page {
 			addCard(new TutorialCard(19, false));
 		}
 		
+		//********************************************************************************
+		//********************************************************************************
+		JButton btnTopBackToSection = new JButton("Back to Section");
+		btnTopBackToSection.addActionListener(e -> actionBackToSection());
+		setHeader(btnTopBackToSection);
 		//********************************************************************************
 		//********************************************************************************
 		addCard(new StructureCard("Section Title", new SectionTitleCard(my_section)));
@@ -64,17 +69,17 @@ public class SectionEditorPage extends Page {
 		//********************************************************************************
 		//********************************************************************************
 		JButton btnBackToSection = new JButton("Back to Section");
-		btnBackToSection.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Book.getInstance().save();
-				if(!UserSettings.getInstance().getTutorial().tagPersonToSection) {
-					UserSettings.getInstance().getTutorial().tagPersonToSection = true;
-					UserSettings.getInstance().save();
-				}
-				BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, chapter));
-			}
-		});
+		btnBackToSection.addActionListener(e -> actionBackToSection());
 		setFooter(btnBackToSection);
 
+	}
+	
+	private void actionBackToSection(){
+		Book.getInstance().save();
+		if(!UserSettings.getInstance().getTutorial().tagPersonToSection) {
+			UserSettings.getInstance().getTutorial().tagPersonToSection = true;
+			UserSettings.getInstance().save();
+		}
+		BookEditorFrame.getInstance().switchBody(new SectionPage(my_section, my_chapter));
 	}
 }

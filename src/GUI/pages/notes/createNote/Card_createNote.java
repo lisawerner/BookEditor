@@ -9,7 +9,6 @@ import GUI.components.TransparentPanel;
 import GUI.pages.notesPage.Page_viewNotes;
 import notes.GeneralNote;
 import java.awt.BorderLayout;
-
 import GUI.bookeditorFrame.BookEditorFrame;
 
 public class Card_createNote extends TransparentPanel {
