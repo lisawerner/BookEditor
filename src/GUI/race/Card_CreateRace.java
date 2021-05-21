@@ -19,10 +19,10 @@ public class Card_CreateRace extends TransparentPanel {
 	
 	private Race my_race;
 	
-	private SimpleTextfield txt_raceName;
-	private SimpleTextarea txt_raceNotes;
+	private final SimpleTextfield txt_raceName;
+	private final SimpleTextarea txt_raceNotes;
 	
-	private SimpleLabel lblSaveHint;
+	private final SimpleLabel lblSaveHint;
 
 	public Card_CreateRace(Race givenRace) {
 		my_race = givenRace;

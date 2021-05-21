@@ -16,10 +16,10 @@ public class TutorialCard extends Card {
 	
 	private String frontTag = "<html><div style='text-align: left;'><font size=\"4\">     ";
 	private String backTag = "</size></div></html>";
-	private int maxSteps = 20;
-	private SimpleLabel lblCardTitle;
-	private SimpleLabel my_hint;
-	private JButton btnDone;
+	private final int maxSteps = 20;
+	private final SimpleLabel lblCardTitle;
+	private final SimpleLabel my_hint;
+	private final JButton btnDone;
 
 	public TutorialCard(int tutorialNumber, boolean needsConfirmation) {
 		setLayout(new BorderLayout(10, 10));

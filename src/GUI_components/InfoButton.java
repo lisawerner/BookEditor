@@ -14,7 +14,7 @@ import java.awt.Dimension;
 public class InfoButton extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel my_label;
+	private final JLabel my_label;
 	
 	private boolean isMenuInfoHint;
 	

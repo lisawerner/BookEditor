@@ -21,7 +21,7 @@ import javax.swing.BoxLayout;
 public class TimelineElement extends TimelineItem {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
+	private final Section my_section;
 	
 	public TimelineElement(Section section, boolean leftPosition) {
 		super(leftPosition, section.getTimestamp().toString(), section.getTimestamp().isSpecificDate(), !section.getTimestamp().getSpecificDate().isAnnoDomini());

@@ -21,11 +21,11 @@ import world.Place;
 public class PlaceWorlddependenciesCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Place my_place;
+	private final Place my_place;
 	
-	private SimpleLabel lblParentSaveHint;
-	private SimpleCheckbox chckbxHasParent;
-	private JComboBox<ComboItem> cmbox_possibleParents;
+	private final SimpleLabel lblParentSaveHint;
+	private final SimpleCheckbox chckbxHasParent;
+	private final JComboBox<ComboItem> cmbox_possibleParents;
 
 	public PlaceWorlddependenciesCard(Place place) {
 		my_place = place;

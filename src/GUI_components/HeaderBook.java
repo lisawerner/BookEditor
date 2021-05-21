@@ -6,10 +6,10 @@ import javax.swing.JPanel;
 public class HeaderBook extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel my_label;
+	private final JLabel my_label;
 	
-	private String frontTag = "<html><div style='text-align: center;'><font size=\"9\">";
-	private String backTag = "</size></div></html>";
+	private final String frontTag = "<html><div style='text-align: center;'><font size=\"9\">";
+	private final String backTag = "</size></div></html>";
 
 	public HeaderBook(String newText) {
 		

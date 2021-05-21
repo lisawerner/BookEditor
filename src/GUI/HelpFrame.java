@@ -20,7 +20,7 @@ public class HelpFrame extends JFrame {
 	
 	private JPanel contentPane;
 	
-	private JLabel lblRestarttutorialdone;
+	private final JLabel lblRestarttutorialdone;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

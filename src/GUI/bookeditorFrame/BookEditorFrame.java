@@ -23,12 +23,12 @@ public class BookEditorFrame extends JFrame {
 	
 	private static BookEditorFrame instance = null;
 	
-	private JPanel contentPane;
-	private TransparentPanel contentBody;
+	private final JPanel contentPane;
+	private final TransparentPanel contentBody;
 	
 	private HeaderBook lblBookTitle;
 	private EditorMenu panel_menu;
-	private BookFooter panel_footer;
+	private final BookFooter panel_footer;
 
 	public BookEditorFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

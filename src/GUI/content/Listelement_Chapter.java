@@ -20,9 +20,9 @@ import java.awt.GridLayout;
 public class Listelement_Chapter extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Chapter my_chapter;
+	private final Chapter my_chapter;
 	
-	private TransparentPanel panel_listOfSections;
+	private final TransparentPanel panel_listOfSections;
 	
 	public Listelement_Chapter(Chapter chapter, Card_SortChapter parentBody) {
 		my_chapter = chapter;

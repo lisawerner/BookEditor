@@ -7,10 +7,10 @@ import time.TimelineSettings;
 
 public class FilterCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	
+
 	private TimelineSettings my_settings;
-	
-	private SimpleCheckbox chbox_filterMainCharacters;
+
+	private final SimpleCheckbox chbox_filterMainCharacters;
 
 	public FilterCard() {
 		my_settings = Book.getInstance().getTimeline().getSettings();

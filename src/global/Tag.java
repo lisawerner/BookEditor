@@ -2,8 +2,8 @@ package global;
 
 public class Tag {
 	
-	private ObjectID referredTo;
-	private String refClassType;
+	private final ObjectID referredTo;
+	private final String refClassType;
 	
 	public Tag(ObjectID newReference, String newClassType) {
 		referredTo = newReference;

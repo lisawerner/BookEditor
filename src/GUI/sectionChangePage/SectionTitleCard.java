@@ -21,12 +21,11 @@ public class SectionTitleCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Section my_section;
-	private Chapter my_parentChapter;
+	private final Chapter my_parentChapter;
 	
-	private SimpleTextfield txt_sectionTitle;
-	private SimpleLabel lbl_saveWarning;
-	private SimpleLabel lblChapterTitle;
-
+	private final SimpleTextfield txt_sectionTitle;
+	private final SimpleLabel lbl_saveWarning;
+	private final SimpleLabel lblChapterTitle;
 
 	public SectionTitleCard(Section section, Chapter chapter) {
 		my_section = section;
@@ -104,13 +103,8 @@ public class SectionTitleCard extends TransparentPanel {
 	}
 	
 	private void setWarningEnterName(boolean warning) {
-		if(warning) {
-			txt_sectionTitle.setWarning(warning);
-			lblChapterTitle.setWarning(warning);
-		} else {
-			txt_sectionTitle.setWarning(warning);
-			lblChapterTitle.setWarning(warning);
-		}
+		txt_sectionTitle.setWarning(warning);
+		lblChapterTitle.setWarning(warning);
 	}
 
 }

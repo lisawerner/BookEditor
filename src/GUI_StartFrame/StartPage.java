@@ -28,7 +28,7 @@ public class StartPage extends JPanel {
 	private int btn_width = 200;
 	private int btn_hight = 100;
 	
-	private JButton btnOpenBook;
+	private final JButton btnOpenBook;
 	private String selectedBook = "";
 
 	public StartPage() {
@@ -107,20 +107,14 @@ public class StartPage extends JPanel {
 		
 		JButton btnCreateNewBook = new JButton("Create new Book");
 		panel_buttons.add(btnCreateNewBook);
-		btnCreateNewBook.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				StartFrame.getInstance().switchBody(new CreateBookPage());
-			}
-		});
+		btnCreateNewBook.addActionListener(e -> StartFrame.getInstance().switchBody(new CreateBookPage()));
 		btnCreateNewBook.setSize(new Dimension(btn_width, btn_hight));
 		btnCreateNewBook.setPreferredSize(new Dimension(btn_width, btn_hight));
 		btnCreateNewBook.setMaximumSize(new Dimension(btn_width, btn_hight));
-		btnOpenBook.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Book.getInstance().loadFromFile(selectedBook);
-				UserSettings.getInstance().setLastOpenedBookfile(selectedBook);
-				StartFrame.getInstance().openBookEditor();
-			}
+		btnOpenBook.addActionListener(e -> {
+			Book.getInstance().loadFromFile(selectedBook);
+			UserSettings.getInstance().setLastOpenedBookfile(selectedBook);
+			StartFrame.getInstance().openBookEditor();
 		});
 		
 	}

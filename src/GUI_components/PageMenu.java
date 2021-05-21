@@ -19,11 +19,11 @@ public class PageMenu extends JPanel {
 	private String frontTag = "<html><div style='text-align: left;'><font size=\"5\">     ";
 	private String backTag = "</size></div></html>";
 	
-	private JPanel backgroundColorBody;
-	private JLabel lblMenutitle;
-	private TransparentPanel my_body;
-	private JScrollPane submenu;
-	private JPanel submenuBody;
+	private final JPanel backgroundColorBody;
+	private final JLabel lblMenutitle;
+	private final TransparentPanel my_body;
+	private final JScrollPane submenu;
+	private final JPanel submenuBody;
 
 	public PageMenu(String menuTitle) {
 		setLayout(new BorderLayout(10, 10));
@@ -97,8 +97,6 @@ public class PageMenu extends JPanel {
 			//
 			revalidate();
 			repaint();
-		} else {
-
 		}
 	}
 	

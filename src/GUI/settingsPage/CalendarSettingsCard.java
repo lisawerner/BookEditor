@@ -14,7 +14,7 @@ import book.Book;
 public class CalendarSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleRadiobutton rdbtnGregorianCalendar;
+	private final SimpleRadiobutton rdbtnGregorianCalendar;
 
 	public CalendarSettingsCard() {
 		setLayout(new GridLayout(0, 1, 10, 10));

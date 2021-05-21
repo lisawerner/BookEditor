@@ -1,11 +1,5 @@
 package GUI.filterPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
-
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
 import GUI_components.LinkButton;
@@ -16,13 +10,16 @@ import book.Book;
 import book.DevelopmentStatus;
 import book.Section;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class FilterDevStatusCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private int currentDevStatus;
 	private boolean devStatusDown;
 	
-	private TransparentPanel panel_devFilteredSections;
+	private final TransparentPanel panel_devFilteredSections;
 
 	public FilterDevStatusCard() {
 		setLayout(new BorderLayout(5, 5));
@@ -43,11 +40,9 @@ public class FilterDevStatusCard extends TransparentPanel {
 		TransparentPanel panel_devFilter = new TransparentPanel();
 		devFilter.add(panel_devFilter);
 		panel_devFilter.setLayout(new GridLayout(0, 6, 5, 5));
-		boxbtn_single.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				devStatusDown = boxbtn_single.isSelected();
-				filterSectionsByDevStatus();
-			}
+		boxbtn_single.addActionListener(e -> {
+			devStatusDown = boxbtn_single.isSelected();
+			filterSectionsByDevStatus();
 		});
 		
 		ButtonGroup btngroup_devStatus = new ButtonGroup();
@@ -56,11 +51,9 @@ public class FilterDevStatusCard extends TransparentPanel {
 			panel_devFilter.add(rdbtn_devStatus);
 			btngroup_devStatus.add(rdbtn_devStatus);
 			int dev = i;
-			rdbtn_devStatus.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					currentDevStatus = dev;
-					filterSectionsByDevStatus();
-				}
+			rdbtn_devStatus.addActionListener(e -> {
+				currentDevStatus = dev;
+				filterSectionsByDevStatus();
 			});
 		}
 		

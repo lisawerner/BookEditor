@@ -13,8 +13,8 @@ import javax.swing.JViewport;
 public class TextPreview extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private JPanel panel_viewport;
-	private SimpleTextarea lblText;
+	private final JPanel panel_viewport;
+	private final SimpleTextarea lblText;
 	
 	public TextPreview(String text, boolean isReview, boolean setHight) {
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -67,8 +67,6 @@ public class TextPreview extends TransparentPanel {
 			}
 			revalidate();
 			repaint();
-		} else {
-			//System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

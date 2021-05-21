@@ -14,8 +14,8 @@ public class Timestamp {
 	
 	// Achtung: Was ist mit Geschichten/Welten, die eine andere Zeitrechnung haben?
 	
-	private SpecificDate my_specificDate;
-	private RelativeDate my_relativeDate;
+	private final SpecificDate my_specificDate;
+	private final RelativeDate my_relativeDate;
 	
 	public Timestamp(SpecificDate newSpecificDate, RelativeDate newRelativeDate) {
 		my_specificDate = newSpecificDate;
@@ -63,13 +63,13 @@ public class Timestamp {
 	}
 	
 	public boolean greaterThen(Timestamp otherTimestamp) {
-		Date my_date = new Date();
+		Date my_date;
 		if(my_specificDate != null) {
 			my_date = my_specificDate.getDate();
 		} else {
 			my_date = my_relativeDate.generateSpecificDate().getDate();
 		}
-		Date other_date = new Date();
+		Date other_date;
 		if(otherTimestamp.isSpecificDate()) {
 			other_date = otherTimestamp.getSpecificDate().getDate();
 		} else {
@@ -94,8 +94,7 @@ public class Timestamp {
 		if(my_specificDate != null){
 			return null;
 		} else if(my_relativeDate != null){
-			Section relatedSection = Book.getInstance().getTableOfContent().getSection(my_relativeDate.getRelatedSectionID());		
-			return relatedSection;
+			return Book.getInstance().getTableOfContent().getSection(my_relativeDate.getRelatedSectionID());
 		} else {
 			return null;
 		}

@@ -4,8 +4,8 @@ import global.ObjectID;
 
 public class ComboItem {
 
-	private String label;
-    private ObjectID value;
+	private final String label;
+    private final ObjectID value;
 
     public ComboItem(String label, ObjectID value) {
         this.value = value;

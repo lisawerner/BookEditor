@@ -58,7 +58,7 @@ public class FileManager {
 	
 	public static ArrayList<LoadBookPair> getFileList() {
 		
-		ArrayList<LoadBookPair> booklist = new ArrayList<LoadBookPair>();
+		ArrayList<LoadBookPair> booklist = new ArrayList<>();
 		
 		File dir = new File(getFolterPath());
 		File[] listOfFiles = dir.listFiles();
@@ -96,8 +96,7 @@ public class FileManager {
 		int lastIndexOfBookEditor = pathOfTHISclass.indexOf("BookEditor") + 10;
 		//TODO: Testen ob das mit der Jar geht!
 		//TODO: Oder ganz anders Speichern (Nutzer sucht Speicherort aus!?!?!)
-		String path = pathOfTHISclass.substring(0, lastIndexOfBookEditor);
-		return path;
+		return pathOfTHISclass.substring(0, lastIndexOfBookEditor);
 	}
 	
 	private static String getFolterPath() {

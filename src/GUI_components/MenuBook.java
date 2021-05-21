@@ -25,16 +25,16 @@ public class MenuBook extends JPanel {
 	private String frontTagSub = "<html><font size=\"5\">";
 	private String backTagSub = "</size></html>";
 	
-	private JLabel lblNewLabel;
-	private JPanel panel_listOfMainButtons;
-	private JSeparator separator;
-	private JPanel panel_tableOfContentHeader;
-	private JLabel lblChapterlist;
-	private JPanel panel_tableOfContent;
-	private JScrollPane scrollPane;
+	private final JLabel lblNewLabel;
+	private final JPanel panel_listOfMainButtons;
+	private final JSeparator separator;
+	private final JPanel panel_tableOfContentHeader;
+	private final JLabel lblChapterlist;
+	private final JPanel panel_tableOfContent;
+	private final JScrollPane scrollPane;
 	
-	private ArrayList<MenuButton> mainButtonList;
-	private ArrayList<MenuListButton> sectionButtonList;
+	private final ArrayList<MenuButton> mainButtonList;
+	private final ArrayList<MenuListButton> sectionButtonList;
 
 	public MenuBook() {
 		setLayout(new BorderLayout(20, 20));
@@ -109,8 +109,8 @@ public class MenuBook extends JPanel {
 		Component gabTop = Box.createHorizontalStrut(20);
 		add(gabTop, BorderLayout.NORTH);
 		
-		mainButtonList = new ArrayList<MenuButton>();
-		sectionButtonList = new ArrayList<MenuListButton>();
+		mainButtonList = new ArrayList<>();
+		sectionButtonList = new ArrayList<>();
 		
 		changeTheme();
 	}
@@ -136,8 +136,6 @@ public class MenuBook extends JPanel {
 			// ...
 			revalidate();
 			repaint();
-		} else {
-
 		}
 	}
 	

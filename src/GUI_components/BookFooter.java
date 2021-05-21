@@ -17,9 +17,9 @@ import java.awt.event.ActionEvent;
 public class BookFooter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JButton btnAbout;
-	private JLabel lblCopyRight;
-	private JButton btnHelp;
+	private final JButton btnAbout;
+	private final JLabel lblCopyRight;
+	private final JButton btnHelp;
 	
 	public BookFooter() {
 		setLayout(new BorderLayout(0, 0));
@@ -36,11 +36,9 @@ public class BookFooter extends JPanel {
 		btnAbout.addActionListener(e -> JOptionPane.showMessageDialog(null, aboutText));
 		
 		btnHelp = new JButton("<html>&nbsp; &ensp; Help &ensp; &nbsp;</html>");
-		btnHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				HelpFrame frame = new HelpFrame();
-				frame.setVisible(true);
-			}
+		btnHelp.addActionListener(e -> {
+			HelpFrame frame = new HelpFrame();
+			frame.setVisible(true);
 		});
 		panel.add(btnHelp);
 		

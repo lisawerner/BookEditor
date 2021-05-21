@@ -23,38 +23,35 @@ import java.awt.BorderLayout;
 
 public class TimestampRelativeEditor extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	
-	private Section my_section;
-	
+
 	private int dayOfWeek = 0;
 	
-	private SimpleIntegerTextfield txt_days;
-	private SimpleIntegerTextfield txt_weeks;
-	private SimpleIntegerTextfield txt_months;
-	private SimpleIntegerTextfield txt_years;
-	private SimpleLabel lblSelectASection;
-	private SimpleLabel lblShouldTheRelated;
-	private JComboBox<ComboItem> comboBox;
-	private SimpleRadiobutton rdbtnBefore;
-	private SimpleRadiobutton rdbtnAfter;
-	private SimpleLabel lblSetTheDistancetime;
-	private SimpleLabel lblDays;
-	private SimpleLabel lblWeeks;
-	private SimpleLabel lblMonths;
-	private SimpleLabel lblYears;
-	private SimpleLabel lblResult;
-	private SimpleLabel lblWARNING;
+	private final SimpleIntegerTextfield txt_days;
+	private final SimpleIntegerTextfield txt_weeks;
+	private final SimpleIntegerTextfield txt_months;
+	private final SimpleIntegerTextfield txt_years;
+	private final SimpleLabel lblSelectASection;
+	private final SimpleLabel lblShouldTheRelated;
+	private final JComboBox<ComboItem> comboBox;
+	private final SimpleRadiobutton rdbtnBefore;
+	private final SimpleRadiobutton rdbtnAfter;
+	private final SimpleLabel lblSetTheDistancetime;
+	private final SimpleLabel lblDays;
+	private final SimpleLabel lblWeeks;
+	private final SimpleLabel lblMonths;
+	private final SimpleLabel lblYears;
+	private final SimpleLabel lblResult;
+	private final SimpleLabel lblWARNING;
 	private SimpleRadiobutton rdbtnNoDay;
-	private SimpleRadiobutton rdbtnMonday;
-	private SimpleRadiobutton rdbtnTuseday;
-	private SimpleRadiobutton rdbtnWednesday;
-	private SimpleRadiobutton rdbtnThursday;
-	private SimpleRadiobutton rdbtnFriday;
-	private SimpleRadiobutton rdbtnSaturday;
-	private SimpleRadiobutton rdbtnSunday;
+	private final SimpleRadiobutton rdbtnMonday;
+	private final SimpleRadiobutton rdbtnTuseday;
+	private final SimpleRadiobutton rdbtnWednesday;
+	private final SimpleRadiobutton rdbtnThursday;
+	private final SimpleRadiobutton rdbtnFriday;
+	private final SimpleRadiobutton rdbtnSaturday;
+	private final SimpleRadiobutton rdbtnSunday;
 
 	public TimestampRelativeEditor(Section openedSection) {
-		my_section = openedSection;
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		
@@ -72,7 +69,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		panel_selectRelativeSection.add(comboBox);
 		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
 			for(Section section : chapter.getSections()) {
-				if(!my_section.equals(section)) {				
+				if(!openedSection.equals(section)) {
 					comboBox.addItem(new ComboItem(section.getName(), section.getID()));
 				}
 			}
@@ -149,7 +146,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		panel_wekDays.setLayout(new GridLayout(0, 4, 5, 5));
 		
 		ButtonGroup btngroup_dayOfTheWeek = new ButtonGroup();
-		
+
 		rdbtnNoDay = new SimpleRadiobutton("-");
 		panel_wekDays.add(rdbtnNoDay);
 		btngroup_dayOfTheWeek.add(rdbtnNoDay);
@@ -262,7 +259,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 
 	public void activate(RelativeDate unspecificDate) {
 		for(int i = 0; i < comboBox.getItemCount(); i++) {
-			ComboItem item = (ComboItem)comboBox.getItemAt(i);
+			ComboItem item = comboBox.getItemAt(i);
 			if(unspecificDate.getRelatedSectionID().getIDtoString().equals(item.getValue().getIDtoString())) {
 				comboBox.setSelectedIndex(i);
 				break;

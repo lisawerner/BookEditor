@@ -14,10 +14,10 @@ import java.awt.GridLayout;
 public class TimelineItem extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel my_body;
-	private SimpleLabel contactArrow;
-	private SimpleLabel contactDate;
-	private JPanel topRightGab;
+	private final TransparentPanel my_body;
+	private final SimpleLabel contactArrow;
+	private final SimpleLabel contactDate;
+	private final JPanel topRightGab;
 	private TransparentPanel panelOverBody;
 	
 	private String frontTag = "<html><font size=\"9\">";
@@ -29,7 +29,7 @@ public class TimelineItem extends TransparentPanel {
 		System.out.println(date);
 		
 		if(date.length() < 10) {
-			String newDate = "";
+			String newDate;
 			if(date.indexOf(".") < 2) {
 				newDate = "0" + date.substring(0, 2); 
 				date = date.substring(2);

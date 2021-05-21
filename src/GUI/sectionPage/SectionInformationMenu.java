@@ -26,19 +26,19 @@ import world.Place;
 public class SectionInformationMenu extends PageMenu {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
-	private Chapter my_parentChapter;
-	
+	private final Section my_section;
+	private final Chapter my_parentChapter;
+
 	private JButton btnEdit;
-	
-	private SimpleLabel lblDevStatus;
-	private InfoButton hint_devStatus;
+
+	private final SimpleLabel lblDevStatus;
+	private final InfoButton hint_devStatus;
 	
 	public SectionInformationMenu(Section section, Chapter chapter) {
 		super("Section Information");
 		my_section = section;
 		my_parentChapter = chapter;
-		
+
 		btnEdit = this.addButtonToTopMenu("Change");
 		if(my_section == null) {
 			btnEdit.setEnabled(false);
@@ -88,7 +88,7 @@ public class SectionInformationMenu extends PageMenu {
 		if(my_section != null) {
 			changeDevStatus(my_section.getDevelopmentStatus());
 		}
-		
+
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Comments:");
 		ArrayList<String> splittedNotes = splitNotes();
@@ -155,7 +155,7 @@ public class SectionInformationMenu extends PageMenu {
 	}
 
 	private ArrayList<String> splitNotes() {
-		ArrayList<String> splittedNotes = new ArrayList<String>();
+		ArrayList<String> splittedNotes = new ArrayList<>();
 		String notes = my_section.getNotes();
 		int noteLength = notes.length();
 		//TODO: W needs more space, then i, so notes has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count

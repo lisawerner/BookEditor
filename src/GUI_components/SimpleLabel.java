@@ -20,8 +20,6 @@ public class SimpleLabel extends JLabel{
 			}
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

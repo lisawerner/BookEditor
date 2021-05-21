@@ -5,7 +5,7 @@ import book.Book;
 public class Timestuff {
 	
 	private boolean useGregorianCalendar;
-	private TimelineSettings my_timelineSettings;
+	private final TimelineSettings my_timelineSettings;
 	
 	public Timestuff() {
 		useGregorianCalendar = true;

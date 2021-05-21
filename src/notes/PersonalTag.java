@@ -4,7 +4,7 @@ import global.SerializedObject;
 
 public class PersonalTag extends SerializedObject {
 	
-	private String my_name;
+	private final String my_name;
 	
 	public PersonalTag(String tagName) {
 		super();

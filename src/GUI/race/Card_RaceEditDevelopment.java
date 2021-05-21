@@ -23,13 +23,13 @@ import java.awt.Dimension;
 public class Card_RaceEditDevelopment extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Race my_race;
+	private final Race my_race;
 	
-	private JComboBox<ComboItem> cmbox_listOfAscendants;
-	private TransparentPanel panel_showAscendantInformation;
+	private final JComboBox<ComboItem> cmbox_listOfAscendants;
+	private final TransparentPanel panel_showAscendantInformation;
 	
-	private JComboBox<ComboItem> cmbox_possibleParentRaces;
-	private TransparentPanel panel_allInfos;
+	private final JComboBox<ComboItem> cmbox_possibleParentRaces;
+	private final TransparentPanel panel_allInfos;
 	
 	public Card_RaceEditDevelopment(Race givenRace) {
 		my_race = givenRace;
@@ -65,7 +65,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		panel_addSingleAscendant.add(panel_selectNewAscendant);
 		panel_selectNewAscendant.setLayout(new BorderLayout(5, 5));
 		
-		cmbox_listOfAscendants = new JComboBox<ComboItem>();
+		cmbox_listOfAscendants = new JComboBox<>();
 		cmbox_listOfAscendants.setEnabled(my_race.getParentRace() == null);
 		panel_selectNewAscendant.add(cmbox_listOfAscendants, BorderLayout.CENTER);
 		for(Race race : my_race.getPossibleAscendants()) {
@@ -152,7 +152,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		btnSetParentRace.addActionListener(e -> setParentType());
 		btnSetParentRace.setEnabled(my_race.getSubtypes().isEmpty());
 		
-		cmbox_possibleParentRaces = new JComboBox<ComboItem>();
+		cmbox_possibleParentRaces = new JComboBox<>();
 		panel_setParentType.add(cmbox_possibleParentRaces, BorderLayout.CENTER);
 		for(Race currentRace : my_race.getPossibleParents()) {
 			cmbox_possibleParentRaces.addItem(new ComboItem(currentRace.getName(), currentRace.getID()));

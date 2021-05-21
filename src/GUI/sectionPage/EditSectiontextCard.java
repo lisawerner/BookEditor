@@ -15,15 +15,15 @@ import java.awt.event.KeyEvent;
 public class EditSectiontextCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
+	private final Section my_section;
 	
 //	private String frontTag = "<html>";
 //	private String backTag = "</html>";
 	
-	private SimpleTextarea textArea;
-	private SimpleLabel lblSaveHint_Bottom;
-	private SimpleLabel lblSaveHint_TOP;
-	private SimpleLabel lblCounts;
+	private final SimpleTextarea textArea;
+	private final SimpleLabel lblSaveHint_Bottom;
+	private final SimpleLabel lblSaveHint_TOP;
+	private final SimpleLabel lblCounts;
 	
 	public EditSectiontextCard(Section openedSection) {
 		my_section = openedSection;

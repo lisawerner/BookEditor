@@ -9,7 +9,7 @@ import book.Book;
 public class PrintSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleCheckbox rdbtnPrintChaptername;
+	private final SimpleCheckbox rdbtnPrintChaptername;
 
 	public PrintSettingsCard() {
 		setLayout(new GridLayout(1, 0, 5, 5));

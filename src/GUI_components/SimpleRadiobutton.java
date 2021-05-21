@@ -22,8 +22,6 @@ public class SimpleRadiobutton extends JRadioButton {
 			}
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 

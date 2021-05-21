@@ -17,15 +17,15 @@ import person.Person;
 public class FilterPersonCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_listOfFilteredSections;
+	private final TransparentPanel panel_listOfFilteredSections;
 	
-	private ArrayList<Person> selectedPersons;
+	private final ArrayList<Person> selectedPersons;
 	private boolean selectAND;
 
 	public FilterPersonCard() {
 		setLayout(new BorderLayout(5, 5));
 		
-		selectedPersons = new ArrayList<Person>();
+		selectedPersons = new ArrayList<>();
 		selectAND = true;
 		
 		TransparentPanel panel_listOfPersons = new TransparentPanel();

@@ -18,7 +18,7 @@ import world.Place;
 public class SectionPlacetagCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
+	private final Section my_section;
 	
 	public SectionPlacetagCard(Section section) {
 		my_section = section;
@@ -34,15 +34,13 @@ public class SectionPlacetagCard extends TransparentPanel {
 				SimpleCheckbox chckbxPlace = new SimpleCheckbox(place.getName());
 				parentPlacePanel.add(chckbxPlace);			
 				chckbxPlace.setSelected(my_section.hasTag(place.getID()));
-				chckbxPlace.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if(chckbxPlace.isSelected()) {			
-							//System.out.println("Click: Is Selected now");
-							my_section.addTag(new Tag(place.getID(), place.getClass().getName()));
-						} else {
-							//System.out.println("Click: Is NOOOTTT Selected anymore");
-							my_section.removeTag(place.getID());
-						}
+				chckbxPlace.addActionListener(e -> {
+					if(chckbxPlace.isSelected()) {
+						//System.out.println("Click: Is Selected now");
+						my_section.addTag(new Tag(place.getID(), place.getClass().getName()));
+					} else {
+						//System.out.println("Click: Is NOOOTTT Selected anymore");
+						my_section.removeTag(place.getID());
 					}
 				});
 				addChildren(parentPlacePanel, place, "&emsp; &#8627;");
@@ -61,15 +59,13 @@ public class SectionPlacetagCard extends TransparentPanel {
 			SimpleCheckbox chckbxPlace = new SimpleCheckbox(child.getName());
 			distancePanel.add(chckbxPlace, BorderLayout.CENTER);			
 			chckbxPlace.setSelected(my_section.hasTag(child.getID()));
-			chckbxPlace.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(chckbxPlace.isSelected()) {			
-						//System.out.println("Click: Is Selected now");
-						my_section.addTag(new Tag(child.getID(), child.getClass().getName()));
-					} else {
-						//System.out.println("Click: Is NOOOTTT Selected anymore");
-						my_section.removeTag(child.getID());
-					}
+			chckbxPlace.addActionListener(e -> {
+				if(chckbxPlace.isSelected()) {
+					//System.out.println("Click: Is Selected now");
+					my_section.addTag(new Tag(child.getID(), child.getClass().getName()));
+				} else {
+					//System.out.println("Click: Is NOOOTTT Selected anymore");
+					my_section.removeTag(child.getID());
 				}
 			});
 			String newDistance = "&emsp; " + distance;

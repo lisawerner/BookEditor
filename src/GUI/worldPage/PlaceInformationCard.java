@@ -22,10 +22,10 @@ public class PlaceInformationCard extends TransparentPanel {
 	
 	private Place my_place;
 	
-	private SimpleTextfield txt_placename;
-	private SimpleLabel lblPlacename;
-	private SimpleTextfield txtPlacetype;
-	private SimpleTextarea txtNotes;
+	private final SimpleTextfield txt_placename;
+	private final SimpleLabel lblPlacename;
+	private final SimpleTextfield txtPlacetype;
+	private final SimpleTextarea txtNotes;
 
 	public PlaceInformationCard(Place place) {
 		my_place = place;

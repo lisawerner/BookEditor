@@ -17,8 +17,6 @@ public class MenuText extends JLabel {
 			setForeground(ThemeList.currentTheme.menuFontColor);
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 

@@ -19,7 +19,7 @@ import world.Place;
 public class WorldMapCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_sortBody;
+	private final TransparentPanel panel_sortBody;
 
 	public WorldMapCard() {
 		setLayout(new BorderLayout(5 , 5));

@@ -56,13 +56,11 @@ public class EditorMenu extends MenuBook {
 				//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
 			}
 			JButton btnOpenChapter = createSectionItem(name);
-			btnOpenChapter.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter));
-					//TODO: Set this Border to a line Border
-					//setBorder(BorderFactory.createLineBorder(Color.black));
-					//AND set ALL other borders of MenuSectionButton-List to EmptyBorder!!!!
-				}
+			btnOpenChapter.addActionListener(e -> {
+				BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter));
+				//TODO: Set this Border to a line Border
+				//setBorder(BorderFactory.createLineBorder(Color.black));
+				//AND set ALL other borders of MenuSectionButton-List to EmptyBorder!!!!
 			});
 			
 			//TODO: If BookSetting is selected for huge-frame, then also show all Sections at chapterlist

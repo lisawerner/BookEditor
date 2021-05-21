@@ -19,15 +19,15 @@ import javax.swing.JComboBox;
 public class FilterRelationshipsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleLabel lblHint;
+	private final SimpleLabel lblHint;
 	
 	private boolean relationType;
-	private SimpleRadiobutton rdbtnHasRelationship;
-	private SimpleRadiobutton rdbtnMissingRelationship;
+	private final SimpleRadiobutton rdbtnHasRelationship;
+	private final SimpleRadiobutton rdbtnMissingRelationship;
 	
-	private JComboBox<ComboItem> comboBox;
+	private final JComboBox<ComboItem> comboBox;
 
-	private TransparentPanel panel_filterResult;
+	private final TransparentPanel panel_filterResult;
 	
 	public FilterRelationshipsCard() {
 		setLayout(new BorderLayout(10, 10));

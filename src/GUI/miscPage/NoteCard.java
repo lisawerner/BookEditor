@@ -17,11 +17,11 @@ import java.awt.GridLayout;
 public class NoteCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private GeneralNote my_note;
+	private final GeneralNote my_note;
 	
-	private SimpleLabel lblSaveHint;
-	private SimpleTextfield txt_name;
-	private SimpleTextarea txt_noteContent;
+	private final SimpleLabel lblSaveHint;
+	private final SimpleTextfield txt_name;
+	private final SimpleTextarea txt_noteContent;
 
 	public NoteCard(GeneralNote givenNote) {
 		my_note = givenNote;

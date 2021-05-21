@@ -25,13 +25,13 @@ import time.Timestamp;
 public class SectionTimestampCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
+	private final Section my_section;
 
-	private SimpleRadiobutton rdbtnSpecificTimestamp;
-	private SimpleRadiobutton rdbtnUnspecificTimestamp;
+	private final SimpleRadiobutton rdbtnSpecificTimestamp;
+	private final SimpleRadiobutton rdbtnUnspecificTimestamp;
 
-	private TimestampSpecificEditor panel_specificBODY;
-	private TimestampRelativeEditor panel_unspecificBODY;
+	private final TimestampSpecificEditor panel_specificBODY;
+	private final TimestampRelativeEditor panel_unspecificBODY;
 	
 	public SectionTimestampCard(Section section, Chapter chapter) {
 		my_section = section;
@@ -77,20 +77,12 @@ public class SectionTimestampCard extends TransparentPanel {
 		
 		rdbtnUnspecificTimestamp = new SimpleRadiobutton("Unspecific Timestamp");
 		panel_switchBetweenTimestamptypes.add(rdbtnUnspecificTimestamp);
-		rdbtnUnspecificTimestamp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				switchSpecificAndUnspecific();
-			}
-		});
+		rdbtnUnspecificTimestamp.addActionListener(e -> switchSpecificAndUnspecific());
 		btngrTimestampType.add(rdbtnUnspecificTimestamp);
 		
 		rdbtnSpecificTimestamp = new SimpleRadiobutton("Specific Timestamp");
 		panel_switchBetweenTimestamptypes.add(rdbtnSpecificTimestamp);
-		rdbtnSpecificTimestamp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				switchSpecificAndUnspecific();
-			}
-		});
+		rdbtnSpecificTimestamp.addActionListener(e -> switchSpecificAndUnspecific());
 		btngrTimestampType.add(rdbtnSpecificTimestamp);
 		
 		TransparentPanel panel_switchableBody = new TransparentPanel();
@@ -101,29 +93,27 @@ public class SectionTimestampCard extends TransparentPanel {
 		
 		panel_specificBODY = new TimestampSpecificEditor(my_section);
 		panel_switchableBody.add(panel_specificBODY);
-		btnSaveTimestamp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				boolean canSave = true;
-				lblSaveWarning.setText(" ");
-				
-				SpecificDate specificDate = null;
-				RelativeDate relativeDate = null;
-				if(rdbtnUnspecificTimestamp.isSelected()) {
-					relativeDate = panel_unspecificBODY.getResult();
-				} else if(rdbtnSpecificTimestamp.isSelected()) {
-					specificDate = panel_specificBODY.getResult();
-				} else {
-					//TODO: Add Warning-Question-Window, before SAVING NOTHING?! :D
-					lblSaveWarning.setText("You have selected Nothing! -> Timestamp will remove from Section!");
-					canSave = false;
-				}
+		btnSaveTimestamp.addActionListener(e -> {
+			boolean canSave = true;
+			lblSaveWarning.setText(" ");
 
-				if(canSave) {						
-					Timestamp newTimestamp = new Timestamp(specificDate, relativeDate);
-					my_section.setTimestamp(newTimestamp);
-					Book.getInstance().save();
-					lblSaveWarning.setText("New Timestamp was successfully saved!");
-				}
+			SpecificDate specificDate = null;
+			RelativeDate relativeDate = null;
+			if(rdbtnUnspecificTimestamp.isSelected()) {
+				relativeDate = panel_unspecificBODY.getResult();
+			} else if(rdbtnSpecificTimestamp.isSelected()) {
+				specificDate = panel_specificBODY.getResult();
+			} else {
+				//TODO: Add Warning-Question-Window, before SAVING NOTHING?! :D
+				lblSaveWarning.setText("You have selected Nothing! -> Timestamp will remove from Section!");
+				canSave = false;
+			}
+
+			if(canSave) {
+				Timestamp newTimestamp = new Timestamp(specificDate, relativeDate);
+				my_section.setTimestamp(newTimestamp);
+				Book.getInstance().save();
+				lblSaveWarning.setText("New Timestamp was successfully saved!");
 			}
 		});
 		

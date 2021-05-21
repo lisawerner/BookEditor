@@ -15,10 +15,10 @@ import java.awt.BorderLayout;
 public class SectionNoteCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Section my_section;
+	private final Section my_section;
 	
-	private SimpleTextarea textArea;
-	private SimpleLabel lblSaveHint;
+	private final SimpleTextarea textArea;
+	private final SimpleLabel lblSaveHint;
 	
 	public SectionNoteCard(Section section) {
 		my_section = section;

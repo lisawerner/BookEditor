@@ -16,7 +16,7 @@ import person.Person;
 public class PersonEditorPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
-	private Person my_person = null;
+	private Person my_person;
 
 	public PersonEditorPage(Person person, boolean isSecondFrame) {
 		super("Society: Persons, Relationships, ...");
@@ -57,11 +57,9 @@ public class PersonEditorPage extends Page {
 
 		//TODO: Bestätungs Panel
 		JButton btnDelete = new JButton("Delete Person");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Book.getInstance().getSociety().deletePerson(my_person);
-				BookEditorFrame.getInstance().switchBody(new ViewSocietyPage());
-			}
+		btnDelete.addActionListener(e -> {
+			Book.getInstance().getSociety().deletePerson(my_person);
+			BookEditorFrame.getInstance().switchBody(new ViewSocietyPage());
 		});
 		setFooter(btnDelete);
 		

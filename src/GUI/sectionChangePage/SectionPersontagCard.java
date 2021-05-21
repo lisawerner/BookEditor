@@ -17,10 +17,10 @@ import person.Person;
 public class SectionPersontagCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
+	private final Section my_section;
 	
-	private TransparentPanel panel_appereadTagUnimportendList;
-	private JToggleButton btn_showHide;
+	private final TransparentPanel panel_appereadTagUnimportendList;
+	private final JToggleButton btn_showHide;
 	
 	public SectionPersontagCard(Section section) {
 		my_section = section;

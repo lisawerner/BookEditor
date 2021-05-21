@@ -12,7 +12,7 @@ import global.FileManager;
 public class ExportCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleLabel lblExportHint;
+	private final SimpleLabel lblExportHint;
 
 	public ExportCard() {
 		setLayout(new GridLayout(0, 1, 5, 5));

@@ -25,27 +25,25 @@ import time.SpecificDate;
 
 public class TimestampSpecificEditor extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	
-	private Section my_section;
+
 	private SpecificDate my_specificTimestamp;
 	
-	private SimpleTextfield txt_year;
-	private JComboBox<Pair> cmb_month;
-	private JComboBox<String> cmb_day;
-	private SimpleLabel lblDayWarning;
-	private SimpleLabel lblEnterADate;
-	private SimpleLabel lblMonth;
-	private SimpleLabel lblDay;
-	private SimpleLabel lblYear;
-	private SimpleCheckbox chckbxAnnoDomini;
+	private final SimpleTextfield txt_year;
+	private final JComboBox<Pair> cmb_month;
+	private final JComboBox<String> cmb_day;
+	private final SimpleLabel lblDayWarning;
+	private final SimpleLabel lblEnterADate;
+	private final SimpleLabel lblMonth;
+	private final SimpleLabel lblDay;
+	private final SimpleLabel lblYear;
+	private final SimpleCheckbox chckbxAnnoDomini;
 	private String dayOfWeek;
-	private SimpleLabel lblDayOfWeek;
+	private final SimpleLabel lblDayOfWeek;
 
 	public TimestampSpecificEditor(Section openedSection) {
-		my_section = openedSection;
-		if(my_section.hasTimestamp()) {
-			if(my_section.getTimestamp().isSpecificDate()) {
-				my_specificTimestamp = my_section.getTimestamp().getSpecificDate();
+		if(openedSection.hasTimestamp()) {
+			if(openedSection.getTimestamp().isSpecificDate()) {
+				my_specificTimestamp = openedSection.getTimestamp().getSpecificDate();
 			}
 		}
 		
@@ -71,7 +69,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		lblYear = new SimpleLabel("Year");
 		panel_enterDate.add(lblYear);
 		
-		cmb_month = new JComboBox<Pair>();
+		cmb_month = new JComboBox<>();
 	    String[] months = new DateFormatSymbols().getMonths();
 	    for (int i = 0; i < months.length; i++) {
 	      String month = months[i];
@@ -86,11 +84,9 @@ public class TimestampSpecificEditor extends TransparentPanel {
 				}
 			}
 	    }
-	    cmb_month.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				reloadDays();
-				reloadDayOfWeek();
-			}
+	    cmb_month.addActionListener(e -> {
+			reloadDays();
+			reloadDayOfWeek();
 		});
 		lblDayOfWeek = new SimpleLabel("<html>&#8594;" + dayOfWeek + "</html>");
 		chckbxAnnoDomini = new SimpleCheckbox("Anno Domini");
@@ -103,12 +99,8 @@ public class TimestampSpecificEditor extends TransparentPanel {
 			chckbxAnnoDomini.setSelected(true);			
 		}
 	    
-		cmb_day = new JComboBox<String>();
-		cmb_day.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				reloadDayOfWeek();
-			}
-		});
+		cmb_day = new JComboBox<>();
+		cmb_day.addActionListener(e -> reloadDayOfWeek());
 		panel_enterDate.add(cmb_day);
 		panel_enterDate.add(cmb_month);
 		
@@ -136,11 +128,9 @@ public class TimestampSpecificEditor extends TransparentPanel {
 				txt_year.setText(my_specificTimestamp.getYear() + "");
 			}
 		}
-		txt_year.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				reloadDays();
-				reloadDayOfWeek();
-			}
+		txt_year.addActionListener(e -> {
+			reloadDays();
+			reloadDayOfWeek();
 		});
 		txt_year.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -168,15 +158,13 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		panel_enterDate.add(lblEmpty);
 	
 		panel_enterDate.add(chckbxAnnoDomini);
-		chckbxAnnoDomini.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(!chckbxAnnoDomini.isSelected()) {
-					lblDayOfWeek.setText("Not Possible for before christ");
-					lblDayOfWeek.setEnabled(false);
-				} else {
-					lblDayOfWeek.setEnabled(true);
-					reloadDayOfWeek();
-				}
+		chckbxAnnoDomini.addActionListener(e -> {
+			if(!chckbxAnnoDomini.isSelected()) {
+				lblDayOfWeek.setText("Not Possible for before christ");
+				lblDayOfWeek.setEnabled(false);
+			} else {
+				lblDayOfWeek.setEnabled(true);
+				reloadDayOfWeek();
 			}
 		});
 		

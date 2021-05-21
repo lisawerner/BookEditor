@@ -6,10 +6,10 @@ import java.util.Date;
 
 public class SpecificDate {
 	
-	private int my_specificDay;
-	private int my_specificMonth;
-	private int my_specificYear;
-	private boolean isAnnoDomini;
+	private final int my_specificDay;
+	private final int my_specificMonth;
+	private final int my_specificYear;
+	private final boolean isAnnoDomini;
 	
 	public SpecificDate(int newSpecificDay, int newSpecificMonth, int newSpecificYear, boolean newCalender) {
 		my_specificDay = newSpecificDay;
@@ -68,8 +68,7 @@ public class SpecificDate {
 	    cal.set(Calendar.DAY_OF_MONTH, my_specificDay);
 	    cal.set(Calendar.MONTH, my_specificMonth);
 	    cal.set(Calendar.YEAR, my_specificYear);
-	    Date my_date = cal.getTime();
-		return my_date;
+		return cal.getTime();
 	}
 
 	public String getDayOfWeek() {

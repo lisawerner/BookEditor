@@ -13,9 +13,9 @@ public class Page extends TransparentPanel {
 	
 	private String frontTag = "<html><div style='text-align: left;'><font size=\"5\">     ";
 	private String backTag = "</size></div></html>";
-	private String my_title;
+	private final String my_title;
 	private TitledBorder titledBorder;
-	private PageBody my_body;
+	private final PageBody my_body;
 
 	public Page(String pageHeader) {
 		setLayout(new BorderLayout(20, 20));
@@ -53,8 +53,6 @@ public class Page extends TransparentPanel {
 			this.setBorder(titledBorder);
 			revalidate();
 			repaint();
-		} else {
-			//System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

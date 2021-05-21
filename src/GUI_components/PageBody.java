@@ -14,8 +14,8 @@ import javax.swing.JViewport;
 public class PageBody extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel panel_viewport;
-	private TransparentPanel my_center;
+	private final JPanel panel_viewport;
+	private final TransparentPanel my_center;
 
 	public PageBody() {
 		setOpaque(false);
@@ -46,8 +46,6 @@ public class PageBody extends JScrollPane {
 			}
 			revalidate();
 			repaint();
-		} else {
-			//System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

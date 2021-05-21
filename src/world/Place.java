@@ -27,7 +27,7 @@ public class Place  extends SerializedObject{
 		my_notes = newNotes;
 		
 		my_parentPlace = null;
-		my_childrenPlaces = new ArrayList<ObjectID>();
+		my_childrenPlaces = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -47,7 +47,7 @@ public class Place  extends SerializedObject{
 	}
 
 	private void removeChild(ObjectID childID) {
-		if(my_childrenPlaces == null) {my_childrenPlaces = new ArrayList<ObjectID>();}
+		if(my_childrenPlaces == null) {my_childrenPlaces = new ArrayList<>();}
 		my_childrenPlaces.remove(childID);
 	}
 
@@ -62,8 +62,8 @@ public class Place  extends SerializedObject{
 	}
 	
 	public List<Place> getChildrenObject() {
-		if(my_childrenPlaces == null) {return new ArrayList<Place>();}
-		if(my_childrenPlaces.size() == 0) {return new ArrayList<Place>();}
+		if(my_childrenPlaces == null) {return new ArrayList<>();}
+		if(my_childrenPlaces.size() == 0) {return new ArrayList<>();}
 		return my_childrenPlaces.stream().map(childID -> Book.getInstance().getWorld().getPlace(childID)).collect(Collectors.toList());
 	}
 	
@@ -72,14 +72,14 @@ public class Place  extends SerializedObject{
 	}
 
 	public void addChild(ObjectID childID) {
-		if(my_childrenPlaces == null) {my_childrenPlaces = new ArrayList<ObjectID>();}
+		if(my_childrenPlaces == null) {my_childrenPlaces = new ArrayList<>();}
 		my_childrenPlaces.add(childID);
 		removeDoubleChildren();
 		sortChildrenAlphabetic();
 	}
 	
 	private void removeDoubleChildren() {
-		ArrayList<ObjectID> newList = new ArrayList<ObjectID>();
+		ArrayList<ObjectID> newList = new ArrayList<>();
 		for(ObjectID oldID : my_childrenPlaces) {
 			boolean found = false;
 			for(ObjectID newID : newList) {
@@ -97,12 +97,12 @@ public class Place  extends SerializedObject{
 	
 	private void sortChildrenAlphabetic() {
 		if(my_childrenPlaces != null) {			
-			ArrayList<String> listOfNames = new ArrayList<String>();
+			ArrayList<String> listOfNames = new ArrayList<>();
 			for(ObjectID placeID : my_childrenPlaces) {
 				listOfNames.add(Book.getInstance().getWorld().getPlace(placeID).getName());
 			}
 			Collections.sort(listOfNames);
-			ArrayList<ObjectID> sortedChildrenList = new ArrayList<ObjectID>();
+			ArrayList<ObjectID> sortedChildrenList = new ArrayList<>();
 			for(String placeName : listOfNames) {
 				for(ObjectID placeID : my_childrenPlaces) {
 					Place child = Book.getInstance().getWorld().getPlace(placeID);

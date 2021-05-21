@@ -9,7 +9,7 @@ import global.SerializedObject;
 
 public class Person extends SerializedObject {
 	
-	private PersonInformation my_information;
+	private final PersonInformation my_information;
 	
 	private FamiliarRelationship my_familiarRelationships;
 	
@@ -25,19 +25,19 @@ public class Person extends SerializedObject {
 				newAge, ageBookStart, ageFirstAppearance, isDeathBeforeBookStart, newDeathTime,
 				newIsSuperMainCharapter, newIsMainCharapter, newNotes, newRace);
 		Book.getInstance().getSociety().updateRaceRepresantives(newRace, this.getID());
-		my_relationships = new ArrayList<ObjectID>();
+		my_relationships = new ArrayList<>();
 		my_familiarRelationships = new FamiliarRelationship();
 	}
 	
 	
 	public void addRelationship(ObjectID relationship) {
-		if(my_relationships == null) {my_relationships = new ArrayList<ObjectID>();}
+		if(my_relationships == null) {my_relationships = new ArrayList<>();}
 		my_relationships.add(relationship);
 		//TODO: Eigentlich müssten die chronologisch sortiert werden!!???!?!?! Was wenn Section keinen Timestamp hat? Dann in Reihenfolge der Sections?
 	}
 
 	public void removeRelationship(ObjectID relationshipID) {
-		if(my_relationships == null) {my_relationships = new ArrayList<ObjectID>();}
+		if(my_relationships == null) {my_relationships = new ArrayList<>();}
 		for(ObjectID relshipID : my_relationships) {
 			if(relshipID.getIDtoString().equals(relationshipID.getIDtoString())) {
 				my_relationships.remove(relshipID);

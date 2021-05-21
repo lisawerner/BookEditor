@@ -15,14 +15,14 @@ import global.UserSettings;
 public class SectionDevstatusCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Section my_section;
-	private Chapter my_parentChapter;
+	private final Section my_section;
+	private final Chapter my_parentChapter;
 	
-	private SimpleLabel lblDevStatus;
-	private InfoButton hint_devStatus;
-	private JButton btnDecreaseDevStatus;
+	private final SimpleLabel lblDevStatus;
+	private final InfoButton hint_devStatus;
+	private final JButton btnDecreaseDevStatus;
 	private InfoButton ibtnDecrease;
-	private JButton btnIncreaseDevStatus;
+	private final JButton btnIncreaseDevStatus;
 	private InfoButton ibtnIncrease;
 
 	public SectionDevstatusCard(Section section, Chapter chapter) {

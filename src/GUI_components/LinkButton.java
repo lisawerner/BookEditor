@@ -36,8 +36,6 @@ public class LinkButton extends JButton{
 			}
 			revalidate();
 			repaint();
-		} else {
-
 		}
 	}
 

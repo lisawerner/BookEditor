@@ -22,19 +22,19 @@ import GUI.bookeditorFrame.BookEditorFrame;
 public class PersonFamiliarRelationshipCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Person my_person;
+	private final Person my_person;
 	
-	private SimpleLabel lblSaveHint;
+	private final SimpleLabel lblSaveHint;
 	
-	private JComboBox<ComboItem> comboBox_selectPerson;
+	private final JComboBox<ComboItem> comboBox_selectPerson;
 	
-	private SimpleRadiobutton rdbtnIschild;
-	private SimpleRadiobutton rdbtnIsparent;
-	private SimpleRadiobutton rdbtnIsspouse;
-	private SimpleRadiobutton rdbtnIsdescendant;
-	private SimpleRadiobutton rdbtnIsancestor;
+	private final SimpleRadiobutton rdbtnIschild;
+	private final SimpleRadiobutton rdbtnIsparent;
+	private final SimpleRadiobutton rdbtnIsspouse;
+	private final SimpleRadiobutton rdbtnIsdescendant;
+	private final SimpleRadiobutton rdbtnIsancestor;
 	
-	private TransparentPanel panel_showExistingFamiliarRelationships;
+	private final TransparentPanel panel_showExistingFamiliarRelationships;
 	
 	public PersonFamiliarRelationshipCard(Person givenPerson) {
 		my_person = givenPerson;

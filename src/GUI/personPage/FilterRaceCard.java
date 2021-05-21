@@ -18,7 +18,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 public class FilterRaceCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_filterResult;
+	private final TransparentPanel panel_filterResult;
 
 	public FilterRaceCard() {
 		setLayout(new BorderLayout(0, 0));

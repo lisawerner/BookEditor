@@ -19,8 +19,6 @@ public class MenuButton extends JButton {
 			setForeground(ThemeList.currentTheme.menuButtonFont);
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 

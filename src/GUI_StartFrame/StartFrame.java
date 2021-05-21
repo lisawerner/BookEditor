@@ -17,9 +17,7 @@ public class StartFrame extends JFrame {
 	private static StartFrame instance = null;
 	
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	
-	private JPanel centeredBody;
+	private final JPanel contentPane;
 
 	public static StartFrame getInstance() {
 		if(instance == null) {
@@ -43,7 +41,7 @@ public class StartFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		centeredBody = new JPanel();
+		JPanel centeredBody = new JPanel();
 		contentPane.add(centeredBody, BorderLayout.CENTER);
 		centeredBody.add(new StartPage());
 		

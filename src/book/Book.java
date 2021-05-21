@@ -19,11 +19,11 @@ public class Book extends SerializedObject {
 	private String my_filename;
 	
 	private String my_title;
-	private Content my_tableOfContent;
+	private final Content my_tableOfContent;
 	
-	private World my_world;
-	private Society my_society;
-	private Timestuff my_timeline;
+	private final World my_world;
+	private final Society my_society;
+	private final Timestuff my_timeline;
 	
 	private ArrayList<GeneralNote> my_notes;
 	
@@ -50,7 +50,7 @@ public class Book extends SerializedObject {
 		
 		my_timeline = new Timestuff();
 		
-		my_notes = new ArrayList<GeneralNote>();
+		my_notes = new ArrayList<>();
 		
 		my_theme = null;
 	}
@@ -102,21 +102,21 @@ public class Book extends SerializedObject {
 	}
 
 	public boolean exportToTXT() {
-		String book_text = my_title + "\n" + "\n";
+		StringBuilder book_text = new StringBuilder(my_title + "\n" + "\n");
 		int countChapters = 1;
 		for(Chapter chapter : my_tableOfContent.getChapters()) {			
-			book_text += "\n" +  "\n" + "*******************************************************************************" + "\n" ;
+			book_text.append("\n" + "\n" + "*******************************************************************************" + "\n");
 			if(printChapterName) {
-				book_text += "###" + chapter.getTitle() + "###" + "\n" + "\n";
+				book_text.append("###").append(chapter.getTitle()).append("###").append("\n").append("\n");
 			} else {
-				book_text += "Chapter " + countChapters + "\n" + "\n";
+				book_text.append("Chapter ").append(countChapters).append("\n").append("\n");
 				countChapters++;
 			}
 			for(Section section : chapter.getSections()) {
-				book_text += section.getText() + "\n" + "\n";
+				book_text.append(section.getText()).append("\n").append("\n");
 			}
 		}
-		return FileManager.exportTXTfile(my_title + ".txt", book_text);
+		return FileManager.exportTXTfile(my_title + ".txt", book_text.toString());
 		
 	}
 	
@@ -160,14 +160,14 @@ public class Book extends SerializedObject {
 	}
 
 	public void addNote(GeneralNote generalNote) {
-		if(my_notes == null) {my_notes = new ArrayList<GeneralNote>();}
+		if(my_notes == null) {my_notes = new ArrayList<>();}
 		
 		my_notes.add(generalNote);
 		save();
 	}
 
 	public ArrayList<GeneralNote> getNotes() {
-		if(my_notes == null) {return new ArrayList<GeneralNote>();}
+		if(my_notes == null) {return new ArrayList<>();}
 		return my_notes;
 	}
 	

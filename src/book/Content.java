@@ -13,7 +13,7 @@ public class Content {
 	private ArrayList<Chapter> my_chapters;
 		
 	public Content() {
-		my_chapters = new ArrayList<Chapter>();
+		my_chapters = new ArrayList<>();
 	}
 					
 	public int getCountChapters() {
@@ -21,10 +21,10 @@ public class Content {
 	}
 		
 	public ArrayList<Section> getTimeSortedSections(){
-		ArrayList<Section> sortedSections = new ArrayList<Section>();
-		List<Section> UNsortedCops = new ArrayList<Section>();
+		ArrayList<Section> sortedSections = new ArrayList<>();
+		List<Section> UNsortedCops = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
-			UNsortedCops.addAll(chapter.getSections().stream().filter(section -> section.hasSpecificTimestamp()).collect(Collectors.toList()));
+			UNsortedCops.addAll(chapter.getSections().stream().filter(Section::hasSpecificTimestamp).collect(Collectors.toList()));
 		}
 
 		while(UNsortedCops.size() != 0) {			
@@ -69,7 +69,7 @@ public class Content {
 	}
 	
 	public List<Section> getUnfinishedSections(){
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream()
 					.filter(section -> section.getDevelopmentStatus() < 4)
@@ -79,15 +79,17 @@ public class Content {
 	}
 	
 	public List<Section> getEmptySections(){
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
-			sectionList.addAll(chapter.getSections().stream().filter(section -> "".equals(section.getText())).collect(Collectors.toList()));
+			sectionList.addAll(chapter.getSections().stream()
+					.filter(section -> "".equals(section.getText()))
+					.collect(Collectors.toList()));
 		}
 		return sectionList;
 	}
 	
 	public List<Section> getSectionsByDevStatus(int devStatus, boolean andSmaller){
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream().filter(section -> section.getDevelopmentStatus() == devStatus
 					|| (andSmaller && section.getDevelopmentStatus() < devStatus)).collect(Collectors.toList()));
@@ -96,10 +98,12 @@ public class Content {
 	}
 
 	public List<Section> getSectionsByPersons(ArrayList<Person> selectedPersons, boolean intersectionSelect) {
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream()
-					.filter(section -> allPersonsTagged(intersectionSelect,selectedPersons,section) || anyPersonTagged(intersectionSelect,selectedPersons,section))
+					.filter(section -> allPersonsTagged(intersectionSelect,selectedPersons,section)
+							|| anyPersonTagged(intersectionSelect,selectedPersons,section)
+					)
 					.collect(Collectors.toList()));
 		}
 		return sectionList;
@@ -129,7 +133,7 @@ public class Content {
 	public ArrayList<Section> filterTimelineSections() {
 		ArrayList<Section> sectionsSortedByTimestamp = Book.getInstance().getTableOfContent().getTimeSortedSections();
 		boolean filterForMainCharacters = Book.getInstance().getTimeline().getSettings().getMaincharacterFilter();
-		ArrayList<Section> filteredList = new ArrayList<Section>();
+		ArrayList<Section> filteredList;
 		if(filterForMainCharacters) {
 			filteredList = filterForMainCharacters(sectionsSortedByTimestamp);
 		} else {
@@ -139,7 +143,7 @@ public class Content {
 	}
 	
 	private ArrayList<Section> filterForMainCharacters(ArrayList<Section> unfilteredList){
-		ArrayList<Section> filteredList = new ArrayList<Section>();
+		ArrayList<Section> filteredList = new ArrayList<>();
 		for(Section section : unfilteredList) {
 			boolean foundSomething = false;
 			//TODO: Do not filter only for person Tag -> Filter also for Relationship with mainCharacters
@@ -162,12 +166,12 @@ public class Content {
 	}
 
 	public List<Section> getSectionWithoutTaggedMaincharacters() {
-		ArrayList<Section> filteredList = new ArrayList<Section>();
+		ArrayList<Section> filteredList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {			
 			for(Section section : chapter.getSections()) {
 				boolean hasNoMainCharacter = true;
 				for(Person sectionPerson : section.getPersonByTag()) {
-					if(sectionPerson.getInformation().isSuperMainChar()) {
+					if (sectionPerson.getInformation().isSuperMainChar()) {
 						hasNoMainCharacter = false;
 					}
 				}
@@ -180,7 +184,7 @@ public class Content {
 	}
 
 	public List<Section> getSectionWithoutTimestamp() {
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream().filter(section -> !section.hasTimestamp()).collect(Collectors.toList()));
 		}
@@ -201,7 +205,7 @@ public class Content {
 	}
 
 	public void addChapter(Chapter newChapter) {
-		if(my_chapters == null) {my_chapters = new ArrayList<Chapter>();}
+		if(my_chapters == null) {my_chapters = new ArrayList<>();}
 		my_chapters.add(newChapter);
 	}
 
@@ -218,7 +222,7 @@ public class Content {
 	}
 
 	public ArrayList<Chapter> getChapters() {
-		if(my_chapters == null) {return new ArrayList<Chapter>();}
+		if(my_chapters == null) {return new ArrayList<>();}
 		return my_chapters;
 	}
 
@@ -227,7 +231,7 @@ public class Content {
 	}
 
 	public void sortChapter(Chapter moveChapter, boolean moveUp) {
-		if(my_chapters == null) {my_chapters = new ArrayList<Chapter>();}
+		if(my_chapters == null) {my_chapters = new ArrayList<>();}
 		
 		int index = my_chapters.indexOf(moveChapter);
 		my_chapters.remove(index);
@@ -256,7 +260,7 @@ public class Content {
 	}
 
 	public ArrayList<Section> getAllSectionsWhichUsesThatSectionAsTimeRelation(ObjectID maybeRelatedSection) {
-		ArrayList<Section> listOfUsers = new ArrayList<Section>();
+		ArrayList<Section> listOfUsers = new ArrayList<>();
 		for(Chapter chapter : my_chapters){
 			for(Section section : chapter.getSections()){
 				if(section.hasTimestamp()){

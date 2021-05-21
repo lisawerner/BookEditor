@@ -10,7 +10,7 @@ import book.Book;
 public class SocietySettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleCheckbox chbox_fantasyRaces;
+	private final SimpleCheckbox chbox_fantasyRaces;
 
 	public SocietySettingsCard() {
 		

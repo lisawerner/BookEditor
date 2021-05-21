@@ -28,27 +28,27 @@ import person.Race;
 public class PersonInformationCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Person my_person = null;
+	private Person my_person;
 	
-	private SimpleTextfield txt_name;
-	private SimpleLabel lblName;
-	private SimpleTextfield txtTxtnickname;
+	private final SimpleTextfield txt_name;
+	private final SimpleLabel lblName;
+	private final SimpleTextfield txtTxtnickname;
 	
-	private SimpleTextfield txt_age;
-	private SimpleRadiobutton rdbtnAgeBookstart;
-	private SimpleRadiobutton rdbtnAgeFirstAppeareance;
-	private SimpleCheckbox chckbxDiedBeforeThe;
-	private SimpleLabel lblDeathForHow;
-	private SimpleTextfield txt_deathInYears;
+	private final SimpleTextfield txt_age;
+	private final SimpleRadiobutton rdbtnAgeBookstart;
+	private final SimpleRadiobutton rdbtnAgeFirstAppeareance;
+	private final SimpleCheckbox chckbxDiedBeforeThe;
+	private final SimpleLabel lblDeathForHow;
+	private final SimpleTextfield txt_deathInYears;
 	
-	private SimpleTextarea txt_notes;
-	private SimpleRadiobutton rdbtn_superMain;
-	private SimpleRadiobutton rdbtn_onlyOften;
-	private SimpleRadiobutton rdbtn_somebody;
+	private final SimpleTextarea txt_notes;
+	private final SimpleRadiobutton rdbtn_superMain;
+	private final SimpleRadiobutton rdbtn_onlyOften;
+	private final SimpleRadiobutton rdbtn_somebody;
 	
 	private ObjectID selectedRace = null;
 	
-	private SimpleLabel lblWarning;
+	private final SimpleLabel lblWarning;
 	
 	public PersonInformationCard(Person person) {
 		my_person = person;
@@ -287,13 +287,8 @@ public class PersonInformationCard extends TransparentPanel {
 	}
 
 	private void setWarningEnterName(boolean warning) {
-		if(warning) {
-			txt_name.setWarning(warning);
-			lblName.setWarning(warning);
-		} else {
-			txt_name.setWarning(warning);
-			lblName.setWarning(warning);
-		}
+		txt_name.setWarning(warning);
+		lblName.setWarning(warning);
 	}
 	
 	private void updateSaveHint() {

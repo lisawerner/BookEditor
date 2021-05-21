@@ -20,17 +20,17 @@ import java.awt.GridLayout;
 
 public class SectionRelationshipItem extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	private SimpleTextfield txt_relationshipType;
+	private final SimpleTextfield txt_relationshipType;
 	
-	private Section my_section;
-	private SectionRelationshipCard my_body;
+	private final Section my_section;
+	private final SectionRelationshipCard my_body;
 	private Relationship my_relationship;
 	
-	private SimpleLabel lblWARNING;
+	private final SimpleLabel lblWARNING;
 	
-	private JComboBox<ComboItem> cmboxPersonA;
+	private final JComboBox<ComboItem> cmboxPersonA;
 	private Person personA;
-	private JComboBox<ComboItem> cmboxPersonB;
+	private final JComboBox<ComboItem> cmboxPersonB;
 	private Person personB;
 
 	public SectionRelationshipItem(SectionRelationshipCard body, Section section, Relationship relship) {
@@ -88,7 +88,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		panel_Persons.add(panel_personA);
 		SimpleLabel lblPersonA = new SimpleLabel("Choose Person A: ");
 		panel_personA.add(lblPersonA, BorderLayout.WEST);
-		cmboxPersonA = new JComboBox<ComboItem>();
+		cmboxPersonA = new JComboBox<>();
 		panel_personA.add(cmboxPersonA, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			ComboItem item = new ComboItem(person.getInformation().getNickname(), person.getID());
@@ -109,7 +109,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		panel_personB.setLayout(new BorderLayout(5, 5));
 		SimpleLabel lblPersonB = new SimpleLabel("Choose Person B: ");
 		panel_personB.add(lblPersonB, BorderLayout.WEST);
-		cmboxPersonB = new JComboBox<ComboItem>();
+		cmboxPersonB = new JComboBox<>();
 		panel_personB.add(cmboxPersonB, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			ComboItem item = new ComboItem(person.getInformation().getNickname(), person.getID());

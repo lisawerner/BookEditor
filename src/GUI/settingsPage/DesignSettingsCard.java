@@ -29,17 +29,17 @@ public class DesignSettingsCard extends TransparentPanel {
 	
 	private Theme my_theme;
 	
-	private ButtonGroup btngrTheme;
-	private TransparentPanel panel_themeList;
-	private SimpleRadiobutton rdbtnDark;
-	private SimpleRadiobutton rdbtnLight;
-	private SimpleLabel lblWarning;
+	private final ButtonGroup btngrTheme;
+	private final TransparentPanel panel_themeList;
+	private final SimpleRadiobutton rdbtnDark;
+	private final SimpleRadiobutton rdbtnLight;
+	private final SimpleLabel lblWarning;
 	
-	private SimpleCheckbox chckbxActivateHugeDisplay;
-	private SimpleLabel lblDisplaySaveHint;
+	private final SimpleCheckbox chckbxActivateHugeDisplay;
+	private final SimpleLabel lblDisplaySaveHint;
 	
-	private SimpleIntegerTextfield txt_AreaFontSize;
-	private SimpleLabel lbl_fontSizeSaveHint;
+	private final SimpleIntegerTextfield txt_AreaFontSize;
+	private final SimpleLabel lbl_fontSizeSaveHint;
 
 	public DesignSettingsCard() {
 		
@@ -87,11 +87,9 @@ public class DesignSettingsCard extends TransparentPanel {
 		panel_themeList.setLayout(new GridLayout(0, 5, 5, 5));
 		SimpleRadiobutton rdbtnDefaultTheme = new SimpleRadiobutton("Default");
 		rdbtnDefaultTheme.setSelected(my_theme == null);
-		rdbtnDefaultTheme.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				my_theme = null;
-				enableColorTheme(false);
-			}
+		rdbtnDefaultTheme.addActionListener(e -> {
+			my_theme = null;
+			enableColorTheme(false);
 		});
 		btngrTheme.add(rdbtnDefaultTheme);
 		panel_themeList.add(rdbtnDefaultTheme);
@@ -179,12 +177,10 @@ public class DesignSettingsCard extends TransparentPanel {
 					rdbtnTheme.setSelected(true);
 				}
 			}
-			rdbtnTheme.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					my_theme = theme;
-					enableColorTheme(true);
-					save();
-				}
+			rdbtnTheme.addActionListener(e -> {
+				my_theme = theme;
+				enableColorTheme(true);
+				save();
 			});
 			btngrTheme.add(rdbtnTheme);
 			panel_themeList.add(rdbtnTheme);

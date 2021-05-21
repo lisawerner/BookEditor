@@ -17,8 +17,8 @@ public class Card_chapterInformation extends TransparentPanel {
 
 	private Chapter my_chapter;
 	
-	private SimpleLabel lblWarning;
-	private SimpleTextfield txt_chapterTitle;
+	private final SimpleLabel lblWarning;
+	private final SimpleTextfield txt_chapterTitle;
 	
 	public Card_chapterInformation(Chapter chapter) {
 		my_chapter = chapter;

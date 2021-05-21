@@ -21,10 +21,10 @@ import java.awt.GridLayout;
 public class CreateBookPage extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleTextfield txt_newTitle;
-	private JCheckBox chckbxRememberWorktitle;
-	private SimpleLabel lblSaveWarning;
-	private SimpleLabel lblNewTitle;
+	private final SimpleTextfield txt_newTitle;
+	private final JCheckBox chckbxRememberWorktitle;
+	private final SimpleLabel lblSaveWarning;
+	private final SimpleLabel lblNewTitle;
 	
 	public CreateBookPage() {
 		setLayout(new BorderLayout(10, 10));
@@ -93,13 +93,8 @@ public class CreateBookPage extends JPanel {
 	}
 	
 	private void setWarningEnterName(boolean warning) {
-		if(warning) {
-			txt_newTitle.setWarning(warning);
-			lblNewTitle.setWarning(warning);
-		} else {
-			txt_newTitle.setWarning(warning);
-			lblNewTitle.setWarning(warning);
-		}
+		txt_newTitle.setWarning(warning);
+		lblNewTitle.setWarning(warning);
 	}
 
 }

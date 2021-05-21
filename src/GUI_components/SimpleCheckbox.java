@@ -22,7 +22,6 @@ public class SimpleCheckbox extends JCheckBox {
 			}
 			revalidate();
 			repaint();
-		} else {
 		}
 	}
 	

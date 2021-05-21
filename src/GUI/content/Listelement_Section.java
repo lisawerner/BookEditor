@@ -15,10 +15,8 @@ import java.awt.GridLayout;
 public class Listelement_Section extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
-	private Chapter my_parentChapter;
-	
-	private SimpleLabel lblChapterSpace;
+	private final Section my_section;
+	private final Chapter my_parentChapter;
 
 	public Listelement_Section(Section section, Chapter chapter, Listelement_Chapter parentBody) {
 		my_section = section;
@@ -28,8 +26,8 @@ public class Listelement_Section extends TransparentPanel {
 		TransparentPanel panel_sectionInfo = new TransparentPanel();
 		add(panel_sectionInfo, BorderLayout.CENTER);
 		panel_sectionInfo.setLayout(new BoxLayout(panel_sectionInfo, BoxLayout.LINE_AXIS));
-		
-		lblChapterSpace = new SimpleLabel(" >>>>     ");
+
+		SimpleLabel lblChapterSpace = new SimpleLabel(" >>>>     ");
 		panel_sectionInfo.add(lblChapterSpace);
 		
 		LinkButton lblSectionName = new LinkButton(my_section.getName());

@@ -18,7 +18,7 @@ import book.Section;
 public class FilterMiscCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_unfinishedFilteredSections;
+	private final TransparentPanel panel_unfinishedFilteredSections;
 
 	public FilterMiscCard() {
 		setLayout(new BorderLayout(5, 5));

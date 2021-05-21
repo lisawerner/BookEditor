@@ -8,13 +8,13 @@ import global.SerializedObject;
 public class Chapter extends SerializedObject {
 
 	private String my_name;
-	private ArrayList<Section> my_sections;
+	private final ArrayList<Section> my_sections;
 	
 	public Chapter(String newName) {
 		super();
 		
 		my_name = newName;
-		my_sections = new ArrayList<Section>();
+		my_sections = new ArrayList<>();
 		//Book.getInstance().save();
 	}
 	
@@ -25,11 +25,6 @@ public class Chapter extends SerializedObject {
 
 	public String getTitle() {
 		return my_name;
-	}
-
-	public String getShortTextPreview() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public ArrayList<Section> getSections() {
