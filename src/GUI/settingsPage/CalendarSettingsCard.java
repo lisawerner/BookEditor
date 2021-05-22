@@ -45,7 +45,7 @@ public class CalendarSettingsCard extends TransparentPanel {
 		rdbtnWithInfoBtn.add(btnI, BorderLayout.WEST);
 		
 		//TODO: Default? = Gregorian!
-		//TODO: Change/Save/Hint Labal
+		//TODO: Change/Save/Hint Label
 	}
 	
 	private void save() {

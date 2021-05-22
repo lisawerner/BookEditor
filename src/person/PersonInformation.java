@@ -15,8 +15,8 @@ public class PersonInformation {
 	private String my_deathTime;
 	//TODO: Death-Information if Person was killed during book
 	
-	private boolean isSuperMainCharapter;
-	private boolean isMainCharapter;
+	private boolean isSuperMainCharacter;
+	private boolean isMainCharacter;
 	
 	private String my_notes;
 	
@@ -24,7 +24,7 @@ public class PersonInformation {
 	
 	protected PersonInformation(String newName, String newNickname, 
 			String newAge, boolean ageBookStart, boolean ageFirstAppearance, boolean isDeathBeforeBookStart, String newDeathTime,
-			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
+			boolean newIsSuperMainCharacter, boolean newIsMainCharacter,
 			String newNotes, ObjectID newRace) {
 		my_name = newName;
 		my_nickname = newNickname;
@@ -35,8 +35,8 @@ public class PersonInformation {
 		death_isDeathBeforeBookStart = isDeathBeforeBookStart;
 		my_deathTime = newDeathTime;
 		
-		isSuperMainCharapter = newIsSuperMainCharapter;
-		isMainCharapter = newIsMainCharapter;
+		isSuperMainCharacter = newIsSuperMainCharacter;
+		isMainCharacter = newIsMainCharacter;
 		
 		my_notes = newNotes;
 		
@@ -45,7 +45,7 @@ public class PersonInformation {
 	
 	public void editInformation(String newName, String newNickname,
 			String newAge, boolean ageBookStart, boolean ageFirstAppearance, boolean isDeathBeforeBookStart, String newDeathTime,
-			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
+			boolean newIsSuperMainCharacter, boolean newIsMainCharacter,
 			String newNotes, ObjectID newRace, ObjectID OWNid) {
 		my_name = newName;
 		my_nickname = newNickname;
@@ -56,12 +56,12 @@ public class PersonInformation {
 		death_isDeathBeforeBookStart = isDeathBeforeBookStart;
 		my_deathTime = newDeathTime;
 		
-		isSuperMainCharapter = newIsSuperMainCharapter;
-		isMainCharapter = newIsMainCharapter;
+		isSuperMainCharacter = newIsSuperMainCharacter;
+		isMainCharacter = newIsMainCharacter;
 		
 		my_notes = newNotes;
 		
-		Book.getInstance().getSociety().updateRaceRepresantives(my_race, newRace, OWNid);
+		Book.getInstance().getSociety().updateRaceRepresentatives(my_race, newRace, OWNid);
 		my_race = newRace;
 		
 		Book.getInstance().getSociety().sortPersons();
@@ -101,15 +101,15 @@ public class PersonInformation {
 	}
 	
 	public boolean isSuperMainChar() {
-		return isSuperMainCharapter;
+		return isSuperMainCharacter;
 	}
 
 	public boolean isFrequentlyChar() {
-		return !isSuperMainCharapter && isMainCharapter;
+		return !isSuperMainCharacter && isMainCharacter;
 	}
 
 	public boolean isSomebody() {
-		return !isSuperMainCharapter && !isMainCharapter;
+		return !isSuperMainCharacter && !isMainCharacter;
 	}
 
 	public ObjectID getRace() {

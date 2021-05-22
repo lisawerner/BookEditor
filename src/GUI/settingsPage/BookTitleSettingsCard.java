@@ -2,21 +2,21 @@ package GUI.settingsPage;
 
 import GUI_components.SimpleCheckbox;
 import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import GUI_components.TransparentPanel;
 import book.Book;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class BooktitleSettingsCard extends TransparentPanel {
+public class BookTitleSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private final SimpleTextfield txt_title;
+	private final SimpleTextField txt_title;
 	private final SimpleCheckbox rdbtnIsWorkTitle;
 	private final SimpleLabel lblTitle;
 	
-	public BooktitleSettingsCard() {
+	public BookTitleSettingsCard() {
 		setLayout(new GridLayout(0, 1, 5, 5));
 		
 		TransparentPanel panel_setTitle = new TransparentPanel();
@@ -26,10 +26,10 @@ public class BooktitleSettingsCard extends TransparentPanel {
 		lblTitle = new SimpleLabel("Title:");
 		panel_setTitle.add(lblTitle, BorderLayout.WEST);
 		
-		txt_title = new SimpleTextfield(Book.getInstance().getTitle());
+		txt_title = new SimpleTextField(Book.getInstance().getTitle());
 		panel_setTitle.add(txt_title, BorderLayout.CENTER);
 		
-		rdbtnIsWorkTitle = new SimpleCheckbox("This is only a worktitle. Please remember me changing it, before publishing book.");
+		rdbtnIsWorkTitle = new SimpleCheckbox("This is only a work title. Please remember me changing it, before publishing book.");
 		add(rdbtnIsWorkTitle);
 		rdbtnIsWorkTitle.setSelected(Book.getInstance().isWorkTitle());
 		
@@ -49,17 +49,17 @@ public class BooktitleSettingsCard extends TransparentPanel {
 			setWarningEnterName(false);
 			boolean canSave = true;
 
-			String booktitle = txt_title.getText();
+			String bookTitle = txt_title.getText();
 			boolean isWorkTitled = rdbtnIsWorkTitle.isSelected();
 
-			if("".equals(booktitle)) {
-				lblWarning.setText("You have to enter an booktitle!");
+			if("".equals(bookTitle)) {
+				lblWarning.setText("You have to enter an book title!");
 				canSave = false;
 				setWarningEnterName(true);
 			}
 
 			if(canSave) {
-				Book.getInstance().changeBooktitleSettings(booktitle, isWorkTitled);
+				Book.getInstance().changeBookTitleSettings(bookTitle, isWorkTitled);
 			}
 		});
 		footer.add(btnSave);

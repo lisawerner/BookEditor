@@ -1,18 +1,9 @@
 package GUI_components;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import GUI.HelpFrame;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.*;
 
 public class BookFooter extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +19,7 @@ public class BookFooter extends JPanel {
 		add(panel);
 		btnAbout = new JButton("<html>&ensp; About &ensp;</html>");
 		panel.add(btnAbout);
-		//TODO: About-Text fertig schreiben!
+		//TODO: finish writing the About-Text!
 		String aboutText = "<html><h1>About BookEditor</h1>"
 				+ "<p>Copyright: All Rights reserved by Lisa Werner</p>"
 				+ "<p></p>"
@@ -42,11 +33,11 @@ public class BookFooter extends JPanel {
 		});
 		panel.add(btnHelp);
 		
-		//TODO: Copyright richtig machen. Mit Jahrszahl???
+		//TODO: Add correct Copyright. (e.g. add year???)
 		lblCopyRight = new JLabel("<html><font size=\"5\">&#9400;</font> Lisa Werner &emsp;</html>");
 		add(lblCopyRight, BorderLayout.EAST);
 		
-		//TODO: Datenschutz? Kontakt? Support? Terms of Use? Was noch?
+		//TODO: Datenschutz? Contact? Support? Terms of Use? What else?
 		
 		changeTheme();
 	}

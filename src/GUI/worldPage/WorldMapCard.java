@@ -29,10 +29,10 @@ public class WorldMapCard extends TransparentPanel {
 		panel_hint.setLayout(new BorderLayout(5 , 5));
 		add(panel_hint, BorderLayout.NORTH);
 		
-		InfoButton hintButton = new InfoButton("You can change hirachy by changing every single element.");
+		InfoButton hintButton = new InfoButton("You can change hierarchy by changing every single element.");
 		panel_hint.add(hintButton, BorderLayout.WEST);
 		
-		SimpleLabel lblChangingHint = new SimpleLabel("You can change hirachy by changing every single element.");
+		SimpleLabel lblChangingHint = new SimpleLabel("You can change hierarchy by changing every single element.");
 		lblChangingHint.setWarning(true);
 		panel_hint.add(lblChangingHint, BorderLayout.CENTER);
 		

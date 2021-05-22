@@ -55,7 +55,7 @@ public class InfoButton extends JPanel {
 				setForeground(Color.WHITE);
 				my_label.setForeground(Color.WHITE);
 			} else {				
-				//TODO: Die Farbe geht so noch gar nicht... bei allen Themes hell und dunkel o.O
+				//TODO: This color is ugly... Ugly with all themes and dark and light mode o.O
 				setForeground(ThemeList.currentTheme.cardTitleFont);
 				my_label.setForeground(ThemeList.currentTheme.cardTitleFont);
 			}

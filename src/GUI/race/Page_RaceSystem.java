@@ -12,7 +12,7 @@ public class Page_RaceSystem extends Page {
 		
 		this.addCard(new StructureCard("Race development tree", new Card_RaceDevelopmentTree()));
 		
-		this.addCard(new StructureCard("Race representantives", new Card_RaceSociety()));
+		this.addCard(new StructureCard("Race representatives", new Card_RaceSociety()));
 		
 		setMenu(new PersonMenu());
 	}

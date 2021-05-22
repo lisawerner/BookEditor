@@ -1,15 +1,15 @@
 package GUI.personPage;
 
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.LinkButton;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
 import person.Person;
-import javax.swing.JSeparator;
-import GUI.bookeditorFrame.BookEditorFrame;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class SocietyFamiliarCard extends TransparentPanel {
@@ -54,12 +54,12 @@ public class SocietyFamiliarCard extends TransparentPanel {
 		}
 		
 		String newDepth = depth + "      >>  ";
-		addDescendents(panel_parent, child.getFamiliarRelation().getChildren(), newDepth);
+		addDescendants(panel_parent, child.getFamiliarRelation().getChildren(), newDepth);
 		newDepth = depth + "      ??  ";
-		addDescendents(panel_parent, child.getFamiliarRelation().getDistantDescendant(), newDepth);
+		addDescendants(panel_parent, child.getFamiliarRelation().getDistantDescendant(), newDepth);
 	}
 
-	private void addDescendents(TransparentPanel panel_parent, ArrayList<ObjectID> personList, String depth) {
+	private void addDescendants(TransparentPanel panel_parent, ArrayList<ObjectID> personList, String depth) {
 		for(ObjectID childID : personList) {
 			addPerson(panel_parent, childID, depth);
 		}

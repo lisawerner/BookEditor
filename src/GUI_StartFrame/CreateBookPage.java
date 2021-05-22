@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import GUI_components.HeaderBook;
 import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import book.Book;
 
 import javax.swing.JButton;
@@ -21,8 +21,8 @@ import java.awt.GridLayout;
 public class CreateBookPage extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private final SimpleTextfield txt_newTitle;
-	private final JCheckBox chckbxRememberWorktitle;
+	private final SimpleTextField txt_newTitle;
+	private final JCheckBox checkboxRememberWorkTitle;
 	private final SimpleLabel lblSaveWarning;
 	private final SimpleLabel lblNewTitle;
 	
@@ -40,8 +40,8 @@ public class CreateBookPage extends JPanel {
 		panel_footer.add(lblSaveWarning);
 		lblSaveWarning.setForeground(Color.RED);
 		
-		JButton btnSpeichern = new JButton("Save");
-		btnSpeichern.addActionListener(new ActionListener() {
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblSaveWarning.setText(" ");
 				boolean canSave = true;
@@ -54,18 +54,18 @@ public class CreateBookPage extends JPanel {
 					canSave = false;
 				}
 				
-				boolean isWorktitle = chckbxRememberWorktitle.isSelected();
+				boolean isWorkTitle = checkboxRememberWorkTitle.isSelected();
 				
 				if(canSave) {
-					Book.getInstance().createNewBook(title, isWorktitle);
+					Book.getInstance().createNewBook(title, isWorkTitle);
 					StartFrame.getInstance().openBookEditor();
 				}
 			}
 		});
 		
-		panel_footer.add(btnSpeichern);
+		panel_footer.add(btnSave);
 		
-		//TODO: Schrift zentrieren
+		//TODO: center text
 		HeaderBook lblCreateANew = new HeaderBook("Create a new Book");
 		add(lblCreateANew, BorderLayout.NORTH);
 		
@@ -83,12 +83,12 @@ public class CreateBookPage extends JPanel {
 		InfoButton btn_newTitleInfo = new InfoButton("You can change the title at any time.");
 		panel_enterDataHere.add(btn_newTitleInfo, BorderLayout.EAST);
 		
-		txt_newTitle = new SimpleTextfield();
+		txt_newTitle = new SimpleTextField();
 		panel_enterDataHere.add(txt_newTitle, BorderLayout.CENTER);
 		txt_newTitle.setPreferredSize(new Dimension(200, txt_newTitle.getHeight()));
 		
-		chckbxRememberWorktitle = new JCheckBox("This is only a worktitle. Please remind me to change it, before publishing the book.");
-		panel_enterDataHere.add(chckbxRememberWorktitle, BorderLayout.SOUTH);
+		checkboxRememberWorkTitle = new JCheckBox("This is only a work title. Please remind me to change it, before publishing the book.");
+		panel_enterDataHere.add(checkboxRememberWorkTitle, BorderLayout.SOUTH);
 
 	}
 	

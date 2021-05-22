@@ -17,7 +17,7 @@ import GUI_components.SimpleCheckbox;
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleRadiobutton;
 import GUI_components.SimpleTextarea;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import GUI_components.TransparentPanel;
 import book.Book;
 import global.ObjectID;
@@ -30,16 +30,16 @@ public class PersonInformationCard extends TransparentPanel {
 
 	private Person my_person;
 	
-	private final SimpleTextfield txt_name;
+	private final SimpleTextField txt_name;
 	private final SimpleLabel lblName;
-	private final SimpleTextfield txtTxtnickname;
+	private final SimpleTextField txtTxtNickname;
 	
-	private final SimpleTextfield txt_age;
-	private final SimpleRadiobutton rdbtnAgeBookstart;
-	private final SimpleRadiobutton rdbtnAgeFirstAppeareance;
-	private final SimpleCheckbox chckbxDiedBeforeThe;
+	private final SimpleTextField txt_age;
+	private final SimpleRadiobutton rdbtnAgeBookStart;
+	private final SimpleRadiobutton rdbtnAgeFirstAppearance;
+	private final SimpleCheckbox checkBoxDiedBeforeThe;
 	private final SimpleLabel lblDeathForHow;
-	private final SimpleTextfield txt_deathInYears;
+	private final SimpleTextField txt_deathInYears;
 	
 	private final SimpleTextarea txt_notes;
 	private final SimpleRadiobutton rdbtn_superMain;
@@ -65,12 +65,12 @@ public class PersonInformationCard extends TransparentPanel {
 		changeName_body.setLayout(new BorderLayout(5, 5));
 		this.add(changeName_body);
 		
-		TransparentPanel panel_nameTextfields = new TransparentPanel();
-		changeName_body.add(panel_nameTextfields, BorderLayout.CENTER);
-		panel_nameTextfields.setLayout(new GridLayout(0, 1, 2, 2));
+		TransparentPanel panel_nameTextFields = new TransparentPanel();
+		changeName_body.add(panel_nameTextFields, BorderLayout.CENTER);
+		panel_nameTextFields.setLayout(new GridLayout(0, 1, 2, 2));
 		
-		txt_name = new SimpleTextfield();
-		panel_nameTextfields.add(txt_name);
+		txt_name = new SimpleTextField();
+		panel_nameTextFields.add(txt_name);
 		if(my_person != null) {txt_name.setText(my_person.getInformation().getName());}
 		txt_name.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -95,10 +95,11 @@ public class PersonInformationCard extends TransparentPanel {
 		panel_nameLabels.add(lblNickname);
 		
 		
-		txtTxtnickname = new SimpleTextfield();
-		panel_nameTextfields.add(txtTxtnickname);
-		if(my_person != null) {txtTxtnickname.setText(my_person.getInformation().getRealNickname());}
-		txtTxtnickname.getDocument().addDocumentListener(new DocumentListener() {
+		txtTxtNickname = new SimpleTextField();
+		panel_nameTextFields.add(txtTxtNickname);
+		if(my_person != null) {
+			txtTxtNickname.setText(my_person.getInformation().getRealNickname());}
+		txtTxtNickname.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				updateSaveHint();
 			}
@@ -110,7 +111,7 @@ public class PersonInformationCard extends TransparentPanel {
 			}
 		});
 		
-		InfoButton hint_nickname = new InfoButton("<html>If it is possible always the nickname will shown instead of the fullname<br/>"
+		InfoButton hint_nickname = new InfoButton("<html>If it is possible always the nickname will shown instead of the full name<br/>"
 				+ "everywhere outside the Person-Menu.</html>");
 		changeName_body.add(hint_nickname, BorderLayout.EAST);
 		
@@ -124,21 +125,21 @@ public class PersonInformationCard extends TransparentPanel {
 		panel_setStatus.setLayout(new BoxLayout(panel_setStatus, BoxLayout.LINE_AXIS));
 		panel_mainStatus.add(panel_setStatus);
 		
-		ButtonGroup btngroup_mainstatus = new ButtonGroup();
+		ButtonGroup btnGroup_mainStatus = new ButtonGroup();
 		rdbtn_superMain = new SimpleRadiobutton("Most important Main-Character");
 		if(my_person != null) {rdbtn_superMain.setSelected(my_person.getInformation().isSuperMainChar());}
-		btngroup_mainstatus.add(rdbtn_superMain);
+		btnGroup_mainStatus.add(rdbtn_superMain);
 		panel_setStatus.add(rdbtn_superMain);
 		rdbtn_superMain.addActionListener(e -> updateSaveHint());
-		rdbtn_onlyOften = new SimpleRadiobutton("Charckters with main-role");
+		rdbtn_onlyOften = new SimpleRadiobutton("Characters with main-role");
 		if(my_person != null) {rdbtn_onlyOften.setSelected(my_person.getInformation().isFrequentlyChar());}
-		btngroup_mainstatus.add(rdbtn_onlyOften);
+		btnGroup_mainStatus.add(rdbtn_onlyOften);
 		panel_setStatus.add(rdbtn_onlyOften);
 		rdbtn_onlyOften.addActionListener(e -> updateSaveHint());
 		rdbtn_somebody = new SimpleRadiobutton("Somebody");
 		if(my_person == null) {rdbtn_somebody.setSelected(true);}
 		if(my_person != null) {rdbtn_somebody.setSelected(my_person.getInformation().isSomebody());}
-		btngroup_mainstatus.add(rdbtn_somebody);
+		btnGroup_mainStatus.add(rdbtn_somebody);
 		panel_setStatus.add(rdbtn_somebody);
 		rdbtn_somebody.addActionListener(e -> updateSaveHint());
 		
@@ -151,7 +152,7 @@ public class PersonInformationCard extends TransparentPanel {
 		SimpleLabel lblAge = new SimpleLabel("Age:");
 		panel_age.add(lblAge, BorderLayout.NORTH);
 		
-		txt_age = new SimpleTextfield();
+		txt_age = new SimpleTextField();
 		if(my_person != null) {txt_age.setText(my_person.getInformation().getAge());}
 		panel_age.add(txt_age, BorderLayout.CENTER);
 		txt_age.getDocument().addDocumentListener(new DocumentListener() {
@@ -172,17 +173,19 @@ public class PersonInformationCard extends TransparentPanel {
 		
 		ButtonGroup btngrAge = new ButtonGroup();
 		
-		rdbtnAgeBookstart = new SimpleRadiobutton("...at beginning of the book");
-		if(my_person != null) {rdbtnAgeBookstart.setSelected(my_person.getInformation().getAgeBookStart());}
-		panel_ageValues.add(rdbtnAgeBookstart);
-		btngrAge.add(rdbtnAgeBookstart);
-		rdbtnAgeBookstart.addActionListener(e -> updateSaveHint());
+		rdbtnAgeBookStart = new SimpleRadiobutton("...at beginning of the book");
+		if(my_person != null) {
+			rdbtnAgeBookStart.setSelected(my_person.getInformation().getAgeBookStart());}
+		panel_ageValues.add(rdbtnAgeBookStart);
+		btngrAge.add(rdbtnAgeBookStart);
+		rdbtnAgeBookStart.addActionListener(e -> updateSaveHint());
 		
-		rdbtnAgeFirstAppeareance = new SimpleRadiobutton("... when person appear first time in book");
-		if(my_person != null) {rdbtnAgeFirstAppeareance.setSelected(my_person.getInformation().getAgeFirstAppear());}
-		panel_ageValues.add(rdbtnAgeFirstAppeareance);
-		btngrAge.add(rdbtnAgeFirstAppeareance);		
-		rdbtnAgeFirstAppeareance.addActionListener(e -> updateSaveHint());
+		rdbtnAgeFirstAppearance = new SimpleRadiobutton("... when person appear first time in book");
+		if(my_person != null) {
+			rdbtnAgeFirstAppearance.setSelected(my_person.getInformation().getAgeFirstAppear());}
+		panel_ageValues.add(rdbtnAgeFirstAppearance);
+		btngrAge.add(rdbtnAgeFirstAppearance);
+		rdbtnAgeFirstAppearance.addActionListener(e -> updateSaveHint());
 		
 		//*********************************************************************************
 		//*********************************************************************************
@@ -191,15 +194,16 @@ public class PersonInformationCard extends TransparentPanel {
 		add(panel_death);
 		panel_death.setLayout(new BorderLayout(2, 2));
 		
-		chckbxDiedBeforeThe = new SimpleCheckbox("Died before the beginning of the book");
-		if(my_person != null) {chckbxDiedBeforeThe.setSelected(my_person.getInformation().isDeadBeforeBookStart());}
-		panel_death.add(chckbxDiedBeforeThe, BorderLayout.NORTH);
-		chckbxDiedBeforeThe.addActionListener(e -> enableDeathPanel());
+		checkBoxDiedBeforeThe = new SimpleCheckbox("Died before the beginning of the book");
+		if(my_person != null) {
+			checkBoxDiedBeforeThe.setSelected(my_person.getInformation().isDeadBeforeBookStart());}
+		panel_death.add(checkBoxDiedBeforeThe, BorderLayout.NORTH);
+		checkBoxDiedBeforeThe.addActionListener(e -> enableDeathPanel());
 		
 		lblDeathForHow = new SimpleLabel("Death for how many years:");
 		panel_death.add(lblDeathForHow, BorderLayout.WEST);
 		
-		txt_deathInYears = new SimpleTextfield();
+		txt_deathInYears = new SimpleTextField();
 		panel_death.add(txt_deathInYears, BorderLayout.CENTER);
 		
 		enableDeathPanel();
@@ -215,8 +219,8 @@ public class PersonInformationCard extends TransparentPanel {
 		this.add(panel_skills);
 		panel_skills.setLayout(new BorderLayout(0, 0));
 		
-		SimpleLabel lblNotesskills = new SimpleLabel("Notes (Skills, Job, ...):");
-		panel_skills.add(lblNotesskills, BorderLayout.NORTH);
+		SimpleLabel lblNotesSkills = new SimpleLabel("Notes (Skills, Job, ...):");
+		panel_skills.add(lblNotesSkills, BorderLayout.NORTH);
 		
 		txt_notes = new SimpleTextarea();
 		if(my_person != null) {txt_notes.setText(my_person.getInformation().getNotes());}
@@ -241,24 +245,24 @@ public class PersonInformationCard extends TransparentPanel {
 		SimpleLabel lblCharacterRace = new SimpleLabel("Character Race:");
 		panel_raceSelection.add(lblCharacterRace);
 		
-		ButtonGroup btngroup_races = new ButtonGroup();
+		ButtonGroup btnGroup_races = new ButtonGroup();
 		
 		for(Race race : Book.getInstance().getSociety().getRaces()) {
 			TransparentPanel panel_singleRace = new TransparentPanel();
 			panel_singleRace.setLayout(new BoxLayout(panel_singleRace, BoxLayout.LINE_AXIS));
 			panel_raceSelection.add(panel_singleRace);
 			
-			SimpleRadiobutton chbox_race = new SimpleRadiobutton(race.getName());
+			SimpleRadiobutton checkBox_race = new SimpleRadiobutton(race.getName());
 			ObjectID parentRace = race.getParentRace();
 			if(parentRace != null){
-				chbox_race.setText("[" + Book.getInstance().getSociety().getRace(parentRace).getName() + ":] " + race.getName());
+				checkBox_race.setText("[" + Book.getInstance().getSociety().getRace(parentRace).getName() + ":] " + race.getName());
 			}
-			panel_singleRace.add(chbox_race);
-			btngroup_races.add(chbox_race);
-			chbox_race.addActionListener(e -> setRace(race));
+			panel_singleRace.add(checkBox_race);
+			btnGroup_races.add(checkBox_race);
+			checkBox_race.addActionListener(e -> setRace(race));
 			if(my_person != null) {				
 				if(my_person.getInformation().getRace() != null) {				
-					chbox_race.setSelected(my_person.getInformation().getRace().equals(race.getID()));
+					checkBox_race.setSelected(my_person.getInformation().getRace().equals(race.getID()));
 				}
 			}
 			LinkButton openRace = new LinkButton("<html>&#8663</html>");
@@ -296,14 +300,14 @@ public class PersonInformationCard extends TransparentPanel {
 		
 		if(my_person != null) {
 			if(!txt_name.getText().equals(my_person.getInformation().getName())
-					|| !txtTxtnickname.getText().equals(my_person.getInformation().getRealNickname())
+					|| !txtTxtNickname.getText().equals(my_person.getInformation().getRealNickname())
 					|| !txt_age.getText().equals(my_person.getInformation().getAge())
 					|| !txt_notes.getText().equals(my_person.getInformation().getNotes())
 					|| (rdbtn_superMain.isSelected() && !my_person.getInformation().isSuperMainChar())
 					||(rdbtn_onlyOften.isSelected() && !my_person.getInformation().isFrequentlyChar())
 					||(rdbtn_somebody.isSelected() && !my_person.getInformation().isSomebody())
-					||(rdbtnAgeBookstart.isSelected() && !my_person.getInformation().getAgeBookStart())
-					||(rdbtnAgeFirstAppeareance.isSelected() && !my_person.getInformation().getAgeFirstAppear())
+					||(rdbtnAgeBookStart.isSelected() && !my_person.getInformation().getAgeBookStart())
+					||(rdbtnAgeFirstAppearance.isSelected() && !my_person.getInformation().getAgeFirstAppear())
 					) {
 				lblWarning.setText("Attention: Unsaved changes!");
 			}
@@ -311,20 +315,20 @@ public class PersonInformationCard extends TransparentPanel {
 	}
 	
 	private void enableDeathPanel() {
-		txt_deathInYears.setEnabled(chckbxDiedBeforeThe.isSelected());
-		lblDeathForHow.setEnabled(chckbxDiedBeforeThe.isSelected());
+		txt_deathInYears.setEnabled(checkBoxDiedBeforeThe.isSelected());
+		lblDeathForHow.setEnabled(checkBoxDiedBeforeThe.isSelected());
 	}
 	
 	private void save() {
 		lblWarning.setText(" ");
 		boolean canSave = true;
 		String newAge = txt_age.getText();
-		boolean ageFromBookstart = rdbtnAgeBookstart.isSelected();
-		boolean ageFirstEnter = rdbtnAgeFirstAppeareance.isSelected();
-		String newNickname = txtTxtnickname.getText();
+		boolean ageFromBookStart = rdbtnAgeBookStart.isSelected();
+		boolean ageFirstEnter = rdbtnAgeFirstAppearance.isSelected();
+		String newNickname = txtTxtNickname.getText();
 		
 		if(!"".equals(newAge)) {
-			if(!ageFromBookstart && !ageFirstEnter) {
+			if(!ageFromBookStart && !ageFirstEnter) {
 				canSave = false;
 				lblWarning.setText("WARNING: Can not save person, because age is set, but not the relation to timeline!");
 			}
@@ -343,7 +347,7 @@ public class PersonInformationCard extends TransparentPanel {
 			String saveMessage = "";
 			if(my_person == null) {
 				my_person = new Person(name, newNickname,
-						newAge, ageFromBookstart, ageFirstEnter, chckbxDiedBeforeThe.isSelected(), txt_deathInYears.getText(),
+						newAge, ageFromBookStart, ageFirstEnter, checkBoxDiedBeforeThe.isSelected(), txt_deathInYears.getText(),
 						rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 						txt_notes.getText(), selectedRace);
 				Book.getInstance().getSociety().addPerson(my_person);
@@ -355,7 +359,7 @@ public class PersonInformationCard extends TransparentPanel {
 				
 			} else {
 				my_person.getInformation().editInformation(name, newNickname, 
-						newAge, ageFromBookstart, ageFirstEnter, chckbxDiedBeforeThe.isSelected(), txt_deathInYears.getText(),
+						newAge, ageFromBookStart, ageFirstEnter, checkBoxDiedBeforeThe.isSelected(), txt_deathInYears.getText(),
 						rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
 						txt_notes.getText(), selectedRace, my_person.getID());
 			}

@@ -67,7 +67,7 @@ public class StartPage extends JPanel {
 				selectedBook = book.getFilename();
 				selectionDone = true;
 			} else {
-				String lastOpenedBookfile = UserSettings.getInstance().getLastOpenedBookfile();
+				String lastOpenedBookfile = UserSettings.getInstance().getLastOpenedBookFile();
 				if("".equals(lastOpenedBookfile)) {
 					// Select any (=first) book					
 					if(!selectionDone) {
@@ -113,7 +113,7 @@ public class StartPage extends JPanel {
 		btnCreateNewBook.setMaximumSize(new Dimension(btn_width, btn_hight));
 		btnOpenBook.addActionListener(e -> {
 			Book.getInstance().loadFromFile(selectedBook);
-			UserSettings.getInstance().setLastOpenedBookfile(selectedBook);
+			UserSettings.getInstance().setLastOpenedBookFile(selectedBook);
 			StartFrame.getInstance().openBookEditor();
 		});
 		

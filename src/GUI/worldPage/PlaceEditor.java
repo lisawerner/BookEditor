@@ -8,13 +8,10 @@ import world.Place;
 
 public class PlaceEditor extends Page {
 	private static final long serialVersionUID = 1L;
-	
-	private Place my_place;
-	
+
 	public PlaceEditor(Place place, boolean isSecondFrame) {
-		super("World, States, Regions, Citys, Places, ...");
-		my_place = place;
-		
+		super("World, States, Regions, City's, Places, ...");
+
 		if(UserSettings.getInstance().getTutorial().viewPersons && !UserSettings.getInstance().getTutorial().createFirstPlace) {			
 			addCard(new TutorialCard(17, false));
 		}
@@ -23,16 +20,16 @@ public class PlaceEditor extends Page {
 		}
 		
 		//****************************************************************************************
-		this.addCard(new StructureCard("Change Place Name", new PlaceInformationCard(my_place)));
+		this.addCard(new StructureCard("Change Place Name", new PlaceInformationCard(place)));
 		
 		//****************************************************************************************
-		if(my_place != null) {			
-			this.addCard(new StructureCard("Place - World Dependencies", new PlaceWorlddependenciesCard(my_place)));
+		if(place != null) {
+			this.addCard(new StructureCard("Place - World Dependencies", new PlaceWorldDependenciesCard(place)));
 		}
 			
 		//****************************************************************************************
-		if(my_place != null) {
-			this.addCard(new StructureCard("Place was tagged in Section(s)", new PlaceTagCard(my_place)));			
+		if(place != null) {
+			this.addCard(new StructureCard("Place was tagged in Section(s)", new PlaceTagCard(place)));
 		}		
 		
 		//****************************************************************************************

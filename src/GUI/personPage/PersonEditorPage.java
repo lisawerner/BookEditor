@@ -1,10 +1,5 @@
 package GUI.personPage;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI_components.Page;
 import GUI_components.StructureCard;
@@ -13,10 +8,12 @@ import book.Book;
 import global.UserSettings;
 import person.Person;
 
+import javax.swing.*;
+
 public class PersonEditorPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
-	private Person my_person;
+	private final Person my_person;
 
 	public PersonEditorPage(Person person, boolean isSecondFrame) {
 		super("Society: Persons, Relationships, ...");
@@ -55,7 +52,7 @@ public class PersonEditorPage extends Page {
 		
 		//*********************************************************************************
 
-		//TODO: Bestätungs Panel
+		//TODO: panel to submit the deletion
 		JButton btnDelete = new JButton("Delete Person");
 		btnDelete.addActionListener(e -> {
 			Book.getInstance().getSociety().deletePerson(my_person);

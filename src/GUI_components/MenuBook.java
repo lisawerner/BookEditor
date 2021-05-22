@@ -19,17 +19,17 @@ import javax.swing.JScrollPane;
 public class MenuBook extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private String frontTag = "<html><div style='text-align: center;'><font size=\"7\">";
-	private String backTag = "</size></div></html>";
+	private static final String FRONT_TAG = "<html><div style='text-align: center;'><font size=\"7\">";
+	private static final String BACK_TAG = "</size></div></html>";
 	
-	private String frontTagSub = "<html><font size=\"5\">";
-	private String backTagSub = "</size></html>";
+	private static final String FRONT_TAG_SUB = "<html><font size=\"5\">";
+	private static final String BACK_TAG_SUB = "</size></html>";
 	
 	private final JLabel lblNewLabel;
 	private final JPanel panel_listOfMainButtons;
 	private final JSeparator separator;
 	private final JPanel panel_tableOfContentHeader;
-	private final JLabel lblChapterlist;
+	private final JLabel lblChapterList;
 	private final JPanel panel_tableOfContent;
 	private final JScrollPane scrollPane;
 	
@@ -44,7 +44,7 @@ public class MenuBook extends JPanel {
 		add(panel_positionTitle, BorderLayout.CENTER);
 		panel_positionTitle.setLayout(new BorderLayout(0, 0));
 		
-		lblNewLabel = new JLabel(frontTag + "Menu:" + backTag);
+		lblNewLabel = new JLabel(FRONT_TAG + "Menu:" + BACK_TAG);
 		panel_positionTitle.add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panel_positionMainButtons = new JPanel();
@@ -57,17 +57,17 @@ public class MenuBook extends JPanel {
 		panel_listOfMainButtons.setLayout(new GridLayout(0, 1, 5, 5));
 		panel_positionMainButtons.add(panel_listOfMainButtons, BorderLayout.NORTH);
 		
-		JPanel panel_positionSeperator = new JPanel();
-		panel_positionSeperator.setOpaque(false);
-		panel_positionMainButtons.add(panel_positionSeperator, BorderLayout.CENTER);
-		panel_positionSeperator.setLayout(new BorderLayout(20, 20));
+		JPanel panel_positionSeparator = new JPanel();
+		panel_positionSeparator.setOpaque(false);
+		panel_positionMainButtons.add(panel_positionSeparator, BorderLayout.CENTER);
+		panel_positionSeparator.setLayout(new BorderLayout(20, 20));
 		
 		separator = new JSeparator();
-		panel_positionSeperator.add(separator, BorderLayout.NORTH);
+		panel_positionSeparator.add(separator, BorderLayout.NORTH);
 		
 		JPanel panel_positionTableOfContent = new JPanel();
 		panel_positionTableOfContent.setOpaque(false);
-		panel_positionSeperator.add(panel_positionTableOfContent, BorderLayout.CENTER);
+		panel_positionSeparator.add(panel_positionTableOfContent, BorderLayout.CENTER);
 		panel_positionTableOfContent.setLayout(new BorderLayout(10, 10));
 		
 		panel_tableOfContentHeader = new JPanel();
@@ -75,19 +75,19 @@ public class MenuBook extends JPanel {
 		panel_positionTableOfContent.add(panel_tableOfContentHeader, BorderLayout.NORTH);
 		panel_tableOfContentHeader.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		lblChapterlist = new JLabel(frontTagSub + "Table of Content:" + backTagSub);
-		panel_tableOfContentHeader.add(lblChapterlist);
+		lblChapterList = new JLabel(FRONT_TAG_SUB + "Table of Content:" + BACK_TAG_SUB);
+		panel_tableOfContentHeader.add(lblChapterList);
 		
-		JPanel panel_positionBODYtableOfContent = new JPanel();
-		panel_positionBODYtableOfContent.setOpaque(false);
-		panel_positionTableOfContent.add(panel_positionBODYtableOfContent, BorderLayout.CENTER);
-		panel_positionBODYtableOfContent.setLayout(new BorderLayout(10, 10));
+		JPanel panel_positionBodyTableOfContent = new JPanel();
+		panel_positionBodyTableOfContent.setOpaque(false);
+		panel_positionTableOfContent.add(panel_positionBodyTableOfContent, BorderLayout.CENTER);
+		panel_positionBodyTableOfContent.setLayout(new BorderLayout(10, 10));
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setOpaque(false);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		panel_positionBODYtableOfContent.add(scrollPane, BorderLayout.CENTER);
+		panel_positionBodyTableOfContent.add(scrollPane, BorderLayout.CENTER);
 		
 		panel_tableOfContent = new JPanel();
 		panel_tableOfContent.setLayout(new GridLayout(0, 1, 5, 5));
@@ -121,12 +121,12 @@ public class MenuBook extends JPanel {
 			setBackground(ThemeList.currentTheme.menuBackColor);
 			//Title and other Text?
 			lblNewLabel.setForeground(ThemeList.currentTheme.menuFontColor);
-			lblChapterlist.setForeground(ThemeList.currentTheme.menuFontColor);
+			lblChapterList.setForeground(ThemeList.currentTheme.menuFontColor);
 			//Buttons
 			for(MenuButton btn : mainButtonList) {
 				btn.changeTheme();
 			}
-			//Seperator
+			//Separator
 			separator.setForeground(ThemeList.currentTheme.menuButtonFont);
 			separator.setBackground(ThemeList.currentTheme.menuButtonFont);
 			//ScrollPane

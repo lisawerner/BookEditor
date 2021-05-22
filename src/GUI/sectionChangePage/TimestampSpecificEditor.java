@@ -1,34 +1,25 @@
 package GUI.sectionChangePage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import GUI_components.*;
+import book.Section;
+import time.SpecificDate;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.JComboBox;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import GUI_components.InfoButton;
-import GUI_components.Pair;
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
-import book.Section;
-import time.SpecificDate;
-
 public class TimestampSpecificEditor extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private SpecificDate my_specificTimestamp;
 	
-	private final SimpleTextfield txt_year;
+	private final SimpleTextField txt_year;
 	private final JComboBox<Pair> cmb_month;
 	private final JComboBox<String> cmb_day;
 	private final SimpleLabel lblDayWarning;
@@ -36,7 +27,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	private final SimpleLabel lblMonth;
 	private final SimpleLabel lblDay;
 	private final SimpleLabel lblYear;
-	private final SimpleCheckbox chckbxAnnoDomini;
+	private final SimpleCheckbox checkboxAnnoDomini;
 	private String dayOfWeek;
 	private final SimpleLabel lblDayOfWeek;
 
@@ -89,14 +80,14 @@ public class TimestampSpecificEditor extends TransparentPanel {
 			reloadDayOfWeek();
 		});
 		lblDayOfWeek = new SimpleLabel("<html>&#8594;" + dayOfWeek + "</html>");
-		chckbxAnnoDomini = new SimpleCheckbox("Anno Domini");
+		checkboxAnnoDomini = new SimpleCheckbox("Anno Domini");
 		if(my_specificTimestamp != null) {
-			chckbxAnnoDomini.setSelected(my_specificTimestamp.isAnnoDomini());
+			checkboxAnnoDomini.setSelected(my_specificTimestamp.isAnnoDomini());
 			if(!my_specificTimestamp.isAnnoDomini()) {
 				lblDayOfWeek.setText("Not Possible for before christ");
 			}
 		} else {
-			chckbxAnnoDomini.setSelected(true);			
+			checkboxAnnoDomini.setSelected(true);
 		}
 	    
 		cmb_day = new JComboBox<>();
@@ -122,7 +113,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 			}
 	    }
 	    
-		txt_year = new SimpleTextfield();
+		txt_year = new SimpleTextField();
 		if(my_specificTimestamp != null) {
 			if(my_specificTimestamp.isYearSet()) {				
 				txt_year.setText(my_specificTimestamp.getYear() + "");
@@ -157,9 +148,9 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		SimpleLabel lblEmpty = new SimpleLabel(" ");
 		panel_enterDate.add(lblEmpty);
 	
-		panel_enterDate.add(chckbxAnnoDomini);
-		chckbxAnnoDomini.addActionListener(e -> {
-			if(!chckbxAnnoDomini.isSelected()) {
+		panel_enterDate.add(checkboxAnnoDomini);
+		checkboxAnnoDomini.addActionListener(e -> {
+			if(!checkboxAnnoDomini.isSelected()) {
 				lblDayOfWeek.setText("Not Possible for before christ");
 				lblDayOfWeek.setEnabled(false);
 			} else {
@@ -214,7 +205,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		if(selected != 0) {
 			if(selected > daysInMonth) {
 				selected = daysInMonth;
-				lblDayWarning.setText("Warning: Value of Day has changed, because new settet Month+Year does not have so many days!");
+				lblDayWarning.setText("Warning: Value of Day has changed, because new set Month+Year does not have so many days!");
 			}
 			for (int i = 0; i < cmb_day.getItemCount(); i++){
 				String item = cmb_day.getItemAt(i).toString();
@@ -243,19 +234,19 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		if(txt_year.getText().equals("")) {
 			return false;
 		}
-		//TODO: Warning-Label which says "Thats no Integer"
+		//TODO: Warning-Label which says "That's no Integer"
 		return true;
 	}
 	
 	private void removeInvalidChar() {
-		//TODO: Restrict SimpleTextfield to Integer input only
+		//TODO: Restrict SimpleTextField to Integer input only
 //		String sub = txt_year.getText();
 //		String newString = sub.substring(0,sub.length());
 //		txt_year.setText(newString);
 	}
 	
 	private void reloadDayOfWeek() {
-		if(chckbxAnnoDomini.isSelected()) {			
+		if(checkboxAnnoDomini.isSelected()) {
 			Calendar cal = Calendar.getInstance();
 			int currentDay = -1;
 			if(cmb_day.getSelectedItem() != null) {
@@ -288,7 +279,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 		lblMonth.setEnabled(selected);
 		lblDay.setEnabled(selected);
 		lblYear.setEnabled(selected);
-		chckbxAnnoDomini.setEnabled(selected);
+		checkboxAnnoDomini.setEnabled(selected);
 		lblDayOfWeek.setEnabled(selected);
 	}
 
@@ -310,7 +301,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 			return null;
 		}
 		
-		return new SpecificDate(currentSelectedDay, currentSelectedMonth, currentSelectedYear, chckbxAnnoDomini.isSelected());
+		return new SpecificDate(currentSelectedDay, currentSelectedMonth, currentSelectedYear, checkboxAnnoDomini.isSelected());
 	}
 
 }

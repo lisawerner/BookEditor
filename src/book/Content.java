@@ -22,15 +22,15 @@ public class Content {
 		
 	public ArrayList<Section> getTimeSortedSections(){
 		ArrayList<Section> sortedSections = new ArrayList<>();
-		List<Section> UNsortedCops = new ArrayList<>();
+		List<Section> notSortedCops = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
-			UNsortedCops.addAll(chapter.getSections().stream().filter(Section::hasSpecificTimestamp).collect(Collectors.toList()));
+			notSortedCops.addAll(chapter.getSections().stream().filter(Section::hasSpecificTimestamp).collect(Collectors.toList()));
 		}
 
-		while(UNsortedCops.size() != 0) {			
-			Section smallestDateSection = getSectionWithSmallestTimestamp(UNsortedCops);
+		while(notSortedCops.size() != 0) {
+			Section smallestDateSection = getSectionWithSmallestTimestamp(notSortedCops);
 			sortedSections.add(smallestDateSection);
-			UNsortedCops.remove(smallestDateSection);
+			notSortedCops.remove(smallestDateSection);
 		}
 		
 		return sortedSections;
@@ -132,7 +132,7 @@ public class Content {
 
 	public ArrayList<Section> filterTimelineSections() {
 		ArrayList<Section> sectionsSortedByTimestamp = Book.getInstance().getTableOfContent().getTimeSortedSections();
-		boolean filterForMainCharacters = Book.getInstance().getTimeline().getSettings().getMaincharacterFilter();
+		boolean filterForMainCharacters = Book.getInstance().getTimeline().getSettings().getMainCharacterFilter();
 		ArrayList<Section> filteredList;
 		if(filterForMainCharacters) {
 			filteredList = filterForMainCharacters(sectionsSortedByTimestamp);
@@ -165,7 +165,7 @@ public class Content {
 		return filteredList;
 	}
 
-	public List<Section> getSectionWithoutTaggedMaincharacters() {
+	public List<Section> getSectionWithoutTaggedMainCharacters() {
 		ArrayList<Section> filteredList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {			
 			for(Section section : chapter.getSections()) {
@@ -194,8 +194,8 @@ public class Content {
 	public Section getSectionByRelationship(ObjectID relID) {
 		for(Chapter chapter : my_chapters) {			
 			for(Section section : chapter.getSections()) {
-				for(Relationship relship : section.getRelationships()) {
-					if(relship.getID().equals(relID)) {
+				for(Relationship relationship : section.getRelationships()) {
+					if(relationship.getID().equals(relID)) {
 						return section;
 					}
 				}

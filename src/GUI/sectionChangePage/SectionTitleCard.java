@@ -11,7 +11,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
 import GUI_components.InfoButton;
 import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import GUI_components.TransparentPanel;
 import book.Chapter;
 import book.Section;
@@ -23,7 +23,7 @@ public class SectionTitleCard extends TransparentPanel {
 	private Section my_section;
 	private final Chapter my_parentChapter;
 	
-	private final SimpleTextfield txt_sectionTitle;
+	private final SimpleTextField txt_sectionTitle;
 	private final SimpleLabel lbl_saveWarning;
 	private final SimpleLabel lblChapterTitle;
 
@@ -33,7 +33,7 @@ public class SectionTitleCard extends TransparentPanel {
 		setLayout(new BorderLayout(5, 5));
 		
 		
-		txt_sectionTitle = new SimpleTextfield();
+		txt_sectionTitle = new SimpleTextField();
 		if(my_section != null) {txt_sectionTitle.setText(my_section.getName());}
 		add(txt_sectionTitle);
 		txt_sectionTitle.addKeyListener(new KeyAdapter() {

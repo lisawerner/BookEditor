@@ -18,16 +18,16 @@ import book.Book;
 import global.ObjectID;
 import world.Place;
 
-public class PlaceWorlddependenciesCard extends TransparentPanel {
+public class PlaceWorldDependenciesCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private final Place my_place;
 	
 	private final SimpleLabel lblParentSaveHint;
-	private final SimpleCheckbox chckbxHasParent;
+	private final SimpleCheckbox checkboxHasParent;
 	private final JComboBox<ComboItem> cmbox_possibleParents;
 
-	public PlaceWorlddependenciesCard(Place place) {
+	public PlaceWorldDependenciesCard(Place place) {
 		my_place = place;
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -44,18 +44,18 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 		lblParentSaveHint.setWarning(true);
 		panel_savePlace.add(lblParentSaveHint, BorderLayout.WEST);
 				
-		chckbxHasParent = new SimpleCheckbox("Has Parent");
-		chckbxHasParent.setEnabled(my_place != null);
-		chckbxHasParent.setSelected(my_place.getParentRef() != null);
-		chckbxHasParent.addActionListener(new ActionListener() {
+		checkboxHasParent = new SimpleCheckbox("Has Parent");
+		checkboxHasParent.setEnabled(my_place != null);
+		checkboxHasParent.setSelected(my_place.getParentRef() != null);
+		checkboxHasParent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cmbox_possibleParents.setEnabled(chckbxHasParent.isSelected());
+				cmbox_possibleParents.setEnabled(checkboxHasParent.isSelected());
 				save();
 			}
 		});
-		panel_placedIn.add(chckbxHasParent, BorderLayout.WEST);
+		panel_placedIn.add(checkboxHasParent, BorderLayout.WEST);
 		
-		cmbox_possibleParents = new JComboBox<ComboItem>();
+		cmbox_possibleParents = new JComboBox<>();
 		panel_placedIn.add(cmbox_possibleParents, BorderLayout.CENTER);
 		for(Place p : Book.getInstance().getWorld().getPossibleParentsList(my_place)) {
 			if(my_place != null) {				
@@ -66,7 +66,7 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 				cmbox_possibleParents.addItem(new ComboItem(p.getName(), p.getID()));				
 			}
 		}
-		cmbox_possibleParents.setEnabled(chckbxHasParent.isSelected());
+		cmbox_possibleParents.setEnabled(checkboxHasParent.isSelected());
 		if(my_place.getParentRef() != null) {
 			for (int i = 0; i < cmbox_possibleParents.getItemCount(); i++){
 				ComboItem item = (ComboItem)cmbox_possibleParents.getItemAt(i);
@@ -78,26 +78,26 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 		}
 		cmbox_possibleParents.addActionListener(e -> save());
 		
-		TransparentPanel panel_viewChildrenDependecies = new TransparentPanel();
-		add(panel_viewChildrenDependecies);
-		panel_viewChildrenDependecies.setLayout(new BorderLayout(0, 0));
+		TransparentPanel panel_viewChildrenDependencies = new TransparentPanel();
+		add(panel_viewChildrenDependencies);
+		panel_viewChildrenDependencies.setLayout(new BorderLayout(0, 0));
 		
 		SimpleLabel lblChildren = new SimpleLabel("This place has following children (=Places inside):");
-		panel_viewChildrenDependecies.add(lblChildren, BorderLayout.NORTH);
+		panel_viewChildrenDependencies.add(lblChildren, BorderLayout.NORTH);
 		
 		//TODO: Add to Layout.CENTER a change/save/hint/warning Label
 		
 		TransparentPanel panel_childrenList = new TransparentPanel();
-		panel_viewChildrenDependecies.add(panel_childrenList, BorderLayout.CENTER);
+		panel_viewChildrenDependencies.add(panel_childrenList, BorderLayout.CENTER);
 		panel_childrenList.setLayout(new BoxLayout(panel_childrenList, BoxLayout.LINE_AXIS));
 		
 		if(my_place != null) {
-			List<Place> childrenInfos = my_place.getChildrenObject();
-			if(childrenInfos.size() == 0) {
+			List<Place> childrenInfo = my_place.getChildrenObject();
+			if(childrenInfo.size() == 0) {
 				SimpleLabel lblChildInfo = new SimpleLabel("---");
 				panel_childrenList.add(lblChildInfo);
 			} else {
-				for(Place childInfo : childrenInfos) {
+				for(Place childInfo : childrenInfo) {
 					LinkButton lblChildInfo = new LinkButton(childInfo.getName());
 					lblChildInfo.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(childInfo, false)));
 					panel_childrenList.add(lblChildInfo);
@@ -110,7 +110,7 @@ public class PlaceWorlddependenciesCard extends TransparentPanel {
 	
 	private void save() {
 		ObjectID newParent = null;
-		if(chckbxHasParent.isSelected()) {
+		if(checkboxHasParent.isSelected()) {
 			newParent = ((ComboItem) cmbox_possibleParents.getSelectedItem()).getValue();
 			lblParentSaveHint.setText("Parent '" + Book.getInstance().getWorld().getPlace(newParent).getName() + "' was saved.");
 		}

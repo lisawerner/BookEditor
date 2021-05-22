@@ -14,15 +14,15 @@ import book.Section;
 import global.Tag;
 import person.Person;
 
-public class SectionPersontagCard extends TransparentPanel {
+public class SectionPersonTagCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final Section my_section;
 	
-	private final TransparentPanel panel_appereadTagUnimportendList;
+	private final TransparentPanel panel_appearedTagUnimportantList;
 	private final JToggleButton btn_showHide;
 	
-	public SectionPersontagCard(Section section) {
+	public SectionPersonTagCard(Section section) {
 		my_section = section;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
@@ -33,47 +33,47 @@ public class SectionPersontagCard extends TransparentPanel {
 		SimpleLabel lbl_appearedPersons = new SimpleLabel("Tag Person, who are appeared at that section");
 		panel_appearedPersons.add(lbl_appearedPersons, BorderLayout.NORTH);
 		
-		TransparentPanel panel_appereadTagList = new TransparentPanel();
-		panel_appearedPersons.add(panel_appereadTagList, BorderLayout.CENTER);
-		panel_appereadTagList.setLayout(new WrapLayout(FlowLayout.LEADING));
+		TransparentPanel panel_appearedTagList = new TransparentPanel();
+		panel_appearedPersons.add(panel_appearedTagList, BorderLayout.CENTER);
+		panel_appearedTagList.setLayout(new WrapLayout(FlowLayout.LEADING));
 		
 		for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
-			SimpleCheckbox chckbxPerson = new SimpleCheckbox(person.getInformation().getNickname());
-			panel_appereadTagList.add(chckbxPerson);			
-			chckbxPerson.setSelected(my_section.hasTag(person.getID()));
-			chckbxPerson.addActionListener(e -> save(chckbxPerson, person));
+			SimpleCheckbox checkboxPerson = new SimpleCheckbox(person.getInformation().getNickname());
+			panel_appearedTagList.add(checkboxPerson);
+			checkboxPerson.setSelected(my_section.hasTag(person.getID()));
+			checkboxPerson.addActionListener(e -> save(checkboxPerson, person));
 		}
 		for(Person person : Book.getInstance().getSociety().getPersonListImportantCharacters()) {
-			SimpleCheckbox chckbxPerson = new SimpleCheckbox(person.getInformation().getNickname());
-			panel_appereadTagList.add(chckbxPerson);			
-			chckbxPerson.setSelected(my_section.hasTag(person.getID()));
-			chckbxPerson.addActionListener(e -> save(chckbxPerson, person));
+			SimpleCheckbox checkboxPerson = new SimpleCheckbox(person.getInformation().getNickname());
+			panel_appearedTagList.add(checkboxPerson);
+			checkboxPerson.setSelected(my_section.hasTag(person.getID()));
+			checkboxPerson.addActionListener(e -> save(checkboxPerson, person));
 		}
 		
 		TransparentPanel panel_showHide = new TransparentPanel();
 		panel_showHide.setLayout(new BorderLayout(5, 5));
 		panel_appearedPersons.add(panel_showHide, BorderLayout.SOUTH);
 		
-		panel_appereadTagUnimportendList = new TransparentPanel();
+		panel_appearedTagUnimportantList = new TransparentPanel();
 
 		
 		btn_showHide = new JToggleButton("Show/Hide full person list");
 		panel_showHide.add(btn_showHide, BorderLayout.NORTH);
 		btn_showHide.addActionListener(e -> showFullPersonList());
 		
-		panel_showHide.add(panel_appereadTagUnimportendList, BorderLayout.CENTER);
-		panel_appereadTagUnimportendList.setLayout(new WrapLayout(FlowLayout.LEADING));
+		panel_showHide.add(panel_appearedTagUnimportantList, BorderLayout.CENTER);
+		panel_appearedTagUnimportantList.setLayout(new WrapLayout(FlowLayout.LEADING));
 		
 		
 		for(Person person : Book.getInstance().getSociety().getPersonListTheRest()) {
-			SimpleCheckbox chckbxPerson = new SimpleCheckbox(person.getInformation().getNickname());
-			panel_appereadTagUnimportendList.add(chckbxPerson);			
-			chckbxPerson.setSelected(my_section.hasTag(person.getID()));
-			if(chckbxPerson.isSelected()){				
-				btn_showHide.setSelected(chckbxPerson.isSelected());
+			SimpleCheckbox checkboxPerson = new SimpleCheckbox(person.getInformation().getNickname());
+			panel_appearedTagUnimportantList.add(checkboxPerson);
+			checkboxPerson.setSelected(my_section.hasTag(person.getID()));
+			if(checkboxPerson.isSelected()){
+				btn_showHide.setSelected(checkboxPerson.isSelected());
 				showFullPersonList();
 			}
-			chckbxPerson.addActionListener(e -> save(chckbxPerson, person));
+			checkboxPerson.addActionListener(e -> save(checkboxPerson, person));
 		}
 		
 		this.add(new JSeparator());
@@ -82,21 +82,21 @@ public class SectionPersontagCard extends TransparentPanel {
 		panel_mentionedPersons.setLayout(new BorderLayout(5, 5));
 		this.add(panel_mentionedPersons);
 		
-		SimpleLabel lbl_mentionedPersons = new SimpleLabel("<html>Tag Person, who are only mentioned at that section<br/>(comming soon)</html>");
+		SimpleLabel lbl_mentionedPersons = new SimpleLabel("<html>Tag Person, who are only mentioned at that section<br/>(coming soon)</html>");
 		panel_mentionedPersons.add(lbl_mentionedPersons, BorderLayout.NORTH);
 
 	}
 	
 	private void showFullPersonList() {
-		panel_appereadTagUnimportendList.setVisible(btn_showHide.isSelected());
+		panel_appearedTagUnimportantList.setVisible(btn_showHide.isSelected());
 	}
 
-	private void save(SimpleCheckbox chckbxPerson, Person person) {
-		if(chckbxPerson.isSelected()) {			
+	private void save(SimpleCheckbox checkboxPerson, Person person) {
+		if(checkboxPerson.isSelected()) {
 			//System.out.println("Click: Is Selected now");
 			my_section.addTag(new Tag(person.getID(), person.getClass().getName()));
 		} else {
-			//System.out.println("Click: Is NOOOTTT Selected anymore");
+			//System.out.println("Click: Is NOT Selected anymore");
 			my_section.removeTag(person.getID());
 		}
 	}

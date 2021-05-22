@@ -81,7 +81,7 @@ public class Society {
 	}
 	
 	public ArrayList<Person> getPersonList(){
-		if(my_persons == null) {return new ArrayList<Person>();}
+		if(my_persons == null) {return new ArrayList<>();}
 		return my_persons;
 	}
 	
@@ -95,7 +95,7 @@ public class Society {
 	}
 
 	public List<Person> getPersonListNeverTagged() {
-		List<Person> filteredPersons = new ArrayList<Person>();
+		List<Person> filteredPersons = new ArrayList<>();
 		for(Person person : my_persons) {	
 			boolean neverTagged = true;
 			for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {				
@@ -115,19 +115,21 @@ public class Society {
 	}
 
 	public List<Person> getPersonListWithMissingRelationship() {
-		List<Person> filteredPersons = new ArrayList<Person>();
+		List<Person> filteredPersons = new ArrayList<>();
 		
-		//TODO: thats crazy shit o.O -> move Relationship to single class for relationship list and only add relshipID to section -> do not search relationships over looking for each section o.O
+		//TODO: that's crazy shit o.O
+		// -> move Relationship to single class for relationship list and only add relationshipD to section
+		// -> do not search relationships over looking for each section o.O
 		for(Person person : my_persons) {
 			boolean hasMainRelationship = false;
 			for(ObjectID relPerson : person.getRelationships()) {
 				//Relationships are saved in every section -> for each section
 				for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {					
 					for(Section section : chapter.getSections()) {
-						for(Relationship relship : section.getRelationships()) {
+						for(Relationship relationship : section.getRelationships()) {
 							//Check if Relationship in Section is the relationship, of this person
-							if(relPerson.equals(relship.getID())) {							
-								if(Book.getInstance().getSociety().getPerson(relship.getOtherPerson(person.getID())).getInformation().isSuperMainChar()) {
+							if(relPerson.equals(relationship.getID())) {
+								if(Book.getInstance().getSociety().getPerson(relationship.getOtherPerson(person.getID())).getInformation().isSuperMainChar()) {
 									hasMainRelationship = true;
 									break;
 								}
@@ -145,18 +147,20 @@ public class Society {
 	}
 
 	public List<Person> getPersonWithRelationshipToPerson(boolean relationType, Person checkingPerson) {
-		List<Person> filteredPersons = new ArrayList<Person>();
+		List<Person> filteredPersons = new ArrayList<>();
 		
 		if(checkingPerson != null) {			
-			//TODO: thats crazy shit o.O -> move Relationship to single class for relationship list and only add relshipID to section -> do not search relationships over looking for each section o.O
+			//TODO: that's crazy shit o.O
+			// -> move Relationship to single class for relationship list and only add relationshipID to section
+			// -> do not search relationships over looking for each section o.O
 			for(Person currentPerson : my_persons) {
 				if(!currentPerson.equals(checkingPerson)) {					
 					boolean hasRelationship = false;
 					for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {						
 						for(Section section : chapter.getSections()) {
-							for(Relationship relship : section.getRelationships()) {
-								if(relship.getOtherPerson(checkingPerson.getID()) != null) {								
-									if(relship.getOtherPerson(checkingPerson.getID()).equals(currentPerson.getID())) {
+							for(Relationship relationship : section.getRelationships()) {
+								if(relationship.getOtherPerson(checkingPerson.getID()) != null) {
+									if(relationship.getOtherPerson(checkingPerson.getID()).equals(currentPerson.getID())) {
 										hasRelationship = true;
 										break;
 									}
@@ -185,7 +189,7 @@ public class Society {
 			}
 		}
 		//Delete Person
-		ArrayList<Person> newList = new ArrayList<Person>();
+		ArrayList<Person> newList = new ArrayList<>();
 		for(Person currentPerson : my_persons) {
 			if(!currentPerson.equals(person)) {
 				newList.add(currentPerson);
@@ -205,7 +209,7 @@ public class Society {
 	}
 
 	public void addRace(Race race) {
-		if(my_races == null) { my_races = new ArrayList<Race>();}
+		if(my_races == null) { my_races = new ArrayList<>();}
 
 		my_races.add(race);
 		Book.getInstance().save();
@@ -216,7 +220,7 @@ public class Society {
 	}
 	
 	public ArrayList<Person> getPersonListByRace(Race filteredRace) {
-		ArrayList<Person> filteredList = new ArrayList<Person>();
+		ArrayList<Person> filteredList = new ArrayList<>();
 		
 		for(Person person : my_persons) {
 			if(filteredRace == null) {
@@ -235,7 +239,7 @@ public class Society {
 		return filteredList;
 	}
 
-	public void updateRaceRepresantives(ObjectID raceID, ObjectID personID) {
+	public void updateRaceRepresentatives(ObjectID raceID, ObjectID personID) {
 		if(raceID != null) {			
 			getRace(raceID).addRepresentative(personID);
 		}
@@ -250,15 +254,15 @@ public class Society {
 		return null;
 	}
 
-	public void updateRaceRepresantives(ObjectID oldRaceID, ObjectID newRace, ObjectID personID) {
+	public void updateRaceRepresentatives(ObjectID oldRaceID, ObjectID newRace, ObjectID personID) {
 		if(oldRaceID != null) {			
 			getRace(oldRaceID).removeRepresentative(personID);
 		}
-		updateRaceRepresantives(newRace, personID);
+		updateRaceRepresentatives(newRace, personID);
 	}
 
 	public ArrayList<Person> getPersonListFirstAncestors() {
-		ArrayList<Person> ancestorList = new ArrayList<Person>();
+		ArrayList<Person> ancestorList = new ArrayList<>();
 		for(Person person : my_persons) {
 			if(person.getFamiliarRelation().getParents().isEmpty() && person.getFamiliarRelation().getDistantAncestor().isEmpty()
 					&& (!person.getFamiliarRelation().getChildren().isEmpty() || !person.getFamiliarRelation().getDistantDescendant().isEmpty())) {

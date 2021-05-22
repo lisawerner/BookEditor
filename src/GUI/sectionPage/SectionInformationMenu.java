@@ -29,8 +29,6 @@ public class SectionInformationMenu extends PageMenu {
 	private final Section my_section;
 	private final Chapter my_parentChapter;
 
-	private JButton btnEdit;
-
 	private final SimpleLabel lblDevStatus;
 	private final InfoButton hint_devStatus;
 	
@@ -39,7 +37,7 @@ public class SectionInformationMenu extends PageMenu {
 		my_section = section;
 		my_parentChapter = chapter;
 
-		btnEdit = this.addButtonToTopMenu("Change");
+		JButton btnEdit = this.addButtonToTopMenu("Change");
 		if(my_section == null) {
 			btnEdit.setEnabled(false);
 			btnEdit.setToolTipText("You have to create a section first.");
@@ -51,7 +49,7 @@ public class SectionInformationMenu extends PageMenu {
 		String name = my_section.getName();
 		if(name.length() > 17) {
 			name = name.substring(0,15) + "...";
-			//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+			//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-space-length instead of letter-count
 		}
 		this.addText("Name: " + name);
 		if(my_section.hasTimestamp()) {
@@ -91,8 +89,8 @@ public class SectionInformationMenu extends PageMenu {
 
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Comments:");
-		ArrayList<String> splittedNotes = splitNotes();
-		for(String notePart : splittedNotes) {
+		ArrayList<String> splitNotes = splitNotes();
+		for(String notePart : splitNotes) {
 			this.addText(notePart);
 		}
 
@@ -117,7 +115,7 @@ public class SectionInformationMenu extends PageMenu {
 		
 		this.addBetweenTitle("Place Tags:");
 		if(my_section != null) {
-		List<Place> placeTags = my_section.getPelaceByTag();
+		List<Place> placeTags = my_section.getPlaceByTag();
 			for(Place tag : placeTags) {
 				JButton placeButton = this.addLinkedListButton(tag.getName());
 				placeButton.addActionListener(e -> openPlaceEditor(tag));
@@ -155,23 +153,23 @@ public class SectionInformationMenu extends PageMenu {
 	}
 
 	private ArrayList<String> splitNotes() {
-		ArrayList<String> splittedNotes = new ArrayList<>();
+		ArrayList<String> splitNotes = new ArrayList<>();
 		String notes = my_section.getNotes();
 		int noteLength = notes.length();
-		//TODO: W needs more space, then i, so notes has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+		//TODO: W needs more space, then i, so notes has cut by 17 instead of 25 letters! Maybe can get string-space-length instead of letter-count
 		while(noteLength > 0) {
 			if(noteLength > 20) {
 				//TODO: Den Text irgendwie sinnvoll trennen o.O; Eigentlich wären ja textArea mit wrap-Funktion sinnvoll, aber dann geht das GridLayout nicht mehr...
 				String newPart = notes.substring(0,18) + "...";
-				splittedNotes.add(newPart);
+				splitNotes.add(newPart);
 				notes = notes.substring(18);
 				noteLength = notes.length();
 			} else {
-				splittedNotes.add(notes);
+				splitNotes.add(notes);
 				noteLength = 0;
 			}
 		}
-		return splittedNotes;
+		return splitNotes;
 	}
 
 	private void changeDevStatus(int newDevStatus) {

@@ -23,13 +23,13 @@ public class FilterRaceCard extends TransparentPanel {
 	public FilterRaceCard() {
 		setLayout(new BorderLayout(0, 0));
 		
-		ButtonGroup btngroup_races = new ButtonGroup();
+		ButtonGroup btnGroup_races = new ButtonGroup();
 		
 		TransparentPanel panel_selectFilter = new TransparentPanel();
 		add(panel_selectFilter, BorderLayout.NORTH);
 		
 		SimpleRadiobutton rdbtnPersonWithoutRace = new SimpleRadiobutton("Person without Race");
-		btngroup_races.add(rdbtnPersonWithoutRace);
+		btnGroup_races.add(rdbtnPersonWithoutRace);
 		rdbtnPersonWithoutRace.addActionListener(e -> showPersonsRace(null));
 		panel_selectFilter.add(rdbtnPersonWithoutRace);
 		
@@ -39,7 +39,7 @@ public class FilterRaceCard extends TransparentPanel {
 			SimpleRadiobutton rdbtnRace = new SimpleRadiobutton(race.getName());
 			rdbtnRace.addActionListener(e -> showPersonsRace(race));
 			panel_selectFilter.add(rdbtnRace);
-			btngroup_races.add(rdbtnRace);
+			btnGroup_races.add(rdbtnRace);
 		}
 		
 		panel_filterResult = new TransparentPanel();

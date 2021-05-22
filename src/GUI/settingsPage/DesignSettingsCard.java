@@ -1,28 +1,12 @@
 package GUI.settingsPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI_components.InfoButton;
-import GUI_components.SimpleCheckbox;
-import GUI_components.SimpleIntegerTextfield;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.Theme;
-import GUI_components.ThemeList;
-import GUI_components.TransparentPanel;
+import GUI_components.*;
 import book.Book;
 import global.UserSettings;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.Dimension;
-import javax.swing.JSeparator;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class DesignSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -35,10 +19,10 @@ public class DesignSettingsCard extends TransparentPanel {
 	private final SimpleRadiobutton rdbtnLight;
 	private final SimpleLabel lblWarning;
 	
-	private final SimpleCheckbox chckbxActivateHugeDisplay;
+	private final SimpleCheckbox checkboxActivateHugeDisplay;
 	private final SimpleLabel lblDisplaySaveHint;
 	
-	private final SimpleIntegerTextfield txt_AreaFontSize;
+	private final SimpleIntegerTextField txt_AreaFontSize;
 	private final SimpleLabel lbl_fontSizeSaveHint;
 
 	public DesignSettingsCard() {
@@ -55,8 +39,8 @@ public class DesignSettingsCard extends TransparentPanel {
 		add(panel_changeTheme, BorderLayout.NORTH);
 		panel_changeTheme.setLayout(new BorderLayout(5, 5));
 		
-		SimpleLabel lblChangeColortheme = new SimpleLabel("Change Color Theme of Editor:");
-		panel_changeTheme.add(lblChangeColortheme, BorderLayout.NORTH);
+		SimpleLabel lblChangeColorTheme = new SimpleLabel("Change Color Theme of Editor:");
+		panel_changeTheme.add(lblChangeColorTheme, BorderLayout.NORTH);
 		
 		TransparentPanel panel_DarkLight = new TransparentPanel();
 		panel_changeTheme.add(panel_DarkLight, BorderLayout.WEST);
@@ -104,8 +88,8 @@ public class DesignSettingsCard extends TransparentPanel {
 		add(panel_settingsHintPosition);
 		panel_settingsHintPosition.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		SimpleLabel lblSettingshint = new SimpleLabel("Following setting are for every book project!");
-		panel_settingsHintPosition.add(lblSettingshint);
+		SimpleLabel lblSettingsHint = new SimpleLabel("Following setting are for every book project!");
+		panel_settingsHintPosition.add(lblSettingsHint);
 		
 		Component rigidArea_2 = Box.createRigidArea(new Dimension(20, 20));
 		add(rigidArea_2);
@@ -114,14 +98,14 @@ public class DesignSettingsCard extends TransparentPanel {
 		add(panel_changeDisplaySettings);
 		panel_changeDisplaySettings.setLayout(new BorderLayout(0, 0));
 		
-		SimpleLabel lblChangedisplayhint = new SimpleLabel("<html>If you have a huge Display you can use this setting to view 'two' frames beside at same time.<br/>"
+		SimpleLabel lblChangeDisplayHint = new SimpleLabel("<html>If you have a huge Display you can use this setting to view 'two' frames beside at same time.<br/>"
 				+ "You should not use this option if you don't have a huge display.</html>");
-		panel_changeDisplaySettings.add(lblChangedisplayhint, BorderLayout.NORTH);
+		panel_changeDisplaySettings.add(lblChangeDisplayHint, BorderLayout.NORTH);
 		
-		chckbxActivateHugeDisplay = new SimpleCheckbox("Activate huge Display Settings");
-		panel_changeDisplaySettings.add(chckbxActivateHugeDisplay, BorderLayout.CENTER);
-		chckbxActivateHugeDisplay.addActionListener(e -> saveDisplay());
-		chckbxActivateHugeDisplay.setSelected(UserSettings.getInstance().getDisplaySettings());
+		checkboxActivateHugeDisplay = new SimpleCheckbox("Activate huge Display Settings");
+		panel_changeDisplaySettings.add(checkboxActivateHugeDisplay, BorderLayout.CENTER);
+		checkboxActivateHugeDisplay.addActionListener(e -> saveDisplay());
+		checkboxActivateHugeDisplay.setSelected(UserSettings.getInstance().getDisplaySettings());
 		
 		lblDisplaySaveHint = new SimpleLabel(" ");
 		lblDisplaySaveHint.setWarning(true);
@@ -137,15 +121,15 @@ public class DesignSettingsCard extends TransparentPanel {
 		SimpleLabel lblSetFontSize = new SimpleLabel("Set font size:");
 		panel_fontSettings.add(lblSetFontSize, BorderLayout.WEST);
 		
-		InfoButton btnInfoFontSize = new InfoButton("<html>You can change the size of the font for textareas."
-				+ "<br/>Textareas are formular fields with multiple lines."
-				+ "<br/>For example the formular in the section-editor for the content text is a textarea.</html>");
+		InfoButton btnInfoFontSize = new InfoButton("<html>You can change the size of the font for text areas."
+				+ "<br/>Text areas are form fields with multiple lines."
+				+ "<br/>For example the form in the section-editor for the content text is a textarea.</html>");
 		panel_fontSettings.add(btnInfoFontSize, BorderLayout.EAST);
 		
-		txt_AreaFontSize = new SimpleIntegerTextfield();
+		txt_AreaFontSize = new SimpleIntegerTextField();
 		txt_AreaFontSize.setText("" + UserSettings.getInstance().getTextareaFontSize());
 		panel_fontSettings.add(txt_AreaFontSize, BorderLayout.CENTER);
-		txt_AreaFontSize.addActionListener(e -> saveTextareaFontsize());
+		txt_AreaFontSize.addActionListener(e -> saveTextareaFontSize());
 		
 		lbl_fontSizeSaveHint = new SimpleLabel(" ");
 		panel_fontSettings.add(lbl_fontSizeSaveHint, BorderLayout.SOUTH);
@@ -154,15 +138,15 @@ public class DesignSettingsCard extends TransparentPanel {
 		SimpleLabel lblSaveNewFont = new SimpleLabel("Save new Font by Pressing Enter");
 		panel_fontSettings.add(lblSaveNewFont, BorderLayout.NORTH);
 		
-		lastGUIupdate();
+		lastGuiUpdate();
 	}
 	
-	private void saveTextareaFontsize() {
+	private void saveTextareaFontSize() {
 		UserSettings.getInstance().setTextAreaSize(txt_AreaFontSize.getInteger());
 		lbl_fontSizeSaveHint.setText("Successfully saved font size!");
 	}
 
-	private void lastGUIupdate() {
+	private void lastGuiUpdate() {
 		if(my_theme != null) {
 			rdbtnDark.setSelected(my_theme.darkTheme);
 		}
@@ -231,8 +215,8 @@ public class DesignSettingsCard extends TransparentPanel {
 	}
 	
 	private void saveDisplay() {
-		UserSettings.getInstance().setDisplaySettings(chckbxActivateHugeDisplay.isSelected());
-		if(chckbxActivateHugeDisplay.isSelected()) {
+		UserSettings.getInstance().setDisplaySettings(checkboxActivateHugeDisplay.isSelected());
+		if(checkboxActivateHugeDisplay.isSelected()) {
 			lblDisplaySaveHint.setText("Display Settings are saved: Now two frames can seen at same time together");
 		} else {
 			lblDisplaySaveHint.setText("Display Settings are saved: There is always only one frame");

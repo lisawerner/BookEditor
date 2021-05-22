@@ -37,7 +37,7 @@ public class SimpleLabel extends JLabel{
 		}
 	}
 
-	//TODO: Alle JLabel sollten etwas größere Schrift haben (nicht viel, aber bisschen! :D )
-	//TODO: Alle JLabel sollten automatisch in <html> </html> Tags eingeschloßen werden :D
+	//TODO: the font size in all Labels should be a little bit bigger (only a little bit! :D )
+	//TODO: all label texts should be included from <html> </html> Tags automatically:D
 
 }

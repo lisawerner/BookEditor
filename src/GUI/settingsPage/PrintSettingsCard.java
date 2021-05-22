@@ -9,17 +9,17 @@ import book.Book;
 public class PrintSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private final SimpleCheckbox rdbtnPrintChaptername;
+	private final SimpleCheckbox rdbtnPrintChapterName;
 
 	public PrintSettingsCard() {
 		setLayout(new GridLayout(1, 0, 5, 5));
 	
-		rdbtnPrintChaptername = new SimpleCheckbox("Select this for printing Chapter Name as set in Table of Content (Otherwise chapter-name will print as number)");
-		rdbtnPrintChaptername.setSelected(Book.getInstance().printChapterName());
-		add(rdbtnPrintChaptername);
-		rdbtnPrintChaptername.addActionListener(e -> Book.getInstance().changePrintSettings(rdbtnPrintChaptername.isSelected()));
+		rdbtnPrintChapterName = new SimpleCheckbox("Select this for printing Chapter Name as set in Table of Content (Otherwise chapter-name will print as number)");
+		rdbtnPrintChapterName.setSelected(Book.getInstance().printChapterName());
+		add(rdbtnPrintChapterName);
+		rdbtnPrintChapterName.addActionListener(e -> Book.getInstance().changePrintSettings(rdbtnPrintChapterName.isSelected()));
 		
-		//TODO: Add Label which shows save/notsave or what ever happen, when rdbtn is clicked
+		//TODO: Add Label which shows save/not save or what ever happen, when rdbtn is clicked
 	}
 
 }

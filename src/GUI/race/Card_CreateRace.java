@@ -2,7 +2,7 @@ package GUI.race;
 
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextarea;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import GUI_components.TransparentPanel;
 import book.Book;
 import person.Race;
@@ -19,7 +19,7 @@ public class Card_CreateRace extends TransparentPanel {
 	
 	private Race my_race;
 	
-	private final SimpleTextfield txt_raceName;
+	private final SimpleTextField txt_raceName;
 	private final SimpleTextarea txt_raceNotes;
 	
 	private final SimpleLabel lblSaveHint;
@@ -37,7 +37,7 @@ public class Card_CreateRace extends TransparentPanel {
 		SimpleLabel lblRaceName = new SimpleLabel("Race Name:");
 		panel_name.add(lblRaceName, BorderLayout.WEST);
 		
-		txt_raceName = new SimpleTextfield();
+		txt_raceName = new SimpleTextField();
 		panel_name.add(txt_raceName, BorderLayout.CENTER);
 		if(my_race != null) {txt_raceName.setText(my_race.getName());}
 		txt_raceName.setColumns(10);
@@ -53,16 +53,16 @@ public class Card_CreateRace extends TransparentPanel {
 		if(my_race != null) {txt_raceNotes.setText(my_race.getNotes());}
 		panel_raceNotes.add(txt_raceNotes, BorderLayout.CENTER);
 		
-		TransparentPanel panel_SAVEfooter = new TransparentPanel();
-		add(panel_SAVEfooter);
-		panel_SAVEfooter.setLayout(new GridLayout(0, 1, 5, 5));
+		TransparentPanel panel_SaveFooter = new TransparentPanel();
+		add(panel_SaveFooter);
+		panel_SaveFooter.setLayout(new GridLayout(0, 1, 5, 5));
 		
 		lblSaveHint = new SimpleLabel(" ");
 		lblSaveHint.setWarning(true);
-		panel_SAVEfooter.add(lblSaveHint);
+		panel_SaveFooter.add(lblSaveHint);
 		
 		JButton btnSave = new JButton("Save Race");
-		panel_SAVEfooter.add(btnSave);
+		panel_SaveFooter.add(btnSave);
 		btnSave.addActionListener(e -> save());
 	}
 

@@ -18,7 +18,7 @@ public class Card_SectionList extends TransparentPanel {
 	public Card_SectionList(Chapter chapter) {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		JButton btn_createSection = new JButton("Create a new textsection for that chapter");
+		JButton btn_createSection = new JButton("Create a new text section for that chapter");
 		add(btn_createSection);
 		btn_createSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new CreateSectionPage(chapter)));
 		

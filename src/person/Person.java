@@ -17,14 +17,14 @@ public class Person extends SerializedObject {
 	
 	public Person(String newName, String newNickname, 
 			String newAge, boolean ageBookStart, boolean ageFirstAppearance, boolean isDeathBeforeBookStart, String newDeathTime,
-			boolean newIsSuperMainCharapter, boolean newIsMainCharapter,
+			boolean newIsSuperMainCharacter, boolean newIsMainCharacter,
 			String newNotes, ObjectID newRace) {
 		super();
 		
 		my_information = new PersonInformation(newName, newNickname, 
 				newAge, ageBookStart, ageFirstAppearance, isDeathBeforeBookStart, newDeathTime,
-				newIsSuperMainCharapter, newIsMainCharapter, newNotes, newRace);
-		Book.getInstance().getSociety().updateRaceRepresantives(newRace, this.getID());
+				newIsSuperMainCharacter, newIsMainCharacter, newNotes, newRace);
+		Book.getInstance().getSociety().updateRaceRepresentatives(newRace, this.getID());
 		my_relationships = new ArrayList<>();
 		my_familiarRelationships = new FamiliarRelationship();
 	}
@@ -33,14 +33,15 @@ public class Person extends SerializedObject {
 	public void addRelationship(ObjectID relationship) {
 		if(my_relationships == null) {my_relationships = new ArrayList<>();}
 		my_relationships.add(relationship);
-		//TODO: Eigentlich müssten die chronologisch sortiert werden!!???!?!?! Was wenn Section keinen Timestamp hat? Dann in Reihenfolge der Sections?
+		//TODO: This should be sorted chronological...???
+		// If section has no Timestamp? Then show in list order?
 	}
 
 	public void removeRelationship(ObjectID relationshipID) {
 		if(my_relationships == null) {my_relationships = new ArrayList<>();}
-		for(ObjectID relshipID : my_relationships) {
-			if(relshipID.getIDtoString().equals(relationshipID.getIDtoString())) {
-				my_relationships.remove(relshipID);
+		for(ObjectID currentRelationshipId : my_relationships) {
+			if(currentRelationshipId.getIDtoString().equals(relationshipID.getIDtoString())) {
+				my_relationships.remove(currentRelationshipId);
 				break;
 			}
 		}

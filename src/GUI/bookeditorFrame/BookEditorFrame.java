@@ -33,7 +33,7 @@ public class BookEditorFrame extends JFrame {
 	public BookEditorFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle(Constant.editorname);
+		setTitle(Constant.EDITOR_NAME);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();
@@ -90,7 +90,12 @@ public class BookEditorFrame extends JFrame {
 		secondFrame.setLayout(new BorderLayout(5, 5));
 		secondFrame.add(secondBody, BorderLayout.CENTER);
 		JButton closeSecondFrame = new JButton("Close Second Frame");
-		closeSecondFrame.addActionListener(e -> switchBody(mainBody)); //TODO: Problem: Die Änderungen im secondFrame werden dabei nicht übernommen... Da muss irgendwie ein reload stattfinden o.O
+		//TODO: ERROR!!!: If something is changed in the second frame
+		//  >> these changes will not be transferred into the first frame!!!
+		// Maybe a reload must happen in the first frame, when something is changed+saved in the second frame o.O
+		// But what happen to unsaved changes in the first frame, when it will be reloaded?
+		// Also the other way round...
+		closeSecondFrame.addActionListener(e -> switchBody(mainBody));
 		secondFrame.add(closeSecondFrame, BorderLayout.NORTH);
 		contentBody.add(secondFrame);
 		

@@ -16,11 +16,11 @@ import javax.swing.JViewport;
 public class PageMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private String frontTag = "<html><div style='text-align: left;'><font size=\"5\">     ";
-	private String backTag = "</size></div></html>";
+	private static final String FRONT_TAG = "<html><div style='text-align: left;'><font size=\"5\">     ";
+	private static final String BACK_TAG = "</size></div></html>";
 	
 	private final JPanel backgroundColorBody;
-	private final JLabel lblMenutitle;
+	private final JLabel lblMenuTitle;
 	private final TransparentPanel my_body;
 	private final JScrollPane submenu;
 	private final JPanel submenuBody;
@@ -37,8 +37,8 @@ public class PageMenu extends JPanel {
 		backgroundColorBody.add(position_MenuTitle, BorderLayout.CENTER);
 		position_MenuTitle.setLayout(new BorderLayout(10, 10));
 		
-		lblMenutitle = new JLabel(frontTag + menuTitle + backTag);
-		position_MenuTitle.add(lblMenutitle, BorderLayout.NORTH);
+		lblMenuTitle = new JLabel(FRONT_TAG + menuTitle + BACK_TAG);
+		position_MenuTitle.add(lblMenuTitle, BorderLayout.NORTH);
 		
 		TransparentPanel position_mainBody = new TransparentPanel();
 		position_MenuTitle.add(position_mainBody, BorderLayout.CENTER);
@@ -53,7 +53,7 @@ public class PageMenu extends JPanel {
 		position_submenu.setLayout(new BorderLayout(0, 0));
 		
 		
-		//TODO: Die ScrollBar wird nicht aktiviert.... Prüfen warum das so ist o.O
+		//TODO: Check why the scrollBar does not work and never get activated... o.O
 		submenu = new JScrollPane();
 		position_submenu.add(submenu);
 		submenu.setOpaque(false);
@@ -89,7 +89,7 @@ public class PageMenu extends JPanel {
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
 			backgroundColorBody.setBackground(ThemeList.currentTheme.menuBackColor);
-			lblMenutitle.setForeground(ThemeList.currentTheme.menuFontColor);
+			lblMenuTitle.setForeground(ThemeList.currentTheme.menuFontColor);
 			//Submenu
 			submenu.setViewportBorder(BorderFactory.createEmptyBorder());
 			submenu.setBorder(BorderFactory.createEmptyBorder());
@@ -129,8 +129,8 @@ public class PageMenu extends JPanel {
 		submenuBody.add(new MenuText("<html>" + text + "</html>"));
 	}
 	
-	protected void addComplexMenuItem(TransparentPanel complexMenuitem) {
-		submenuBody.add(complexMenuitem);
+	protected void addComplexMenuItem(TransparentPanel complexMenuItem) {
+		submenuBody.add(complexMenuItem);
 	}
 
 }

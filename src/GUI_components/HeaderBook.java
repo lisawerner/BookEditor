@@ -27,8 +27,6 @@ public class HeaderBook extends JPanel{
 			my_label.repaint();
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

@@ -1,7 +1,7 @@
 package GUI.chapter;
 
 import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import GUI_components.TransparentPanel;
 import book.Book;
 import book.Chapter;
@@ -18,13 +18,15 @@ public class Card_chapterInformation extends TransparentPanel {
 	private Chapter my_chapter;
 	
 	private final SimpleLabel lblWarning;
-	private final SimpleTextfield txt_chapterTitle;
+	private final SimpleTextField txt_chapterTitle;
 	
 	public Card_chapterInformation(Chapter chapter) {
 		my_chapter = chapter;
 		setLayout(new GridLayout(0, 1, 10, 10));
 		
-		//TODO: Es sollte eine Info kommen, wenn der Titel ungespeichert ist! Diese sollte sich irgendwie unterscheiden von der kurzen Info, dass gespeichert ist; Vlt. so machen wie beim Sectiontext
+		//TODO: If the title is unsaved there should appear a warning!
+		// These warning should be differ in some way to the short info, that it is saved
+		// Maybe solve this in the same way as the sectionText
 		
 		TransparentPanel panel_chapterTitle = new TransparentPanel();
 		add(panel_chapterTitle);
@@ -33,7 +35,7 @@ public class Card_chapterInformation extends TransparentPanel {
 		SimpleLabel lblChapterTitle = new SimpleLabel("Chapter Title:");
 		panel_chapterTitle.add(lblChapterTitle, BorderLayout.WEST);
 		
-		txt_chapterTitle = new SimpleTextfield("");
+		txt_chapterTitle = new SimpleTextField("");
 		if(my_chapter != null) {
 			txt_chapterTitle.setText(my_chapter.getTitle());
 		}

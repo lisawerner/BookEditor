@@ -29,17 +29,17 @@ public class Element_RaceSociety extends TransparentPanel {
 		add(panel_parent);
 		panel_parent.setLayout(new FlowLayout(FlowLayout.LEADING));
 		
-		LinkButton btnLinkbuttonrace = new LinkButton(race.getName());
-		panel_parent.add(btnLinkbuttonrace);
-		btnLinkbuttonrace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race)));
+		LinkButton lLinkButtonRace = new LinkButton(race.getName());
+		panel_parent.add(lLinkButtonRace);
+		lLinkButtonRace.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(race)));
 		
 		if(race.getSubtypes().isEmpty()){
-			TransparentPanel panel_subtypeMemberlist = new TransparentPanel();
-			panel_subtypeMemberlist.setLayout(new FlowLayout(FlowLayout.LEADING));
-			add(panel_subtypeMemberlist);
+			TransparentPanel panel_subtypeMemberList = new TransparentPanel();
+			panel_subtypeMemberList.setLayout(new FlowLayout(FlowLayout.LEADING));
+			add(panel_subtypeMemberList);
 			
 			SimpleLabel lblMemberListOf = new SimpleLabel("Member-List: ");
-			panel_subtypeMemberlist.add(lblMemberListOf);
+			panel_subtypeMemberList.add(lblMemberListOf);
 			
 			TransparentPanel panel_raceMembers = new TransparentPanel();
 			add(panel_raceMembers, BorderLayout.CENTER);
@@ -49,15 +49,15 @@ public class Element_RaceSociety extends TransparentPanel {
 			for(ObjectID typeID : race.getSubtypes()){			
 				Race subtype = Book.getInstance().getSociety().getRace(typeID);
 				
-				TransparentPanel panel_subtypeMemberlist = new TransparentPanel();
-				panel_subtypeMemberlist.setLayout(new FlowLayout(FlowLayout.LEADING));
-				add(panel_subtypeMemberlist);
+				TransparentPanel panel_subtypeMemberList = new TransparentPanel();
+				panel_subtypeMemberList.setLayout(new FlowLayout(FlowLayout.LEADING));
+				add(panel_subtypeMemberList);
 				
 				SimpleLabel lblMemberListOf = new SimpleLabel("Member-List of: ");
-				panel_subtypeMemberlist.add(lblMemberListOf);
+				panel_subtypeMemberList.add(lblMemberListOf);
 				
 				LinkButton btnSubtype = new LinkButton(subtype.getName());
-				panel_subtypeMemberlist.add(btnSubtype);
+				panel_subtypeMemberList.add(btnSubtype);
 				btnSubtype.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_EditRace(subtype)));
 				
 				TransparentPanel panel_raceMembers = new TransparentPanel();
@@ -83,11 +83,11 @@ public class Element_RaceSociety extends TransparentPanel {
 		Component rigidArea = Box.createRigidArea(new Dimension(20, 0));
 		panel_raceMembers.add(rigidArea, BorderLayout.WEST);
 		
-		ArrayList<Person> representantiveList = Book.getInstance().getSociety().getPersonListByRace(race);
-		if(representantiveList.isEmpty()){
+		ArrayList<Person> representativesList = Book.getInstance().getSociety().getPersonListByRace(race);
+		if(representativesList.isEmpty()){
 			panel_raceMembers.add(new SimpleLabel("Race does not have any member"));
 		} else {					
-			for(Person raceMember : representantiveList) {
+			for(Person raceMember : representativesList) {
 				LinkButton btnPerson = new LinkButton(raceMember.getInformation().getName());
 				panel_raceMembers.add(btnPerson);
 				btnPerson.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(raceMember, false)));

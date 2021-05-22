@@ -1,7 +1,5 @@
 package GUI.bookeditorFrame;
 
-import javax.swing.JButton;
-
 import GUI.chapter.Page_viewChapter;
 import GUI.content.Page_sortContent;
 import GUI.filterPage.FilterChaptersPage;
@@ -10,12 +8,12 @@ import GUI.personPage.ViewSocietyPage;
 import GUI.printPage.PrintPage;
 import GUI.settingsPage.BookSettingsPage;
 import GUI.timelinePages.Page_ViewTimeline;
-import GUI.worldPage.ViewWorldmapPage;
+import GUI.worldPage.ViewWorldMapPage;
 import GUI_components.MenuBook;
 import book.Book;
 import book.Chapter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import javax.swing.*;
 
 public class EditorMenu extends MenuBook {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +30,7 @@ public class EditorMenu extends MenuBook {
 		btnOpenPersons.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewSocietyPage()));
 		
 		JButton btnOpenPlaces = createMainButton("World");
-		btnOpenPlaces.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewWorldmapPage()));
+		btnOpenPlaces.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new ViewWorldMapPage()));
 		
 		JButton btnOpenTimeline = createMainButton("Timeline");
 		btnOpenTimeline.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_ViewTimeline()));
@@ -53,7 +51,8 @@ public class EditorMenu extends MenuBook {
 			String name = chapter.getTitle();
 			if(name.length() > 17) {
 				name = name.substring(0,15) + "...";
-				//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+				//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters!
+				// Maybe can get string-space-length instead of letter-count
 			}
 			JButton btnOpenChapter = createSectionItem(name);
 			btnOpenChapter.addActionListener(e -> {
@@ -63,12 +62,13 @@ public class EditorMenu extends MenuBook {
 				//AND set ALL other borders of MenuSectionButton-List to EmptyBorder!!!!
 			});
 			
-			//TODO: If BookSetting is selected for huge-frame, then also show all Sections at chapterlist
+			//TODO: If BookSetting is selected for huge-frame, then also show all Sections at chapterList
 //		for(Section section : Book.getInstance().getSectionList().getSections()) {
 //			String name = section.getName();
 //			if(name.length() > 17) {
 //				name = name.substring(0,15) + "...";
-//				//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+//				//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters!
+				// Maybe can get string-space-length instead of letter-count
 //			}
 //			String my_text = "";
 //			if(section.isUnsorted()) {			

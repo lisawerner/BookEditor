@@ -20,7 +20,7 @@ public class Card_SortChapter extends TransparentPanel {
 
 	private void showAllChapters() {
 		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {
-			add(new Listelement_Chapter(chapter, this));
+			add(new ListElement_Chapter(chapter, this));
 			add(Box.createRigidArea(new Dimension(20, 20)));
 		}
 		

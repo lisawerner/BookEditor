@@ -27,7 +27,7 @@ public class TimelineElement extends TimelineItem {
 		super(leftPosition, section.getTimestamp().toString(), section.getTimestamp().isSpecificDate(), !section.getTimestamp().getSpecificDate().isAnnoDomini());
 		my_section = section;
 
-		//TODO: Filterfunktionen!!!!
+		//TODO: Filter functions!!!!
 
 		//*****************************************************************************************************
 		TransparentPanel panel_sectionName = new TransparentPanel();
@@ -59,7 +59,7 @@ public class TimelineElement extends TimelineItem {
 		panel_placeTags.setLayout(new BoxLayout(panel_placeTags, BoxLayout.LINE_AXIS));
 		SimpleLabel lblPlaces = new SimpleLabel("Places:  ");
 		panel_placeTags.add(lblPlaces);
-		List<Place> placeTags = my_section.getPelaceByTag();
+		List<Place> placeTags = my_section.getPlaceByTag();
 		for(Place tag : placeTags) {
 			LinkButton tagName = new LinkButton(tag.getName());
 			tagName.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PlaceEditor(tag, false)));
@@ -68,11 +68,11 @@ public class TimelineElement extends TimelineItem {
 		}
 		
 		//*****************************************************************************************************	
-		TransparentPanel panel_relationshipSwitchs = new TransparentPanel();
-		this.addToBody(panel_relationshipSwitchs);
-		panel_relationshipSwitchs.setLayout(new BoxLayout(panel_relationshipSwitchs, BoxLayout.LINE_AXIS));
-		SimpleLabel lblRelationshipSwitchs = new SimpleLabel("Switched Relationships:  ");
-		panel_relationshipSwitchs.add(lblRelationshipSwitchs);
+		TransparentPanel panel_relationshipSwitches = new TransparentPanel();
+		this.addToBody(panel_relationshipSwitches);
+		panel_relationshipSwitches.setLayout(new BoxLayout(panel_relationshipSwitches, BoxLayout.LINE_AXIS));
+		SimpleLabel lblRelationshipSwitches = new SimpleLabel("Switched Relationships:  ");
+		panel_relationshipSwitches.add(lblRelationshipSwitches);
 		ArrayList<Relationship> relSwitches = my_section.getRelationships();
 		for(Relationship rel : relSwitches) {
 			SimpleLabel lblRel = new SimpleLabel("<html>&emsp; &emsp;" + rel.getSwitchToString() + "; </html>");

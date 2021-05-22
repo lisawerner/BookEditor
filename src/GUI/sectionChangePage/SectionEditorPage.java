@@ -10,8 +10,6 @@ import global.UserSettings;
 import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.sectionPage.SectionPage;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class SectionEditorPage extends Page {
 	private static final long serialVersionUID = 1L;
@@ -37,7 +35,7 @@ public class SectionEditorPage extends Page {
 		addCard(new StructureCard("Section Title", new SectionTitleCard(my_section, null)));
 
 		//********************************************************************************
-		addCard(new StructureCard("Development Status", new SectionDevstatusCard(my_section, chapter)));
+		addCard(new StructureCard("Development Status", new SectionDevStatusCard(my_section, chapter)));
 		
 		//********************************************************************************
 		addCard(new StructureCard("Notes, Research and more", new SectionNoteCard(my_section)));
@@ -46,16 +44,16 @@ public class SectionEditorPage extends Page {
 		addCard(new StructureCard("Change Timestamp", new SectionTimestampCard(my_section, chapter)));		
 		
 		//********************************************************************************
-		addCard(new StructureCard("Change Person-Tags", new SectionPersontagCard(my_section)));
+		addCard(new StructureCard("Change Person-Tags", new SectionPersonTagCard(my_section)));
 
 		//********************************************************************************
 		addCard(new StructureCard("Change Relationships", new SectionRelationshipCard(my_section)));
 
 		//********************************************************************************
-		addCard(new StructureCard("Change Place-Tags", new SectionPlacetagCard(my_section)));
+		addCard(new StructureCard("Change Place-Tags", new SectionPlaceTagCard(my_section)));
 		
 		//********************************************************************************
-		addCard(new StructureCard("Change your Personal-Tags", new SectionPersonaltagCard(my_section)));
+		addCard(new StructureCard("Change your Personal-Tags", new SectionPersonalTagCard(my_section)));
 		
 		//********************************************************************************
 		addCard(new StructureCard("Delete Section", new DeleteSectionCard(my_section, chapter)));

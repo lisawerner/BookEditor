@@ -1,30 +1,22 @@
 package GUI.worldPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI_components.InfoButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextarea;
-import GUI_components.SimpleTextfield;
-import GUI_components.TransparentPanel;
+import GUI_components.*;
 import book.Book;
 import global.UserSettings;
 import world.Place;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class PlaceInformationCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private Place my_place;
 	
-	private final SimpleTextfield txt_placename;
-	private final SimpleLabel lblPlacename;
-	private final SimpleTextfield txtPlacetype;
+	private final SimpleTextField txt_placeName;
+	private final SimpleLabel lblPlaceName;
+	private final SimpleTextField txtPlaceType;
 	private final SimpleTextarea txtNotes;
 
 	public PlaceInformationCard(Place place) {
@@ -37,32 +29,32 @@ public class PlaceInformationCard extends TransparentPanel {
 		panel_title.setLayout(new BorderLayout(5, 5));
 		add(panel_title);
 		
-		lblPlacename = new SimpleLabel("Placename:");
-		panel_title.add(lblPlacename, BorderLayout.WEST);
+		lblPlaceName = new SimpleLabel("Place-Name:");
+		panel_title.add(lblPlaceName, BorderLayout.WEST);
 		
-		txt_placename = new SimpleTextfield();
+		txt_placeName = new SimpleTextField();
 		if(my_place != null) {			
-			txt_placename.setText(my_place.getName());
+			txt_placeName.setText(my_place.getName());
 		}
-		panel_title.add(txt_placename, BorderLayout.CENTER);
+		panel_title.add(txt_placeName, BorderLayout.CENTER);
 
 		//*****************************************************************************************
 		//*****************************************************************************************
-		TransparentPanel panel_placetype = new TransparentPanel();
-		add(panel_placetype);
-		panel_placetype.setLayout(new BorderLayout(0, 0));
+		TransparentPanel panel_placeType = new TransparentPanel();
+		add(panel_placeType);
+		panel_placeType.setLayout(new BorderLayout(0, 0));
 		
-		SimpleLabel lblPlacetype = new SimpleLabel("Place-Type:");
-		panel_placetype.add(lblPlacetype, BorderLayout.NORTH);
+		SimpleLabel lblPlaceType = new SimpleLabel("Place-Type:");
+		panel_placeType.add(lblPlaceType, BorderLayout.NORTH);
 		
 		InfoButton btnPlaceTypeInfo = new InfoButton("<html>Enter something like city, state, village, parc, house, disco, ...<br/>"
 				+ "Can changed every time.</html>");
-		panel_placetype.add(btnPlaceTypeInfo, BorderLayout.EAST);
+		panel_placeType.add(btnPlaceTypeInfo, BorderLayout.EAST);
 		
-		txtPlacetype = new SimpleTextfield();
-		panel_placetype.add(txtPlacetype, BorderLayout.CENTER);
+		txtPlaceType = new SimpleTextField();
+		panel_placeType.add(txtPlaceType, BorderLayout.CENTER);
 		if(my_place != null) {			
-			txtPlacetype.setText(my_place.getType());
+			txtPlaceType.setText(my_place.getType());
 		}
 		
 		TransparentPanel panel_notes = new TransparentPanel();
@@ -87,32 +79,30 @@ public class PlaceInformationCard extends TransparentPanel {
 		footer.add(lblWarning, BorderLayout.SOUTH);		
 
 		JButton btnSave = new JButton("Save Place");
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				lblWarning.setText(" ");
-				boolean canSave = true;
-				
-				setWarningEnterName(false);
-				String name = txt_placename.getText();				
-				if(name.equals("")) {
-					lblWarning.setText("WARNING: Can not save place, because no name was entered!");
-					setWarningEnterName(true);
-					canSave = false;
-				}
-							
-				if(canSave) {
-					if(my_place == null) {
-						my_place = new Place(name, txtPlacetype.getText(), txtNotes.getText());
-						Book.getInstance().getWorld().addPlace(my_place);
-						if(!UserSettings.getInstance().getTutorial().createFirstPlace) {
-							UserSettings.getInstance().getTutorial().createFirstPlace = true;
-							UserSettings.getInstance().save();
-						}
-						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
-					} else {
-						my_place.editPlace(name, txtPlacetype.getText(), txtNotes.getText());
-						BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
+		btnSave.addActionListener(e -> {
+			lblWarning.setText(" ");
+			boolean canSave = true;
+
+			setWarningEnterName(false);
+			String name = txt_placeName.getText();
+			if(name.equals("")) {
+				lblWarning.setText("WARNING: Can not save place, because no name was entered!");
+				setWarningEnterName(true);
+				canSave = false;
+			}
+
+			if(canSave) {
+				if(my_place == null) {
+					my_place = new Place(name, txtPlaceType.getText(), txtNotes.getText());
+					Book.getInstance().getWorld().addPlace(my_place);
+					if(!UserSettings.getInstance().getTutorial().createFirstPlace) {
+						UserSettings.getInstance().getTutorial().createFirstPlace = true;
+						UserSettings.getInstance().save();
 					}
+					BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
+				} else {
+					my_place.editPlace(name, txtPlaceType.getText(), txtNotes.getText());
+					BookEditorFrame.getInstance().switchBody(new PlaceEditor(my_place, false));
 				}
 			}
 		});
@@ -121,11 +111,11 @@ public class PlaceInformationCard extends TransparentPanel {
 	
 	private void setWarningEnterName(boolean warning) {
 		if(warning) {
-			txt_placename.setWarning(true);
-			lblPlacename.setWarning(true);
+			txt_placeName.setWarning(true);
+			lblPlaceName.setWarning(true);
 		} else {
-			txt_placename.setWarning(false);
-			lblPlacename.setWarning(false);
+			txt_placeName.setWarning(false);
+			lblPlaceName.setWarning(false);
 		}
 	}
 

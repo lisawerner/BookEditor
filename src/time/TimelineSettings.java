@@ -4,18 +4,18 @@ import book.Book;
 
 public class TimelineSettings {
 	
-	private boolean filter_maincharacters;
+	private boolean filter_mainCharacters;
 	
 	public TimelineSettings() {
-		filter_maincharacters = false;
+		filter_mainCharacters = false;
 	}
 
-	public void setMaincharacterFilter(boolean newFilter) {
-		filter_maincharacters = newFilter;
+	public void setMainCharacterFilter(boolean newFilter) {
+		filter_mainCharacters = newFilter;
 		Book.getInstance().save();
 	}
 	
-	public boolean getMaincharacterFilter() {
-		return filter_maincharacters;
+	public boolean getMainCharacterFilter() {
+		return filter_mainCharacters;
 	}
 }

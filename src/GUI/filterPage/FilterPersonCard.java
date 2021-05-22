@@ -48,9 +48,9 @@ public class FilterPersonCard extends TransparentPanel {
 		
 		
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleRadiobutton boxbtn_person = new SimpleRadiobutton(person.getInformation().getNickname());
-			panel_FilterSettings.add(boxbtn_person);
-			boxbtn_person.addActionListener(e -> addPersonToFilterlist(person, boxbtn_person.isSelected()));
+			SimpleRadiobutton boxBtn_person = new SimpleRadiobutton(person.getInformation().getNickname());
+			panel_FilterSettings.add(boxBtn_person);
+			boxBtn_person.addActionListener(e -> addPersonToFilterList(person, boxBtn_person.isSelected()));
 		}
 		
 		panel_listOfFilteredSections = new TransparentPanel();
@@ -64,7 +64,7 @@ public class FilterPersonCard extends TransparentPanel {
 		filterSectionsByPersons();
 	}
 	
-	private void addPersonToFilterlist(Person person, boolean add) {
+	private void addPersonToFilterList(Person person, boolean add) {
 		if(add) {
 			selectedPersons.add(person);
 		} else {

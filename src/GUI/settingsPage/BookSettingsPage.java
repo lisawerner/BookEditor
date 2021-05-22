@@ -23,7 +23,7 @@ public class BookSettingsPage extends Page {
 		//******************************************************************************************************************************************
 		//********************************************************************
 		//CARD change Book Title
-		addCard(new StructureCard("Change Book Title", new BooktitleSettingsCard()));
+		addCard(new StructureCard("Change Book Title", new BookTitleSettingsCard()));
 		
 		//********************************************************************
 		//CARD change Book Society

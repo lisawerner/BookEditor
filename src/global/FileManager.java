@@ -19,15 +19,13 @@ import book.Book;
 
 public class FileManager {
 	
-
-	
 	public static Object loadJSONFile(String fileName, Type type) {
 		Gson gson = new Gson();
 		Object jsonObj = null;
 		try {
-			Path path = new File(getFolterPath() + fileName).toPath();
+			Path path = new File(getFolderPath() + fileName).toPath();
 			if(! Files.exists(path)) {
-				File yourFile = new File(getFolterPath() + fileName);
+				File yourFile = new File(getFolderPath() + fileName);
 				yourFile.createNewFile();
 			}
 			Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
@@ -46,7 +44,7 @@ public class FileManager {
 		Gson gson = builder.create();
 		String json = gson.toJson(o);
 		try (OutputStreamWriter writer =
-	             new OutputStreamWriter(new FileOutputStream(getFolterPath() + filename), StandardCharsets.UTF_8)){
+	             new OutputStreamWriter(new FileOutputStream(getFolderPath() + filename), StandardCharsets.UTF_8)){
 			writer.write(json);
 			writer.flush();
 			//TODO if false, then save old version!!!!!!! and don't delete everything!!!
@@ -58,27 +56,27 @@ public class FileManager {
 	
 	public static ArrayList<LoadBookPair> getFileList() {
 		
-		ArrayList<LoadBookPair> booklist = new ArrayList<>();
+		ArrayList<LoadBookPair> bookList = new ArrayList<>();
 		
-		File dir = new File(getFolterPath());
+		File dir = new File(getFolderPath());
 		File[] listOfFiles = dir.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 		  if (listOfFiles[i].isFile()) {
 		    //System.out.println("File " + listOfFiles[i].getName());
-			if(!listOfFiles[i].getName().equals("usersettings.json")) {				
+			if(!listOfFiles[i].getName().equals(UserSettings.USER_SETTINGS_FILE_NAME)) {
 				Book openBook = (Book) loadJSONFile(listOfFiles[i].getName(), Book.class);
-				//System.out.println("Booktitle " + openBook.getTitle());
-				booklist.add(new LoadBookPair(listOfFiles[i].getName(), openBook.getTitle()));
+				//System.out.println("BookTitle " + openBook.getTitle());
+				bookList.add(new LoadBookPair(listOfFiles[i].getName(), openBook.getTitle()));
 			}
 		  }
 		}
 		
-		return booklist;
+		return bookList;
 	}
 	
-	public static boolean exportTXTfile(String filename, String text) {
-		FileWriter saveFile = null;
+	public static boolean exportTextFile(String filename, String text) {
+		FileWriter saveFile;
 		try {
 			//WRITE new File
 			saveFile = new FileWriter(filename);
@@ -92,14 +90,14 @@ public class FileManager {
 	}
 	
 	public static String getSavingPath() {
-		String pathOfTHISclass = FileManager.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-		int lastIndexOfBookEditor = pathOfTHISclass.indexOf("BookEditor") + 10;
-		//TODO: Testen ob das mit der Jar geht!
-		//TODO: Oder ganz anders Speichern (Nutzer sucht Speicherort aus!?!?!)
-		return pathOfTHISclass.substring(0, lastIndexOfBookEditor);
+		String pathOfThisClass = FileManager.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		int lastIndexOfBookEditor = pathOfThisClass.indexOf("BookEditor") + 10;
+		//TODO: Test: Does this work with jar?
+		//TODO: Or save it in another way? (Can the user decide the storage location!?!?!)
+		return pathOfThisClass.substring(0, lastIndexOfBookEditor);
 	}
 	
-	private static String getFolterPath() {
+	private static String getFolderPath() {
 		String folderPath = "MyBooks\\";
 		
 		Path path = new File(folderPath).toPath();

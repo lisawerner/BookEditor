@@ -20,8 +20,8 @@ public class Section extends SerializedObject {
 	private String my_name;
 	private String my_text;
 	
-	//Tagged Informations
-	private ArrayList<Tag> my_tags; //TODO: Persönlich/Privat Tags die von den Nutzern spezifisch angelegt wurden
+	//Tagged Information
+	private ArrayList<Tag> my_tags; //TODO: Personal/Privat Tags which are created by the user
 	private ArrayList<Relationship> my_relationshipSwitches;
 	private Timestamp my_timestamp;
 	private int my_devStatus;
@@ -76,20 +76,20 @@ public class Section extends SerializedObject {
 		return stringList;
 	}
 	
-	private List<Tag> getTagsByTagtype(String tagType){
+	private List<Tag> getTagsByTagType(String tagType){
 		if(my_tags == null) {return new ArrayList<>();}
 		return my_tags.stream().filter(tag -> tag.getType().equals(tagType)).collect(Collectors.toList());
 	}
 	
 	public List<Person> getPersonByTag(){
-		return getTagsByTagtype("person.Person")
+		return getTagsByTagType("person.Person")
 				.stream()
 				.map(tag -> Book.getInstance().getSociety().getPerson(tag.getRefID()))
 				.collect(Collectors.toList());
 	}
 	
-	public List<Place> getPelaceByTag(){
-		return getTagsByTagtype("world.Place")
+	public List<Place> getPlaceByTag(){
+		return getTagsByTagType("world.Place")
 				.stream()
 				.map(tag -> Book.getInstance().getWorld().getPlace(tag.getRefID()))
 				.collect(Collectors.toList());
@@ -224,9 +224,9 @@ public class Section extends SerializedObject {
 	
 	public void removeRelationship(Person person) {
 		ArrayList<Relationship> removeThisRelationships = new ArrayList<>();
-		for(Relationship currentRelship : my_relationshipSwitches) {
-			if(currentRelship.getPersonA().equals(person.getID()) || currentRelship.getPersonB().equals(person.getID())) {
-				removeThisRelationships.add(currentRelship);
+		for(Relationship currentRelationship : my_relationshipSwitches) {
+			if(currentRelationship.getPersonA().equals(person.getID()) || currentRelationship.getPersonB().equals(person.getID())) {
+				removeThisRelationships.add(currentRelationship);
 			}
 		}
 		for(Relationship deleteThis : removeThisRelationships) {

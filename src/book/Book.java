@@ -5,7 +5,7 @@ import global.SerializedObject;
 import notes.GeneralNote;
 import person.Relationship;
 import person.Society;
-import time.Timestuff;
+import time.TimeStuff;
 import world.World;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class Book extends SerializedObject {
 	
 	private final World my_world;
 	private final Society my_society;
-	private final Timestuff my_timeline;
+	private final TimeStuff my_timeline;
 	
 	private ArrayList<GeneralNote> my_notes;
 	
@@ -31,14 +31,14 @@ public class Book extends SerializedObject {
 	private Theme my_theme;
 
 	// About Print-Settings:
-	private boolean isWorktitle;
+	private boolean isWorkTitle;
 	private boolean printChapterName;	
 	
 	private Book() {
 		super();
 		
 		my_title = "";
-		isWorktitle = false;
+		isWorkTitle = false;
 		
 		my_filename = "empty.json";
 		
@@ -48,16 +48,16 @@ public class Book extends SerializedObject {
 		
 		my_world = new World();
 		
-		my_timeline = new Timestuff();
+		my_timeline = new TimeStuff();
 		
 		my_notes = new ArrayList<>();
 		
 		my_theme = null;
 	}
 	
-	public void createNewBook(String newTitle, boolean isNewTitleWorktitle) {
+	public void createNewBook(String newTitle, boolean isNewTitleWorkTitle) {
 		my_title = newTitle;
-		isWorktitle = isNewTitleWorktitle;
+		isWorkTitle = isNewTitleWorkTitle;
 		my_filename = newTitle + "_" + my_uID.getIDtoString().substring(0, 13) + ".json";
 		save();
 	}
@@ -84,12 +84,12 @@ public class Book extends SerializedObject {
 	}
 	
 	public boolean isWorkTitle() {
-		return isWorktitle;
+		return isWorkTitle;
 	}
 	
-	public void changeBooktitleSettings(String newTitle, boolean isNewTitleWorktitle) {
+	public void changeBookTitleSettings(String newTitle, boolean isNewTitleWorkTitle) {
 		my_title = newTitle;
-		isWorktitle = isNewTitleWorktitle;
+		isWorkTitle = isNewTitleWorkTitle;
 		save();
 	}
 
@@ -116,7 +116,7 @@ public class Book extends SerializedObject {
 				book_text.append(section.getText()).append("\n").append("\n");
 			}
 		}
-		return FileManager.exportTXTfile(my_title + ".txt", book_text.toString());
+		return FileManager.exportTextFile(my_title + ".txt", book_text.toString());
 		
 	}
 	
@@ -145,7 +145,7 @@ public class Book extends SerializedObject {
 		return my_society;
 	}
 	
-	public Timestuff getTimeline() {
+	public TimeStuff getTimeline() {
 		return my_timeline;
 	}
 

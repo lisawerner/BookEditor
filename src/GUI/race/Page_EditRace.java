@@ -1,14 +1,11 @@
 package GUI.race;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-
 import GUI.personPage.PersonMenu;
 import GUI_components.Page;
 import GUI_components.StructureCard;
 import person.Race;
+
+import javax.swing.*;
 
 public class Page_EditRace extends Page {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +24,7 @@ public class Page_EditRace extends Page {
 		
 		//****************************************************************************************
 		//****************************************************************************************
-		//TODO: Bestätungs Panel
+		//TODO: Panel to submit the delete action
 		JButton btnDelete = new JButton("Delete Race");
 		btnDelete.addActionListener(e -> {
 			//TODO:

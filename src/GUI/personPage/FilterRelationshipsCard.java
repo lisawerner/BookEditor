@@ -47,13 +47,13 @@ public class FilterRelationshipsCard extends TransparentPanel {
 		btnGroup.add(rdbtnHasRelationship);
 		rdbtnHasRelationship.addActionListener(e -> switchRelationType());
 		
-		rdbtnMissingRelationship = new SimpleRadiobutton("Persons without Relationship to any Maincharacter");
+		rdbtnMissingRelationship = new SimpleRadiobutton("Persons without Relationship to any main character");
 		rdbtnMissingRelationship.setText("Has NO Relationship to following Person");
 		panel_typeSettings.add(rdbtnMissingRelationship);
 		btnGroup.add(rdbtnMissingRelationship);
 		rdbtnMissingRelationship.addActionListener(e -> switchRelationType());
 		
-		comboBox = new JComboBox<ComboItem>();
+		comboBox = new JComboBox<>();
 		panel_filterSettings.add(comboBox);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			comboBox.addItem(new ComboItem(person.getInformation().getName(), person.getID()));

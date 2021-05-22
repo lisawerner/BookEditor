@@ -1,12 +1,5 @@
 package GUI.sectionChangePage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.BoxLayout;
-
 import GUI_components.SimpleCheckbox;
 import GUI_components.SimpleLabel;
 import GUI_components.TransparentPanel;
@@ -15,12 +8,15 @@ import book.Section;
 import global.Tag;
 import world.Place;
 
-public class SectionPlacetagCard extends TransparentPanel {
+import javax.swing.*;
+import java.awt.*;
+
+public class SectionPlaceTagCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final Section my_section;
 	
-	public SectionPlacetagCard(Section section) {
+	public SectionPlaceTagCard(Section section) {
 		my_section = section;
 		// &#8627; -> Arrow
 		
@@ -31,15 +27,15 @@ public class SectionPlacetagCard extends TransparentPanel {
 				TransparentPanel parentPlacePanel = new TransparentPanel();
 				parentPlacePanel.setLayout(new GridLayout(0, 1, 5, 5));
 				add(parentPlacePanel);
-				SimpleCheckbox chckbxPlace = new SimpleCheckbox(place.getName());
-				parentPlacePanel.add(chckbxPlace);			
-				chckbxPlace.setSelected(my_section.hasTag(place.getID()));
-				chckbxPlace.addActionListener(e -> {
-					if(chckbxPlace.isSelected()) {
+				SimpleCheckbox checkboxPlace = new SimpleCheckbox(place.getName());
+				parentPlacePanel.add(checkboxPlace);
+				checkboxPlace.setSelected(my_section.hasTag(place.getID()));
+				checkboxPlace.addActionListener(e -> {
+					if(checkboxPlace.isSelected()) {
 						//System.out.println("Click: Is Selected now");
 						my_section.addTag(new Tag(place.getID(), place.getClass().getName()));
 					} else {
-						//System.out.println("Click: Is NOOOTTT Selected anymore");
+						//System.out.println("Click: Is NOT Selected anymore");
 						my_section.removeTag(place.getID());
 					}
 				});
@@ -56,15 +52,15 @@ public class SectionPlacetagCard extends TransparentPanel {
 			parentPanel.add(distancePanel);
 			SimpleLabel lblDistance = new SimpleLabel("<html>" + distance + "</html>");
 			distancePanel.add(lblDistance, BorderLayout.WEST);
-			SimpleCheckbox chckbxPlace = new SimpleCheckbox(child.getName());
-			distancePanel.add(chckbxPlace, BorderLayout.CENTER);			
-			chckbxPlace.setSelected(my_section.hasTag(child.getID()));
-			chckbxPlace.addActionListener(e -> {
-				if(chckbxPlace.isSelected()) {
+			SimpleCheckbox checkboxPlace = new SimpleCheckbox(child.getName());
+			distancePanel.add(checkboxPlace, BorderLayout.CENTER);
+			checkboxPlace.setSelected(my_section.hasTag(child.getID()));
+			checkboxPlace.addActionListener(e -> {
+				if(checkboxPlace.isSelected()) {
 					//System.out.println("Click: Is Selected now");
 					my_section.addTag(new Tag(child.getID(), child.getClass().getName()));
 				} else {
-					//System.out.println("Click: Is NOOOTTT Selected anymore");
+					//System.out.println("Click: Is NOT Selected anymore");
 					my_section.removeTag(child.getID());
 				}
 			});

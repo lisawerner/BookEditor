@@ -88,16 +88,16 @@ public class Race extends SerializedObject {
 				isCurrentRaceSubtypeOfRace = true;
 			}
 		}
-		boolean isCurrentRaceDescendnatOfRace = false;
+		boolean isCurrentRaceDescendantOfRace = false;
 		for(ObjectID child : descendantList){
 			if(child.equals(this.getID())){
-				isCurrentRaceDescendnatOfRace = true;
+				isCurrentRaceDescendantOfRace = true;
 			}
 		}
 		return !this.getID().equals(possibleEqualsRace.getID())
 				&& this.isSubtypeOf == null
 				&& !isCurrentRaceSubtypeOfRace
-				&& !isCurrentRaceDescendnatOfRace;
+				&& !isCurrentRaceDescendantOfRace;
 	}
 	
 	private ArrayList<ObjectID> getCompleteDescendantList(){
@@ -183,11 +183,11 @@ public class Race extends SerializedObject {
 		}
 	}
 
-	private void removeSubtype(ObjectID removerace) {
+	private void removeSubtype(ObjectID removeRace) {
 		if(my_subtypes != null) {
 			ArrayList<ObjectID> newSubtypeList = new ArrayList<>();
 			for(ObjectID id : my_subtypes){
-				if(!id.equals(removerace)){
+				if(!id.equals(removeRace)){
 					newSubtypeList.add(id);
 				}
 			}

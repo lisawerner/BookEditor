@@ -10,7 +10,7 @@ public class ObjectID {
 	}
 	
 	/**
-	 * Creates an unique ID by adding the current Time in Miliseconds to the ID-String
+	 * Creates an unique ID by adding the current Time in Milliseconds to the ID-String
 	 * @param objectType = You should give ClassType with "this.getClass().getName()"
 	 * @return newID
 	 */

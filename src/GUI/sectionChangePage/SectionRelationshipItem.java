@@ -2,7 +2,7 @@ package GUI.sectionChangePage;
 
 import GUI_components.ComboItem;
 import GUI_components.SimpleLabel;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import GUI_components.TransparentPanel;
 import book.Book;
 import book.Section;
@@ -20,7 +20,7 @@ import java.awt.GridLayout;
 
 public class SectionRelationshipItem extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	private final SimpleTextfield txt_relationshipType;
+	private final SimpleTextField txt_relationshipType;
 	
 	private final Section my_section;
 	private final SectionRelationshipCard my_body;
@@ -33,10 +33,10 @@ public class SectionRelationshipItem extends TransparentPanel {
 	private final JComboBox<ComboItem> cmboxPersonB;
 	private Person personB;
 
-	public SectionRelationshipItem(SectionRelationshipCard body, Section section, Relationship relship) {
+	public SectionRelationshipItem(SectionRelationshipCard body, Section section, Relationship relationship) {
 		my_section = section;
 		my_body = body;
-		my_relationship = relship;
+		my_relationship = relationship;
 		setLayout(new BorderLayout(5, 5));
 	
 		TransparentPanel panel_buttons = new TransparentPanel();
@@ -60,7 +60,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		panel_type.setLayout(new GridLayout(0, 1, 0, 0));
 		SimpleLabel lblType = new SimpleLabel("Relationship-Type: ");
 		panel_type.add(lblType);
-		txt_relationshipType = new SimpleTextfield();
+		txt_relationshipType = new SimpleTextField();
 		if(my_relationship != null) {txt_relationshipType.setText(my_relationship.getDescribingRelationshipType());}
 		panel_type.add(txt_relationshipType);
 		txt_relationshipType.getDocument().addDocumentListener(new DocumentListener() {
@@ -151,7 +151,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		}
 		
 		if(txt_relationshipType.getText().equals("")) {
-			lblWARNING.setText("You have to enter a describing relationtype (for example: Father, Friends, Collegues.");
+			lblWARNING.setText("You have to enter a describing relation type (for example: Father, Friends, Colleagues.");
 			canSave = false;
 		}
 		
@@ -162,7 +162,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 				my_section.addRelationship(newRelationship);
 				txt_relationshipType.setText("");
 				my_relationship = null;
-				lblWARNING.setText("Succesfully saved!");
+				lblWARNING.setText("Successfully saved!");
 			} else {
 				my_relationship.change(personA, personB, txt_relationshipType.getText());
 			}

@@ -46,13 +46,13 @@ public class SectionNoteCard extends TransparentPanel {
 	    });
 		textArea.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 			}
 		});
 		
@@ -60,14 +60,14 @@ public class SectionNoteCard extends TransparentPanel {
 	
 	private void save() {
 		my_section.setNotes(textArea.getText());
-		setSavestatus();
+		setSaveStatus();
 	}
 	
-	private void setSavestatus() {
+	private void setSaveStatus() {
 		if(my_section.getNotes().equals(textArea.getText())) {			
-			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Already saved</html>");
+			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the courser is inside the textarea!<br>Already saved</html>");
 		} else {
-			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br><font color=\"red\">NOT saved at the moment! Press STRG+S</font></html>");
+			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the courser is inside the textarea!<br><font color=\"red\">NOT saved at the moment! Press STRG+S</font></html>");
 		}
 	}
 

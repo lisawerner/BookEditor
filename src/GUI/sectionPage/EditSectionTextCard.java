@@ -12,7 +12,7 @@ import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class EditSectiontextCard extends TransparentPanel {
+public class EditSectionTextCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final Section my_section;
@@ -25,7 +25,7 @@ public class EditSectiontextCard extends TransparentPanel {
 	private final SimpleLabel lblSaveHint_TOP;
 	private final SimpleLabel lblCounts;
 	
-	public EditSectiontextCard(Section openedSection) {
+	public EditSectionTextCard(Section openedSection) {
 		my_section = openedSection;
 		setLayout(new BorderLayout(10, 10));
 		
@@ -54,15 +54,15 @@ public class EditSectiontextCard extends TransparentPanel {
 	    });
 		textArea.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 				updateCounts();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 				updateCounts();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 				updateCounts();
 			}
 		});
@@ -102,7 +102,7 @@ public class EditSectiontextCard extends TransparentPanel {
 		
 		lblSaveHint_TOP = new SimpleLabel(saveHint);
 		panel_header.add(lblSaveHint_TOP);
-		//TODO: lblSaveHint_TOP nur aktivieren, wenn der Text so lang ist, dass man scrollen muss um den SaveHint unten sehen zu können?!?!
+		//TODO: activate lblSaveHint_TOP only, if the text is as long that that it is required to scroll to see the saveHint?!?!
 
 	}
 
@@ -122,11 +122,11 @@ public class EditSectiontextCard extends TransparentPanel {
 
 	private void save() {
 		my_section.setText(textArea.getText());
-		setSavestatus();
+		setSaveStatus();
 		updateCounts();
 	}
 	
-	private void setSavestatus() {
+	private void setSaveStatus() {
 		if(my_section.getText().equals(textArea.getText())) {
 			String saveHint = "<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Already saved</html>";
 			lblSaveHint_Bottom.setText(saveHint);

@@ -2,7 +2,7 @@ package GUI.miscPage;
 
 import GUI_components.SimpleLabel;
 import GUI_components.SimpleTextarea;
-import GUI_components.SimpleTextfield;
+import GUI_components.SimpleTextField;
 import GUI_components.TransparentPanel;
 import book.Book;
 import notes.GeneralNote;
@@ -20,7 +20,7 @@ public class NoteCard extends TransparentPanel {
 	private final GeneralNote my_note;
 	
 	private final SimpleLabel lblSaveHint;
-	private final SimpleTextfield txt_name;
+	private final SimpleTextField txt_name;
 	private final SimpleTextarea txt_noteContent;
 
 	public NoteCard(GeneralNote givenNote) {
@@ -34,7 +34,7 @@ public class NoteCard extends TransparentPanel {
 		SimpleLabel lblName = new SimpleLabel("Note name:");
 		panel_noteName.add(lblName, BorderLayout.WEST);
 		
-		txt_name = new SimpleTextfield();
+		txt_name = new SimpleTextField();
 		panel_noteName.add(txt_name, BorderLayout.CENTER);
 		if(my_note != null) {txt_name.setText(my_note.getName());}
 		
@@ -69,7 +69,8 @@ public class NoteCard extends TransparentPanel {
 			if(my_note == null) {
 				Book.getInstance().addNote(new GeneralNote(txt_name.getText(), txt_noteContent.getText()));
 				BookEditorFrame.getInstance().switchBody(new NotesPage());
-				//TODO: Reload bug: Ändert man ein existierendes Note ohne es zu speichern, geht diese Änderung verloren, wenn ein neues Note erzeugt wird!
+				//TODO: Reload bug: If an existing note is updated without saving the changes
+				//  and then create a new note -> the changes of the edited note will get lost :/
 			} else {
 				my_note.edit(txt_name.getText(), txt_noteContent.getText());
 				lblSaveHint.setText("Successfully saved!");

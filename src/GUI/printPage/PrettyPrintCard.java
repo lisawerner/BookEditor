@@ -1,10 +1,9 @@
 package GUI.printPage;
 
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-
 import GUI_components.TransparentPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class PrettyPrintCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

@@ -25,5 +25,5 @@ public class SimpleCheckbox extends JCheckBox {
 		}
 	}
 	
-	//TODO: add to all Active-Components (Textfield, Textarea, Radiobutton, Checkbox, Buttons, Comboboxes, ...) warning(true/false) and change Border to Red or Foreground to Red
+	//TODO: add to all Active-Components (TextField, Textarea, Radiobutton, Checkbox, Buttons, ComboBoxes, ...) warning(true/false) and change Border to Red or Foreground to Red
 }

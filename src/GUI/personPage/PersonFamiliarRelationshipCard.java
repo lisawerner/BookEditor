@@ -1,23 +1,14 @@
 package GUI.personPage;
 
-import GUI_components.ComboItem;
-import GUI_components.InfoButton;
-import GUI_components.LinkButton;
-import GUI_components.SimpleLabel;
-import GUI_components.SimpleRadiobutton;
-import GUI_components.TransparentPanel;
+import GUI.bookeditorFrame.BookEditorFrame;
+import GUI_components.*;
 import book.Book;
 import global.ObjectID;
 import person.Person;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
-import GUI.bookeditorFrame.BookEditorFrame;
 
 public class PersonFamiliarRelationshipCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -28,11 +19,11 @@ public class PersonFamiliarRelationshipCard extends TransparentPanel {
 	
 	private final JComboBox<ComboItem> comboBox_selectPerson;
 	
-	private final SimpleRadiobutton rdbtnIschild;
-	private final SimpleRadiobutton rdbtnIsparent;
-	private final SimpleRadiobutton rdbtnIsspouse;
-	private final SimpleRadiobutton rdbtnIsdescendant;
-	private final SimpleRadiobutton rdbtnIsancestor;
+	private final SimpleRadiobutton rdbtnIsChild;
+	private final SimpleRadiobutton rdbtnIsParent;
+	private final SimpleRadiobutton rdbtnIsSpouse;
+	private final SimpleRadiobutton rdbtnIsDescendant;
+	private final SimpleRadiobutton rdbtnIsAncestor;
 	
 	private final TransparentPanel panel_showExistingFamiliarRelationships;
 	
@@ -57,31 +48,31 @@ public class PersonFamiliarRelationshipCard extends TransparentPanel {
 		panel_selectForAdding.add(panel_selectionOptions, BorderLayout.CENTER);
 		panel_selectionOptions.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		TransparentPanel panel_selectRelationtype = new TransparentPanel();
-		panel_selectionOptions.add(panel_selectRelationtype);
-		panel_selectRelationtype.setLayout(new GridLayout(0, 3, 0, 0));
+		TransparentPanel panel_selectRelationType = new TransparentPanel();
+		panel_selectionOptions.add(panel_selectRelationType);
+		panel_selectRelationType.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		rdbtnIschild = new SimpleRadiobutton("is Child of");
-		btn_type.add(rdbtnIschild);
-		panel_selectRelationtype.add(rdbtnIschild);
+		rdbtnIsChild = new SimpleRadiobutton("is Child of");
+		btn_type.add(rdbtnIsChild);
+		panel_selectRelationType.add(rdbtnIsChild);
 		
-		rdbtnIsparent = new SimpleRadiobutton("is Parent of");
-		btn_type.add(rdbtnIsparent);
-		panel_selectRelationtype.add(rdbtnIsparent);
+		rdbtnIsParent = new SimpleRadiobutton("is Parent of");
+		btn_type.add(rdbtnIsParent);
+		panel_selectRelationType.add(rdbtnIsParent);
 		
-		rdbtnIsspouse = new SimpleRadiobutton("is Spouse of");
-		btn_type.add(rdbtnIsspouse);
-		panel_selectRelationtype.add(rdbtnIsspouse);
+		rdbtnIsSpouse = new SimpleRadiobutton("is Spouse of");
+		btn_type.add(rdbtnIsSpouse);
+		panel_selectRelationType.add(rdbtnIsSpouse);
 		
-		rdbtnIsdescendant = new SimpleRadiobutton("is distant descendant of");
-		btn_type.add(rdbtnIsdescendant);
-		panel_selectRelationtype.add(rdbtnIsdescendant);
+		rdbtnIsDescendant = new SimpleRadiobutton("is distant descendant of");
+		btn_type.add(rdbtnIsDescendant);
+		panel_selectRelationType.add(rdbtnIsDescendant);
 		
-		rdbtnIsancestor = new SimpleRadiobutton("is distant ancestor");
-		btn_type.add(rdbtnIsancestor);
-		panel_selectRelationtype.add(rdbtnIsancestor);
+		rdbtnIsAncestor = new SimpleRadiobutton("is distant ancestor");
+		btn_type.add(rdbtnIsAncestor);
+		panel_selectRelationType.add(rdbtnIsAncestor);
 		
-		comboBox_selectPerson = new JComboBox<ComboItem>();
+		comboBox_selectPerson = new JComboBox<>();
 		panel_selectionOptions.add(comboBox_selectPerson);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			if(!person.equals(my_person)) {				
@@ -125,49 +116,49 @@ public class PersonFamiliarRelationshipCard extends TransparentPanel {
 		fill(my_person.getFamiliarRelation().getSiblings(my_person.getID()), "Is sibling with ", -1);
 	}
 	
-	private void fill(ArrayList<ObjectID> personIDlist, String relationDescription, int typeBlub) {
-		for(ObjectID otherPersonID : personIDlist) {			
-			addFamiliar(relationDescription, otherPersonID, typeBlub);
+	private void fill(ArrayList<ObjectID> personIdList, String relationDescription, int type) {
+		for(ObjectID otherPersonID : personIdList) {
+			addFamiliar(relationDescription, otherPersonID, type);
 		}
 	}
 	
-	private void addFamiliar(String relationDescription, ObjectID otherPersonID, int typeBlub) {
+	private void addFamiliar(String relationDescription, ObjectID otherPersonID, int type) {
 		TransparentPanel panel_singleRelation = new TransparentPanel();
 		panel_singleRelation.setLayout(new BoxLayout(panel_singleRelation, BoxLayout.LINE_AXIS));
 		panel_showExistingFamiliarRelationships.add(panel_singleRelation);
 		
 		panel_singleRelation.add(new SimpleLabel(relationDescription));
 		Person parent = Book.getInstance().getSociety().getPerson(otherPersonID);
-		LinkButton btnPersonlinkbutton = new LinkButton(parent.getInformation().getName());
-		btnPersonlinkbutton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(parent, false)));
-		panel_singleRelation.add(btnPersonlinkbutton);
+		LinkButton btnPersonLinkButton = new LinkButton(parent.getInformation().getName());
+		btnPersonLinkButton.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new PersonEditorPage(parent, false)));
+		panel_singleRelation.add(btnPersonLinkButton);
 		
 		panel_singleRelation.add(new SimpleLabel("<html>; &emsp;</html>"));	
 		
-		if(typeBlub != -1) {			
+		if(type != -1) {
 			JButton btnDelete = new JButton("Remove");
 			panel_singleRelation.add(btnDelete);
-			btnDelete.addActionListener(e -> deleteFamiliarRelationship(otherPersonID, typeBlub, btnPersonlinkbutton, btnDelete));
+			btnDelete.addActionListener(e -> deleteFamiliarRelationship(otherPersonID, type, btnPersonLinkButton, btnDelete));
 		}
 		
 		panel_showExistingFamiliarRelationships.revalidate();
 		panel_showExistingFamiliarRelationships.repaint();
 	}
 
-	private void deleteFamiliarRelationship(ObjectID otherPerson, int typeBlub, LinkButton disableButton, JButton disableAlsoThisButton) {
-		if(typeBlub == 1) {			
+	private void deleteFamiliarRelationship(ObjectID otherPerson, int type, LinkButton disableButton, JButton disableAlsoThisButton) {
+		if(type == 1) {
 			my_person.getFamiliarRelation().removeFamiliarRelationshipParent(otherPerson);
 			Book.getInstance().getSociety().getPerson(otherPerson).getFamiliarRelation().removeFamiliarRelationshipChild(my_person.getID());
-		} else if(typeBlub == 2) {
+		} else if(type == 2) {
 			my_person.getFamiliarRelation().removeFamiliarRelationshipChild(otherPerson);
 			Book.getInstance().getSociety().getPerson(otherPerson).getFamiliarRelation().removeFamiliarRelationshipParent(my_person.getID());
-		} else if(typeBlub == 3) {
+		} else if(type == 3) {
 			my_person.getFamiliarRelation().removeFamiliarRelationshipSpouse(otherPerson);
 			Book.getInstance().getSociety().getPerson(otherPerson).getFamiliarRelation().removeFamiliarRelationshipSpouse(my_person.getID());
-		} else if(typeBlub == 4) {
+		} else if(type == 4) {
 			my_person.getFamiliarRelation().removeFamiliarRelationshipDistantDescendant(otherPerson);
 			Book.getInstance().getSociety().getPerson(otherPerson).getFamiliarRelation().removeFamiliarRelationshipDistantAncestor(my_person.getID());
-		} else if(typeBlub == 5) {
+		} else if(type == 5) {
 			my_person.getFamiliarRelation().removeFamiliarRelationshipDistantAncestor(otherPerson);
 			Book.getInstance().getSociety().getPerson(otherPerson).getFamiliarRelation().removeFamiliarRelationshipDistantDescendant(my_person.getID());
 		}
@@ -191,33 +182,33 @@ public class PersonFamiliarRelationshipCard extends TransparentPanel {
 			lblSaveHint.setText("Can not save! Select a person for adding a familiar relationship!");
 		}
 		
-		if(!rdbtnIschild.isSelected() && !rdbtnIsparent.isSelected() && !rdbtnIsspouse.isSelected() && !rdbtnIsdescendant.isSelected() && !rdbtnIsancestor.isSelected()) {
+		if(!rdbtnIsChild.isSelected() && !rdbtnIsParent.isSelected() && !rdbtnIsSpouse.isSelected() && !rdbtnIsDescendant.isSelected() && !rdbtnIsAncestor.isSelected()) {
 			canSave = false;
 			lblSaveHint.setText("Can not save! Select a familiar relation type!");
 		}
 		
 		if(canSave) {
 			//Add own familiar relationship to other person
-			my_person.getFamiliarRelation().addRelationship(rdbtnIschild.isSelected(), rdbtnIsparent.isSelected(), 
-					rdbtnIsspouse.isSelected(), 
-					rdbtnIsdescendant.isSelected(), rdbtnIsancestor.isSelected(), 
+			my_person.getFamiliarRelation().addRelationship(rdbtnIsChild.isSelected(), rdbtnIsParent.isSelected(),
+					rdbtnIsSpouse.isSelected(),
+					rdbtnIsDescendant.isSelected(), rdbtnIsAncestor.isSelected(),
 					selectedPersonID);
 			//Add reverse familiar relationship for other person
-			Book.getInstance().getSociety().getPerson(selectedPersonID).getFamiliarRelation().addRelationship(rdbtnIsparent.isSelected(), rdbtnIschild.isSelected(), 
-						rdbtnIsspouse.isSelected(), 
-						rdbtnIsancestor.isSelected(), rdbtnIsdescendant.isSelected(), 
+			Book.getInstance().getSociety().getPerson(selectedPersonID).getFamiliarRelation().addRelationship(rdbtnIsParent.isSelected(), rdbtnIsChild.isSelected(),
+						rdbtnIsSpouse.isSelected(),
+						rdbtnIsAncestor.isSelected(), rdbtnIsDescendant.isSelected(),
 						my_person.getID());
 			Book.getInstance().save();
 			lblSaveHint.setText("Successfully saved!");
-			if(rdbtnIschild.isSelected()) {
+			if(rdbtnIsChild.isSelected()) {
 				addFamiliar("Is child of ", selectedPersonID, 1);
-			} else if(rdbtnIsparent.isSelected()) {
+			} else if(rdbtnIsParent.isSelected()) {
 				addFamiliar("Is parent of ", selectedPersonID, 2);
-			} else if(rdbtnIsspouse.isSelected()) {
+			} else if(rdbtnIsSpouse.isSelected()) {
 				addFamiliar("Is spouse with ", selectedPersonID, 3);
-			} else if(rdbtnIsdescendant.isSelected()) {
+			} else if(rdbtnIsDescendant.isSelected()) {
 				addFamiliar("Is distant descendant with ", selectedPersonID, 4);
-			} else if(rdbtnIsancestor.isSelected()) {
+			} else if(rdbtnIsAncestor.isSelected()) {
 				addFamiliar("Is distant ancestor with ", selectedPersonID, 5);
 			}
 		}

@@ -2,16 +2,16 @@ package GUI_StartFrame;
 
 public class LoadBookPair {
 	
-	private final String booktitle;
+	private final String bookTitle;
 	private final String filename;
 
 	public LoadBookPair(String loadedFilename, String loadedBookTitle) {
-		booktitle = loadedBookTitle;
+		bookTitle = loadedBookTitle;
 		filename = loadedFilename;
 	}
 
 	public String getBookTitle() {
-		return booktitle;
+		return bookTitle;
 	}
 
 	public String getFilename() {

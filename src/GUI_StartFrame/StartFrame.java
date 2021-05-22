@@ -29,7 +29,7 @@ public class StartFrame extends JFrame {
 	private StartFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle(Constant.editorname);
+		setTitle(Constant.EDITOR_NAME);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();

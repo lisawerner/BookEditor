@@ -11,8 +11,8 @@ import javax.swing.Box;
 public class Page extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private String frontTag = "<html><div style='text-align: left;'><font size=\"5\">     ";
-	private String backTag = "</size></div></html>";
+	private static final String FRONT_TAG = "<html><div style='text-align: left;'><font size=\"5\">     ";
+	private static final String BACK_TAG = "</size></div></html>";
 	private final String my_title;
 	private TitledBorder titledBorder;
 	private final PageBody my_body;
@@ -20,7 +20,7 @@ public class Page extends TransparentPanel {
 	public Page(String pageHeader) {
 		setLayout(new BorderLayout(20, 20));
 		my_title = pageHeader;
-		titledBorder = BorderFactory.createTitledBorder(frontTag + my_title + backTag);
+		titledBorder = BorderFactory.createTitledBorder(FRONT_TAG + my_title + BACK_TAG);
 		setBorder(titledBorder);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
@@ -44,7 +44,7 @@ public class Page extends TransparentPanel {
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
 			Border coloredBorder = BorderFactory.createLineBorder(ThemeList.currentTheme.headerBackColor);
-			titledBorder = BorderFactory.createTitledBorder(coloredBorder, frontTag + my_title + backTag);
+			titledBorder = BorderFactory.createTitledBorder(coloredBorder, FRONT_TAG + my_title + BACK_TAG);
 			if(ThemeList.currentTheme.darkTheme) {				
 				titledBorder.setTitleColor(ThemeList.currentTheme.darkForegroundColor);
 			} else {
@@ -60,8 +60,8 @@ public class Page extends TransparentPanel {
 		my_body.addCard(newStructureCard);
 	}
 		
-	public void setMenu(PageMenu newnMenu) {
-		add(newnMenu, BorderLayout.EAST);
+	public void setMenu(PageMenu newMenu) {
+		add(newMenu, BorderLayout.EAST);
 	}
 	
 	public void setFooter(Component footer) {

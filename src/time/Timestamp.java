@@ -7,12 +7,12 @@ import book.Section;
 
 public class Timestamp {
 	
-	//Ideen:
-	// Timestamp unbekannt!!! (Einfach, wenn kein Tag gesetzt ist?)
-	// Ungefährer Abstand zu einem anderen Timestamp/Section
-	// Konkretes Datum
+	//Ideas:
+	// Timestamp unknown!!! (Simple, when no timestamp is set?)
+	// (ca) Distance to another Timestamp/Section
+	// Concrete date
 	
-	// Achtung: Was ist mit Geschichten/Welten, die eine andere Zeitrechnung haben?
+	// Attention: What is about stories/worlds with another calender then gregorian?
 	
 	private final SpecificDate my_specificDate;
 	private final RelativeDate my_relativeDate;

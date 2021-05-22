@@ -16,7 +16,7 @@ public class TextPreview extends TransparentPanel {
 	private final JPanel panel_viewport;
 	private final SimpleTextarea lblText;
 	
-	public TextPreview(String text, boolean isReview, boolean setHight) {
+	public TextPreview(String text, boolean isReview, boolean setHeight) {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -37,12 +37,12 @@ public class TextPreview extends TransparentPanel {
 		panel_viewport.add(lblText);
 		lblText.setEditable(false);	
 		
-		if(setHight) {
+		if(setHeight) {
 			Font font = lblText.getFont();
-			int hight = font.getSize() + 4; //Why +4 ??? TODO: Maybe there is something wrong...
+			int height = font.getSize() + 4; //Why +4 ??? TODO: Maybe there is something wrong...
 			
 			Dimension dim = scrollPane.getSize();
-			dim.setSize(dim.getWidth(), hight*3);
+			dim.setSize(dim.getWidth(), height*3);
 			scrollPane.setSize(dim);
 			scrollPane.setPreferredSize(dim);
 		}

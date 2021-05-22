@@ -12,13 +12,13 @@ import book.Chapter;
 import book.Section;
 import java.awt.GridLayout;
 
-public class Listelement_Section extends TransparentPanel {
+public class ListElement_Section extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final Section my_section;
 	private final Chapter my_parentChapter;
 
-	public Listelement_Section(Section section, Chapter chapter, Listelement_Chapter parentBody) {
+	public ListElement_Section(Section section, Chapter chapter, ListElement_Chapter parentBody) {
 		my_section = section;
 		my_parentChapter = chapter;
 		setLayout(new BorderLayout(5, 5));
@@ -50,7 +50,7 @@ public class Listelement_Section extends TransparentPanel {
 		btn_moveSectionDown.setEnabled(!my_parentChapter.isLastSection(my_section));
 	}
 	
-	private void moveSection(boolean moveSectionUp, Listelement_Chapter parentBody) {
+	private void moveSection(boolean moveSectionUp, ListElement_Chapter parentBody) {
 		my_parentChapter.moveSection(my_section, moveSectionUp);
 		parentBody.reload();
 		BookEditorFrame.getInstance().reloadMenu();

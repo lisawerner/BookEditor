@@ -35,7 +35,7 @@ public class TimelineCard extends TransparentPanel {
 		
 		for(Section section : sectionsSortedByTimestamp_FILTERED) {
 			if(section.hasSpecificTimestamp()) {
-				TimelineElement currentElement = null;
+				TimelineElement currentElement;
 				if(leftPosition) {
 					currentElement = new TimelineElement(section, leftPosition);
 					panel_leftTimeline.add(currentElement);
@@ -45,11 +45,11 @@ public class TimelineCard extends TransparentPanel {
 				}
 				int currentHeight = currentElement.getPreferredSize().height;
 				if(currentHeight > 121) {
-					int diffrence = currentHeight - 121;
+					int difference = currentHeight - 121;
 					if(leftPosition) {
-						panel_rightTimeline.add(new TimelineItem(false, diffrence));
+						panel_rightTimeline.add(new TimelineItem(false, difference));
 					} else {
-						panel_leftTimeline.add(new TimelineItem(true, diffrence));
+						panel_leftTimeline.add(new TimelineItem(true, difference));
 					}
 				}
 				leftPosition = !leftPosition;

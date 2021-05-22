@@ -5,11 +5,11 @@ import GUI_components.Page;
 import GUI_components.StructureCard;
 import GUI_components.TutorialCard;
 
-public class ViewWorldmapPage extends Page {
+public class ViewWorldMapPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
-	public ViewWorldmapPage() {
-		super("World, States, Regions, Citys, Places, ...");
+	public ViewWorldMapPage() {
+		super("World, States, Regions, City's, Places, ...");
 
 		if(UserSettings.getInstance().getTutorial().createFirstPlace && !UserSettings.getInstance().getTutorial().setMapDependencies) {			
 			addCard(new TutorialCard(18, true));
@@ -17,7 +17,7 @@ public class ViewWorldmapPage extends Page {
 		
 		//**************************************************************************************************************************
 		//**************************************************************************************************************************
-		this.addCard(new StructureCard("World-Hierachy", new WorldMapCard()));
+		this.addCard(new StructureCard("World-Hierarchy", new WorldMapCard()));
 		
 		//**************************************************************************************************************************
 		//**************************************************************************************************************************

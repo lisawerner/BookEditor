@@ -12,7 +12,7 @@ import book.DevelopmentStatus;
 import book.Section;
 import global.UserSettings;
 
-public class SectionDevstatusCard extends TransparentPanel {
+public class SectionDevStatusCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private final Section my_section;
@@ -21,16 +21,16 @@ public class SectionDevstatusCard extends TransparentPanel {
 	private final SimpleLabel lblDevStatus;
 	private final InfoButton hint_devStatus;
 	private final JButton btnDecreaseDevStatus;
-	private InfoButton ibtnDecrease;
+	private InfoButton infoBtnDecrease;
 	private final JButton btnIncreaseDevStatus;
-	private InfoButton ibtnIncrease;
+	private InfoButton infoBtnIncrease;
 
-	public SectionDevstatusCard(Section section, Chapter chapter) {
+	public SectionDevStatusCard(Section section, Chapter chapter) {
 		my_section = section;
 		my_parentChapter = chapter;
 		setLayout(new BorderLayout(5, 5));
 		
-		lblDevStatus = new SimpleLabel("Current Development Status: unkown");
+		lblDevStatus = new SimpleLabel("Current Development Status: unknown");
 		add(lblDevStatus, BorderLayout.WEST);
 		TransparentPanel panel_positionDevStatusHint = new TransparentPanel();
 		add(panel_positionDevStatusHint, BorderLayout.CENTER);
@@ -59,10 +59,10 @@ public class SectionDevstatusCard extends TransparentPanel {
 			btnDecreaseDevStatus.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() - 1));
 			btnIncreaseDevStatus.setEnabled(my_section.getDevelopmentStatus() < 4);
 			btnIncreaseDevStatus.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() + 1));
-			ibtnDecrease = new InfoButton(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() - 1));
-			ibtnIncrease = new InfoButton(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() + 1));
-			panel_changeDevStatus.add(ibtnDecrease, BorderLayout.WEST);
-			panel_changeDevStatus.add(ibtnIncrease, BorderLayout.EAST);
+			infoBtnDecrease = new InfoButton(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() - 1));
+			infoBtnIncrease = new InfoButton(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() + 1));
+			panel_changeDevStatus.add(infoBtnDecrease, BorderLayout.WEST);
+			panel_changeDevStatus.add(infoBtnIncrease, BorderLayout.EAST);
 		}
 	}
 	
@@ -73,8 +73,8 @@ public class SectionDevstatusCard extends TransparentPanel {
 		hint_devStatus.setToolTipText(my_section.getDevelopmentStatusDescription());
 		btnDecreaseDevStatus.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() - 1));
 		btnIncreaseDevStatus.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() + 1));
-		ibtnDecrease.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() - 1));
-		ibtnIncrease.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() + 1));
+		infoBtnDecrease.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() - 1));
+		infoBtnIncrease.setToolTipText(DevelopmentStatus.getDevStatDescription(my_section.getDevelopmentStatus() + 1));
 		btnDecreaseDevStatus.setEnabled(my_section.getDevelopmentStatus() >= 0);
 		btnIncreaseDevStatus.setEnabled(my_section.getDevelopmentStatus() < 4);
 		if(!UserSettings.getInstance().getTutorial().setDevelopmentStatus) {

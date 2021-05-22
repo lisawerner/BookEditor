@@ -40,15 +40,15 @@ public class Chapter extends SerializedObject {
 		return null;
 	}
 
-	public void moveSection(Section movesection, boolean moveUp) {
-		int index = my_sections.indexOf(movesection);
+	public void moveSection(Section moveSection, boolean moveUp) {
+		int index = my_sections.indexOf(moveSection);
 		my_sections.remove(index);
 		if(moveUp) {
 			index --;
 		} else {
 			index ++;
 		}
-		my_sections.add(index, movesection);
+		my_sections.add(index, moveSection);
 		Book.getInstance().save();
 	}
 

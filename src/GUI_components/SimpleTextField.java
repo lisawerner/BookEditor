@@ -5,15 +5,15 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
-public class SimpleTextfield extends JTextField{
+public class SimpleTextField extends JTextField{
 	private static final long serialVersionUID = 1L;
 	
-	public SimpleTextfield() {
+	public SimpleTextField() {
 		
 		changeTheme();
 	}
 	
-	public SimpleTextfield(String text) {
+	public SimpleTextField(String text) {
 		super(text);
 		
 		changeTheme();

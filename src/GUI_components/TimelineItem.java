@@ -20,8 +20,8 @@ public class TimelineItem extends TransparentPanel {
 	private final JPanel topRightGab;
 	private TransparentPanel panelOverBody;
 	
-	private String frontTag = "<html><font size=\"9\">";
-	private String backTag = "</size></html>";
+	private static final String FRONT_TAG = "<html><font size=\"9\">";
+	private static final String BACK_TAG = "</size></html>";
 
 	public TimelineItem(boolean leftPosition, String date, boolean isSpecific, boolean beforeChrist) {
 		setLayout(new BorderLayout(0, 0));
@@ -64,12 +64,12 @@ public class TimelineItem extends TransparentPanel {
 			add(lineContact, BorderLayout.EAST);
 			lineContact.add(contactArrow);
 			lineContact.add(contactDate);
-			contactArrow.setText(frontTag + "&#8680;" + backTag);
+			contactArrow.setText(FRONT_TAG + "&#8680;" + BACK_TAG);
 		} else {			
 			add(lineContact, BorderLayout.WEST);
 			lineContact.add(contactDate);
 			lineContact.add(contactArrow);
-			contactArrow.setText(frontTag + "&#8678;" + backTag);
+			contactArrow.setText(FRONT_TAG + "&#8678;" + BACK_TAG);
 		}
 		
 		TransparentPanel my_center = new TransparentPanel();
@@ -121,7 +121,7 @@ public class TimelineItem extends TransparentPanel {
 		changeTheme();
 	}
 	
-	public TimelineItem(boolean leftPosition, int gabHight) {
+	public TimelineItem(boolean leftPosition, int gabHeight) {
 		setLayout(new BorderLayout(0, 0));
 		
 		topRightGab = new JPanel();
@@ -130,7 +130,7 @@ public class TimelineItem extends TransparentPanel {
 		} else {			
 			add(topRightGab, BorderLayout.WEST);
 		}
-		Component topGab = Box.createRigidArea(new Dimension(58, gabHight));
+		Component topGab = Box.createRigidArea(new Dimension(58, gabHeight));
 		topRightGab.add(topGab);
 		
 		my_body = new TransparentPanel();
