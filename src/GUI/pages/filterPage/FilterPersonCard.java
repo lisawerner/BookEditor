@@ -1,31 +1,30 @@
 package GUI.pages.filterPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
-import book.Book;
-import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
+import GUI.sectionPage.SectionPage;
+import book.Book;
+import book.Section;
 import person.Person;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public class FilterPersonCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_listOfFilteredSections;
+	private final TransparentPanel panel_listOfFilteredSections;
 	
-	private ArrayList<Person> selectedPersons;
+	private final ArrayList<Person> selectedPersons;
 	private boolean selectAND;
 
 	public FilterPersonCard() {
 		setLayout(new BorderLayout(5, 5));
 		
-		selectedPersons = new ArrayList<Person>();
+		selectedPersons = new ArrayList<>();
 		selectAND = true;
 		
 		TransparentPanel panel_listOfPersons = new TransparentPanel();
@@ -48,9 +47,9 @@ public class FilterPersonCard extends TransparentPanel {
 		
 		
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
-			SimpleRadiobutton boxbtn_person = new SimpleRadiobutton(person.getInformation().getNickname());
-			panel_FilterSettings.add(boxbtn_person);
-			boxbtn_person.addActionListener(e -> addPersonToFilterlist(person, boxbtn_person.isSelected()));
+			SimpleRadiobutton boxButton_person = new SimpleRadiobutton(person.getInformation().getNickname());
+			panel_FilterSettings.add(boxButton_person);
+			boxButton_person.addActionListener(e -> addPersonToFilterList(person, boxButton_person.isSelected()));
 		}
 		
 		panel_listOfFilteredSections = new TransparentPanel();
@@ -64,7 +63,7 @@ public class FilterPersonCard extends TransparentPanel {
 		filterSectionsByPersons();
 	}
 	
-	private void addPersonToFilterlist(Person person, boolean add) {
+	private void addPersonToFilterList(Person person, boolean add) {
 		if(add) {
 			selectedPersons.add(person);
 		} else {

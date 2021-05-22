@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.MenuButton;
 import GUI.components.TransparentPanel;
 
-import java.awt.GridLayout;
+import java.awt.*;
 
 public class MainMenu extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

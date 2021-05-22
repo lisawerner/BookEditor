@@ -1,5 +1,7 @@
 package book;
 
+import GUI.theme.Theme;
+import global.FileManager;
 import global.ObjectID;
 import global.SerializedObject;
 import notes.GeneralNote;
@@ -10,9 +12,6 @@ import world.World;
 
 import java.util.ArrayList;
 
-import GUI.theme.Theme;
-import global.FileManager;
-
 public class Book extends SerializedObject {
 	
 	private static Book my_instance;
@@ -21,9 +20,9 @@ public class Book extends SerializedObject {
 	private String my_title;
 	private Content my_tableOfContent;
 	
-	private World my_world;
-	private Society my_society;
-	private Timeline my_timeline;
+	private final World my_world;
+	private final Society my_society;
+	private final Timeline my_timeline;
 	
 	private ArrayList<GeneralNote> my_notes;
 	
@@ -31,14 +30,14 @@ public class Book extends SerializedObject {
 	private Theme my_theme;
 
 	// About Print-Settings:
-	private boolean isWorktitle;
+	private boolean isWorkTitle;
 	private boolean printChapterName;	
 	
 	private Book() {
 		super();
 		
 		my_title = "";
-		isWorktitle = false;
+		isWorkTitle = false;
 		
 		my_filename = "empty.json";
 		
@@ -50,14 +49,14 @@ public class Book extends SerializedObject {
 		
 		my_timeline = new Timeline();
 		
-		my_notes = new ArrayList<GeneralNote>();
+		my_notes = new ArrayList<>();
 		
 		my_theme = null;
 	}
 	
-	public void createNewBook(String newTitle, boolean isNewTitleWorktitle) {
+	public void createNewBook(String newTitle, boolean isNewTitleWorkTitle) {
 		my_title = newTitle;
-		isWorktitle = isNewTitleWorktitle;
+		isWorkTitle = isNewTitleWorkTitle;
 		my_filename = newTitle + "_" + my_uID.getIDtoString().substring(0, 13) + ".json";
 		save();
 	}
@@ -86,11 +85,11 @@ public class Book extends SerializedObject {
 	}
 	
 	public boolean isWorkTitle() {
-		return isWorktitle;
+		return isWorkTitle;
 	}
 	
-	public void setIsWorkTitle(boolean currentTitleIsWorktitle){
-		isWorktitle = currentTitleIsWorktitle;
+	public void setIsWorkTitle(boolean currentTitleIsWorkTitle){
+		isWorkTitle = currentTitleIsWorkTitle;
 		save();
 	}
 	
@@ -108,21 +107,21 @@ public class Book extends SerializedObject {
 	}
 
 	public boolean exportToTXT() {
-		String book_text = my_title + "\n" + "\n";
+		StringBuilder book_text = new StringBuilder(my_title + "\n" + "\n");
 		int countChapters = 1;
 		for(Chapter chapter : my_tableOfContent.getChapters()) {			
-			book_text += "\n" +  "\n" + "*******************************************************************************" + "\n" ;
+			book_text.append("\n" + "\n" + "*******************************************************************************" + "\n");
 			if(printChapterName) {
-				book_text += "###" + chapter.getTitle() + "###" + "\n" + "\n";
+				book_text.append("###").append(chapter.getTitle()).append("###").append("\n").append("\n");
 			} else {
-				book_text += "Chapter " + countChapters + "\n" + "\n";
+				book_text.append("Chapter ").append(countChapters).append("\n").append("\n");
 				countChapters++;
 			}
 			for(Section section : chapter.getSections()) {
-				book_text += section.getText() + "\n" + "\n";
+				book_text.append(section.getText()).append("\n").append("\n");
 			}
 		}
-		return FileManager.exportTXTfile(my_title + ".txt", book_text);
+		return FileManager.exportTextFile(my_title + ".txt", book_text.toString());
 		
 	}
 	
@@ -167,14 +166,14 @@ public class Book extends SerializedObject {
 	}
 
 	public void addNote(GeneralNote generalNote) {
-		if(my_notes == null) {my_notes = new ArrayList<GeneralNote>();}
+		if(my_notes == null) {my_notes = new ArrayList<>();}
 		
 		my_notes.add(generalNote);
 		save();
 	}
 
 	public ArrayList<GeneralNote> getNotes() {
-		if(my_notes == null) {return new ArrayList<GeneralNote>();}
+		if(my_notes == null) {return new ArrayList<>();}
 		return my_notes;
 	}
 	

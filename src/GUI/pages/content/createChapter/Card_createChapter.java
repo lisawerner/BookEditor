@@ -1,22 +1,22 @@
 package GUI.pages.content.createChapter;
 
+import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.ComplexTextFieldSavable;
+import GUI.components.TransparentPanel;
 import book.Book;
 import book.Chapter;
-import GUI.components.ComplexeTextfieldSaveable;
-import GUI.components.TransparentPanel;
-import java.awt.BorderLayout;
 
-import GUI.bookeditorFrame.BookEditorFrame;
+import java.awt.*;
 
 public class Card_createChapter extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private ComplexeTextfieldSaveable txt_chapterTitle;
+	private final ComplexTextFieldSavable txt_chapterTitle;
 	
 	public Card_createChapter() {
 		setLayout(new BorderLayout(5, 5));
 		
-		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", "", this::createChapter);
+		txt_chapterTitle = new ComplexTextFieldSavable("Chapter Title:", "", this::createChapter);
 		add(txt_chapterTitle, BorderLayout.CENTER);
 	}
 

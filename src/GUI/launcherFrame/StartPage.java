@@ -1,34 +1,23 @@
 package GUI.launcherFrame;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import book.Book;
-
-import java.util.ArrayList;
-
 import global.FileManager;
 import global.UserSettings;
 
-import javax.swing.JRadioButton;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class StartPage extends JPanel {
 	private static final long serialVersionUID = 1L;
+
+	private static final int BUTTON_WIDTH = 200;
+	private static final int BUTTON_HEIGHT = 100;
 	
-	private int btn_width = 200;
-	private int btn_hight = 100;
-	
-	private JButton btnOpenBook;
+	private final JButton btnOpenBook;
 	private String selectedBook = "";
 
 	public StartPage() {
@@ -46,13 +35,13 @@ public class StartPage extends JPanel {
 		
 		boolean selectionDone = false;
 		ButtonGroup btngrBooks = new ButtonGroup();
-		ArrayList<LoadBookPair> booklist = FileManager.getFileList();
-		for(LoadBookPair book : booklist) {
+		ArrayList<LoadBookPair> bookList = FileManager.getFileList();
+		for(LoadBookPair book : bookList) {
 			
-			JRadioButton radiobtnNewCheckBox = new JRadioButton(book.getBookTitle());
-			panel_showExistingBooks.add(radiobtnNewCheckBox);
-			btngrBooks.add(radiobtnNewCheckBox);
-			radiobtnNewCheckBox.addActionListener(new ActionListener() {
+			JRadioButton radiobuttonNewCheckBox = new JRadioButton(book.getBookTitle());
+			panel_showExistingBooks.add(radiobuttonNewCheckBox);
+			btngrBooks.add(radiobuttonNewCheckBox);
+			radiobuttonNewCheckBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					selectedBook = book.getFilename();
 					//System.out.println("Select book:" + selectedBook);
@@ -61,24 +50,24 @@ public class StartPage extends JPanel {
 			});
 			
 			// Set selection of a book
-			if(booklist.size() == 1) {
+			if(bookList.size() == 1) {
 				// Select one and only
-				radiobtnNewCheckBox.setSelected(true);
+				radiobuttonNewCheckBox.setSelected(true);
 				selectedBook = book.getFilename();
 				selectionDone = true;
 			} else {
-				String lastOpenedBookfile = UserSettings.getInstance().getLastOpenedBookfile();
-				if("".equals(lastOpenedBookfile)) {
+				String lastOpenedBookFile = UserSettings.getInstance().getLastOpenedBookFile();
+				if("".equals(lastOpenedBookFile)) {
 					// Select any (=first) book					
 					if(!selectionDone) {
-						radiobtnNewCheckBox.setSelected(true);
+						radiobuttonNewCheckBox.setSelected(true);
 						selectedBook = book.getFilename();
 						selectionDone = true;
 					}
 				} else {
 					// Select book which was last time opened
-					if(lastOpenedBookfile.equals(book.getFilename())) {
-						radiobtnNewCheckBox.setSelected(true);
+					if(lastOpenedBookFile.equals(book.getFilename())) {
+						radiobuttonNewCheckBox.setSelected(true);
 						selectedBook = book.getFilename();
 						selectionDone = true;
 					}
@@ -99,27 +88,21 @@ public class StartPage extends JPanel {
 
 		btnOpenBook = new JButton("Open Book");
 		panel_buttons.add(btnOpenBook);
-		btnOpenBook.setEnabled(!booklist.isEmpty() && !selectedBook.equals(""));
-		btnOpenBook.setSize(new Dimension(btn_width, btn_hight));
-		btnOpenBook.setPreferredSize(new Dimension(btn_width, btn_hight));
-		btnOpenBook.setMaximumSize(new Dimension(btn_width, btn_hight));
+		btnOpenBook.setEnabled(!bookList.isEmpty() && !selectedBook.equals(""));
+		btnOpenBook.setSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+		btnOpenBook.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+		btnOpenBook.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		
 		JButton btnCreateNewBook = new JButton("Create new Book");
 		panel_buttons.add(btnCreateNewBook);
-		btnCreateNewBook.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				StartFrame.getInstance().switchBody(new CreateBookPage());
-			}
-		});
-		btnCreateNewBook.setSize(new Dimension(btn_width, btn_hight));
-		btnCreateNewBook.setPreferredSize(new Dimension(btn_width, btn_hight));
-		btnCreateNewBook.setMaximumSize(new Dimension(btn_width, btn_hight));
-		btnOpenBook.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Book.getInstance().loadFromFile(selectedBook);
-				UserSettings.getInstance().setLastOpenedBookfile(selectedBook);
-				StartFrame.getInstance().openBookEditor();
-			}
+		btnCreateNewBook.addActionListener(e -> StartFrame.getInstance().switchBody(new CreateBookPage()));
+		btnCreateNewBook.setSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+		btnCreateNewBook.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+		btnCreateNewBook.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+		btnOpenBook.addActionListener(e -> {
+			Book.getInstance().loadFromFile(selectedBook);
+			UserSettings.getInstance().setLastOpenedBookFile(selectedBook);
+			StartFrame.getInstance().openBookEditor();
 		});
 		
 	}

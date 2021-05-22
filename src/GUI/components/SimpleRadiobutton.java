@@ -1,9 +1,9 @@
 package GUI.components;
 
-import javax.swing.JRadioButton;
-
 import GUI.theme.ThemeList;
 import global.UserSettings;
+
+import javax.swing.*;
 
 public class SimpleRadiobutton extends JRadioButton {
 	private static final long serialVersionUID = 1L;
@@ -26,8 +26,6 @@ public class SimpleRadiobutton extends JRadioButton {
 			}
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 

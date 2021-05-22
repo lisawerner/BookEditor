@@ -1,6 +1,6 @@
 package GUI.theme;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class Theme {
 	
@@ -24,10 +24,10 @@ public class Theme {
 	public Color cardTitleFont;
 	public Color cardTitleBack;
 	
-	//FontColor for Radiobuttons, LinkButton, Checkbox
+	//FontColor for RadioButtons, LinkButton, Checkbox
 	public Color actionFontColor; 
 	public Color darkActionFontColor;
-	//BorderColor for Textfields, Textareas...
+	//BorderColor for TextFields, TextAreas...
 	public Color actionBorderColor;
 	//FontColor for SimpleLabel
 	public Color simpleTextFontColor;

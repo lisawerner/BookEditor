@@ -1,15 +1,15 @@
 package GUI.frame.menu;
 
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.FrameSubmenu;
+import GUI.components.MenuButton;
+import GUI.components.MenuListButton;
 import GUI.pages.content.Page_sortContent;
 import GUI.pages.content.settings.Page_ContentSettings;
 import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.filterPage.FilterChaptersPage;
 import book.Book;
 import book.Chapter;
-import GUI.components.FrameSubmenu;
-import GUI.components.MenuButton;
-import GUI.components.MenuListButton;
 
 public class ContentMenu extends FrameSubmenu {
 	private static final long serialVersionUID = 1L;
@@ -24,12 +24,12 @@ public class ContentMenu extends FrameSubmenu {
 		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {
 			addListEntry(new MenuListButton(chapter.getTitle(), e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter))));
 			
-//			TODO: If BookSetting is selected for huge-frame, then also show all Sections at chapterlist
+//			TODO: If BookSetting is selected for huge-frame, then also show all Sections at chapterList
 //			for(Section section : Book.getInstance().getSectionList().getSections()) {
 //				String name = section.getName();
 //				if(name.length() > 17) {
 //					name = name.substring(0,15) + "...";
-//					//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+//					//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-space-length instead of letter-count
 //				}
 //				String my_text = "";
 //				if(section.isUnsorted()) {			

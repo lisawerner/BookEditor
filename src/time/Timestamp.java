@@ -11,7 +11,7 @@ import global.SerializedObject;
 
 public class Timestamp extends SerializedObject{
 	
-	// Achtung: Was ist mit Geschichten/Welten, die eine andere Zeitrechnung haben?
+	// Attention: What happen with stories/worlds with another calendar then gregorian?
 	
 	//General attributes
 	private ObjectID my_section;
@@ -20,7 +20,7 @@ public class Timestamp extends SerializedObject{
 	private LocalDate my_date;
 	private boolean hasConcreteYear;
 	
-	//Attribut to generate an unspecific timestamp which relates to another timestamp
+	//Attribute to generate an unspecific timestamp which relates to another timestamp
 	private RelativeDate my_relativeDate;
 	
 	public Timestamp(ObjectID sectionID, int specificDay, int specificMonth, int specificYear, boolean isAnnoDomini, boolean setConcreteYear) {

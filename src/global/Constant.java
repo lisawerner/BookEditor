@@ -2,6 +2,6 @@ package global;
 
 public class Constant {
 	
-	public final static String editorname = "Story Telling";
+	public final static String EDITOR_NAME = "Story Telling";
 
 }

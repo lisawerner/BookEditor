@@ -1,16 +1,12 @@
 package GUI.components;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+import javax.swing.*;
+import java.awt.*;
 
 public class FrameSubmenu extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_btnList;
+	private final TransparentPanel panel_btnList;
 	private TransparentPanel panel_listBody;
 
 	/**
@@ -33,7 +29,7 @@ public class FrameSubmenu extends TransparentPanel {
 		
 		panel_header.add(new MenuSeparator(), BorderLayout.NORTH);
 		panel_header.add(new MenuSeparator(), BorderLayout.CENTER);
-		panel_header.add(new MenuSubheader(submenuTitle), BorderLayout.SOUTH);
+		panel_header.add(new MenuSubHeader(submenuTitle), BorderLayout.SOUTH);
 		
 		//*****************************************************************************
 		TransparentPanel panel_tableOfContent = new TransparentPanel();
@@ -85,7 +81,7 @@ public class FrameSubmenu extends TransparentPanel {
 		
 		panel_header.add(new MenuSeparator(), BorderLayout.NORTH);
 		panel_header.add(new MenuSeparator(), BorderLayout.CENTER);
-		panel_header.add(new MenuSubheader(submenuTitle), BorderLayout.SOUTH);
+		panel_header.add(new MenuSubHeader(submenuTitle), BorderLayout.SOUTH);
 		
 		//*****************************************************************************
 

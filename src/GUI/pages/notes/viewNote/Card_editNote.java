@@ -1,20 +1,17 @@
 package GUI.pages.notes.viewNote;
 
-import GUI.components.FormButton;
-import GUI.components.FormTextarea;
-import GUI.components.FormTextfield;
-import GUI.components.SimpleFormular;
-import GUI.components.TransparentPanel;
+import GUI.components.*;
 import notes.GeneralNote;
-import java.awt.BorderLayout;
+
+import java.awt.*;
 
 public class Card_editNote extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private GeneralNote my_note;
+	private final GeneralNote my_note;
 	
-	private FormTextfield txt_name;
-	private FormTextarea txt_noteContent;
+	private final FormTextField txt_name;
+	private final FormTextarea txt_noteContent;
 
 	public Card_editNote(GeneralNote givenNote) {
 		my_note = givenNote;
@@ -22,13 +19,13 @@ public class Card_editNote extends TransparentPanel {
 		
 		FormButton btnSaveNote = new FormButton("Save Note", e -> save());
 		add(btnSaveNote, BorderLayout.SOUTH);
-		SimpleFormular saveForm = new SimpleFormular(this::save, btnSaveNote);
+		SimpleForm saveForm = new SimpleForm(this::save, btnSaveNote);
 		
 		TransparentPanel panel_noteName = new TransparentPanel();
 		add(panel_noteName, BorderLayout.NORTH);
 		panel_noteName.setLayout(new BorderLayout(5, 5));
 		
-		txt_name = new FormTextfield("Note name:", my_note.getName(), true);
+		txt_name = new FormTextField("Note name:", my_note.getName(), true);
 		panel_noteName.add(txt_name, BorderLayout.CENTER);
 		saveForm.addInput(txt_name);
 		

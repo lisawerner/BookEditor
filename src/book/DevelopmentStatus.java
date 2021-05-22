@@ -4,8 +4,6 @@ public class DevelopmentStatus {
 	
 	public static String getDevStatus(int id) {
 		switch(id) {
-		case -1:
-			return "unknown";
 		case 0:
 			return "Empty";
 		case 1:
@@ -16,15 +14,15 @@ public class DevelopmentStatus {
 			return "TODO: correct Text";
 		case 4:
 			return "Finish";
+		case -1:
+			// As default
 		default:
-			return "unkown";
+			return "unknown";
 		}
 	}
 	
 	public static String getDevStatDescription(int id) {
 		switch(id) {
-		case -1:
-			return "Development Status is not set yet.";
 		case 0:
 			return "This Section is only a placeholder and there are nor information inside at the moment.";
 		case 1:
@@ -35,6 +33,8 @@ public class DevelopmentStatus {
 			return "Text is finished, but should be proofread.";
 		case 4:
 			return "Text is finished structured and proofread and can be printed as it is.";
+		case -1:
+			// As default
 		default:
 			return "Development Status is not set yet.";
 		}

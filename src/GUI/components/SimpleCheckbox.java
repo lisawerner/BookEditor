@@ -1,9 +1,9 @@
 package GUI.components;
 
-import javax.swing.JCheckBox;
-
 import GUI.theme.ThemeList;
 import global.UserSettings;
+
+import javax.swing.*;
 
 public class SimpleCheckbox extends JCheckBox {
 	private static final long serialVersionUID = 1L;
@@ -26,9 +26,8 @@ public class SimpleCheckbox extends JCheckBox {
 			}
 			revalidate();
 			repaint();
-		} else {
 		}
 	}
 	
-	//TODO: add to all Active-Components (Textfield, Textarea, Radiobutton, Checkbox, Buttons, Comboboxes, ...) warning(true/false) and change Border to Red or Foreground to Red
+	//TODO: add to all Active-Components (TextField, Textarea, Radiobutton, Checkbox, Buttons, ComboBoxes, ...) warning(true/false) and change Border to Red or Foreground to Red
 }

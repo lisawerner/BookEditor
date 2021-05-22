@@ -1,23 +1,16 @@
 package GUI.components;
 
-import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import GUI.theme.ThemeList;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InfoButton extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel my_label;
+	private final JLabel my_label;
 	
 	private boolean isMenuInfoHint;
 	
@@ -58,7 +51,7 @@ public class InfoButton extends JPanel {
 				setForeground(Color.WHITE);
 				my_label.setForeground(Color.WHITE);
 			} else {				
-				//TODO: Die Farbe geht so noch gar nicht... bei allen Themes hell und dunkel o.O
+				//TODO: This color is very ugly... It is ugly in all themes and with light and dark mode o.O
 				setForeground(ThemeList.currentTheme.cardTitleFont);
 				my_label.setForeground(ThemeList.currentTheme.cardTitleFont);
 			}

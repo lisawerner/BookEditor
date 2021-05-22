@@ -8,8 +8,8 @@ import GUI.components.WrapLayout;
 import book.Book;
 import person.Person;
 
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_PersonImportance extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

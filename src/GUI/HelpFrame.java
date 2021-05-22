@@ -1,26 +1,15 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import global.UserSettings;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class HelpFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
-	private JPanel contentPane;
-	
-	private JLabel lblRestarttutorialdone;
+
+	private final JLabel lblRestartTutorialDone;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -37,7 +26,7 @@ public class HelpFrame extends JFrame {
 
 	public HelpFrame() {
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(20, 20));
 		setContentPane(contentPane);
@@ -55,20 +44,20 @@ public class HelpFrame extends JFrame {
 		btnRestartTutorial.addActionListener(e -> restartTutorial());
 		panel.add(btnRestartTutorial);
 		
-		lblRestarttutorialdone = new JLabel("  ");
-		lblRestarttutorialdone.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblRestarttutorialdone);
+		lblRestartTutorialDone = new JLabel("  ");
+		lblRestartTutorialDone.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblRestartTutorialDone);
 		
-		JLabel lblYouCanGet = new JLabel("You can get more help under: https://..."); //TODO: Link hier einfügen!
+		JLabel lblYouCanGet = new JLabel("You can get more help under: https://..."); //TODO: Add link here!
 		lblYouCanGet.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblYouCanGet);
 		
-		//TODO: Was soll noch auf die Hilfe?
+		//TODO: What else could be part of the help?
 	}
 	
 	private void restartTutorial() {
 		UserSettings.getInstance().restartTutorial();
-		lblRestarttutorialdone.setText("Tutorial is restarted now");
+		lblRestartTutorialDone.setText("Tutorial is restarted now");
 	}
 
 }

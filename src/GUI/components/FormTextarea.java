@@ -1,24 +1,24 @@
 package GUI.components;
-import java.awt.BorderLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class FormTextarea extends FormInput {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleLabel lblNamelabel;
+	private final SimpleLabel lblNameLabel;
 	
-	private SimpleTextarea textArea;
+	private final SimpleTextarea textArea;
 	private String originalText;
 
 	public FormTextarea(String name, String text) {
 		setLayout(new BorderLayout(2, 2));
 		
-		lblNamelabel = new SimpleLabel(name);
-		add(lblNamelabel, BorderLayout.NORTH);
+		lblNameLabel = new SimpleLabel(name);
+		add(lblNameLabel, BorderLayout.NORTH);
 		
 		textArea = new SimpleTextarea(text);
 		add(textArea, BorderLayout.CENTER);
@@ -57,14 +57,14 @@ public class FormTextarea extends FormInput {
 	
 	protected void checkChanges(){
 		boolean hasChanges = !originalText.equals(textArea.getText());
-		lblNamelabel.setWarning(hasChanges);
+		lblNameLabel.setWarning(hasChanges);
 		textArea.setWarning(hasChanges);
 	}
 	
 	@Override
 	protected void actionWasCalled(){
 		textArea.setWarning(false);
-		lblNamelabel.setWarning(false);
+		lblNameLabel.setWarning(false);
 		originalText = textArea.getText();
 	}
 	

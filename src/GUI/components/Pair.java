@@ -1,10 +1,9 @@
 package GUI.components;
 
 public class Pair {
-	
 
-	private String label;
-    private int value;
+	private final String label;
+    private final int value;
 
     public Pair(String label, int value) {
         this.value = value;

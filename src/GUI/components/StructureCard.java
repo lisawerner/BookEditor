@@ -1,20 +1,16 @@
 package GUI.components;
 
-import javax.swing.BorderFactory;
-import javax.swing.border.EtchedBorder;
-
 import GUI.theme.ThemeList;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import java.awt.*;
 
 public class StructureCard extends Card {
 	private static final long serialVersionUID = 1L;
 	
-	private String frontTag = "<html><div style='text-align: left;'><font size=\"4\">     ";
-	private String backTag = "</size></div></html>";
+	private static final String FRONT_TAG = "<html><div style='text-align: left;'><font size=\"4\">     ";
+	private static final String BACK_TAG = "</size></div></html>";
 	private JLabel lblCardTitle;
 	private TransparentPanel my_body;
 	
@@ -37,7 +33,7 @@ public class StructureCard extends Card {
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		add(verticalStrut_1, BorderLayout.EAST);
 		
-		lblCardTitle = new JLabel(frontTag + cardTitle + backTag);
+		lblCardTitle = new JLabel(FRONT_TAG + cardTitle + BACK_TAG);
 		add(lblCardTitle, BorderLayout.NORTH);
 		
 		my_body = new TransparentPanel();

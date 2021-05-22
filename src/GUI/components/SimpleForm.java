@@ -2,15 +2,15 @@ package GUI.components;
 
 import java.util.ArrayList;
 
-public class SimpleFormular {
+public class SimpleForm {
 	
-	private ArrayList<FormInput> my_inputs;
+	private final ArrayList<FormInput> my_inputs;
 	
-	private FormButton btnSave;
-	private Runnable saveFunction;
+	private final FormButton btnSave;
+	private final Runnable saveFunction;
 	
-	public SimpleFormular(Runnable newSaveFunction, FormButton newSaveButton){
-		my_inputs = new ArrayList<FormInput>();
+	public SimpleForm(Runnable newSaveFunction, FormButton newSaveButton){
+		my_inputs = new ArrayList<>();
 		saveFunction = newSaveFunction;
 
 		btnSave = newSaveButton;

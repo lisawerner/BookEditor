@@ -1,12 +1,10 @@
 package GUI.components;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import javax.swing.JTextArea;
-
 import GUI.theme.ThemeList;
 import global.UserSettings;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class SimpleTextarea extends JTextArea{
 	private static final long serialVersionUID = 1L;
@@ -39,7 +37,7 @@ public class SimpleTextarea extends JTextArea{
 	}
 
 	public void setWarning(boolean hasChanges) {
-		//TODO: add to all Active-Components (Textfield, Textarea, Radiobutton, Checkbox, Buttons, Comboboxes, ...) warning(true/false) and change Border to Red or Foreground to Red
+		//TODO: add to all Active-Components (TextField, Textarea, Radiobutton, Checkbox, Buttons, ComboBoxes, ...) warning(true/false) and change Border to Red or Foreground to Red
 	}
 	
 }

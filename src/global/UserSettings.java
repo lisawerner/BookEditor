@@ -3,23 +3,23 @@ package global;
 public class UserSettings {
 	
 	private static UserSettings my_instance;
-	private final static String my_filename = "usersettings.json";
+	public final static String USER_SETTINGS_FILE_NAME = "user_settings.json";
 	
 	private Tutorial user_tutorial;
 	private boolean bigScreenSize;
 	private int textareaFontSize;
-	private String lastOpenedBookfile;
+	private String lastOpenedBookFile;
 	
 	private UserSettings() {
 		user_tutorial = new Tutorial();
 		bigScreenSize = false;
 		textareaFontSize = 12;
-		lastOpenedBookfile = "";
+		lastOpenedBookFile = "";
 	}
 	
 	public static UserSettings getInstance() {
 		if(my_instance == null) {
-			my_instance = (UserSettings) FileManager.loadJSONFile(my_filename, UserSettings.class);
+			my_instance = (UserSettings) FileManager.loadJSONFile(USER_SETTINGS_FILE_NAME, UserSettings.class);
 		}
 		if(my_instance == null) {
 			my_instance = new UserSettings();
@@ -28,7 +28,7 @@ public class UserSettings {
 	}
 	
 	public void save() {
-		FileManager.saveJSONFile(my_filename, this);
+		FileManager.saveJSONFile(USER_SETTINGS_FILE_NAME, this);
 	}
 	
 	public Tutorial getTutorial() {
@@ -58,12 +58,12 @@ public class UserSettings {
 		save();
 	}
 	
-	public String getLastOpenedBookfile() {
-		return lastOpenedBookfile;
+	public String getLastOpenedBookFile() {
+		return lastOpenedBookFile;
 	}
 
-	public void setLastOpenedBookfile(String selectedBook) {
-		lastOpenedBookfile = selectedBook;
+	public void setLastOpenedBookFile(String selectedBook) {
+		lastOpenedBookFile = selectedBook;
 		save();
 	}
 }

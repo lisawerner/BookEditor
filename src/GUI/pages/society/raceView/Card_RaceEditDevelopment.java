@@ -1,35 +1,27 @@
 package GUI.pages.society.raceView;
 
-import book.Book;
-import global.ObjectID;
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.ComboItem;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import book.Book;
+import global.ObjectID;
 import person.Race;
-import javax.swing.BoxLayout;
-import javax.swing.JSeparator;
 
-import GUI.bookeditorFrame.BookEditorFrame;
-
-import java.awt.GridLayout;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_RaceEditDevelopment extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Race my_race;
+	private final Race my_race;
 	
-	private JComboBox<ComboItem> cmbox_listOfAscendants;
-	private TransparentPanel panel_showAscendantInformation;
+	private final JComboBox<ComboItem> cmbox_listOfAscendants;
+	private final TransparentPanel panel_showAscendantInformation;
 	
-	private JComboBox<ComboItem> cmbox_possibleParentRaces;
-	private TransparentPanel panel_allInfos;
+	private final JComboBox<ComboItem> cmbox_possibleParentRaces;
+	private final TransparentPanel panel_allInfo;
 	
 	public Card_RaceEditDevelopment(Race givenRace) {
 		my_race = givenRace;
@@ -40,15 +32,15 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		add(panel_ownAscendants);
 		panel_ownAscendants.setLayout(new BoxLayout(panel_ownAscendants, BoxLayout.PAGE_AXIS));
 		
-		TransparentPanel panel_showAcsendant = new TransparentPanel();
-		panel_ownAscendants.add(panel_showAcsendant);
-		panel_showAcsendant.setLayout(new GridLayout(0, 1, 0, 0));
+		TransparentPanel panel_showAscendant = new TransparentPanel();
+		panel_ownAscendants.add(panel_showAscendant);
+		panel_showAscendant.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		SimpleLabel lblAscendantinformation = new SimpleLabel("Ascendant-Information: ");
-		panel_showAcsendant.add(lblAscendantinformation);
+		SimpleLabel lblAscendantInformation = new SimpleLabel("Ascendant-Information: ");
+		panel_showAscendant.add(lblAscendantInformation);
 		
 		panel_showAscendantInformation = new TransparentPanel();
-		panel_showAcsendant.add(panel_showAscendantInformation);
+		panel_showAscendant.add(panel_showAscendantInformation);
 		
 		TransparentPanel panel_addAscendants = new TransparentPanel();
 		panel_ownAscendants.add(panel_addAscendants);
@@ -65,7 +57,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		panel_addSingleAscendant.add(panel_selectNewAscendant);
 		panel_selectNewAscendant.setLayout(new BorderLayout(5, 5));
 		
-		cmbox_listOfAscendants = new JComboBox<ComboItem>();
+		cmbox_listOfAscendants = new JComboBox<>();
 		cmbox_listOfAscendants.setEnabled(my_race.getParentRace() == null);
 		panel_selectNewAscendant.add(cmbox_listOfAscendants, BorderLayout.CENTER);
 		for(Race race : my_race.getPossibleAscendants()) {
@@ -93,28 +85,28 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		add(panel_ownDescendants);
 		panel_ownDescendants.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		SimpleLabel lblDescendantinformation = new SimpleLabel("List of Descendant:");
-		panel_ownDescendants.add(lblDescendantinformation);
+		SimpleLabel lblDescendantInformation = new SimpleLabel("List of Descendant:");
+		panel_ownDescendants.add(lblDescendantInformation);
 		
 		TransparentPanel panel_DescendantList = new TransparentPanel();
 		panel_ownDescendants.add(panel_DescendantList);
 		panel_DescendantList.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		TransparentPanel panel_crazyDescendantStrucutrePanel = new TransparentPanel();
-		panel_DescendantList.add(panel_crazyDescendantStrucutrePanel);
-		panel_crazyDescendantStrucutrePanel.setLayout(new BoxLayout(panel_crazyDescendantStrucutrePanel, BoxLayout.X_AXIS));
+		TransparentPanel panel_crazyDescendantStructurePanel = new TransparentPanel();
+		panel_DescendantList.add(panel_crazyDescendantStructurePanel);
+		panel_crazyDescendantStructurePanel.setLayout(new BoxLayout(panel_crazyDescendantStructurePanel, BoxLayout.X_AXIS));
 		
 		for(ObjectID descendantID : my_race.getDescendants()) {
 			Race descendant = Book.getInstance().getSociety().getRace(descendantID);
 			
-			panel_crazyDescendantStrucutrePanel.add(new LinkButton(descendant.getName(),
+			panel_crazyDescendantStructurePanel.add(new LinkButton(descendant.getName(),
 					e -> BookEditorFrame.getInstance().openRacePage(descendant)));
-			panel_crazyDescendantStrucutrePanel.add(new SimpleLabel("; "));
+			panel_crazyDescendantStructurePanel.add(new SimpleLabel("; "));
 		}
 		
 		if(my_race.getDescendants().isEmpty()) {
 			SimpleLabel label = new SimpleLabel("     '" + my_race.getName() + "' has no descendants!");
-			panel_crazyDescendantStrucutrePanel.add(label);
+			panel_crazyDescendantStructurePanel.add(label);
 		}
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
@@ -123,24 +115,24 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		JSeparator separator_1 = new JSeparator();
 		add(separator_1);
 		
-		TransparentPanel panel_subkategories = new TransparentPanel();
-		add(panel_subkategories);
-		panel_subkategories.setLayout(new GridLayout(0, 1, 5, 5));
+		TransparentPanel panel_subCategories = new TransparentPanel();
+		add(panel_subCategories);
+		panel_subCategories.setLayout(new GridLayout(0, 1, 5, 5));
 		
-		SimpleLabel lblSubkategoryinformation = new SimpleLabel("Subtype Information:");
-		panel_subkategories.add(lblSubkategoryinformation);
+		SimpleLabel lblSubCategoryInformation = new SimpleLabel("Subtype Information:");
+		panel_subCategories.add(lblSubCategoryInformation);
 		
-		panel_allInfos = new TransparentPanel();
-		panel_subkategories.add(panel_allInfos);
+		panel_allInfo = new TransparentPanel();
+		panel_subCategories.add(panel_allInfo);
 		
 
 		
 		TransparentPanel panel_setParentType = new TransparentPanel();
-		panel_subkategories.add(panel_setParentType);
+		panel_subCategories.add(panel_setParentType);
 		panel_setParentType.setLayout(new BorderLayout(5, 5));
 		
 		
-		SimpleLabel lblSetARace = new SimpleLabel("Set a race as kategory parent for this race: ");
+		SimpleLabel lblSetARace = new SimpleLabel("Set a race as category parent for this race: ");
 		panel_setParentType.add(lblSetARace, BorderLayout.NORTH);
 		lblSetARace.setEnabled(my_race.getSubtypes().isEmpty());
 		
@@ -149,7 +141,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		btnSetParentRace.addActionListener(e -> setParentType());
 		btnSetParentRace.setEnabled(my_race.getSubtypes().isEmpty());
 		
-		cmbox_possibleParentRaces = new JComboBox<ComboItem>();
+		cmbox_possibleParentRaces = new JComboBox<>();
 		panel_setParentType.add(cmbox_possibleParentRaces, BorderLayout.CENTER);
 		for(Race currentRace : my_race.getPossibleParents()) {
 			cmbox_possibleParentRaces.addItem(new ComboItem(currentRace.getName(), currentRace.getID()));
@@ -192,13 +184,13 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 	}
 	
 	private void showParentType(){
-		panel_allInfos.removeAll();
+		panel_allInfo.removeAll();
 		
 		if(!my_race.getSubtypes().isEmpty()) {
-			panel_allInfos.add(new SimpleLabel("Has Subtypes: "));
+			panel_allInfo.add(new SimpleLabel("Has Subtypes: "));
 			for(ObjectID childID : my_race.getSubtypes()) {			
 				TransparentPanel panel_children = new TransparentPanel();
-				panel_allInfos.add(panel_children);
+				panel_allInfo.add(panel_children);
 				panel_children.setLayout(new BoxLayout(panel_children, BoxLayout.X_AXIS));
 				
 				Race child = Book.getInstance().getSociety().getRace(childID);
@@ -210,7 +202,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		
 		if(my_race.getParentRace() != null) {			
 			TransparentPanel panel_parentType = new TransparentPanel();
-			panel_allInfos.add(panel_parentType);
+			panel_allInfo.add(panel_parentType);
 			panel_parentType.setLayout(new BoxLayout(panel_parentType, BoxLayout.X_AXIS));
 			
 			SimpleLabel lblIsSubtypeOf = new SimpleLabel("Is Subtype of: ");
@@ -221,8 +213,8 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 					e -> BookEditorFrame.getInstance().openRacePage(parent)));
 		}
 		
-		panel_allInfos.revalidate();
-		panel_allInfos.repaint();
+		panel_allInfo.revalidate();
+		panel_allInfo.repaint();
 	}
 
 	private void setAscendant() {

@@ -13,14 +13,14 @@ import world.Place;
 
 public class Section extends SerializedObject {
 	
-	private ObjectID my_parentChapter;
+	private final ObjectID my_parentChapter;
 	
 	//Text and Structure
 	private String my_name;
 	private String my_text;
 	
-	//Tagged Informations
-	private ArrayList<Tag> my_tags; //TODO: Persönlich/Privat Tags die von den Nutzern spezifisch angelegt wurden
+	//Tagged Information
+	private ArrayList<Tag> my_tags; //TODO: User can create specific personal/Privat Tags
 	private ArrayList<Relationship> my_relationshipSwitches;
 	private ObjectID my_timestamp;
 	private int my_devStatus;
@@ -33,8 +33,8 @@ public class Section extends SerializedObject {
 		my_name = newName;
 		my_text = "";
 		
-		my_tags = new ArrayList<Tag>();
-		my_relationshipSwitches = new ArrayList<Relationship>();
+		my_tags = new ArrayList<>();
+		my_relationshipSwitches = new ArrayList<>();
 		my_timestamp = null;
 		my_devStatus = -1;
 		my_notes = "";
@@ -46,8 +46,8 @@ public class Section extends SerializedObject {
 	}
 	
 	public void removeTag(ObjectID tagID) {
-		if(my_tags == null) {my_tags = new ArrayList<Tag>();}
-		ArrayList<Tag> newList = new ArrayList<Tag>();
+		if(my_tags == null) {my_tags = new ArrayList<>();}
+		ArrayList<Tag> newList = new ArrayList<>();
 		for(Tag tag : my_tags) {
 			if(!tag.getRefID().getIDtoString().equals(tagID.getIDtoString())) {
 				newList.add(tag);
@@ -57,13 +57,13 @@ public class Section extends SerializedObject {
 	}
 	
 	public void addTag(Tag tag) {
-		if(my_tags == null) {my_tags = new ArrayList<Tag>();}
+		if(my_tags == null) {my_tags = new ArrayList<>();}
 		my_tags.add(tag);
 	}
 	
 	public ArrayList<String> getTagsToString(){
-		if(my_tags == null) {return new ArrayList<String>();}
-		ArrayList<String> stringList = new ArrayList<String>();
+		if(my_tags == null) {return new ArrayList<>();}
+		ArrayList<String> stringList = new ArrayList<>();
 		for(Tag tag : my_tags) {
 			if(tag.getType().equals("person.Person")) {
 				stringList.add(Book.getInstance().getSociety().getPerson(tag.getRefID()).getInformation().getNickname());
@@ -75,17 +75,17 @@ public class Section extends SerializedObject {
 		return stringList;
 	}
 	
-	private List<Tag> getTagsByTagtype(String tagType){
-		if(my_tags == null) {return new ArrayList<Tag>();}
+	private List<Tag> getTagsByTagType(String tagType){
+		if(my_tags == null) {return new ArrayList<>();}
 		return my_tags.stream().filter(tag -> tag.getType().equals(tagType)).collect(Collectors.toList());
 	}
 	
 	public List<Person> getPersonByTag(){
-		return getTagsByTagtype("person.Person").stream().map(tag -> Book.getInstance().getSociety().getPerson(tag.getRefID())).collect(Collectors.toList());
+		return getTagsByTagType("person.Person").stream().map(tag -> Book.getInstance().getSociety().getPerson(tag.getRefID())).collect(Collectors.toList());
 	}
 	
-	public List<Place> getPelaceByTag(){
-		return getTagsByTagtype("world.Place").stream().map(tag -> Book.getInstance().getWorld().getPlace(tag.getRefID())).collect(Collectors.toList());
+	public List<Place> getPlaceByTag(){
+		return getTagsByTagType("world.Place").stream().map(tag -> Book.getInstance().getWorld().getPlace(tag.getRefID())).collect(Collectors.toList());
 	}
 	
 	public String getName() {
@@ -143,14 +143,14 @@ public class Section extends SerializedObject {
 	}
 
 	public void addRelationship(Relationship newRelationship) {
-		if(my_relationshipSwitches == null) {my_relationshipSwitches = new ArrayList<Relationship>();}
+		if(my_relationshipSwitches == null) {my_relationshipSwitches = new ArrayList<>();}
 		my_relationshipSwitches.add(newRelationship);
 
 		Book.getInstance().save();
 	}
 
 	public ArrayList<Relationship> getRelationships() {
-		if(my_relationshipSwitches == null) {return new ArrayList<Relationship>();}
+		if(my_relationshipSwitches == null) {return new ArrayList<>();}
 		return my_relationshipSwitches;
 	}
 	
@@ -206,10 +206,10 @@ public class Section extends SerializedObject {
 	}
 	
 	public void removeRelationship(Person person) {
-		ArrayList<Relationship> removeThisRelationships = new ArrayList<Relationship>();
-		for(Relationship currentRelship : my_relationshipSwitches) {
-			if(currentRelship.getPersonA().equals(person.getID()) || currentRelship.getPersonB().equals(person.getID())) {
-				removeThisRelationships.add(currentRelship);
+		ArrayList<Relationship> removeThisRelationships = new ArrayList<>();
+		for(Relationship currentRelationship : my_relationshipSwitches) {
+			if(currentRelationship.getPersonA().equals(person.getID()) || currentRelationship.getPersonB().equals(person.getID())) {
+				removeThisRelationships.add(currentRelationship);
 			}
 		}
 		for(Relationship deleteThis : removeThisRelationships) {

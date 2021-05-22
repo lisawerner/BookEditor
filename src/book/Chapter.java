@@ -8,13 +8,13 @@ import global.SerializedObject;
 public class Chapter extends SerializedObject {
 
 	private String my_name;
-	private ArrayList<Section> my_sections;
+	private final ArrayList<Section> my_sections;
 	
 	public Chapter(String newName) {
 		super();
 		
 		my_name = newName;
-		my_sections = new ArrayList<Section>();
+		my_sections = new ArrayList<>();
 	}
 	
 	public void addSection(Section newSection) {
@@ -44,15 +44,15 @@ public class Chapter extends SerializedObject {
 		return null;
 	}
 
-	public void moveSection(Section movesection, boolean moveUp) {
-		int index = my_sections.indexOf(movesection);
+	public void moveSection(Section moveSection, boolean moveUp) {
+		int index = my_sections.indexOf(moveSection);
 		my_sections.remove(index);
 		if(moveUp) {
 			index --;
 		} else {
 			index ++;
 		}
-		my_sections.add(index, movesection);
+		my_sections.add(index, moveSection);
 		Book.getInstance().save();
 	}
 

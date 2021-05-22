@@ -1,27 +1,23 @@
 package GUI.sectionChangePage;
 
-import book.Book;
-import book.Chapter;
-import book.Section;
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-
-import java.util.ArrayList;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.pages.content.Page_sortContent;
 import GUI.sectionPage.SectionPage;
+import book.Book;
+import book.Chapter;
+import book.Section;
+
+import javax.swing.*;
+import java.util.ArrayList;
 
 public class DeleteSectionCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Section my_section;
-	private Chapter my_parentChapter;
+	private final Section my_section;
+	private final Chapter my_parentChapter;
 
 	public DeleteSectionCard(Section section, Chapter chapter) {
 		my_section = section;
@@ -57,7 +53,6 @@ public class DeleteSectionCard extends TransparentPanel {
 		add(btnDeleteThisSection);
 		
 	}
-
 
 	private void deleteSection() {
 		int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm",

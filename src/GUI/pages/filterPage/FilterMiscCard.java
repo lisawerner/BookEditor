@@ -1,46 +1,43 @@
 package GUI.pages.filterPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.List;
-
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
-import book.Book;
-import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
+import GUI.sectionPage.SectionPage;
+import book.Book;
+import book.Section;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 public class FilterMiscCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_unfinishedFilteredSections;
+	private final TransparentPanel panel_unfinishedFilteredSections;
 
 	public FilterMiscCard() {
 		setLayout(new BorderLayout(5, 5));
 		TransparentPanel unfinishedFilter = new TransparentPanel();
 		add(unfinishedFilter, BorderLayout.NORTH);
 		unfinishedFilter.setLayout(new BoxLayout(unfinishedFilter, BoxLayout.LINE_AXIS));
-		ButtonGroup btngroup_unfinished = new ButtonGroup();
+		ButtonGroup btnGroup_unfinished = new ButtonGroup();
 		SimpleRadiobutton rdbtn_EmptyText = new SimpleRadiobutton("Sections with Empty Text");
 		unfinishedFilter.add(rdbtn_EmptyText);
-		btngroup_unfinished.add(rdbtn_EmptyText);
+		btnGroup_unfinished.add(rdbtn_EmptyText);
 		rdbtn_EmptyText.addActionListener(e -> filterEmpty());
 		SimpleRadiobutton rdbtn_Unfinished = new SimpleRadiobutton("Unfinished Sections");
 		unfinishedFilter.add(rdbtn_Unfinished);
-		btngroup_unfinished.add(rdbtn_Unfinished);
+		btnGroup_unfinished.add(rdbtn_Unfinished);
 		rdbtn_Unfinished.addActionListener(e -> filterUnfinished());
-		SimpleRadiobutton rdbtn_missingMainCharacter = new SimpleRadiobutton("Section without tagged Maincharacters");
+		SimpleRadiobutton rdbtn_missingMainCharacter = new SimpleRadiobutton("Section without tagged main characters");
 		unfinishedFilter.add(rdbtn_missingMainCharacter);
-		btngroup_unfinished.add(rdbtn_missingMainCharacter);
-		rdbtn_missingMainCharacter.addActionListener(e -> filterNoMaincharachter());
+		btnGroup_unfinished.add(rdbtn_missingMainCharacter);
+		rdbtn_missingMainCharacter.addActionListener(e -> filterNoMainCharacter());
 		SimpleRadiobutton rdbtn_missingTimestamp = new SimpleRadiobutton("Section without timestamp");
 		unfinishedFilter.add(rdbtn_missingTimestamp);
-		btngroup_unfinished.add(rdbtn_missingTimestamp);
+		btnGroup_unfinished.add(rdbtn_missingTimestamp);
 		rdbtn_missingTimestamp.addActionListener(e -> filterNoTimestamp());
 		panel_unfinishedFilteredSections = new TransparentPanel();
 		add(panel_unfinishedFilteredSections, BorderLayout.CENTER);
@@ -70,9 +67,9 @@ public class FilterMiscCard extends TransparentPanel {
 		fill(Book.getInstance().getTableOfContent().getUnfinishedSections());
 	}
 	
-	private void filterNoMaincharachter() {
+	private void filterNoMainCharacter() {
 		clear();
-		fill(Book.getInstance().getTableOfContent().getSectionWithoutTaggedMaincharacters());
+		fill(Book.getInstance().getTableOfContent().getSectionWithoutTaggedMainCharacters());
 	}
 	
 	private void filterNoTimestamp() {

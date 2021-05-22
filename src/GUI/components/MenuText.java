@@ -1,8 +1,8 @@
 package GUI.components;
 
-import javax.swing.JLabel;
-
 import GUI.theme.ThemeList;
+
+import javax.swing.*;
 
 public class MenuText extends JLabel {
 	private static final long serialVersionUID = 1L;
@@ -19,8 +19,6 @@ public class MenuText extends JLabel {
 			setForeground(ThemeList.currentTheme.menuFontColor);
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 

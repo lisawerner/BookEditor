@@ -1,29 +1,25 @@
 package GUI.pages.content;
 
-import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Chapter;
 import book.DevelopmentStatus;
 import book.Section;
-import GUI.components.LinkButton;
-import GUI.components.SimpleLabel;
-import GUI.components.TransparentPanel;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 
-public class Listelement_Section extends TransparentPanel {
+public class ListElement_Section extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
-	private Chapter my_parentChapter;
-	
-	private SimpleLabel lblChapterSpace;
+	private final Section my_section;
+	private final Chapter my_parentChapter;
 
-	public Listelement_Section(Section section, Chapter chapter, Listelement_Chapter parentBody) {
+	public ListElement_Section(Section section, Chapter chapter, ListElement_Chapter parentBody) {
 		my_section = section;
 		my_parentChapter = chapter;
 		setLayout(new BorderLayout(5, 5));
@@ -31,8 +27,8 @@ public class Listelement_Section extends TransparentPanel {
 		TransparentPanel panel_sectionInfo = new TransparentPanel();
 		add(panel_sectionInfo, BorderLayout.CENTER);
 		panel_sectionInfo.setLayout(new BoxLayout(panel_sectionInfo, BoxLayout.LINE_AXIS));
-		
-		lblChapterSpace = new SimpleLabel(" >>>>     ");
+
+		SimpleLabel lblChapterSpace = new SimpleLabel(" >>>>     ");
 		panel_sectionInfo.add(lblChapterSpace);
 		
 		LinkButton lblSectionName = new LinkButton(my_section.getName(),
@@ -57,7 +53,7 @@ public class Listelement_Section extends TransparentPanel {
 		btn_moveSectionDown.setEnabled(!my_parentChapter.isLastSection(my_section));
 	}
 	
-	private void moveSection(boolean moveSectionUp, Listelement_Chapter parentBody) {
+	private void moveSection(boolean moveSectionUp, ListElement_Chapter parentBody) {
 		my_parentChapter.moveSection(my_section, moveSectionUp);
 		parentBody.reload();
 //		BookEditorFrame.getInstance().reloadMenu();
@@ -67,11 +63,11 @@ public class Listelement_Section extends TransparentPanel {
 		String additionalInformation = "";
 		if(Book.getInstance().getTableOfContent().showWordCountInSectionLists()){
 			additionalInformation += "    (Words: " + section.getCountWords() + ";";
-			if(!Book.getInstance().getTableOfContent().showDevStatusinSectionLists()){
+			if(!Book.getInstance().getTableOfContent().showDevStatusInSectionLists()){
 				additionalInformation += ")";
 			}
 		}
-		if(Book.getInstance().getTableOfContent().showDevStatusinSectionLists()){
+		if(Book.getInstance().getTableOfContent().showDevStatusInSectionLists()){
 			if(additionalInformation.isEmpty()){
 				additionalInformation +=  "    (";
 			}

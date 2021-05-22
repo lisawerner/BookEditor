@@ -1,21 +1,20 @@
 package GUI.pages.society.filterPage;
 
-import book.Book;
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
+import book.Book;
 import person.Person;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.List;
-import javax.swing.ButtonGroup;
 
-import GUI.bookeditorFrame.BookEditorFrame;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 public class Card_PersonFilter extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_filterResult;
+	private final TransparentPanel panel_filterResult;
 
 	public Card_PersonFilter() {
 		setLayout(new BorderLayout(10, 10));
@@ -28,9 +27,9 @@ public class Card_PersonFilter extends TransparentPanel {
 		SimpleRadiobutton rdbtnNeverTaggedPerson = new SimpleRadiobutton("Never tagged Person");
 		panel_filterSettings.add(rdbtnNeverTaggedPerson);
 		btnGroup.add(rdbtnNeverTaggedPerson);
-		rdbtnNeverTaggedPerson.addActionListener(e -> filterNeverTaggesPerson());
+		rdbtnNeverTaggedPerson.addActionListener(e -> filterNeverTaggedPerson());
 		
-		SimpleRadiobutton rdbtnMissingMainRelationship = new SimpleRadiobutton("Persons without Relationship to any Maincharacter");
+		SimpleRadiobutton rdbtnMissingMainRelationship = new SimpleRadiobutton("Persons without Relationship to any main character");
 		panel_filterSettings.add(rdbtnMissingMainRelationship);
 		btnGroup.add(rdbtnMissingMainRelationship);
 		rdbtnMissingMainRelationship.addActionListener(e -> filterMissingMainRelationship());
@@ -55,7 +54,7 @@ public class Card_PersonFilter extends TransparentPanel {
 		panel_filterResult.repaint();
 	}
 	
-	private void filterNeverTaggesPerson(){
+	private void filterNeverTaggedPerson(){
 		clear();
 		fill(Book.getInstance().getSociety().getPersonListNeverTagged());
 	}

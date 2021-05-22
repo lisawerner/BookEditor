@@ -1,25 +1,19 @@
 package GUI.launcherFrame;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import GUI.bookeditorFrame.BookEditorFrame;
-import global.Constant;
 import GUI.components.FrameFooter;
+import global.Constant;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class StartFrame extends JFrame {
 	
 	private static StartFrame instance = null;
 	
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	
-	private JPanel centeredBody;
+	private final JPanel contentPane;
 
 	public static StartFrame getInstance() {
 		if(instance == null) {
@@ -31,7 +25,7 @@ public class StartFrame extends JFrame {
 	private StartFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle(Constant.editorname);
+		setTitle(Constant.EDITOR_NAME);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();
@@ -43,7 +37,7 @@ public class StartFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		centeredBody = new JPanel();
+		JPanel centeredBody = new JPanel();
 		contentPane.add(centeredBody, BorderLayout.CENTER);
 		centeredBody.add(new StartPage());
 		

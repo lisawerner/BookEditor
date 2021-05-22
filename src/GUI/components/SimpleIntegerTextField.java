@@ -1,6 +1,6 @@
 package GUI.components;
 
-public class SimpleIntegerTextfield extends SimpleTextfield{
+public class SimpleIntegerTextField extends SimpleTextField {
 	private static final long serialVersionUID = 1L;
 	
 	public int getInteger() {

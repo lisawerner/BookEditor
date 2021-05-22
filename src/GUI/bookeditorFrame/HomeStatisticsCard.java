@@ -1,12 +1,12 @@
 package GUI.bookeditorFrame;
 
-import java.awt.GridLayout;
-
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import book.Book;
 import book.Chapter;
 import book.Section;
-import GUI.components.SimpleLabel;
-import GUI.components.TransparentPanel;
+
+import java.awt.*;
 
 public class HomeStatisticsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

@@ -16,21 +16,21 @@ public class Timeline {
 	public Timeline() {
 		useGregorianCalendar = true;
 		my_splitCondition = SplitCondition.NONE;
-		my_times = new ArrayList<Timestamp>();
+		my_times = new ArrayList<>();
 	}
 	
 	public boolean useGregorianCalendar() {
 		return useGregorianCalendar;
 	}
 	
-	public void changeCalendarSettings(boolean newGregorainCalendarSettings) {
-		useGregorianCalendar = newGregorainCalendarSettings;
+	public void changeCalendarSettings(boolean newGregorianCalendarSettings) {
+		useGregorianCalendar = newGregorianCalendarSettings;
 		Book.getInstance().save();
 	}
 	
 	public void addTimestamp(Timestamp newTimestamp) {
 		if(my_times == null){
-			my_times = new ArrayList<Timestamp>();
+			my_times = new ArrayList<>();
 		}
 		if(my_times.isEmpty()){
 			my_times.add(newTimestamp);			
@@ -72,7 +72,7 @@ public class Timeline {
 		Book.getInstance().save();
 	}
 	
-	public SplitCondition getSplitConditon(){
+	public SplitCondition getSplitCondition(){
 		return my_splitCondition;
 	}
 

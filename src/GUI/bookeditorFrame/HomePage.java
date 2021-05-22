@@ -1,9 +1,9 @@
 package GUI.bookeditorFrame;
 
-import global.UserSettings;
 import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
+import global.UserSettings;
 
 public class HomePage extends Page {
 	private static final long serialVersionUID = 1L;

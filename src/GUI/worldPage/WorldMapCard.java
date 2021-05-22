@@ -1,25 +1,22 @@
 package GUI.worldPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-
-import javax.swing.BoxLayout;
-import javax.swing.JSeparator;
-
 import GUI.bookeditorFrame.BookEditorFrame;
-import book.Book;
-import global.ObjectID;
 import GUI.components.InfoButton;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import book.Book;
+import global.ObjectID;
 import world.Place;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class WorldMapCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_sortBody;
+	private final TransparentPanel panel_sortBody;
 
 	public WorldMapCard() {
 		setLayout(new BorderLayout(5 , 5));
@@ -29,10 +26,10 @@ public class WorldMapCard extends TransparentPanel {
 		panel_hint.setLayout(new BorderLayout(5 , 5));
 		add(panel_hint, BorderLayout.NORTH);
 		
-		InfoButton hintButton = new InfoButton("You can change hirachy by changing every single element.");
+		InfoButton hintButton = new InfoButton("You can change hierarchy by changing every single element.");
 		panel_hint.add(hintButton, BorderLayout.WEST);
 		
-		SimpleLabel lblChangingHint = new SimpleLabel("You can change hirachy by changing every single element.");
+		SimpleLabel lblChangingHint = new SimpleLabel("You can change hierarchy by changing every single element.");
 		lblChangingHint.setWarning(true);
 		panel_hint.add(lblChangingHint, BorderLayout.CENTER);
 		

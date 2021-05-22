@@ -1,11 +1,10 @@
 package GUI.components;
 
-import java.awt.Color;
-
-import javax.swing.JLabel;
-
 import GUI.theme.ThemeList;
 import global.UserSettings;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class SimpleLabel extends JLabel{
 	private static final long serialVersionUID = 1L;
@@ -23,8 +22,6 @@ public class SimpleLabel extends JLabel{
 			}
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

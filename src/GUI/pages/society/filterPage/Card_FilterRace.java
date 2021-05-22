@@ -1,35 +1,32 @@
 package GUI.pages.society.filterPage;
 
-import book.Book;
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
+import book.Book;
 import person.Person;
 import person.Race;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-
-import javax.swing.ButtonGroup;
-
-import GUI.bookeditorFrame.BookEditorFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_FilterRace extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private TransparentPanel panel_filterResult;
+	private final TransparentPanel panel_filterResult;
 
 	public Card_FilterRace() {
 		setLayout(new BorderLayout(0, 0));
 		
-		ButtonGroup btngroup_races = new ButtonGroup();
+		ButtonGroup btnGroup_races = new ButtonGroup();
 		
 		TransparentPanel panel_selectFilter = new TransparentPanel();
 		add(panel_selectFilter, BorderLayout.NORTH);
 		
 		SimpleRadiobutton rdbtnPersonWithoutRace = new SimpleRadiobutton("Person without Race");
-		btngroup_races.add(rdbtnPersonWithoutRace);
+		btnGroup_races.add(rdbtnPersonWithoutRace);
 		rdbtnPersonWithoutRace.addActionListener(e -> showPersonsRace(null));
 		panel_selectFilter.add(rdbtnPersonWithoutRace);
 		
@@ -39,7 +36,7 @@ public class Card_FilterRace extends TransparentPanel {
 			SimpleRadiobutton rdbtnRace = new SimpleRadiobutton(race.getName());
 			rdbtnRace.addActionListener(e -> showPersonsRace(race));
 			panel_selectFilter.add(rdbtnRace);
-			btngroup_races.add(rdbtnRace);
+			btnGroup_races.add(rdbtnRace);
 		}
 		
 		panel_filterResult = new TransparentPanel();

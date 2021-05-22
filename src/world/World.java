@@ -1,29 +1,29 @@
 package world;
 
+import book.Book;
+import global.ObjectID;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
-
-import book.Book;
-import global.ObjectID;
 
 public class World {
 	
 	private ArrayList<Place> my_world;
 	
 	public World() {
-		my_world = new ArrayList<Place>();
+		my_world = new ArrayList<>();
 	}
 	
 	public void addPlace(Place newPlace) {
-		if(my_world == null) {my_world = new ArrayList<Place>();}
+		if(my_world == null) {my_world = new ArrayList<>();}
 		my_world.add(newPlace);
 		sortPlace();
 		Book.getInstance().save();
 	}
 
 	public ArrayList<Place> getPlaces() {
-		if(my_world == null) {return new ArrayList<Place>();}
+		if(my_world == null) {return new ArrayList<>();}
 		return my_world;
 	}
 
@@ -47,7 +47,7 @@ public class World {
 		ArrayList<Place> sortedParentList = (ArrayList<Place>) parentPlaceList.stream().sorted(Comparator.comparing(n -> n.getName())).collect(Collectors.toList());				
 
 		//Create Sorted List of Parent-Children hierarchic and every level alphabetical
-		ArrayList<Place> completeSortedList = new ArrayList<Place>();
+		ArrayList<Place> completeSortedList = new ArrayList<>();
 		for(Place parent : sortedParentList) {
 			completeSortedList.add(parent);
 			for(Place child : parent.getChildrenObject()) {
@@ -81,8 +81,7 @@ public class World {
 	}
 	
 	private ArrayList<Place> removeChildren(Place parentPlace, ArrayList<Place> currentList){
-		ArrayList<Place> withoutChildren = new ArrayList<Place>();
-		withoutChildren.addAll(currentList);
+		ArrayList<Place> withoutChildren = new ArrayList<>(currentList);
 		
 		if(parentPlace.getChildrenIDs() == null) {
 			return currentList;

@@ -1,33 +1,26 @@
 package GUI.pages.society.filterPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.util.List;
-
-import javax.swing.ButtonGroup;
-
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.*;
 import book.Book;
-import GUI.components.ComboItem;
-import GUI.components.LinkButton;
-import GUI.components.SimpleLabel;
-import GUI.components.SimpleRadiobutton;
-import GUI.components.TransparentPanel;
 import person.Person;
-import javax.swing.JComboBox;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 public class Card_FilterRelationships extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleLabel lblHint;
+	private final SimpleLabel lblHint;
 	
 	private boolean relationType;
-	private SimpleRadiobutton rdbtnHasRelationship;
-	private SimpleRadiobutton rdbtnMissingRelationship;
+	private final SimpleRadiobutton rdbtnHasRelationship;
+	private final SimpleRadiobutton rdbtnMissingRelationship;
 	
-	private JComboBox<ComboItem> comboBox;
+	private final JComboBox<ComboItem> comboBox;
 
-	private TransparentPanel panel_filterResult;
+	private final TransparentPanel panel_filterResult;
 	
 	public Card_FilterRelationships() {
 		setLayout(new BorderLayout(10, 10));
@@ -47,13 +40,13 @@ public class Card_FilterRelationships extends TransparentPanel {
 		btnGroup.add(rdbtnHasRelationship);
 		rdbtnHasRelationship.addActionListener(e -> switchRelationType());
 		
-		rdbtnMissingRelationship = new SimpleRadiobutton("Persons without Relationship to any Maincharacter");
+		rdbtnMissingRelationship = new SimpleRadiobutton("Persons without Relationship to any main character");
 		rdbtnMissingRelationship.setText("Has NO Relationship to following Person");
 		panel_typeSettings.add(rdbtnMissingRelationship);
 		btnGroup.add(rdbtnMissingRelationship);
 		rdbtnMissingRelationship.addActionListener(e -> switchRelationType());
 		
-		comboBox = new JComboBox<ComboItem>();
+		comboBox = new JComboBox<>();
 		panel_filterSettings.add(comboBox);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			comboBox.addItem(new ComboItem(person.getInformation().getName(), person.getID()));

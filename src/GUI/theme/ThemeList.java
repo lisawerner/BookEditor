@@ -1,6 +1,6 @@
 package GUI.theme;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class ThemeList {
@@ -41,7 +41,7 @@ public class ThemeList {
 			new Color(205, 225, 225));
 	
 	public static ArrayList<Theme> getThemes() {
-		ArrayList<Theme> completeList = new ArrayList<Theme>();
+		ArrayList<Theme> completeList = new ArrayList<>();
 		completeList.add(BluePhoenixTheme);
 		completeList.add(RedPhoenixTheme);
 		completeList.add(ADifferentWorldTheme);

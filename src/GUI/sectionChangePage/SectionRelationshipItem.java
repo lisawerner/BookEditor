@@ -1,42 +1,38 @@
 package GUI.sectionChangePage;
 
-import book.Book;
-import book.Section;
 import GUI.components.ComboItem;
 import GUI.components.SimpleLabel;
-import GUI.components.SimpleTextfield;
+import GUI.components.SimpleTextField;
 import GUI.components.TransparentPanel;
+import book.Book;
+import book.Section;
 import person.Person;
 import person.Relationship;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import java.awt.GridLayout;
+import java.awt.*;
 
 public class SectionRelationshipItem extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	private SimpleTextfield txt_relationshipType;
+	private final SimpleTextField txt_relationshipType;
 	
-	private Section my_section;
-	private SectionRelationshipCard my_body;
+	private final Section my_section;
+	private final SectionRelationshipCard my_body;
 	private Relationship my_relationship;
 	
-	private SimpleLabel lblWARNING;
+	private final SimpleLabel lblWARNING;
 	
-	private JComboBox<ComboItem> cmboxPersonA;
+	private final JComboBox<ComboItem> cmboxPersonA;
 	private Person personA;
-	private JComboBox<ComboItem> cmboxPersonB;
+	private final JComboBox<ComboItem> cmboxPersonB;
 	private Person personB;
 
-	public SectionRelationshipItem(SectionRelationshipCard body, Section section, Relationship relship) {
+	public SectionRelationshipItem(SectionRelationshipCard body, Section section, Relationship relationship) {
 		my_section = section;
 		my_body = body;
-		my_relationship = relship;
+		my_relationship = relationship;
 		setLayout(new BorderLayout(5, 5));
 	
 		TransparentPanel panel_buttons = new TransparentPanel();
@@ -60,7 +56,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		panel_type.setLayout(new GridLayout(0, 1, 0, 0));
 		SimpleLabel lblType = new SimpleLabel("Relationship-Type: ");
 		panel_type.add(lblType);
-		txt_relationshipType = new SimpleTextfield();
+		txt_relationshipType = new SimpleTextField();
 		if(my_relationship != null) {txt_relationshipType.setText(my_relationship.getDescribingRelationshipType());}
 		panel_type.add(txt_relationshipType);
 		txt_relationshipType.getDocument().addDocumentListener(new DocumentListener() {
@@ -88,7 +84,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		panel_Persons.add(panel_personA);
 		SimpleLabel lblPersonA = new SimpleLabel("Choose Person A: ");
 		panel_personA.add(lblPersonA, BorderLayout.WEST);
-		cmboxPersonA = new JComboBox<ComboItem>();
+		cmboxPersonA = new JComboBox<>();
 		panel_personA.add(cmboxPersonA, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			ComboItem item = new ComboItem(person.getInformation().getNickname(), person.getID());
@@ -109,7 +105,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		panel_personB.setLayout(new BorderLayout(5, 5));
 		SimpleLabel lblPersonB = new SimpleLabel("Choose Person B: ");
 		panel_personB.add(lblPersonB, BorderLayout.WEST);
-		cmboxPersonB = new JComboBox<ComboItem>();
+		cmboxPersonB = new JComboBox<>();
 		panel_personB.add(cmboxPersonB, BorderLayout.CENTER);
 		for(Person person : Book.getInstance().getSociety().getPersonList()) {
 			ComboItem item = new ComboItem(person.getInformation().getNickname(), person.getID());
@@ -151,7 +147,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 		}
 		
 		if(txt_relationshipType.getText().equals("")) {
-			lblWARNING.setText("You have to enter a describing relationtype (for example: Father, Friends, Collegues.");
+			lblWARNING.setText("You have to enter a describing relation type (for example: Father, Friends, Colleagues.");
 			canSave = false;
 		}
 		
@@ -162,7 +158,7 @@ public class SectionRelationshipItem extends TransparentPanel {
 				my_section.addRelationship(newRelationship);
 				txt_relationshipType.setText("");
 				my_relationship = null;
-				lblWARNING.setText("Succesfully saved!");
+				lblWARNING.setText("Successfully saved!");
 			} else {
 				my_relationship.change(personA, personB, txt_relationshipType.getText());
 			}

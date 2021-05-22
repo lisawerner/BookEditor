@@ -1,8 +1,8 @@
 package GUI.pages.society;
 
-import book.Book;
 import GUI.components.Page;
 import GUI.components.StructureCard;
+import book.Book;
 
 public class Page_ViewSociety extends Page {
 	private static final long serialVersionUID = 1L;

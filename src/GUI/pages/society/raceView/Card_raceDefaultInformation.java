@@ -1,29 +1,26 @@
 package GUI.pages.society.raceView;
 
-import GUI.components.FormButton;
-import GUI.components.FormTextarea;
-import GUI.components.FormTextfield;
-import GUI.components.SimpleFormular;
-import GUI.components.TransparentPanel;
+import GUI.components.*;
 import person.Race;
-import javax.swing.BoxLayout;
+
+import javax.swing.*;
 
 public class Card_raceDefaultInformation extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Race my_race;
+	private final Race my_race;
 	
-	private FormTextfield txt_raceName;
-	private FormTextarea txt_raceNotes;
+	private final FormTextField txt_raceName;
+	private final FormTextarea txt_raceNotes;
 
 	public Card_raceDefaultInformation(Race givenRace) {
 		my_race = givenRace;
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		FormButton btnSave = new FormButton("Save Race", e -> save());
-		SimpleFormular saveForm = new SimpleFormular(this::save, btnSave);
+		SimpleForm saveForm = new SimpleForm(this::save, btnSave);
 		
-		txt_raceName = new FormTextfield("Race Name:", my_race.getName(), true);
+		txt_raceName = new FormTextField("Race Name:", my_race.getName(), true);
 		add(txt_raceName);
 		saveForm.addInput(txt_raceName);
 		

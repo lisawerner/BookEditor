@@ -1,10 +1,10 @@
 package GUI.sectionChangePage;
 
-import javax.swing.BoxLayout;
-
-import book.Section;
 import GUI.components.TransparentPanel;
+import book.Section;
 import person.Relationship;
+
+import javax.swing.*;
 
 public class SectionRelationshipCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -31,8 +31,8 @@ public class SectionRelationshipCard extends TransparentPanel {
 		
 		add(new SectionRelationshipItem(this, my_section, null));
 		//TODO: Show inherited Relationships from pre Sections!
-		for(Relationship relship : my_section.getRelationships()) {
-			add(new SectionRelationshipItem(this, my_section, relship));
+		for(Relationship relationship : my_section.getRelationships()) {
+			add(new SectionRelationshipItem(this, my_section, relationship));
 		}
 		
 		revalidate();

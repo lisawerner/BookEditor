@@ -1,14 +1,14 @@
 package GUI.worldPage;
 
-import global.UserSettings;
 import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
+import global.UserSettings;
 
-public class ViewWorldmapPage extends Page {
+public class ViewWorldMapPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
-	public ViewWorldmapPage() {
+	public ViewWorldMapPage() {
 		super("World, States, Regions, Citys, Places, ...");
 
 		if(UserSettings.getInstance().getTutorial().createFirstPlace && !UserSettings.getInstance().getTutorial().setMapDependencies) {			
@@ -17,7 +17,7 @@ public class ViewWorldmapPage extends Page {
 		
 		//**************************************************************************************************************************
 		//**************************************************************************************************************************
-		this.addCard(new StructureCard("World-Hierachy", new WorldMapCard()));
+		this.addCard(new StructureCard("World-Hierarchy", new WorldMapCard()));
 		
 	}
 

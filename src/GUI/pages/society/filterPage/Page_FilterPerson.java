@@ -1,8 +1,8 @@
 package GUI.pages.society.filterPage;
 
-import book.Book;
 import GUI.components.Page;
 import GUI.components.StructureCard;
+import book.Book;
 
 public class Page_FilterPerson extends Page {
 	private static final long serialVersionUID = 1L;

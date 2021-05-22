@@ -1,30 +1,27 @@
 package GUI.pages.world.viewPlace;
 
-import javax.swing.BoxLayout;
-
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Chapter;
 import book.Section;
-import GUI.components.LinkButton;
-import GUI.components.SimpleLabel;
-import GUI.components.TransparentPanel;
 import world.Place;
+
+import javax.swing.*;
 
 public class Card_placeTags extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	
-	private Place my_place;
 
 	public Card_placeTags(Place place) {
-		my_place = place;
-		
+
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 		
 		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
 			for(Section section : chapter.getSections()) {
-				if(section.hasTag(my_place.getID())) {
+				if(section.hasTag(place.getID())) {
 					add(new LinkButton(section.getName(),
 							e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 					add(new SimpleLabel(";  "));

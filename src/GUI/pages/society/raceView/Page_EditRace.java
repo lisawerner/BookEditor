@@ -1,39 +1,30 @@
 package GUI.pages.society.raceView;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-
 import GUI.components.Page;
 import GUI.components.StructureCard;
 import person.Race;
 
+import javax.swing.*;
+
 public class Page_EditRace extends Page {
 	private static final long serialVersionUID = 1L;
-	
-	private Race my_race;
 
 	public Page_EditRace(Race givenRace) {
 		super("Society: Persons, Relationships, Races...");
-		
-		my_race = givenRace;
+
+		//****************************************************************************************
+		this.addCard(new StructureCard("Edit Race", new Card_raceDefaultInformation(givenRace)));
 		
 		//****************************************************************************************
-		this.addCard(new StructureCard("Edit Race", new Card_raceDefaultInformation(my_race)));
-		
-		//****************************************************************************************
-		this.addCard(new StructureCard("Race Representatives", new Card_ViewRaceRepresentatives(my_race)));
-		this.addCard(new StructureCard("Edit Race Development", new Card_RaceEditDevelopment(my_race)));
+		this.addCard(new StructureCard("Race Representatives", new Card_ViewRaceRepresentatives(givenRace)));
+		this.addCard(new StructureCard("Edit Race Development", new Card_RaceEditDevelopment(givenRace)));
 
 		//****************************************************************************************
 		//****************************************************************************************
-		//TODO: Bestaetungs Panel
+		//TODO: Submit Panel
 		JButton btnDelete = new JButton("Delete Race");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//TODO:
-			}
+		btnDelete.addActionListener(e -> {
+			//TODO:
 		});
 		btnDelete.setEnabled(false); //TODO!!
 		setFooter(btnDelete);

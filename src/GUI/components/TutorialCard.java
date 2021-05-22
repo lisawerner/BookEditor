@@ -1,27 +1,20 @@
 package GUI.components;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-
+import GUI.theme.ThemeList;
 import global.UserSettings;
 
-import javax.swing.JButton;
-
-import GUI.theme.ThemeList;
+import javax.swing.*;
+import java.awt.*;
 
 public class TutorialCard extends Card {
 	private static final long serialVersionUID = 1L;
 	
-	private String frontTag = "<html><div style='text-align: left;'><font size=\"4\">     ";
-	private String backTag = "</size></div></html>";
-	private int maxSteps = 20;
-	private SimpleLabel lblCardTitle;
-	private SimpleLabel my_hint;
-	private JButton btnDone;
+	private static final String FRONT_TAG = "<html><div style='text-align: left;'><font size=\"4\">     ";
+	private static final String BACK_TAG = "</size></div></html>";
+	private final int maxSteps = 20;
+	private final SimpleLabel lblCardTitle;
+	private final SimpleLabel my_hint;
+	private final JButton btnDone;
 
 	public TutorialCard(int tutorialNumber, boolean needsConfirmation) {
 		setLayout(new BorderLayout(10, 10));
@@ -35,7 +28,7 @@ public class TutorialCard extends Card {
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		add(verticalStrut_1, BorderLayout.EAST);
 		
-		lblCardTitle = new SimpleLabel(frontTag + "Tutorial Hint  (Step: " + tutorialNumber + " of " + maxSteps + ")" + backTag);
+		lblCardTitle = new SimpleLabel(FRONT_TAG + "Tutorial Hint  (Step: " + tutorialNumber + " of " + maxSteps + ")" + BACK_TAG);
 		add(lblCardTitle, BorderLayout.NORTH);
 		
 		TransparentPanel my_body = new TransparentPanel();
@@ -86,7 +79,7 @@ public class TutorialCard extends Card {
         	case 2:
         		return "<p>Choose your favorite Color-Theme for more joy of use and click 'save'.</p>";
         	case 3:
-        		return "<p>You have choosen a nice Theme. ;)<br/>"
+        		return "<p>You have chosen a nice Theme. ;)<br/>"
         				+ "<br/>"
         				+ "Now you can start using Book-Writer.<br/>"
         				+ "Create your first text section.<br/>"
@@ -114,7 +107,7 @@ public class TutorialCard extends Card {
         				+ "<br/>"
         				+ "The Book-Writer helps you by getting an overview about the development status of your book.<br>"
         				+ "For that you should directly change the development Status of this section.<br/>"
-        				+ "At the moment you can choose between 'Empty', because you have added nothing in the Textfield;<br/>"
+        				+ "At the moment you can choose between 'Empty', because you have added nothing in the text field;<br/>"
         				+ "'Only Notes' when you have added some Notes and 'Rework Text' if you have added your first text, which is a beginning concept.<br/>"
         				+ "<br/>"
         				+ "Click on '>> Upgrade >>' to change the development Status of the Section.</p>";
@@ -150,7 +143,7 @@ public class TutorialCard extends Card {
         				+ "Click on 'Persons' in the left navigation menu and add a new Person.</p>";
         	case 11:
         		return "<p>Create a new Person by adding a Name.<br/>"
-        				+ "You can also add additional information but that is not neccesary.<br/>"
+        				+ "You can also add additional information but that is not necessary.<br/>"
         				+ "Don't forget to click 'Save'.</p>";
         	case 12:
         		return "<p>Nice to meet your fictional characters!<br/>"
@@ -192,8 +185,8 @@ public class TutorialCard extends Card {
         				+ "Then you can set dependencies between them.<br/>"
         				+ "Click on a created Place and set the 'Parent-Place'.<br/>"
         				+ "<br/>"
-        				+ "Example: You have a State Starland and a City ShiningCity. Then click on ShinigCity.<br/>"
-        				+ "There you add the Parent Starland. The Book-Writer knows now that ShiningCity is inside Starland.<br/>"
+        				+ "Example: You have a State StarLand and a City ShiningCity. Then click on ShiningCity.<br/>"
+        				+ "There you add the Parent StarLand. The Book-Writer knows now that ShiningCity is inside StarLand.<br/>"
         				+ "<br/>"
         				+ "You can view this when you click on 'World' in the navigation menu and then click 'View Map' in the right menu.</p>";
         	case 19:

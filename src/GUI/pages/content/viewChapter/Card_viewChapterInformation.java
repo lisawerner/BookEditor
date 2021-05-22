@@ -1,24 +1,25 @@
 package GUI.pages.content.viewChapter;
 
-import book.Chapter;
-import GUI.components.ComplexeTextfieldSaveable;
+import GUI.components.ComplexTextFieldSavable;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
+import book.Chapter;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_viewChapterInformation extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Chapter my_chapter;
+	private final Chapter my_chapter;
 
-	private ComplexeTextfieldSaveable txt_chapterTitle;
+	private final ComplexTextFieldSavable txt_chapterTitle;
 	
 	public Card_viewChapterInformation(Chapter chapter) {
 		my_chapter = chapter;
 		setLayout(new GridLayout(0, 1, 10, 10));
 
-		txt_chapterTitle = new ComplexeTextfieldSaveable("Chapter Title:", my_chapter.getTitle(), this::createChapter);
+		txt_chapterTitle = new ComplexTextFieldSavable("Chapter Title:", my_chapter.getTitle(), this::createChapter);
 		add(txt_chapterTitle);		
 		
 		TransparentPanel panel_furtherInformation = new TransparentPanel();

@@ -1,15 +1,7 @@
 package GUI.bookeditorFrame;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import GUI.components.*;
+import GUI.frame.menu.*;
 import GUI.pages.content.Page_sortContent;
 import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.notes.createNote.Page_createNote;
@@ -26,7 +18,7 @@ import GUI.pages.world.viewPlace.Page_viewPlace;
 import GUI.printPage.PrintPage;
 import GUI.sectionPage.SectionPage;
 import GUI.theme.ThemeList;
-import GUI.worldPage.ViewWorldmapPage;
+import GUI.worldPage.ViewWorldMapPage;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -36,33 +28,27 @@ import person.Person;
 import person.Race;
 import time.Timestamp;
 import world.Place;
-import GUI.components.FrameFooter;
-import GUI.components.FrameHeader;
-import GUI.components.FrameMenu;
-import GUI.components.Page;
-import GUI.components.TransparentPanel;
-import GUI.frame.menu.ContentMenu;
-import GUI.frame.menu.NotesMenu;
-import GUI.frame.menu.PlaceMenu;
-import GUI.frame.menu.SocietyMenu;
-import GUI.frame.menu.TimelineMenu;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class BookEditorFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private static BookEditorFrame instance = null;
 	
-	private JPanel contentPane;
-	private TransparentPanel contentBody;
+	private final JPanel contentPane;
+	private final TransparentPanel contentBody;
 	
 	private FrameHeader lblBookTitle;
 	private FrameMenu panel_mainMenu;
-	private FrameFooter panel_footer;
+	private final FrameFooter panel_footer;
 
 	public BookEditorFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle(Constant.editorname);
+		setTitle(Constant.EDITOR_NAME);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)screenSize.getWidth();
@@ -119,7 +105,8 @@ public class BookEditorFrame extends JFrame {
 		secondFrame.setLayout(new BorderLayout(5, 5));
 		secondFrame.add(secondBody, BorderLayout.CENTER);
 		JButton closeSecondFrame = new JButton("Close Second Frame");
-		closeSecondFrame.addActionListener(e -> switchBody(mainBody)); //TODO: Problem: Die Änderungen im secondFrame werden dabei nicht übernommen... Da muss irgendwie ein reload stattfinden o.O
+		//TODO: Problem: Changes in the second frame will not be saved... Maybe a reload is required? o.O
+		closeSecondFrame.addActionListener(e -> switchBody(mainBody));
 		secondFrame.add(closeSecondFrame, BorderLayout.NORTH);
 		contentBody.add(secondFrame);
 		
@@ -215,7 +202,7 @@ public class BookEditorFrame extends JFrame {
 	}
 
 	public void openWorldPage() {
-		switchBody(new ViewWorldmapPage());
+		switchBody(new ViewWorldMapPage());
 		panel_mainMenu.changeSubmenuTo(new PlaceMenu());
 	}
 	

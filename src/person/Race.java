@@ -18,7 +18,7 @@ public class Race extends SerializedObject {
 	private ObjectID isSubtypeOf;
 	private ArrayList<ObjectID> my_subtypes;
 
-	private ArrayList<ObjectID> my_representative;
+	private final ArrayList<ObjectID> my_representative;
 		
 	
 	public Race(String newRaceName, String newNotes) {
@@ -27,14 +27,14 @@ public class Race extends SerializedObject {
 		my_name = newRaceName;
 		my_notes = newNotes;
 		
-		my_descendants = new ArrayList<ObjectID>();
+		my_descendants = new ArrayList<>();
 		my_firstAscendant = null;
 		my_secondAscendant = null;
 		
 		isSubtypeOf = null;
-		my_subtypes = new ArrayList<ObjectID>();
+		my_subtypes = new ArrayList<>();
 		
-		my_representative = new ArrayList<ObjectID>();		
+		my_representative = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -69,9 +69,9 @@ public class Race extends SerializedObject {
 	}
 
 	public ArrayList<Race> getPossibleAscendants(){
-		ArrayList<Race> possibleRaces = new ArrayList<Race>();
-		if(my_subtypes == null){my_subtypes = new ArrayList<ObjectID>();}
-		if(my_descendants == null){my_descendants = new ArrayList<ObjectID>();}
+		ArrayList<Race> possibleRaces = new ArrayList<>();
+		if(my_subtypes == null){my_subtypes = new ArrayList<>();}
+		if(my_descendants == null){my_descendants = new ArrayList<>();}
 		ArrayList<ObjectID> allDescendants = getCompleteDescendantList();
 		for(Race race : Book.getInstance().getSociety().getRaces()) {
 			if(race.isPossible(this, my_subtypes, allDescendants)) {
@@ -88,21 +88,20 @@ public class Race extends SerializedObject {
 				isCurrentRaceSubtypeOfRace = true;
 			}
 		}
-		boolean isCurrentRaceDescendnatOfRace = false;
+		boolean isCurrentRaceDescendantOfRace = false;
 		for(ObjectID child : descendantList){
 			if(child.equals(this.getID())){
-				isCurrentRaceDescendnatOfRace = true;
+				isCurrentRaceDescendantOfRace = true;
 			}
 		}
 		return !this.getID().equals(possibleEqualsRace.getID())
 				&& this.isSubtypeOf == null
 				&& !isCurrentRaceSubtypeOfRace
-				&& !isCurrentRaceDescendnatOfRace;
+				&& !isCurrentRaceDescendantOfRace;
 	}
 	
 	private ArrayList<ObjectID> getCompleteDescendantList(){
-		ArrayList<ObjectID> descendantList = new ArrayList<ObjectID>();
-		descendantList.addAll(my_descendants);
+		ArrayList<ObjectID> descendantList = new ArrayList<>(my_descendants);
 		for(ObjectID desc : my_descendants){
 			descendantList.addAll(Book.getInstance().getSociety().getRace(desc).getCompleteDescendantList());
 		}
@@ -127,7 +126,7 @@ public class Race extends SerializedObject {
 	}
 
 	private void removeDescendant(ObjectID removeDescendant) {
-		if(my_descendants == null) {my_descendants = new ArrayList<ObjectID>();}
+		if(my_descendants == null) {my_descendants = new ArrayList<>();}
 		if(my_descendants != null) {
 			my_descendants.remove(removeDescendant);
 			Book.getInstance().save();
@@ -135,7 +134,7 @@ public class Race extends SerializedObject {
 	}
 
 	private void addDescendant(ObjectID newDescendant) {
-		if(my_descendants == null) {my_descendants = new ArrayList<ObjectID>();}
+		if(my_descendants == null) {my_descendants = new ArrayList<>();}
 		if(!my_descendants.contains(newDescendant)) {
 			my_descendants.add(newDescendant);
 			Book.getInstance().save();
@@ -147,7 +146,7 @@ public class Race extends SerializedObject {
 	}
 
 	public ArrayList<ObjectID> getDescendants() {
-		if(my_descendants == null) {return new ArrayList<ObjectID>();}
+		if(my_descendants == null) {return new ArrayList<>();}
 		return my_descendants;
 	}
 	
@@ -156,7 +155,7 @@ public class Race extends SerializedObject {
 	}
 
 	public ArrayList<Race> getPossibleParents() {
-		ArrayList<Race> selectedRaces = new ArrayList<Race>();
+		ArrayList<Race> selectedRaces = new ArrayList<>();
 		for(Race race : Book.getInstance().getSociety().getRaces()) {
 			if(!this.getID().equals(race.getID()) && race.isSubtypeOf == null) {
 				selectedRaces.add(race);
@@ -177,18 +176,18 @@ public class Race extends SerializedObject {
 	}
 
 	private void addSubtype(ObjectID addChild) {
-		if(my_subtypes == null) {my_subtypes = new ArrayList<ObjectID>();}
+		if(my_subtypes == null) {my_subtypes = new ArrayList<>();}
 		if(!my_subtypes.contains(addChild)) {
 			my_subtypes.add(addChild);
 			Book.getInstance().save();
 		}
 	}
 
-	private void removeSubtype(ObjectID removerace) {
+	private void removeSubtype(ObjectID removeRace) {
 		if(my_subtypes != null) {
-			ArrayList<ObjectID> newSubtypeList = new ArrayList<ObjectID>();
+			ArrayList<ObjectID> newSubtypeList = new ArrayList<>();
 			for(ObjectID id : my_subtypes){
-				if(!id.equals(removerace)){
+				if(!id.equals(removeRace)){
 					newSubtypeList.add(id);
 				}
 			}
@@ -198,7 +197,7 @@ public class Race extends SerializedObject {
 	}
 
 	public ArrayList<ObjectID> getSubtypes() {
-		if(my_subtypes == null) {my_subtypes = new ArrayList<ObjectID>();}
+		if(my_subtypes == null) {my_subtypes = new ArrayList<>();}
 		return my_subtypes;
 	}
 	

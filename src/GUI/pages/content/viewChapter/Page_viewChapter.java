@@ -1,8 +1,8 @@
 package GUI.pages.content.viewChapter;
 
-import book.Chapter;
 import GUI.components.Page;
 import GUI.components.StructureCard;
+import book.Chapter;
 
 public class Page_viewChapter extends Page {
 	private static final long serialVersionUID = 1L;

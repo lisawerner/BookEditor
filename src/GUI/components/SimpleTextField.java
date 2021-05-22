@@ -1,23 +1,21 @@
 package GUI.components;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import javax.swing.JTextField;
-
 import GUI.theme.ThemeList;
 import global.UserSettings;
 
-public class SimpleTextfield extends JTextField{
+import javax.swing.*;
+import java.awt.*;
+
+public class SimpleTextField extends JTextField{
 	private static final long serialVersionUID = 1L;
 	
-	public SimpleTextfield() {
+	public SimpleTextField() {
 		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		
 		changeTheme();
 	}
 	
-	public SimpleTextfield(String text) {
+	public SimpleTextField(String text) {
 		super(text);
 		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		

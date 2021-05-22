@@ -1,14 +1,14 @@
 package GUI.components;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 
 public class FormButton extends TransparentPanel{
 	private static final long serialVersionUID = 1L;
 	
-	private JButton btnButton;
-	private SimpleLabel lblWarning;
+	private final JButton btnButton;
+	private final SimpleLabel lblWarning;
 	
 	public FormButton(String buttonText, ActionListener action){
 		setLayout(new GridLayout(0, 1, 2, 2));

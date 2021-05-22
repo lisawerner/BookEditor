@@ -1,9 +1,9 @@
 package GUI.pages.settings;
 
-import global.UserSettings;
 import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
+import global.UserSettings;
 
 public class BookSettingsPage extends Page {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class BookSettingsPage extends Page {
 		//******************************************************************************************************************************************
 		//********************************************************************
 		//CARD change Book Title
-		addCard(new StructureCard("Change Book Title", new BooktitleSettingsCard()));
+		addCard(new StructureCard("Change Book Title", new BookTitleSettingsCard()));
 		
 		//********************************************************************
 		//CARD change Book Society

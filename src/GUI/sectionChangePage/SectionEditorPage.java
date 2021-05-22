@@ -1,22 +1,22 @@
 package GUI.sectionChangePage;
 
+import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.Page;
+import GUI.components.StructureCard;
+import GUI.components.TutorialCard;
+import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Chapter;
 import book.Section;
 import global.UserSettings;
-import GUI.components.Page;
-import GUI.components.StructureCard;
-import GUI.components.TutorialCard;
 
-import javax.swing.JButton;
-import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
+import javax.swing.*;
 
 public class SectionEditorPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
-	private Section my_section;
-	private Chapter my_chapter;
+	private final Section my_section;
+	private final Chapter my_chapter;
 
 	public SectionEditorPage( Section section, Chapter chapter) {
 		super("Edit Section: " + section.getName());
@@ -43,7 +43,7 @@ public class SectionEditorPage extends Page {
 		addCard(new StructureCard("Section Title", new SectionTitleCard(my_section)));
 
 		//********************************************************************************
-		addCard(new StructureCard("Development Status", new SectionDevstatusCard(my_section, chapter)));
+		addCard(new StructureCard("Development Status", new SectionDevStatusCard(my_section, chapter)));
 		
 		//********************************************************************************
 		addCard(new StructureCard("Notes, Research and more", new SectionNoteCard(my_section)));
@@ -52,16 +52,16 @@ public class SectionEditorPage extends Page {
 		addCard(new StructureCard("Change Timestamp", new SectionTimestampCard(my_section, chapter)));		
 		
 		//********************************************************************************
-		addCard(new StructureCard("Change Person-Tags", new SectionPersontagCard(my_section)));
+		addCard(new StructureCard("Change Person-Tags", new SectionPersonTagCard(my_section)));
 
 		//********************************************************************************
 		addCard(new StructureCard("Change Relationships", new SectionRelationshipCard(my_section)));
 
 		//********************************************************************************
-		addCard(new StructureCard("Change Place-Tags", new SectionPlacetagCard(my_section)));
+		addCard(new StructureCard("Change Place-Tags", new SectionPlaceTagCard(my_section)));
 		
 		//********************************************************************************
-		addCard(new StructureCard("Change your Personal-Tags", new SectionPersonaltagCard(my_section)));
+		addCard(new StructureCard("Change your Personal-Tags", new SectionPersonalTagCard(my_section)));
 		
 		//********************************************************************************
 		addCard(new StructureCard("Delete Section", new DeleteSectionCard(my_section, chapter)));

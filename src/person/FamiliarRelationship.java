@@ -7,18 +7,18 @@ import global.ObjectID;
 
 public class FamiliarRelationship {
 
-	private ArrayList<ObjectID> my_parents;
-	private ArrayList<ObjectID> my_children;
-	private ArrayList<ObjectID> my_spouse; //Ehepartner
-	private ArrayList<ObjectID> my_distantDescendant; //Entfernter Nachkomme
-	private ArrayList<ObjectID> my_distantAncestor;
+	private final ArrayList<ObjectID> my_parents;
+	private final ArrayList<ObjectID> my_children;
+	private final ArrayList<ObjectID> my_spouse; //Ehepartner
+	private final ArrayList<ObjectID> my_distantDescendant; //Entfernter Nachkomme
+	private final ArrayList<ObjectID> my_distantAncestor;
 	
 	public FamiliarRelationship() {
-		my_parents = new ArrayList<ObjectID>();
-		my_children = new ArrayList<ObjectID>();
-		my_spouse = new ArrayList<ObjectID>();
-		my_distantDescendant = new ArrayList<ObjectID>();
-		my_distantAncestor = new ArrayList<ObjectID>();
+		my_parents = new ArrayList<>();
+		my_children = new ArrayList<>();
+		my_spouse = new ArrayList<>();
+		my_distantDescendant = new ArrayList<>();
+		my_distantAncestor = new ArrayList<>();
 	}
 
 	public void addRelationship(boolean childRelation, boolean parentRelation, boolean spouseRelation, boolean distantDescendant, boolean distantAncestor, ObjectID otherPersonID) {
@@ -57,7 +57,7 @@ public class FamiliarRelationship {
 	}
 	
 	public ArrayList<ObjectID> getSiblings(ObjectID myID){
-		ArrayList<ObjectID> siblings = new ArrayList<ObjectID>();
+		ArrayList<ObjectID> siblings = new ArrayList<>();
 		for(ObjectID parentID : my_parents) {
 			for(ObjectID sibling : Book.getInstance().getSociety().getPerson(parentID).getFamiliarRelation().getChildren()) {
 				if(!sibling.equals(myID)) {

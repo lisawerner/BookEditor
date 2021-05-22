@@ -1,20 +1,18 @@
 package GUI.pages.content.viewChapter;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
-
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-
-import book.Book;
-import book.Chapter;
-import book.DevelopmentStatus;
-import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.createSection.Page_createSection;
+import GUI.sectionPage.SectionPage;
+import book.Book;
+import book.Chapter;
+import book.DevelopmentStatus;
+import book.Section;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_SectionList extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +20,7 @@ public class Card_SectionList extends TransparentPanel {
 	public Card_SectionList(Chapter chapter) {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		JButton btn_createSection = new JButton("Create a new textsection for that chapter");
+		JButton btn_createSection = new JButton("Create a new text section for that chapter");
 		add(btn_createSection);
 		btn_createSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_createSection(chapter)));
 		
@@ -43,11 +41,11 @@ public class Card_SectionList extends TransparentPanel {
 		String additionalInformation = "";
 		if(Book.getInstance().getTableOfContent().showWordCountInSectionLists()){
 			additionalInformation += "    (Words: " + section.getCountWords() + ";";
-			if(!Book.getInstance().getTableOfContent().showDevStatusinSectionLists()){
+			if(!Book.getInstance().getTableOfContent().showDevStatusInSectionLists()){
 				additionalInformation += ")";
 			}
 		}
-		if(Book.getInstance().getTableOfContent().showDevStatusinSectionLists()){
+		if(Book.getInstance().getTableOfContent().showDevStatusInSectionLists()){
 			if(additionalInformation.isEmpty()){
 				additionalInformation +=  "    (";
 			}

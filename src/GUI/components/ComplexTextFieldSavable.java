@@ -1,25 +1,25 @@
 package GUI.components;
-import java.awt.BorderLayout;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-public class ComplexeTextfieldSaveable extends TransparentPanel {
+public class ComplexTextFieldSavable extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Runnable saveFunction;
+	private final Runnable saveFunction;
 	
-	private SimpleLabel lblTextfieldlabel;
+	private final SimpleLabel lblTextFieldLabel;
 	
-	private SimpleTextfield textField;
+	private final SimpleTextField textField;
 	private String originalText;
 	
-	private JButton btnSave;
+	private final JButton btnSave;
 
-	private SimpleLabel lblSaveWarning;
+	private final SimpleLabel lblSaveWarning;
 
 	/**
 	 * Creates a text field with following additions:
@@ -28,24 +28,24 @@ public class ComplexeTextfieldSaveable extends TransparentPanel {
 	 * - a label for warnings and hints if the input is empty
 	 * - and a shortcut STRG+S for saving without the button
 	 * 
-	 * @param textfieldLabel
+	 * @param textFieldLabel
 	 * @param text set text if the text field already has any input
 	 * @param newSaveFunction
 	 */
-	public ComplexeTextfieldSaveable(String textfieldLabel, String text, Runnable newSaveFunction) {
+	public ComplexTextFieldSavable(String textFieldLabel, String text, Runnable newSaveFunction) {
 		setLayout(new BorderLayout(5, 5));
 		
 		saveFunction = newSaveFunction;
 		
-		lblTextfieldlabel = new SimpleLabel(textfieldLabel);
-		add(lblTextfieldlabel, BorderLayout.WEST);
+		lblTextFieldLabel = new SimpleLabel(textFieldLabel);
+		add(lblTextFieldLabel, BorderLayout.WEST);
 		
 		btnSave = new JButton("Save");
 		btnSave.addActionListener(e -> callSave());
 		btnSave.setEnabled(false);
 		add(btnSave, BorderLayout.EAST);
 		
-		textField = new SimpleTextfield(text);
+		textField = new SimpleTextField(text);
 		add(textField, BorderLayout.CENTER);
 		originalText = text;
 		
@@ -92,18 +92,18 @@ public class ComplexeTextfieldSaveable extends TransparentPanel {
 	
 	protected void checkChanges(){
 		boolean hasChanges = !originalText.equals(textField.getText());
-		lblTextfieldlabel.setWarning(hasChanges);
+		lblTextFieldLabel.setWarning(hasChanges);
 		textField.setWarning(hasChanges);
 		btnSave.setEnabled(hasChanges && checkSavebility());
 	}
 	
 	private void callSave(){
-		if(checkSavebility()){                		
+		if(checkSavebility()){
 			saveFunction.run();
     		lblSaveWarning.setText(" ");
     		textField.setWarning(false);
     		btnSave.setEnabled(false);
-    		lblTextfieldlabel.setWarning(false);
+    		lblTextFieldLabel.setWarning(false);
     		originalText = textField.getText();
     	}
 	}

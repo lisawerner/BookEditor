@@ -1,23 +1,18 @@
 package GUI.pages.timeline;
 
-import java.awt.GridLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.JSeparator;
-
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
+import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Chapter;
 import book.Section;
 import time.Timestamp;
-import GUI.components.LinkButton;
-import GUI.components.SimpleLabel;
-import GUI.components.TransparentPanel;
-import GUI.pages.content.viewChapter.Page_viewChapter;
 
-import javax.swing.Box;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_RelativeList extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

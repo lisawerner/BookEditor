@@ -1,26 +1,19 @@
 package GUI.components;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import javax.swing.Box;
-import java.awt.Dimension;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-
 import GUI.frame.menu.MainMenu;
 import GUI.theme.ThemeList;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class FrameMenu extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
-	
-	private TransparentPanel menuBody;
-	
-	private JLabel lbl_menuHeader;
-	private String frontHeaderTag = "<html><div style='text-align: center;'><font size=\"7\">";
-	private String backHeaderTag = "</size></div></html>";
-	
-	private TransparentPanel panel_mainMenu;
-	private TransparentPanel panel_submenu;
+
+	private final JLabel lbl_menuHeader;
+	private static final String FRONT_HEADER_TAG = "<html><div style='text-align: center;'><font size=\"7\">";
+	private static final String BACK_HEADER_TAG = "</size></div></html>";
+
+	private final TransparentPanel panel_submenu;
 
 	public FrameMenu() {
 		setLayout(new BorderLayout(0, 0));
@@ -36,18 +29,18 @@ public class FrameMenu extends TransparentPanel {
 		
 		Component rigidArea_3 = Box.createRigidArea(new Dimension(10, 10));
 		add(rigidArea_3, BorderLayout.SOUTH);
-		
-		menuBody = new TransparentPanel();
+
+		TransparentPanel menuBody = new TransparentPanel();
 		add(menuBody, BorderLayout.CENTER);
 		menuBody.setLayout(new BoxLayout(menuBody, BoxLayout.PAGE_AXIS));
 		
 		TransparentPanel panel_header = new TransparentPanel();
 		menuBody.add(panel_header);
 		panel_header.setLayout(new BoxLayout(panel_header, BoxLayout.LINE_AXIS));
-		lbl_menuHeader = new JLabel(frontHeaderTag + "Menu:" + backHeaderTag);
+		lbl_menuHeader = new JLabel(FRONT_HEADER_TAG + "Menu:" + BACK_HEADER_TAG);
 		panel_header.add(lbl_menuHeader);
-		
-		panel_mainMenu = new TransparentPanel();
+
+		TransparentPanel panel_mainMenu = new TransparentPanel();
 		menuBody.add(panel_mainMenu);
 		panel_mainMenu.setLayout(new BorderLayout(5, 5));
 		panel_mainMenu.add(new MainMenu(), BorderLayout.NORTH);
@@ -73,8 +66,6 @@ public class FrameMenu extends TransparentPanel {
 			//...
 			revalidate();
 			repaint();
-		} else {
-
 		}
 	}
 		

@@ -4,7 +4,8 @@ import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import book.Book;
-import javax.swing.BoxLayout;
+
+import javax.swing.*;
 
 public class Card_ListSettings extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -14,22 +15,22 @@ public class Card_ListSettings extends TransparentPanel {
 		
 		add(new SimpleLabel("Show additional information for sections in list views:"));
 
-		SimpleCheckbox chckbxShowCountOfWords = new SimpleCheckbox("Show count of words");
-		chckbxShowCountOfWords.setSelected(Book.getInstance().getTableOfContent().showWordCountInSectionLists());
-		chckbxShowCountOfWords.addActionListener(e -> Book.getInstance().getTableOfContent().setShowWordCountInSectionLists(chckbxShowCountOfWords.isSelected()));
-		add(chckbxShowCountOfWords);
+		SimpleCheckbox checkboxShowCountOfWords = new SimpleCheckbox("Show count of words");
+		checkboxShowCountOfWords.setSelected(Book.getInstance().getTableOfContent().showWordCountInSectionLists());
+		checkboxShowCountOfWords.addActionListener(e -> Book.getInstance().getTableOfContent().setShowWordCountInSectionLists(checkboxShowCountOfWords.isSelected()));
+		add(checkboxShowCountOfWords);
 		
-		SimpleCheckbox chckbxShowDevelopmentStatus = new SimpleCheckbox("Show development status");
-		chckbxShowDevelopmentStatus.setSelected(Book.getInstance().getTableOfContent().showDevStatusinSectionLists());
-		chckbxShowDevelopmentStatus.addActionListener(e -> Book.getInstance().getTableOfContent().setShowDevStatusinSectionLists(chckbxShowDevelopmentStatus.isSelected()));
-		add(chckbxShowDevelopmentStatus);
+		SimpleCheckbox checkboxShowDevelopmentStatus = new SimpleCheckbox("Show development status");
+		checkboxShowDevelopmentStatus.setSelected(Book.getInstance().getTableOfContent().showDevStatusInSectionLists());
+		checkboxShowDevelopmentStatus.addActionListener(e -> Book.getInstance().getTableOfContent().setShowDevStatusInSectionLists(checkboxShowDevelopmentStatus.isSelected()));
+		add(checkboxShowDevelopmentStatus);
 
 		add(new SimpleLabel("Show additional information for chapters in list views:"));
 		
-		SimpleCheckbox chckbxShowSumWords = new SimpleCheckbox("Show summary of words");
-		chckbxShowSumWords.setSelected(Book.getInstance().getTableOfContent().showWordSumInChapterLists());
-		chckbxShowSumWords.addActionListener(e -> Book.getInstance().getTableOfContent().setShowWordSumInChapterLists(chckbxShowSumWords.isSelected()));
-		add(chckbxShowSumWords);
+		SimpleCheckbox checkboxShowSumWords = new SimpleCheckbox("Show summary of words");
+		checkboxShowSumWords.setSelected(Book.getInstance().getTableOfContent().showWordSumInChapterLists());
+		checkboxShowSumWords.addActionListener(e -> Book.getInstance().getTableOfContent().setShowWordSumInChapterLists(checkboxShowSumWords.isSelected()));
+		add(checkboxShowSumWords);
 		
 	}
 

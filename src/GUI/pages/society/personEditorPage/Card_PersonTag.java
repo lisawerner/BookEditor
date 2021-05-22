@@ -1,32 +1,29 @@
 package GUI.pages.society.personEditorPage;
 
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
-
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.LinkButton;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import GUI.sectionPage.SectionPage;
 import book.Book;
 import book.Chapter;
 import book.Section;
-import GUI.components.LinkButton;
-import GUI.components.SimpleLabel;
-import GUI.components.TransparentPanel;
 import person.Person;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_PersonTag extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private Person my_person;
-	
 	public Card_PersonTag(Person person) {
-		my_person = person;
-//		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+		//		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 		setLayout(new GridLayout(0, 5, 5, 5));
 		
-		if(my_person != null) {
+		if(person != null) {
 			for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {				
 				for(Section section : chapter.getSections()) {
-					if(section.hasTag(my_person.getID())) {		
+					if(section.hasTag(person.getID())) {
 						TransparentPanel panel = new TransparentPanel();
 						panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 						add(panel);

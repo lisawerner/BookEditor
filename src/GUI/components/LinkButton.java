@@ -1,16 +1,14 @@
 package GUI.components;
 
-import java.awt.Font;
+import GUI.theme.ThemeList;
+import global.UserSettings;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-
-import GUI.theme.ThemeList;
-import global.UserSettings;
 
 public class LinkButton extends JButton{
 	private static final long serialVersionUID = 1L;
@@ -42,8 +40,6 @@ public class LinkButton extends JButton{
 			}
 			revalidate();
 			repaint();
-		} else {
-
 		}
 	}
 

@@ -8,7 +8,6 @@ import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.filterPage.Page_FilterPerson;
 import GUI.pages.society.raceSystemPage.Page_RaceSystem;
 import book.Book;
-
 import person.Person;
 
 public class SocietyMenu extends FrameSubmenu {

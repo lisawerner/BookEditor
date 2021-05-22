@@ -1,9 +1,9 @@
 package GUI.pages.world.createPlace;
 
-import global.UserSettings;
 import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
+import global.UserSettings;
 
 public class Page_createPlace extends Page {
 	private static final long serialVersionUID = 1L;

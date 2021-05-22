@@ -1,26 +1,17 @@
 package GUI.components;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import GUI.HelpFrame;
 import GUI.theme.ThemeList;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.*;
 
 public class FrameFooter extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JButton btnAbout;
-	private JLabel lblCopyRight;
-	private JButton btnHelp;
+	private final JButton btnAbout;
+	private final JLabel lblCopyRight;
+	private final JButton btnHelp;
 	
 	public FrameFooter() {
 		setLayout(new BorderLayout(0, 0));
@@ -29,7 +20,7 @@ public class FrameFooter extends JPanel {
 		add(panel);
 		btnAbout = new JButton("<html>&ensp; About &ensp;</html>");
 		panel.add(btnAbout);
-		//TODO: About-Text fertig schreiben!
+		//TODO: Finish writing the About-Text!
 		String aboutText = "<html><h1>About BookEditor</h1>"
 				+ "<p>Copyright: All Rights reserved by Lisa Werner</p>"
 				+ "<p></p>"
@@ -37,19 +28,17 @@ public class FrameFooter extends JPanel {
 		btnAbout.addActionListener(e -> JOptionPane.showMessageDialog(null, aboutText));
 		
 		btnHelp = new JButton("<html>&nbsp; &ensp; Help &ensp; &nbsp;</html>");
-		btnHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				HelpFrame frame = new HelpFrame();
-				frame.setVisible(true);
-			}
+		btnHelp.addActionListener(e -> {
+			HelpFrame frame = new HelpFrame();
+			frame.setVisible(true);
 		});
 		panel.add(btnHelp);
 		
-		//TODO: Copyright richtig machen. Mit Jahrszahl???
+		//TODO: Write a correct Copyright (e.g. with year?)
 		lblCopyRight = new JLabel("<html><font size=\"5\">&#9400;</font> Lisa Werner &emsp;</html>");
 		add(lblCopyRight, BorderLayout.EAST);
 		
-		//TODO: Datenschutz? Kontakt? Support? Terms of Use? Was noch?
+		//TODO: Datenschutz? Contact? Support? Terms of Use? What else to add?
 		
 		changeTheme();
 	}

@@ -1,21 +1,20 @@
 package GUI.components;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import GUI.theme.ThemeList;
+
+import javax.swing.*;
 
 public class FrameHeader extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel my_label;
+	private final JLabel my_label;
 	
-	private String frontTag = "<html><div style='text-align: center;'><font size=\"9\">";
-	private String backTag = "</size></div></html>";
+	private static final String FRONT_TAG = "<html><div style='text-align: center;'><font size=\"9\">";
+	private static final String BACK_TAG = "</size></div></html>";
 
 	public FrameHeader(String newText) {
 		
-		my_label = new JLabel(frontTag + newText + backTag);
+		my_label = new JLabel(FRONT_TAG + newText + BACK_TAG);
 		add(my_label);
 		
 		changeTheme();
@@ -29,13 +28,11 @@ public class FrameHeader extends JPanel{
 			my_label.repaint();
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	
 	public void setText(String newText) {
-		my_label.setText(frontTag + newText + backTag);
+		my_label.setText(FRONT_TAG + newText + BACK_TAG);
 	}
 	
 }

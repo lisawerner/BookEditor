@@ -1,31 +1,23 @@
 package GUI.launcherFrame;
 
-import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import book.Book;
 import GUI.components.FrameHeader;
 import GUI.components.InfoButton;
 import GUI.components.SimpleLabel;
-import GUI.components.SimpleTextfield;
+import GUI.components.SimpleTextField;
+import book.Book;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 public class CreateBookPage extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleTextfield txt_newTitle;
-	private JCheckBox chckbxRememberWorktitle;
-	private SimpleLabel lblSaveWarning;
-	private SimpleLabel lblNewTitle;
+	private final SimpleTextField txt_newTitle;
+	private final JCheckBox checkboxRememberWorkTitle;
+	private final SimpleLabel lblSaveWarning;
+	private final SimpleLabel lblNewTitle;
 	
 	public CreateBookPage() {
 		setLayout(new BorderLayout(10, 10));
@@ -41,8 +33,8 @@ public class CreateBookPage extends JPanel {
 		panel_footer.add(lblSaveWarning);
 		lblSaveWarning.setForeground(Color.RED);
 		
-		JButton btnSpeichern = new JButton("Save");
-		btnSpeichern.addActionListener(new ActionListener() {
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblSaveWarning.setText(" ");
 				boolean canSave = true;
@@ -55,18 +47,18 @@ public class CreateBookPage extends JPanel {
 					canSave = false;
 				}
 				
-				boolean isWorktitle = chckbxRememberWorktitle.isSelected();
+				boolean isWorkTitle = checkboxRememberWorkTitle.isSelected();
 				
 				if(canSave) {
-					Book.getInstance().createNewBook(title, isWorktitle);
+					Book.getInstance().createNewBook(title, isWorkTitle);
 					StartFrame.getInstance().openBookEditor();
 				}
 			}
 		});
 		
-		panel_footer.add(btnSpeichern);
+		panel_footer.add(btnSave);
 		
-		//TODO: Schrift zentrieren
+		//TODO: Center the text
 		FrameHeader lblCreateANew = new FrameHeader("Create a new Book");
 		add(lblCreateANew, BorderLayout.NORTH);
 		
@@ -84,23 +76,18 @@ public class CreateBookPage extends JPanel {
 		InfoButton btn_newTitleInfo = new InfoButton("You can change the title at any time.");
 		panel_enterDataHere.add(btn_newTitleInfo, BorderLayout.EAST);
 		
-		txt_newTitle = new SimpleTextfield();
+		txt_newTitle = new SimpleTextField();
 		panel_enterDataHere.add(txt_newTitle, BorderLayout.CENTER);
 		txt_newTitle.setPreferredSize(new Dimension(200, txt_newTitle.getHeight()));
 		
-		chckbxRememberWorktitle = new JCheckBox("This is only a worktitle. Please remind me to change it, before publishing the book.");
-		panel_enterDataHere.add(chckbxRememberWorktitle, BorderLayout.SOUTH);
+		checkboxRememberWorkTitle = new JCheckBox("This is only a work title. Please remind me to change it, before publishing the book.");
+		panel_enterDataHere.add(checkboxRememberWorkTitle, BorderLayout.SOUTH);
 
 	}
 	
 	private void setWarningEnterName(boolean warning) {
-		if(warning) {
-			txt_newTitle.setWarning(warning);
-			lblNewTitle.setWarning(warning);
-		} else {
-			txt_newTitle.setWarning(warning);
-			lblNewTitle.setWarning(warning);
-		}
+		txt_newTitle.setWarning(warning);
+		lblNewTitle.setWarning(warning);
 	}
 
 }

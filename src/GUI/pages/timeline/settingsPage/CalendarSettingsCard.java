@@ -1,20 +1,18 @@
 package GUI.pages.timeline.settingsPage;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-
-import javax.swing.ButtonGroup;
-
-import book.Book;
 import GUI.components.InfoButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
+import book.Book;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class CalendarSettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleRadiobutton rdbtnGregorianCalendar;
+	private final SimpleRadiobutton rdbtnGregorianCalendar;
 
 	public CalendarSettingsCard() {
 		setLayout(new GridLayout(0, 1, 10, 10));
@@ -45,6 +43,6 @@ public class CalendarSettingsCard extends TransparentPanel {
 		rdbtnWithInfoBtn.add(btnI, BorderLayout.WEST);
 		
 		//TODO: Default? = Gregorian!
-		//TODO: Change/Save/Hint Labal
+		//TODO: Change/Save/Hint Label
 	}
 }

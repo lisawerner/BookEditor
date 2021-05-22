@@ -1,7 +1,5 @@
 package GUI.frame.menu;
 
-import java.time.LocalDate;
-
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.FrameSubmenu;
 import GUI.components.MenuButton;
@@ -12,6 +10,8 @@ import GUI.pages.timeline.settingsPage.Page_TimelineSettings;
 import book.Book;
 import time.TimelineController;
 import time.Timestamp;
+
+import java.time.LocalDate;
 
 public class TimelineMenu extends FrameSubmenu {
 	private static final long serialVersionUID = 1L;

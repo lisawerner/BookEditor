@@ -1,25 +1,18 @@
 package GUI.components;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Point;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
-
 import GUI.theme.ThemeList;
 import global.UserSettings;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class TextPreview extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
-	private JPanel panel_viewport;
-	private SimpleTextarea lblText;
+	private final JPanel panel_viewport;
+	private final SimpleTextarea lblText;
 	
-	public TextPreview(String text, boolean isReview, boolean setHight) {
+	public TextPreview(String text, boolean isReview, boolean setHeight) {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -41,12 +34,12 @@ public class TextPreview extends TransparentPanel {
 		panel_viewport.add(lblText);
 		lblText.setEditable(false);	
 		
-		if(setHight) {
+		if(setHeight) {
 			Font font = lblText.getFont();
-			int hight = font.getSize() + 4; //Why +4 ??? TODO: Maybe there is something wrong...
+			int height = font.getSize() + 4; //Why +4 ??? TODO: Maybe there is something wrong...
 			
 			Dimension dim = scrollPane.getSize();
-			dim.setSize(dim.getWidth(), hight*3);
+			dim.setSize(dim.getWidth(), height*3);
 			scrollPane.setSize(dim);
 			scrollPane.setPreferredSize(dim);
 		}
@@ -71,8 +64,6 @@ public class TextPreview extends TransparentPanel {
 			}
 			revalidate();
 			repaint();
-		} else {
-			//System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

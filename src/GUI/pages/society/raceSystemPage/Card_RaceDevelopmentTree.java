@@ -1,21 +1,16 @@
 package GUI.pages.society.raceSystemPage;
 
-import java.util.ArrayList;
-
-import book.Book;
-import global.ObjectID;
+import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import book.Book;
+import global.ObjectID;
 import person.Race;
 
-import GUI.bookeditorFrame.BookEditorFrame;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-
-import java.awt.GridLayout;
-import javax.swing.JSeparator;
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class Card_RaceDevelopmentTree extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -39,10 +34,9 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 		}	
 		
 	}
-
 	
 	private ArrayList<Race> getRootRaces(){
-		ArrayList<Race> rootRaces = new ArrayList<Race>();
+		ArrayList<Race> rootRaces = new ArrayList<>();
 		for(Race race : Book.getInstance().getSociety().getRaces()){
 			if(race.getParentRace() == null && race.getFirstAscendant() == null){
 				rootRaces.add(race);

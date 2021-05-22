@@ -1,12 +1,9 @@
 package GUI.components;
 
-import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-
 import GUI.theme.ThemeList;
+
+import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class MenuListButton extends JButton {
 	private static final long serialVersionUID = 1L;
@@ -15,10 +12,9 @@ public class MenuListButton extends JButton {
 	/**
 	 * @deprecated
 	 */
-	public MenuListButton(String sectionName) {		
-		String my_text = sectionName;
-		
-		setText(my_text);
+	public MenuListButton(String sectionName) {
+
+		setText(sectionName);
 		setHorizontalAlignment(SwingConstants.LEFT);
 				
 		changeTheme();
@@ -42,8 +38,6 @@ public class MenuListButton extends JButton {
 			setBorder(BorderFactory.createLineBorder(ThemeList.currentTheme.menuButtonBack));
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	

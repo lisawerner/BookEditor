@@ -1,11 +1,7 @@
 package GUI.sectionPage;
 
-import java.awt.BorderLayout;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
+import GUI.components.*;
 import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.society.personEditorPage.Page_PersonEditor;
 import GUI.pages.world.viewPlace.Page_viewPlace;
@@ -15,33 +11,31 @@ import book.Chapter;
 import book.DevelopmentStatus;
 import book.Section;
 import global.UserSettings;
-import GUI.components.InfoButton;
-import GUI.components.MenuListButton;
-import GUI.components.PageMenu;
-import GUI.components.SimpleLabel;
-import GUI.components.TransparentPanel;
 import person.Person;
 import person.Relationship;
 import time.Timestamp;
 import world.Place;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SectionInformationMenu extends PageMenu {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
-	private Chapter my_parentChapter;
-	
-	private JButton btnEdit;
-	
-	private SimpleLabel lblDevStatus;
-	private InfoButton hint_devStatus;
+	private final Section my_section;
+	private final Chapter my_parentChapter;
+
+	private final SimpleLabel lblDevStatus;
+	private final InfoButton hint_devStatus;
 	
 	public SectionInformationMenu(Section section, Chapter chapter) {
 		super("Section Information");
 		my_section = section;
 		my_parentChapter = chapter;
-		
-		btnEdit = this.addButtonToTopMenu("Change", e -> openSectionEditor());
+
+		JButton btnEdit = this.addButtonToTopMenu("Change", e -> openSectionEditor());
 		if(my_section == null) {
 			btnEdit.setEnabled(false);
 			btnEdit.setToolTipText("You have to create a section first.");
@@ -52,7 +46,7 @@ public class SectionInformationMenu extends PageMenu {
 		String name = my_section.getName();
 		if(name.length() > 17) {
 			name = name.substring(0,15) + "...";
-			//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+			//TODO: W needs more space, then i, so name has cut by 17 instead of 25 letters! Maybe can get string-space-length instead of letter-count
 		}
 		this.addText("Name: " + name);
 		if(my_section.hasTimestamp()) {
@@ -91,8 +85,8 @@ public class SectionInformationMenu extends PageMenu {
 		
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Comments:");
-		ArrayList<String> splittedNotes = splitNotes();
-		for(String notePart : splittedNotes) {
+		ArrayList<String> splitNotes = splitNotes();
+		for(String notePart : splitNotes) {
 			this.addText(notePart);
 		}
 
@@ -116,7 +110,7 @@ public class SectionInformationMenu extends PageMenu {
 		
 		this.addBetweenTitle("Place Tags:");
 		if(my_section != null) {
-		List<Place> placeTags = my_section.getPelaceByTag();
+		List<Place> placeTags = my_section.getPlaceByTag();
 			for(Place tag : placeTags) {
 				this.addLinkedListButton(new MenuListButton(tag.getName(), e -> openPlaceEditor(tag)));
 			}
@@ -153,23 +147,24 @@ public class SectionInformationMenu extends PageMenu {
 	}
 
 	private ArrayList<String> splitNotes() {
-		ArrayList<String> splittedNotes = new ArrayList<String>();
+		ArrayList<String> splitNotes = new ArrayList<>();
 		String notes = my_section.getNotes();
 		int noteLength = notes.length();
-		//TODO: W needs more space, then i, so notes has cut by 17 instead of 25 letters! Maybe can get string-spacelength instead of letter-count
+		//TODO: W needs more space, then i, so notes has cut by 17 instead of 25 letters! Maybe can get string-space-length instead of letter-count
 		while(noteLength > 0) {
 			if(noteLength > 20) {
-				//TODO: Den Text irgendwie sinnvoll trennen o.O; Eigentlich wären ja textArea mit wrap-Funktion sinnvoll, aber dann geht das GridLayout nicht mehr...
+				//TODO: Is it possible to split the text mor useful?? o.O
+				// A text area with wrap-Function could be useful, but it does not work with the GridLayout...
 				String newPart = notes.substring(0,18) + "...";
-				splittedNotes.add(newPart);
+				splitNotes.add(newPart);
 				notes = notes.substring(18);
 				noteLength = notes.length();
 			} else {
-				splittedNotes.add(notes);
+				splitNotes.add(notes);
 				noteLength = 0;
 			}
 		}
-		return splittedNotes;
+		return splitNotes;
 	}
 
 	private void changeDevStatus(int newDevStatus) {

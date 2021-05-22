@@ -1,11 +1,10 @@
 package GUI.pages.society;
 
-import book.Book;
 import GUI.components.TransparentPanel;
+import book.Book;
 import person.Race;
 
-import javax.swing.BoxLayout;
-import javax.swing.JSeparator;
+import javax.swing.*;
 
 public class Card_RaceSociety extends TransparentPanel {
 	private static final long serialVersionUID = 1L;

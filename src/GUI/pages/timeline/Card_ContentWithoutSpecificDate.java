@@ -1,20 +1,19 @@
 package GUI.pages.timeline;
 
-import java.awt.FlowLayout;
-
-import javax.swing.BoxLayout;
-
 import GUI.bookeditorFrame.BookEditorFrame;
-import GUI.sectionPage.SectionPage;
-import book.Book;
-import book.Chapter;
-import book.Section;
-import time.Timestamp;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
 import GUI.pages.content.viewChapter.Page_viewChapter;
+import GUI.sectionPage.SectionPage;
+import book.Book;
+import book.Chapter;
+import book.Section;
+import time.Timestamp;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class Card_ContentWithoutSpecificDate extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +29,7 @@ public class Card_ContentWithoutSpecificDate extends TransparentPanel {
 				+ "But the other timestamp B does not have specific date:<br/>"
 				+ "Then timestamp A can not calculate a specific date too. </html>"));
 		
-		//TODO: Gut wäre es hier den Anfang der Kette nur anzuzeigen und nicht die ganze Kette...
+		//TODO: It would be better to show only the start of the list and not the complete list...
 		for(Timestamp timestamp : Book.getInstance().getTimeline().getAllTimestamps()){
 			if(timestamp.getDate() == null){
 				Section section = Book.getInstance().getTableOfContent().getSection(timestamp.getSection());
@@ -53,7 +52,6 @@ public class Card_ContentWithoutSpecificDate extends TransparentPanel {
 					panel_unspecificSection.add(new SimpleLabel("] because of relation to following section with unspecific timestamp: "));
 					panel_unspecificSection.add(new LinkButton(section.getName(), e -> BookEditorFrame.getInstance().switchBody(new SectionPage(relatedSection, chapterOfRelatedSection))));
 				}
-				//TODO: Die IDE sagt mir, dass das deadcode ist. Warum? Ich bin mir sicher das timestamp.getRelationSection(); null zurückgeben kann...
 //				} else {
 //					panel_unspecificSection.add(new SimpleLabel("] because of unknown reason"));					
 //				}

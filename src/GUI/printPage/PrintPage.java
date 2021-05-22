@@ -6,7 +6,6 @@ import GUI.components.StructureCard;
 public class PrintPage extends Page {
 	private static final long serialVersionUID = 1L;
 	
-	
 	public PrintPage() {
 		super("Print and Export");
 		

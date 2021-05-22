@@ -1,36 +1,27 @@
 package GUI.components;
 
-import java.awt.BorderLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-
 import GUI.theme.ThemeList;
 
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 public class Page extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private String frontTag = "<html><div style='text-align: left;'><font size=\"5\">     ";
-	private String backTag = "</size></div></html>";
-	private String my_title;
+	private static final String FRONT_TAG = "<html><div style='text-align: left;'><font size=\"5\">     ";
+	private static final String BACK_TAG = "</size></div></html>";
+	private final String my_title;
 	private TitledBorder titledBorder;
-	
-	private JScrollPane my_body;
-	private JPanel panel_viewport;
-	private TransparentPanel my_center;
+
+	private final JPanel panel_viewport;
+	private final TransparentPanel my_center;
 
 	public Page(String pageHeader) {
 		setLayout(new BorderLayout(20, 20));
 		my_title = pageHeader;
-		titledBorder = BorderFactory.createTitledBorder(frontTag + my_title + backTag);
+		titledBorder = BorderFactory.createTitledBorder(FRONT_TAG + my_title + BACK_TAG);
 		setBorder(titledBorder);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
@@ -44,8 +35,8 @@ public class Page extends TransparentPanel {
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		add(horizontalStrut_1, BorderLayout.SOUTH);
-		
-		my_body = new JScrollPane();
+
+		JScrollPane my_body = new JScrollPane();
 		add(my_body, BorderLayout.CENTER);
 		my_body.setOpaque(false);
 		
@@ -69,7 +60,7 @@ public class Page extends TransparentPanel {
 	private void changeTheme() {
 		if(ThemeList.currentTheme != null) {
 			Border coloredBorder = BorderFactory.createLineBorder(ThemeList.currentTheme.headerBackColor);
-			titledBorder = BorderFactory.createTitledBorder(coloredBorder, frontTag + my_title + backTag);
+			titledBorder = BorderFactory.createTitledBorder(coloredBorder, FRONT_TAG + my_title + BACK_TAG);
 			if(ThemeList.currentTheme.darkTheme) {				
 				titledBorder.setTitleColor(ThemeList.currentTheme.darkForegroundColor);
 			} else {
@@ -83,8 +74,6 @@ public class Page extends TransparentPanel {
 			}
 			revalidate();
 			repaint();
-		} else {
-			//System.out.println("Change Theme in Component to: Default");
 		}
 	}
 	
@@ -94,8 +83,8 @@ public class Page extends TransparentPanel {
 		my_center.add(structureGab);
 	}
 		
-	public void setMenu(PageMenu newnMenu) {
-		add(newnMenu, BorderLayout.EAST);
+	public void setMenu(PageMenu newMenu) {
+		add(newMenu, BorderLayout.EAST);
 	}
 	
 	public void setHeader(Component header) {

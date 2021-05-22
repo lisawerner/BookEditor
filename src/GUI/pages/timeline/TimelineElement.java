@@ -1,32 +1,31 @@
 package GUI.pages.timeline;
 
 import GUI.bookeditorFrame.BookEditorFrame;
-import book.Book;
-import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TimelineItem;
 import GUI.components.TransparentPanel;
+import book.Book;
+import book.Section;
 import person.Person;
 import person.Relationship;
 import time.Timestamp;
 import world.Place;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.BoxLayout;
 
 public class TimelineElement extends TimelineItem {
 	private static final long serialVersionUID = 1L;
 
-	private Section my_section;
+	private final Section my_section;
 	
 	public TimelineElement(Timestamp timestamp, boolean leftPosition) {
 		super(leftPosition, timestamp);
 		my_section = Book.getInstance().getTableOfContent().getSection(timestamp.getSection());
 
-		//TODO: Filterfunktionen!!!!
+		//TODO: FilterFunctions!!!!
 
 		//*****************************************************************************************************
 		TransparentPanel panel_sectionName = new TransparentPanel();
@@ -56,7 +55,7 @@ public class TimelineElement extends TimelineItem {
 		panel_placeTags.setLayout(new BoxLayout(panel_placeTags, BoxLayout.LINE_AXIS));
 		SimpleLabel lblPlaces = new SimpleLabel("Places:  ");
 		panel_placeTags.add(lblPlaces);
-		List<Place> placeTags = my_section.getPelaceByTag();
+		List<Place> placeTags = my_section.getPlaceByTag();
 		for(Place tag : placeTags) {
 			panel_placeTags.add(new LinkButton(tag.getName(),
 					e -> BookEditorFrame.getInstance().openPlacePage(tag, false)));
@@ -64,11 +63,11 @@ public class TimelineElement extends TimelineItem {
 		}
 		
 		//*****************************************************************************************************	
-		TransparentPanel panel_relationshipSwitchs = new TransparentPanel();
-		this.addToBody(panel_relationshipSwitchs);
-		panel_relationshipSwitchs.setLayout(new BoxLayout(panel_relationshipSwitchs, BoxLayout.LINE_AXIS));
-		SimpleLabel lblRelationshipSwitchs = new SimpleLabel("Switched Relationships:  ");
-		panel_relationshipSwitchs.add(lblRelationshipSwitchs);
+		TransparentPanel panel_relationshipSwitches = new TransparentPanel();
+		this.addToBody(panel_relationshipSwitches);
+		panel_relationshipSwitches.setLayout(new BoxLayout(panel_relationshipSwitches, BoxLayout.LINE_AXIS));
+		SimpleLabel lblRelationshipSwitches = new SimpleLabel("Switched Relationships:  ");
+		panel_relationshipSwitches.add(lblRelationshipSwitches);
 		ArrayList<Relationship> relSwitches = my_section.getRelationships();
 		for(Relationship rel : relSwitches) {
 			SimpleLabel lblRel = new SimpleLabel("<html>&emsp; &emsp;" + rel.getSwitchToString() + "; </html>");

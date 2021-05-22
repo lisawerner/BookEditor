@@ -1,16 +1,16 @@
 package GUI.pages.settings;
 
-import java.awt.BorderLayout;
-
-import book.Book;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import book.Book;
+
+import java.awt.*;
 
 public class SocietySettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private SimpleCheckbox chbox_fantasyRaces;
+	private final SimpleCheckbox checkbox_fantasyRaces;
 
 	public SocietySettingsCard() {
 		
@@ -21,14 +21,14 @@ public class SocietySettingsCard extends TransparentPanel {
 				+ "Without race-system the book-editor think every person is a human.</html>");
 		add(lbl_fantasyRacesHint, BorderLayout.NORTH);
 		
-		chbox_fantasyRaces = new SimpleCheckbox("Activate Race-System");
-		chbox_fantasyRaces.setSelected(Book.getInstance().getSociety().isRaceSystemActivated());
-		add(chbox_fantasyRaces, BorderLayout.CENTER);
-		chbox_fantasyRaces.addActionListener(e -> changeRaceSystemSettings());
+		checkbox_fantasyRaces = new SimpleCheckbox("Activate Race-System");
+		checkbox_fantasyRaces.setSelected(Book.getInstance().getSociety().isRaceSystemActivated());
+		add(checkbox_fantasyRaces, BorderLayout.CENTER);
+		checkbox_fantasyRaces.addActionListener(e -> changeRaceSystemSettings());
 	}
 
 	private void changeRaceSystemSettings() {
-		Book.getInstance().getSociety().activateRaceSettings(chbox_fantasyRaces.isSelected());
+		Book.getInstance().getSociety().activateRaceSettings(checkbox_fantasyRaces.isSelected());
 	}
 
 }

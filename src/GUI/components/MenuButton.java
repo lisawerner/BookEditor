@@ -1,11 +1,9 @@
 package GUI.components;
 
-import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-
 import GUI.theme.ThemeList;
+
+import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class MenuButton extends JButton {
 	private static final long serialVersionUID = 1L;
@@ -24,8 +22,6 @@ public class MenuButton extends JButton {
 			setForeground(ThemeList.currentTheme.menuButtonFont);
 			revalidate();
 			repaint();
-		} else {
-//			System.out.println("Change Theme in Component to: Default");
 		}
 	}
 

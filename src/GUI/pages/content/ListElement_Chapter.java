@@ -1,31 +1,25 @@
 package GUI.pages.content;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import GUI.bookeditorFrame.BookEditorFrame;
-import book.Book;
-import book.Chapter;
-import book.Section;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.viewChapter.Page_viewChapter;
+import book.Book;
+import book.Chapter;
+import book.Section;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 
-public class Listelement_Chapter extends TransparentPanel {
+public class ListElement_Chapter extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Chapter my_chapter;
+	private final Chapter my_chapter;
 	
-	private TransparentPanel panel_listOfSections;
+	private final TransparentPanel panel_listOfSections;
 	
-	public Listelement_Chapter(Chapter chapter, Card_SortChapter parentBody) {
+	public ListElement_Chapter(Chapter chapter, Card_SortChapter parentBody) {
 		my_chapter = chapter;
 		setLayout(new BorderLayout(5, 5));
 		
@@ -80,7 +74,7 @@ public class Listelement_Chapter extends TransparentPanel {
 	
 	private void showAllSections() {
 		for(Section section : my_chapter.getSections()) {
-			Listelement_Section lblSectionTitle = new Listelement_Section(section, my_chapter, this);
+			ListElement_Section lblSectionTitle = new ListElement_Section(section, my_chapter, this);
 			panel_listOfSections.add(lblSectionTitle);
 			panel_listOfSections.add(Box.createRigidArea(new Dimension(5, 5)));
 		}

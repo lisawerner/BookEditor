@@ -15,11 +15,11 @@ public class Content {
 	
 	// Settings
 	private boolean showWordCountInSectionLists;
-	private boolean showDevStatusinSectionLists;
+	private boolean showDevStatusInSectionLists;
 	private boolean showWordSumInChapterLists;
 		
 	public Content() {
-		my_chapters = new ArrayList<Chapter>();
+		my_chapters = new ArrayList<>();
 	}
 					
 	public int getCountChapters() {
@@ -27,7 +27,7 @@ public class Content {
 	}
 	
 	public List<Section> getUnfinishedSections(){
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream()
 					.filter(section -> section.getDevelopmentStatus() < 4)
@@ -37,7 +37,7 @@ public class Content {
 	}
 	
 	public List<Section> getEmptySections(){
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream().filter(section -> "".equals(section.getText())).collect(Collectors.toList()));
 		}
@@ -45,7 +45,7 @@ public class Content {
 	}
 	
 	public List<Section> getSectionsByDevStatus(int devStatus, boolean andSmaller){
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream().filter(section -> section.getDevelopmentStatus() == devStatus
 					|| (andSmaller && section.getDevelopmentStatus() < devStatus)).collect(Collectors.toList()));
@@ -54,7 +54,7 @@ public class Content {
 	}
 
 	public List<Section> getSectionsByPersons(ArrayList<Person> selectedPersons, boolean intersectionSelect) {
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream()
 					.filter(section -> allPersonsTagged(intersectionSelect,selectedPersons,section) || anyPersonTagged(intersectionSelect,selectedPersons,section))
@@ -84,8 +84,8 @@ public class Content {
 		return null;
 	}
 
-	public List<Section> getSectionWithoutTaggedMaincharacters() {
-		ArrayList<Section> filteredList = new ArrayList<Section>();
+	public List<Section> getSectionWithoutTaggedMainCharacters() {
+		ArrayList<Section> filteredList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {			
 			for(Section section : chapter.getSections()) {
 				boolean hasNoMainCharacter = true;
@@ -103,7 +103,7 @@ public class Content {
 	}
 
 	public List<Section> getSectionWithoutTimestamp() {
-		ArrayList<Section> sectionList = new ArrayList<Section>();
+		ArrayList<Section> sectionList = new ArrayList<>();
 		for(Chapter chapter : my_chapters) {
 			sectionList.addAll(chapter.getSections().stream().filter(section -> !section.hasTimestamp()).collect(Collectors.toList()));
 		}
@@ -113,8 +113,8 @@ public class Content {
 	public Section getSectionByRelationship(ObjectID relID) {
 		for(Chapter chapter : my_chapters) {			
 			for(Section section : chapter.getSections()) {
-				for(Relationship relship : section.getRelationships()) {
-					if(relship.getID().equals(relID)) {
+				for(Relationship relationship : section.getRelationships()) {
+					if(relationship.getID().equals(relID)) {
 						return section;
 					}
 				}
@@ -124,7 +124,7 @@ public class Content {
 	}
 
 	public void addChapter(Chapter newChapter) {
-		if(my_chapters == null) {my_chapters = new ArrayList<Chapter>();}
+		if(my_chapters == null) {my_chapters = new ArrayList<>();}
 		my_chapters.add(newChapter);
 		Book.getInstance().save();
 	}
@@ -142,7 +142,7 @@ public class Content {
 	}
 
 	public ArrayList<Chapter> getChapters() {
-		if(my_chapters == null) {return new ArrayList<Chapter>();}
+		if(my_chapters == null) {return new ArrayList<>();}
 		return my_chapters;
 	}
 
@@ -151,7 +151,7 @@ public class Content {
 	}
 
 	public void sortChapter(Chapter moveChapter, boolean moveUp) {
-		if(my_chapters == null) {my_chapters = new ArrayList<Chapter>();}
+		if(my_chapters == null) {my_chapters = new ArrayList<>();}
 		
 		int index = my_chapters.indexOf(moveChapter);
 		my_chapters.remove(index);
@@ -180,7 +180,7 @@ public class Content {
 	}
 
 	public ArrayList<Section> getAllSectionsWhichUsesThatSectionAsTimeRelation(ObjectID maybeRelatedSection) {
-		ArrayList<Section> listOfUsers = new ArrayList<Section>();
+		ArrayList<Section> listOfUsers = new ArrayList<>();
 		for(Chapter chapter : my_chapters){
 			for(Section section : chapter.getSections()){
 				if(section.hasTimestamp()){
@@ -208,12 +208,12 @@ public class Content {
 		Book.getInstance().save();
 	}
 	
-	public boolean showDevStatusinSectionLists(){
-		return showDevStatusinSectionLists;
+	public boolean showDevStatusInSectionLists(){
+		return showDevStatusInSectionLists;
 	}
 
-	public void setShowDevStatusinSectionLists(boolean hasToShowDevStatusinSectionLists) {
-		showDevStatusinSectionLists = hasToShowDevStatusinSectionLists;
+	public void setShowDevStatusInSectionLists(boolean hasToShowDevStatusInSectionLists) {
+		showDevStatusInSectionLists = hasToShowDevStatusInSectionLists;
 		Book.getInstance().save();
 	}
 	

@@ -1,10 +1,10 @@
 package GUI.printPage;
 
-import java.awt.GridLayout;
-
-import book.Book;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
+import book.Book;
+
+import java.awt.*;
 
 public class PrintHintCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +32,7 @@ public class PrintHintCard extends TransparentPanel {
 		
 		SimpleLabel lblChapterWithoutSection = new SimpleLabel("Warning: Some chapters does not have a section");
 		lblChapterWithoutSection.setWarning(true);
-		//TODO: WArnng for missing Sections in Chapters!
+		//TODO: Warning for missing Sections in Chapters!
 		
 		SimpleLabel lblSectionUnfinished = new SimpleLabel("Warning: You have Sections, which are not finished! Filter for Sections with DevelopmentStatus != Finish");
 		lblSectionUnfinished.setWarning(true);

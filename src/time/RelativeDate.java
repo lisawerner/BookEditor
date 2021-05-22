@@ -11,14 +11,14 @@ import global.ObjectID;
 
 public class RelativeDate {
 	
-	private ObjectID isRelatedToTimestamp;
+	private final ObjectID isRelatedToTimestamp;
 	
-	private boolean isAfter;
-	private int my_daysDistance;
-	private int my_weeksDistance;
-	private int my_monthsDistance;
-	private int my_yearsDistance;
-	private int my_dayOfTheWeek;
+	private final boolean isAfter;
+	private final int my_daysDistance;
+	private final int my_weeksDistance;
+	private final int my_monthsDistance;
+	private final int my_yearsDistance;
+	private final int my_dayOfTheWeek;
 	
 	public RelativeDate(ObjectID relatesToTimestamp, boolean newIsAfter, int distDays, int distWeeks, int distMonths, int distYears, int dayOfWeek) {
 		isRelatedToTimestamp = relatesToTimestamp;
@@ -93,7 +93,7 @@ public class RelativeDate {
 			cal.add(Calendar.DATE, addDays); // Adding x days
 			if(my_dayOfTheWeek > 0) {
 				int currentDayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-				int difference = 0;
+				int difference;
 				if(currentDayOfWeek < my_dayOfTheWeek) {					
 					difference = my_dayOfTheWeek - currentDayOfWeek;
 				} else {
@@ -117,7 +117,7 @@ public class RelativeDate {
 			
 			if(my_dayOfTheWeek > 0) {
 				int currentDayOfWeek = cal.get(Calendar.DAY_OF_WEEK) -1;
-				int difference = 0;
+				int difference;
 				if(currentDayOfWeek < my_dayOfTheWeek) {					
 					difference = my_dayOfTheWeek - currentDayOfWeek;
 				} else {
@@ -134,7 +134,7 @@ public class RelativeDate {
 			myYear = Math.abs(myYear);
 		}
 		
-		//TODO: DONT SAVE THAT! you will delete the relation to the section!
+		//TODO: DON'T SAVE THAT! you will delete the relation to the section!
 		return new Timestamp(null, myDay, myMonth, myYear, isAnnoDomini, relatedDate.hasConcreteYear());
 	}
 
@@ -204,7 +204,7 @@ public class RelativeDate {
 			
 			if(isAfter){				
 				int currentDayOfWeek = ownNewDate.getDayOfWeek().getValue();
-				int difference = 0;
+				int difference;
 				if(currentDayOfWeek < my_dayOfTheWeek) {					
 					difference = my_dayOfTheWeek - currentDayOfWeek;
 				} else {

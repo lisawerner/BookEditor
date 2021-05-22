@@ -1,28 +1,22 @@
 package GUI.components;
 
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
-
 import GUI.theme.ThemeList;
+
+import javax.swing.*;
 
 public class SimpleScrollPane extends JScrollPane {
 	private static final long serialVersionUID = 1L;
-	
-	private TransparentPanel viewBody;
-	private JViewport viewport;
 
 	public SimpleScrollPane(TransparentPanel newViewBody) {
 		setOpaque(false);
 		
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		
-		viewBody = newViewBody;
-		
-		viewport = new JViewport();
+
+		JViewport viewport = new JViewport();
 		viewport.setOpaque(false);
 		setViewportView(viewport);
-		viewport.setView(viewBody);
+		viewport.setView(newViewBody);
 		changeTheme();
 	}
 	
@@ -35,8 +29,6 @@ public class SimpleScrollPane extends JScrollPane {
 			}
 			revalidate();
 			repaint();
-		} else {
-			//System.out.println("Change Theme in Component to: Default");
 		}
 	}
 

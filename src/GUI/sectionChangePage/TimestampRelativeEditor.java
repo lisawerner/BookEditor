@@ -1,64 +1,55 @@
 package GUI.sectionChangePage;
 
+import GUI.components.*;
 import book.Book;
 import book.Chapter;
 import book.Section;
-import GUI.components.ComboItem;
-import GUI.components.InfoButton;
-import GUI.components.SimpleIntegerTextfield;
-import GUI.components.SimpleLabel;
-import GUI.components.SimpleRadiobutton;
-import GUI.components.TransparentPanel;
 import time.RelativeDate;
 import time.Timestamp;
 
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
+import java.awt.*;
 
 public class TimestampRelativeEditor extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Section my_section;
+	private final Section my_section;
 	
 	private int dayOfWeek = 0;
 	
-	private SimpleIntegerTextfield txt_days;
-	private SimpleIntegerTextfield txt_weeks;
-	private SimpleIntegerTextfield txt_months;
-	private SimpleIntegerTextfield txt_years;
-	private SimpleLabel lblSelectASection;
-	private SimpleLabel lblShouldTheRelated;
-	private JComboBox<ComboItem> comboBox;
-	private SimpleRadiobutton rdbtnBefore;
-	private SimpleRadiobutton rdbtnAfter;
-	private SimpleLabel lblSetTheDistancetime;
-	private SimpleLabel lblDays;
-	private SimpleLabel lblWeeks;
-	private SimpleLabel lblMonths;
-	private SimpleLabel lblYears;
-	private SimpleLabel lblResult;
-	private SimpleLabel lblWARNING;
-	private SimpleRadiobutton rdbtnNoDay;
-	private SimpleRadiobutton rdbtnMonday;
-	private SimpleRadiobutton rdbtnTuseday;
-	private SimpleRadiobutton rdbtnWednesday;
-	private SimpleRadiobutton rdbtnThursday;
-	private SimpleRadiobutton rdbtnFriday;
-	private SimpleRadiobutton rdbtnSaturday;
-	private SimpleRadiobutton rdbtnSunday;
+	private final SimpleIntegerTextField txt_days;
+	private final SimpleIntegerTextField txt_weeks;
+	private final SimpleIntegerTextField txt_months;
+	private final SimpleIntegerTextField txt_years;
+	private final SimpleLabel lblSelectASection;
+	private final SimpleLabel lblShouldTheRelated;
+	private final JComboBox<ComboItem> comboBox;
+	private final SimpleRadiobutton rdbtnBefore;
+	private final SimpleRadiobutton rdbtnAfter;
+	private final SimpleLabel lblSetTheDistanceTime;
+	private final SimpleLabel lblDays;
+	private final SimpleLabel lblWeeks;
+	private final SimpleLabel lblMonths;
+	private final SimpleLabel lblYears;
+	private final SimpleLabel lblResult;
+	private final SimpleLabel lblWARNING;
+	private final SimpleRadiobutton rdbtnNoDay;
+	private final SimpleRadiobutton rdbtnMonday;
+	private final SimpleRadiobutton rdbtnTuesday;
+	private final SimpleRadiobutton rdbtnWednesday;
+	private final SimpleRadiobutton rdbtnThursday;
+	private final SimpleRadiobutton rdbtnFriday;
+	private final SimpleRadiobutton rdbtnSaturday;
+	private final SimpleRadiobutton rdbtnSunday;
 
 	public TimestampRelativeEditor(Section openedSection) {
 		my_section = openedSection;
 		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
-		ButtonGroup btngroup_afterORbefore = new ButtonGroup();
+		ButtonGroup btnGroup_afterOrBefore = new ButtonGroup();
 		
 		TransparentPanel panel_selectRelativeSection = new TransparentPanel();
 		add(panel_selectRelativeSection);
@@ -67,7 +58,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		lblSelectASection = new SimpleLabel("Select a Section to which the Timestamp is related:");
 		panel_selectRelativeSection.add(lblSelectASection);
 		
-		comboBox = new JComboBox<ComboItem>();
+		comboBox = new JComboBox<>();
 		panel_selectRelativeSection.add(comboBox);
 		for(Chapter chapter : Book.getInstance().getTableOfContent().getChapters()) {			
 			for(Section section : chapter.getSections()) {
@@ -81,7 +72,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		add(panel_beforeOrAfter);
 		panel_beforeOrAfter.setLayout(new BorderLayout(5, 5));
 		
-		lblShouldTheRelated = new SimpleLabel("Should the related time happen gefore or after the selected section:");
+		lblShouldTheRelated = new SimpleLabel("Should the related time happen before or after the selected section:");
 		panel_beforeOrAfter.add(lblShouldTheRelated, BorderLayout.NORTH);
 		
 		TransparentPanel panel_afterBeforeBODY = new TransparentPanel();
@@ -90,18 +81,18 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		
 		rdbtnBefore = new SimpleRadiobutton("Before selected Section");
 		panel_afterBeforeBODY.add(rdbtnBefore);
-		btngroup_afterORbefore.add(rdbtnBefore);
+		btnGroup_afterOrBefore.add(rdbtnBefore);
 		
 		rdbtnAfter = new SimpleRadiobutton("After selected Section");
 		panel_afterBeforeBODY.add(rdbtnAfter);
-		btngroup_afterORbefore.add(rdbtnAfter);
+		btnGroup_afterOrBefore.add(rdbtnAfter);
 		
 		TransparentPanel panel_setDistance = new TransparentPanel();
 		add(panel_setDistance);
 		panel_setDistance.setLayout(new BorderLayout(0, 0));
 		
-		lblSetTheDistancetime = new SimpleLabel("Set the distance-time to selected Section:");
-		panel_setDistance.add(lblSetTheDistancetime, BorderLayout.NORTH);
+		lblSetTheDistanceTime = new SimpleLabel("Set the distance-time to selected Section:");
+		panel_setDistance.add(lblSetTheDistanceTime, BorderLayout.NORTH);
 		
 		TransparentPanel panel_distanceBODY = new TransparentPanel();
 		panel_setDistance.add(panel_distanceBODY);
@@ -119,16 +110,16 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		lblYears = new SimpleLabel("Years:");
 		panel_distanceBODY.add(lblYears);
 		
-		txt_days = new SimpleIntegerTextfield();
+		txt_days = new SimpleIntegerTextField();
 		panel_distanceBODY.add(txt_days);
 		
-		txt_weeks = new SimpleIntegerTextfield();
+		txt_weeks = new SimpleIntegerTextField();
 		panel_distanceBODY.add(txt_weeks);
 		
-		txt_months = new SimpleIntegerTextfield();
+		txt_months = new SimpleIntegerTextField();
 		panel_distanceBODY.add(txt_months);
 		
-		txt_years = new SimpleIntegerTextfield();
+		txt_years = new SimpleIntegerTextField();
 		panel_distanceBODY.add(txt_years);
 		
 		TransparentPanel panel_setWeekday = new TransparentPanel();
@@ -139,7 +130,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		panel_setWeekday.add(lblSetConcreteDay, BorderLayout.NORTH);
 		
 		InfoButton btnI = new InfoButton("<html>If you set a specific day of the week, then the timestamp will first add"
-				+ "<br/>(or in case of earlyer timestamp deduct)"
+				+ "<br/>(or in case of earlier timestamp deduct)"
 				+ "<br/>the distance to related timestamp and then take the next day of week.</html>");
 		panel_setWeekday.add(btnI, BorderLayout.EAST);
 		
@@ -147,46 +138,46 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		panel_setWeekday.add(panel_wekDays, BorderLayout.CENTER);
 		panel_wekDays.setLayout(new GridLayout(0, 4, 5, 5));
 		
-		ButtonGroup btngroup_dayOfTheWeek = new ButtonGroup();
+		ButtonGroup btnGroup_dayOfTheWeek = new ButtonGroup();
 		
 		rdbtnNoDay = new SimpleRadiobutton("-");
 		panel_wekDays.add(rdbtnNoDay);
-		btngroup_dayOfTheWeek.add(rdbtnNoDay);
+		btnGroup_dayOfTheWeek.add(rdbtnNoDay);
 		rdbtnNoDay.addActionListener(e -> setDayOfWeek(-1));
 		
 		rdbtnMonday = new SimpleRadiobutton("Monday");
 		panel_wekDays.add(rdbtnMonday);
-		btngroup_dayOfTheWeek.add(rdbtnMonday);
+		btnGroup_dayOfTheWeek.add(rdbtnMonday);
 		rdbtnMonday.addActionListener(e -> setDayOfWeek(2));
 		
-		rdbtnTuseday = new SimpleRadiobutton("Tuseday");
-		panel_wekDays.add(rdbtnTuseday);
-		btngroup_dayOfTheWeek.add(rdbtnTuseday);
-		rdbtnTuseday.addActionListener(e -> setDayOfWeek(3));
+		rdbtnTuesday = new SimpleRadiobutton("Tuesday");
+		panel_wekDays.add(rdbtnTuesday);
+		btnGroup_dayOfTheWeek.add(rdbtnTuesday);
+		rdbtnTuesday.addActionListener(e -> setDayOfWeek(3));
 		
 		rdbtnWednesday = new SimpleRadiobutton("Wednesday");
 		panel_wekDays.add(rdbtnWednesday);
-		btngroup_dayOfTheWeek.add(rdbtnWednesday);
+		btnGroup_dayOfTheWeek.add(rdbtnWednesday);
 		rdbtnWednesday.addActionListener(e -> setDayOfWeek(4));
 		
 		rdbtnThursday = new SimpleRadiobutton("Thursday");
 		panel_wekDays.add(rdbtnThursday);
-		btngroup_dayOfTheWeek.add(rdbtnThursday);
+		btnGroup_dayOfTheWeek.add(rdbtnThursday);
 		rdbtnThursday.addActionListener(e -> setDayOfWeek(5));
 		
 		rdbtnFriday = new SimpleRadiobutton("Friday");
 		panel_wekDays.add(rdbtnFriday);
-		btngroup_dayOfTheWeek.add(rdbtnFriday);
+		btnGroup_dayOfTheWeek.add(rdbtnFriday);
 		rdbtnFriday.addActionListener(e -> setDayOfWeek(6));
 		
 		rdbtnSaturday = new SimpleRadiobutton("Saturday");
 		panel_wekDays.add(rdbtnSaturday);
-		btngroup_dayOfTheWeek.add(rdbtnSaturday);
+		btnGroup_dayOfTheWeek.add(rdbtnSaturday);
 		rdbtnSaturday.addActionListener(e -> setDayOfWeek(7));
 		
 		rdbtnSunday = new SimpleRadiobutton("Sunday");
 		panel_wekDays.add(rdbtnSunday);
-		btngroup_dayOfTheWeek.add(rdbtnSunday);
+		btnGroup_dayOfTheWeek.add(rdbtnSunday);
 		rdbtnSunday.addActionListener(e -> setDayOfWeek(1));
 		
 		TransparentPanel panel_result = new TransparentPanel();
@@ -205,7 +196,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 	
 	private void setDayOfWeek(int newDay) {
 		dayOfWeek = newDay;
-		updateRsult();
+		updateResult();
 	}
 
 	public void switchEnabled(boolean enable) {
@@ -215,7 +206,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		comboBox.setEnabled(enable);
 		rdbtnBefore.setEnabled(enable);
 		rdbtnAfter.setEnabled(enable);
-		lblSetTheDistancetime.setEnabled(enable);
+		lblSetTheDistanceTime.setEnabled(enable);
 		lblDays.setEnabled(enable);
 		lblWeeks.setEnabled(enable);
 		lblMonths.setEnabled(enable);
@@ -227,7 +218,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		lblResult.setEnabled(enable);
 		rdbtnNoDay.setEnabled(enable);
 		rdbtnMonday.setEnabled(enable);
-		rdbtnTuseday.setEnabled(enable);
+		rdbtnTuesday.setEnabled(enable);
 		rdbtnWednesday.setEnabled(enable);
 		rdbtnThursday.setEnabled(enable);
 		rdbtnFriday.setEnabled(enable);
@@ -266,7 +257,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		
 		RelativeDate relativeResult = new RelativeDate(selectedSection.getTimestampID(), isAfter, distDays, distWeeks, distMonths, distYears, dayOfWeek);
 		
-		Timestamp my_timestamp = null;
+		Timestamp my_timestamp;
 		if(my_section.getTimestampID() != null){
 			my_timestamp = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
 			my_timestamp.setRelativeDate(relativeResult);
@@ -296,7 +287,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 			setDayOfWeek(2);
 			break;
 		case 2:
-			rdbtnTuseday.setSelected(true);
+			rdbtnTuesday.setSelected(true);
 			setDayOfWeek(3);
 			break;
 		case 3:
@@ -320,72 +311,72 @@ public class TimestampRelativeEditor extends TransparentPanel {
 			setDayOfWeek(1);
 			break;
 		}
-		updateRsult();
+		updateResult();
 		lblWARNING.setText("");
 	}
 	
 	private void setUpdateListener() {
-		txt_days.addActionListener(e -> updateRsult());
-		txt_weeks.addActionListener(e -> updateRsult());
-		txt_months.addActionListener(e -> updateRsult());
-		txt_years.addActionListener(e -> updateRsult());
-		rdbtnBefore.addActionListener(e -> updateRsult());
-		rdbtnAfter.addActionListener(e -> updateRsult());
-		comboBox.addActionListener(e -> updateRsult());
+		txt_days.addActionListener(e -> updateResult());
+		txt_weeks.addActionListener(e -> updateResult());
+		txt_months.addActionListener(e -> updateResult());
+		txt_years.addActionListener(e -> updateResult());
+		rdbtnBefore.addActionListener(e -> updateResult());
+		rdbtnAfter.addActionListener(e -> updateResult());
+		comboBox.addActionListener(e -> updateResult());
 		txt_days.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 		});
 		txt_weeks.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 		});
 		txt_months.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 		});
 		txt_years.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				updateRsult();
+				updateResult();
 			}
 		});
 	}
 	
-	private void updateRsult() {
+	private void updateResult() {
 		if(getResult() != null) {
 			Timestamp specDate = getResult();
-			String restultText = "Result: can not be calculated because related date does not have a timestamp";
+			String resultText = "Result: can not be calculated because related date does not have a timestamp";
 			if(specDate != null){				
-				restultText = "<html>Result: " + getResult().toCompleteString() + "</html>";
+				resultText = "<html>Result: " + getResult().toCompleteString() + "</html>";
 			}
-			lblResult.setText(restultText);
+			lblResult.setText(resultText);
 		}
 	}
 

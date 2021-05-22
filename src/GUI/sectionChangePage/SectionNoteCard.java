@@ -1,26 +1,24 @@
 package GUI.sectionChangePage;
 
-import book.Section;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleTextarea;
 import GUI.components.TransparentPanel;
+import book.Section;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import java.awt.BorderLayout;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class SectionNoteCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Section my_section;
+	private final Section my_section;
 	
-	private SimpleTextarea textArea;
-	private SimpleLabel lblSaveHint;
+	private final SimpleTextarea textArea;
+	private final SimpleLabel lblSaveHint;
 	
 	public SectionNoteCard(Section section) {
 		my_section = section;
@@ -48,13 +46,13 @@ public class SectionNoteCard extends TransparentPanel {
 	    });
 		textArea.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setSavestatus();
+				setSaveStatus();
 			}
 		});
 		
@@ -62,10 +60,10 @@ public class SectionNoteCard extends TransparentPanel {
 	
 	private void save() {
 		my_section.setNotes(textArea.getText());
-		setSavestatus();
+		setSaveStatus();
 	}
 	
-	private void setSavestatus() {
+	private void setSaveStatus() {
 		if(my_section.getNotes().equals(textArea.getText())) {			
 			lblSaveHint.setText("<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Already saved</html>");
 		} else {
