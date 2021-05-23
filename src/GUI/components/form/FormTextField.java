@@ -1,4 +1,8 @@
-package GUI.components;
+package GUI.components.form;
+
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextField;
+import GUI.components.form.FormInput;
 
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
@@ -10,7 +14,7 @@ import javax.swing.event.DocumentListener;
 public class FormTextField extends FormInput {
 	private static final long serialVersionUID = 1L;
 
-	private final boolean isNeededForSaving;
+	private final boolean isRequiredForSaving;
 	
 	private final SimpleLabel lblTextFieldLabel;
 	
@@ -20,21 +24,21 @@ public class FormTextField extends FormInput {
 	/**
 	 * Creates a text field with an own label for naming the text field
 	 * 
-	 * @param textFieldLabel
-	 * @param text set text if the text field already has any input
-	 * @param setIsNeededForSaving set true if text field is not to be allowed to be empty
+	 * @param textFieldLabel label to name the text field
+	 * @param textFieldContent set text if the text field already has any input
+	 * @param setIsRequiredForSaving set true if text field is not to be allowed to be empty
 	 */
-	public FormTextField(String textFieldLabel, String text, boolean setIsNeededForSaving) {
+	public FormTextField(String textFieldLabel, String textFieldContent, boolean setIsRequiredForSaving) {
 		setLayout(new BorderLayout(5, 5));
 		
-		isNeededForSaving = setIsNeededForSaving;
+		isRequiredForSaving = setIsRequiredForSaving;
 		
 		lblTextFieldLabel = new SimpleLabel(textFieldLabel);
 		add(lblTextFieldLabel, BorderLayout.WEST);
 				
-		textField = new SimpleTextField(text);
+		textField = new SimpleTextField(textFieldContent);
 		add(textField, BorderLayout.CENTER);
-		originalText = text;
+		originalText = textFieldContent;
 		
 		textField.addKeyListener(new KeyAdapter() {
 	        @Override
@@ -49,24 +53,23 @@ public class FormTextField extends FormInput {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				checkChanges();
-				parentForm.checkAllSavebilities();
+				parentForm.canBeSaved();
 			}
 			public void removeUpdate(DocumentEvent e) {
 				checkChanges();
-				parentForm.checkAllSavebilities();
+				parentForm.canBeSaved();
 			}
 			public void insertUpdate(DocumentEvent e) {
 				checkChanges();
-				parentForm.checkAllSavebilities();
+				parentForm.canBeSaved();
 			}
 		});
 	}
 	
 	@Override
-	protected boolean checkSavebility(){
-		return (!isNeededForSaving) 
-				|| (isNeededForSaving && !getText().isEmpty());
-	}	
+	protected boolean canBeSaved(){
+		return !isRequiredForSaving || !getText().isEmpty();
+	}
 	
 	public String getText(){
 		return textField.getText();
@@ -75,7 +78,7 @@ public class FormTextField extends FormInput {
 	protected void checkChanges(){
 		boolean hasChanges = !originalText.equals(textField.getText());
 		lblTextFieldLabel.setWarning(hasChanges);
-		textField.setWarning(hasChanges);
+//		textField.setWarning(hasChanges); //TODO: Why is that a problem for the TextField but not for the TextArea?
 	}
 	
 	@Override

@@ -2,6 +2,10 @@ package GUI.pages.notes.createNote;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
+import GUI.components.form.FormButton;
+import GUI.components.form.FormTextField;
+import GUI.components.form.FormTextarea;
+import GUI.components.form.SimpleForm;
 import GUI.pages.notesPage.Page_viewNotes;
 import book.Book;
 import notes.GeneralNote;
@@ -16,11 +20,11 @@ public class Card_createNote extends TransparentPanel {
 
 	public Card_createNote() {
 		setLayout(new BorderLayout(10, 10));
-		
+
 		FormButton btnSaveNote = new FormButton("Save Note", e -> save());
 		add(btnSaveNote, BorderLayout.SOUTH);
 		SimpleForm saveForm = new SimpleForm(this::save, btnSaveNote);
-		
+
 		TransparentPanel panel_noteName = new TransparentPanel();
 		add(panel_noteName, BorderLayout.NORTH);
 		panel_noteName.setLayout(new BorderLayout(5, 5));
@@ -40,5 +44,4 @@ public class Card_createNote extends TransparentPanel {
 			BookEditorFrame.getInstance().switchBody(new Page_viewNotes());
 		}
 	}
-
 }

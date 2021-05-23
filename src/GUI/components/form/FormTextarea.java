@@ -1,4 +1,8 @@
-package GUI.components;
+package GUI.components.form;
+
+import GUI.components.SimpleLabel;
+import GUI.components.SimpleTextarea;
+import GUI.components.form.FormInput;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -32,21 +36,20 @@ public class FormTextarea extends FormInput {
             		parentForm.callAction();
                 }
             }
-
 	    });
 		
 		textArea.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				checkChanges();
-				parentForm.checkAllSavebilities();
+				parentForm.canBeSaved();
 			}
 			public void removeUpdate(DocumentEvent e) {
 				checkChanges();
-				parentForm.checkAllSavebilities();
+				parentForm.canBeSaved();
 			}
 			public void insertUpdate(DocumentEvent e) {
 				checkChanges();
-				parentForm.checkAllSavebilities();
+				parentForm.canBeSaved();
 			}
 		});
 	}	
@@ -67,6 +70,10 @@ public class FormTextarea extends FormInput {
 		lblNameLabel.setWarning(false);
 		originalText = textArea.getText();
 	}
-	
 
+	@Override
+	public boolean canBeSaved() {
+		//TODO: add maybe later a check for isRequired or isNotRequired inside the form
+		return true;
+	}
 }

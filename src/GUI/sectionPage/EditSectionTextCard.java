@@ -1,16 +1,13 @@
 package GUI.sectionPage;
 
-import GUI.components.SimpleLabel;
-import GUI.components.SimpleTextarea;
-import GUI.components.TransparentPanel;
+import GUI.components.*;
+import GUI.components.form.FormButton;
+import GUI.components.form.FormTextarea;
+import GUI.components.form.SimpleForm;
 import book.Section;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class EditSectionTextCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
@@ -20,56 +17,26 @@ public class EditSectionTextCard extends TransparentPanel {
 //	private String frontTag = "<html>";
 //	private String backTag = "</html>";
 	
-	private final SimpleTextarea textArea;
-	private final SimpleLabel lblSaveHint_Bottom;
-	private final SimpleLabel lblSaveHint_TOP;
+	private final FormTextarea textArea;
 	private final SimpleLabel lblCounts;
 	
 	public EditSectionTextCard(Section openedSection) {
 		my_section = openedSection;
 		setLayout(new BorderLayout(10, 10));
-		
-		String saveHint = "<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Last saved:</html>";
-		
-		textArea = new SimpleTextarea(); //TextArea and TextField can not use html!
-//		textArea = new JTextPane();
-//		textArea.setContentType("text/html");
-		if(my_section != null) {
-			textArea.setText(my_section.getText());
-//			if(my_section.getText().contains(frontTag)) {				
-//				textArea.setText(my_section.getText());
-//			} else {
-//				textArea.setText(frontTag + my_section.getText() + backTag);
-//			}
-		}
-		add(textArea, BorderLayout.CENTER);
-		textArea.addKeyListener(new KeyAdapter() {
-	        @Override
-            public void keyPressed(KeyEvent e) {
-                if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-                	save();
-                }
-            }
 
-	    });
-		textArea.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				setSaveStatus();
-				updateCounts();
-			}
-			public void removeUpdate(DocumentEvent e) {
-				setSaveStatus();
-				updateCounts();
-			}
-			public void insertUpdate(DocumentEvent e) {
-				setSaveStatus();
-				updateCounts();
-			}
-		});
-		
-		JButton btnSave = new JButton("Save");
+		FormButton btnSave = new FormButton("Save", e -> save());
 		add(btnSave, BorderLayout.EAST);
-		btnSave.addActionListener(e -> save());
+		SimpleForm saveForm = new SimpleForm(this::save, btnSave);
+
+		textArea = new FormTextarea("", my_section != null ? my_section.getText() : "");
+		add(textArea, BorderLayout.CENTER);
+		saveForm.addInput(textArea);
+
+	//	TextArea and TextField can not use html!
+	//	textArea.setContentType("text/html");
+	//	textArea.setText(frontTag + my_section.getText() + backTag);
+
+		add(textArea, BorderLayout.CENTER);
 		
 		TransparentPanel panel_footer = new TransparentPanel();
 		panel_footer.setLayout(new GridLayout(0, 1, 5, 5));
@@ -78,9 +45,6 @@ public class EditSectionTextCard extends TransparentPanel {
 		lblCounts = new SimpleLabel("Words: ...; Char: ...");
 		updateCounts();
 		panel_footer.add(lblCounts);
-		
-		lblSaveHint_Bottom = new SimpleLabel(saveHint);
-		panel_footer.add(lblSaveHint_Bottom);
 		
 		TransparentPanel panel_header = new TransparentPanel();
 		add(panel_header, BorderLayout.NORTH);
@@ -94,15 +58,11 @@ public class EditSectionTextCard extends TransparentPanel {
 		JButton btnBold = new JButton("bold");
 		panel_changeFontButtons.add(btnBold);
 		btnBold.setEnabled(false);
-		//		btnBold.addActionListener(e -> makeTextBold());
+		//btnBold.addActionListener(e -> makeTextBold());
 				
 		JButton btnItalic = new JButton("italic");
 		panel_changeFontButtons.add(btnItalic);
 		btnItalic.setEnabled(false);
-		
-		lblSaveHint_TOP = new SimpleLabel(saveHint);
-		panel_header.add(lblSaveHint_TOP);
-		//TODO: activate lblSaveHint_TOP only, if the text is so long that scrolling is required to see the SaveHint at the bottom?!?!
 
 	}
 
@@ -120,22 +80,9 @@ public class EditSectionTextCard extends TransparentPanel {
 //		textArea.repaint();
 //	}
 
-	private void save() {
+	public void save() {
 		my_section.setText(textArea.getText());
-		setSaveStatus();
 		updateCounts();
-	}
-	
-	private void setSaveStatus() {
-		if(my_section.getText().equals(textArea.getText())) {
-			String saveHint = "<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br>Already saved</html>";
-			lblSaveHint_Bottom.setText(saveHint);
-			lblSaveHint_TOP.setText(saveHint);
-		} else {
-			String saveHint = "<html>You can also save by pushing 'STRG+S' when the curser is inside the textarea!<br><font color=\"red\">NOT saved at the moment! Press STRG+S</font></html>";
-			lblSaveHint_Bottom.setText(saveHint);
-			lblSaveHint_TOP.setText(saveHint);
-		}
 	}
 	
 	private void updateCounts() {

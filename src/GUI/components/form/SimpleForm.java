@@ -1,4 +1,4 @@
-package GUI.components;
+package GUI.components.form;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class SimpleForm {
 	}
 	
 	protected void callAction(){
-		if(checkAllSavebilities()){                		
+		if(canBeSaved()){
 			saveFunction.run();
     		for(FormInput currentInput : my_inputs){
     			currentInput.actionWasCalled();
@@ -31,9 +31,9 @@ public class SimpleForm {
     	}
 	}
 	
-	protected boolean checkAllSavebilities(){
+	protected boolean canBeSaved(){
 		for(FormInput currentInput : my_inputs){			
-			if(!currentInput.checkSavebility()){
+			if(!currentInput.canBeSaved()){
 				btnSave.deactivate("Enter text before saving");
 				return false;
 			}
@@ -41,8 +41,4 @@ public class SimpleForm {
 		btnSave.activate();
 		return true;
 	}
-	
-	
-	
-
 }

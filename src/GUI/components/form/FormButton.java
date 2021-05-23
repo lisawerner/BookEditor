@@ -1,10 +1,13 @@
-package GUI.components;
+package GUI.components.form;
+
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class FormButton extends TransparentPanel{
+public class FormButton extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private final JButton btnButton;
@@ -32,5 +35,4 @@ public class FormButton extends TransparentPanel{
 		lblWarning.setText(newWarningText);
 		btnButton.setEnabled(false);
 	}
-
 }

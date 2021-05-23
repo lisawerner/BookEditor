@@ -6,24 +6,25 @@ import global.UserSettings;
 import javax.swing.*;
 import java.awt.*;
 
-public class SimpleTextarea extends JTextArea{
+public class SimpleTextarea extends JTextArea {
 	private static final long serialVersionUID = 1L;
 	
 	public SimpleTextarea() {
-		setWrapStyleWord(true);
-		setLineWrap(true);
-		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
-		
+		super("");
+		setUpTextArea();
 		changeTheme();
 	}
 	
 	public SimpleTextarea(String text) {
 		super(text);
+		setUpTextArea();
+		changeTheme();
+	}
+
+	private void setUpTextArea() {
 		setWrapStyleWord(true);
 		setLineWrap(true);
 		setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
-		
-		changeTheme();
 	}
 
 	private void changeTheme() {
@@ -39,5 +40,4 @@ public class SimpleTextarea extends JTextArea{
 	public void setWarning(boolean hasChanges) {
 		//TODO: add to all Active-Components (TextField, Textarea, Radiobutton, Checkbox, Buttons, ComboBoxes, ...) warning(true/false) and change Border to Red or Foreground to Red
 	}
-	
 }

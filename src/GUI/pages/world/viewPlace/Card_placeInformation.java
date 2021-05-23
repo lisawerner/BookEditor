@@ -2,6 +2,9 @@ package GUI.pages.world.viewPlace;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
+import GUI.components.form.FormButton;
+import GUI.components.form.FormTextField;
+import GUI.components.form.SimpleForm;
 import world.Place;
 
 import javax.swing.*;

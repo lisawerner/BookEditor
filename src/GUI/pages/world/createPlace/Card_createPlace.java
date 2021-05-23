@@ -2,6 +2,9 @@ package GUI.pages.world.createPlace;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
+import GUI.components.form.FormButton;
+import GUI.components.form.FormTextField;
+import GUI.components.form.SimpleForm;
 import book.Book;
 import global.UserSettings;
 import world.Place;

@@ -2,6 +2,10 @@ package GUI.pages.society.raceCreate;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
+import GUI.components.form.FormButton;
+import GUI.components.form.FormTextField;
+import GUI.components.form.FormTextarea;
+import GUI.components.form.SimpleForm;
 import book.Book;
 import person.Race;
 
