@@ -24,8 +24,12 @@ public class EditSectionTextCard extends TransparentPanel {
 		my_section = openedSection;
 		setLayout(new BorderLayout(10, 10));
 
+		TransparentPanel panel_footer = new TransparentPanel();
+		panel_footer.setLayout(new GridLayout(0, 1, 5, 5));
+		add(panel_footer, BorderLayout.SOUTH);
+
 		FormButton btnSave = new FormButton("Save", e -> save());
-		add(btnSave, BorderLayout.EAST);
+		panel_footer.add(btnSave);
 		SimpleForm saveForm = new SimpleForm(this::save, btnSave);
 
 		textArea = new FormTextarea("", my_section != null ? my_section.getText() : "");
@@ -37,10 +41,6 @@ public class EditSectionTextCard extends TransparentPanel {
 	//	textArea.setText(frontTag + my_section.getText() + backTag);
 
 		add(textArea, BorderLayout.CENTER);
-		
-		TransparentPanel panel_footer = new TransparentPanel();
-		panel_footer.setLayout(new GridLayout(0, 1, 5, 5));
-		add(panel_footer, BorderLayout.SOUTH);
 		
 		lblCounts = new SimpleLabel("Words: ...; Char: ...");
 		updateCounts();

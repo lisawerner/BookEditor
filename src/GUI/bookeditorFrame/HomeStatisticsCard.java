@@ -32,6 +32,16 @@ public class HomeStatisticsCard extends TransparentPanel {
 		}
 		SimpleLabel lblContentStatistics = new SimpleLabel("Words: " + countWords + "; Chars: " + countChars);
 		add(lblContentStatistics);
+
+		// A norm page has 1800 characters
+		// A page can contain ~ 7000 "i" characters
+		// A page can contain ~ 2800 "w" characters
+		int countPagesMax = countChars / 3000;
+		int countPagesMin = countChars / 7000;
+		SimpleLabel lblPagesStatistics = new SimpleLabel("~ Pages: " + countPagesMin + " to " + countPagesMax);
+		add(lblPagesStatistics);
+
+
 		
 		SimpleLabel lblPersonStatistics = new SimpleLabel("Persons: " + Book.getInstance().getSociety().getPersonList().size());
 		add(lblPersonStatistics);

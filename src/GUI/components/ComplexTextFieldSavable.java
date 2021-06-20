@@ -93,7 +93,7 @@ public class ComplexTextFieldSavable extends TransparentPanel {
 	protected void checkChanges(){
 		boolean hasChanges = !originalText.equals(textField.getText());
 		lblTextFieldLabel.setWarning(hasChanges);
-		textField.setWarning(hasChanges);
+//		textField.setWarning(hasChanges);
 		btnSave.setEnabled(hasChanges && checkSavebility());
 	}
 	
