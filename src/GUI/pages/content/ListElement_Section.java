@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Chapter;
 import book.DevelopmentStatus;
@@ -32,7 +32,7 @@ public class ListElement_Section extends TransparentPanel {
 		panel_sectionInfo.add(lblChapterSpace);
 		
 		LinkButton lblSectionName = new LinkButton(my_section.getName(),
-				e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, my_parentChapter)));
+				e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, my_parentChapter)));
 		panel_sectionInfo.add(lblSectionName);
 		lblSectionName.setToolTipText("<html>Preview Text:<br>" + my_section.getShortTextPreview() + "</html>");
 		

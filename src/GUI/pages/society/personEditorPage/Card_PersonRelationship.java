@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Section;
 import global.ObjectID;
@@ -34,7 +34,7 @@ public class Card_PersonRelationship extends TransparentPanel {
 				relationPanel.add(new SimpleLabel(" [Switched in Section: "));
 				Section switchSection = Book.getInstance().getTableOfContent().getSectionByRelationship(relID);
 				relationPanel.add(new LinkButton(switchSection.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(switchSection, Book.getInstance().getTableOfContent().getChapter(switchSection.getParentChapterID())))));
+						e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(switchSection, Book.getInstance().getTableOfContent().getChapter(switchSection.getParentChapterID())))));
 				relationPanel.add(new SimpleLabel("]"));
 			}
 		}

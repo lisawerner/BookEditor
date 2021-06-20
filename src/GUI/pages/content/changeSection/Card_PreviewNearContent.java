@@ -1,4 +1,4 @@
-package GUI.pages.content.viewSection;
+package GUI.pages.content.changeSection;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.TextPreview;
@@ -22,7 +22,7 @@ public class Card_PreviewNearContent extends TransparentPanel {
 
         if(previewType.equals(TextPreview.TYPE_PREVIEW_BEFORE)) {
             JButton btn_openPreviousSection = new JButton("^ Go to previous section");
-            btn_openPreviousSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, parentChapter)));
+            btn_openPreviousSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, parentChapter)));
             this.add(btn_openPreviousSection);
         }
 
@@ -31,7 +31,7 @@ public class Card_PreviewNearContent extends TransparentPanel {
 
         if(previewType.equals(TextPreview.TYPE_PREVIEW_AFTER)) {
             JButton btn_openPreviousSection = new JButton("v Go to following section");
-            btn_openPreviousSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, parentChapter)));
+            btn_openPreviousSection.addActionListener(e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, parentChapter)));
             this.add(btn_openPreviousSection);
         }
     }

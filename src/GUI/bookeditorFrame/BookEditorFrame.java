@@ -16,7 +16,7 @@ import GUI.pages.timeline.Page_ViewTimeline;
 import GUI.pages.world.createPlace.Page_createPlace;
 import GUI.pages.world.viewPlace.Page_viewPlace;
 import GUI.printPage.PrintPage;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import GUI.theme.ThemeList;
 import GUI.worldPage.ViewWorldMapPage;
 import book.Book;
@@ -192,7 +192,7 @@ public class BookEditorFrame extends JFrame {
 	}
 	
 	public void openSectionPage(Section section, Chapter chapter){
-		switchBody(new Page_ViewSection(section, chapter));
+		switchBody(new Page_ChangeSection(section, chapter));
 		panel_mainMenu.changeSubmenuTo(new ContentMenu());
 	}
 

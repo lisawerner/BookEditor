@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -80,6 +80,6 @@ public class SectionEditorPage extends Page {
 			UserSettings.getInstance().getTutorial().tagPersonToSection = true;
 			UserSettings.getInstance().save();
 		}
-		BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, my_chapter));
+		BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, my_chapter));
 	}
 }

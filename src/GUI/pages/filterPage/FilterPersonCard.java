@@ -5,7 +5,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Section;
 import person.Person;
@@ -79,7 +79,7 @@ public class FilterPersonCard extends TransparentPanel {
 		if(selectedPersons.size() > 0) {			
 			for(Section section :  Book.getInstance().getTableOfContent().getSectionsByPersons(selectedPersons, selectAND)) {
 				panel_listOfFilteredSections.add(new LinkButton(section.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
+						e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 			}
 		}
 		panel_listOfFilteredSections.revalidate();

@@ -5,7 +5,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.DevelopmentStatus;
 import book.Section;
@@ -67,7 +67,7 @@ public class FilterDevStatusCard extends TransparentPanel {
 		panel_devFilteredSections.setLayout(new GridLayout(0, 5, 5, 5));
 		for(Section section :  Book.getInstance().getTableOfContent().getSectionsByDevStatus(currentDevStatus, devStatusDown)) {
 			LinkButton sectionBTN = new LinkButton(section.getName(),
-					e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
+					e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID()))));
 			panel_devFilteredSections.add(sectionBTN);
 		}
 		panel_devFilteredSections.revalidate();

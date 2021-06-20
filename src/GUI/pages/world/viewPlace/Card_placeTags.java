@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -23,7 +23,7 @@ public class Card_placeTags extends TransparentPanel {
 			for(Section section : chapter.getSections()) {
 				if(section.hasTag(place.getID())) {
 					add(new LinkButton(section.getName(),
-							e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
+							e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 					add(new SimpleLabel(";  "));
 				}
 			}

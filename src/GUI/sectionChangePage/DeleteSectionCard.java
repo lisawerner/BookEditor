@@ -5,7 +5,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.Page_sortContent;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -43,7 +43,7 @@ public class DeleteSectionCard extends TransparentPanel {
 			add(lblYouCanNot);
 			for(Section relationships : relatedSection){
 				timePanel.add(new LinkButton(relationships.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(relationships, Book.getInstance().getTableOfContent().getChapter(relationships.getParentChapterID())))));
+						e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(relationships, Book.getInstance().getTableOfContent().getChapter(relationships.getParentChapterID())))));
 			}
 		}
 

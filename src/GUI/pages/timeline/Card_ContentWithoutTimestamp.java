@@ -6,7 +6,7 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
 import GUI.pages.content.viewChapter.Page_viewChapter;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -35,7 +35,7 @@ public class Card_ContentWithoutTimestamp extends TransparentPanel {
 			for(Section section : chapter.getSections()){
 				if(!section.hasTimestamp()){
 					panel_chapter.add(new LinkButton(chapter.getTitle(),
-							e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, chapter))));
+							e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(section, chapter))));
 					hasMissingTimestamps = true;
 				}
 			}

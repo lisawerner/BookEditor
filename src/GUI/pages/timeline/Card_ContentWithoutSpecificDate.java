@@ -6,7 +6,7 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
 import GUI.pages.content.viewChapter.Page_viewChapter;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -45,12 +45,12 @@ public class Card_ContentWithoutSpecificDate extends TransparentPanel {
 				this.add(panel_unspecificSection);
 				
 				panel_unspecificSection.add(new SimpleLabel("The timestamp of section: "));
-				panel_unspecificSection.add(new LinkButton(section.getName(), e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, chapter))));
+				panel_unspecificSection.add(new LinkButton(section.getName(), e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(section, chapter))));
 				panel_unspecificSection.add(new SimpleLabel(" [Chapter: "));
 				panel_unspecificSection.add(new LinkButton(chapter.getTitle(), e -> BookEditorFrame.getInstance().switchBody(new Page_viewChapter(chapter))));
 				if(relatedSection != null){					
 					panel_unspecificSection.add(new SimpleLabel("] because of relation to following section with unspecific timestamp: "));
-					panel_unspecificSection.add(new LinkButton(section.getName(), e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(relatedSection, chapterOfRelatedSection))));
+					panel_unspecificSection.add(new LinkButton(section.getName(), e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(relatedSection, chapterOfRelatedSection))));
 				}
 //				} else {
 //					panel_unspecificSection.add(new SimpleLabel("] because of unknown reason"));					

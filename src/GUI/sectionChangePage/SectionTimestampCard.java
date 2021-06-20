@@ -5,7 +5,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -40,7 +40,7 @@ public class SectionTimestampCard extends TransparentPanel {
 				panel_helpfulInformationInNorth.setLayout(new BoxLayout(panel_helpfulInformationInNorth, BoxLayout.LINE_AXIS));
 				panel_helpfulInformationInNorth.add(new SimpleLabel("Section before '"));
 				panel_helpfulInformationInNorth.add(new LinkButton(preSection.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(preSection, chapter))));
+						e -> BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(preSection, chapter))));
 				panel_helpfulInformationInNorth.add(new SimpleLabel("' has Timestamp: " + Book.getInstance().getTimeline().getTimestamp(preSection.getTimestampID()).toCompleteString()));
 			}
 		}

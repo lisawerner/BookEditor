@@ -1,4 +1,4 @@
-package GUI.pages.content.viewSection;
+package GUI.pages.content.changeSection;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
@@ -16,7 +16,6 @@ import person.Relationship;
 import time.Timestamp;
 import world.Place;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +34,7 @@ public class Menu_SectionInformation extends PageMenu {
 		my_section = section;
 		my_parentChapter = chapter;
 
-		JButton btnEdit = this.addButtonToTopMenu("Change", e -> openSectionEditor());
-		if(my_section == null) {
-			btnEdit.setEnabled(false);
-			btnEdit.setToolTipText("You have to create a section first.");
-		}
+		this.addButtonToTopMenu("Change", e -> openSectionEditor());
 		
 		//***************************************************************************************************************************
 		this.addBetweenTitle("General Information");
@@ -79,10 +74,8 @@ public class Menu_SectionInformation extends PageMenu {
 		hint_devStatus = new InfoButton(DevelopmentStatus.getDevStatDescription(-1));
 		hint_devStatus.setMenuInfo();
 		devStatusPanel.add(hint_devStatus, BorderLayout.WEST);
-		if(my_section != null) {
-			changeDevStatus(my_section.getDevelopmentStatus());
-		}
-		
+		changeDevStatus();
+
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Comments:");
 		ArrayList<String> splitNotes = splitNotes();
@@ -92,39 +85,33 @@ public class Menu_SectionInformation extends PageMenu {
 
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Person Tags:");
-		if(my_section != null) {
-			List<Person> personTags = my_section.getPersonByTag();
-			for(Person person : personTags) {
-				this.addLinkedListButton(new MenuListButton(person.getInformation().getNickname(), e -> openPersonEditor(person)));
-			}
+		List<Person> personTags = my_section.getPersonByTag();
+		for(Person person : personTags) {
+			this.addLinkedListButton(new MenuListButton(person.getInformation().getNickname(), e -> openPersonEditor(person)));
 		}
-		
+
 		//***************************************************************************************************************************
 		this.addBetweenTitle("Switched Relationships:");
-		if(my_section != null) {
-			ArrayList<Relationship> relationshipTags = my_section.getRelationships();
-			for(Relationship relationship : relationshipTags) {
-				this.addText(relationship.getSwitchToString());
-			}
+		ArrayList<Relationship> relationshipTags = my_section.getRelationships();
+		for(Relationship relationship : relationshipTags) {
+			this.addText(relationship.getSwitchToString());
 		}
-		
+
 		this.addBetweenTitle("Place Tags:");
-		if(my_section != null) {
 		List<Place> placeTags = my_section.getPlaceByTag();
-			for(Place tag : placeTags) {
-				this.addLinkedListButton(new MenuListButton(tag.getName(), e -> openPlaceEditor(tag)));
-			}
+		for(Place tag : placeTags) {
+			this.addLinkedListButton(new MenuListButton(tag.getName(), e -> openPlaceEditor(tag)));
 		}
 
 	}
 	
 	private void openOtherSection(Section otherSection) {
-		BookEditorFrame.getInstance().switchBody(new Page_ViewSection(otherSection, Book.getInstance().getTableOfContent().getChapter(otherSection.getParentChapterID())));
+		BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(otherSection, Book.getInstance().getTableOfContent().getChapter(otherSection.getParentChapterID())));
 	}
 
 	private void openPlaceEditor(Place place) {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, my_parentChapter), new Page_viewPlace(place, true));
+			BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, my_parentChapter), new Page_viewPlace(place, true));
 		} else {
 			BookEditorFrame.getInstance().openPlacePage(place, false);	
 		}
@@ -132,7 +119,7 @@ public class Menu_SectionInformation extends PageMenu {
 
 	private void openPersonEditor(Person person) {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, my_parentChapter), new Page_PersonEditor(person, true));
+			BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, my_parentChapter), new Page_PersonEditor(person, true));
 		} else {
 			BookEditorFrame.getInstance().openPersonPage(person, false);	
 		}
@@ -140,9 +127,9 @@ public class Menu_SectionInformation extends PageMenu {
 
 	private void openSectionEditor() {
 		if(UserSettings.getInstance().getDisplaySettings()) {
-			BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, my_parentChapter), new SectionEditorPage(my_section, my_parentChapter));
+			BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, my_parentChapter), new SectionEditorPage(my_section, my_parentChapter));
 		} else {
-			BookEditorFrame.getInstance().switchBody(new SectionEditorPage(my_section, my_parentChapter));			
+			BookEditorFrame.getInstance().switchBody(new SectionEditorPage(my_section, my_parentChapter));
 		}
 	}
 
@@ -167,7 +154,7 @@ public class Menu_SectionInformation extends PageMenu {
 		return splitNotes;
 	}
 
-	private void changeDevStatus(int newDevStatus) {
+	private void changeDevStatus() {
 		lblDevStatus.setText(my_section.getDevelopmentStatusToString());
 		hint_devStatus.setToolTipText(my_section.getDevelopmentStatusDescription());
 	}

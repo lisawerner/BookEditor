@@ -1,12 +1,12 @@
-package GUI.pages.content.viewSection;
+package GUI.pages.content.changeSection;
 
-import GUI.components.*;
+import GUI.components.SimpleLabel;
+import GUI.components.TransparentPanel;
 import GUI.components.form.FormButton;
 import GUI.components.form.FormTextarea;
 import GUI.components.form.SimpleForm;
 import book.Section;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Card_EditSectionText extends TransparentPanel {

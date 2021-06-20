@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.InfoButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import GUI.pages.content.viewSection.Page_ViewSection;
+import GUI.pages.content.changeSection.Page_ChangeSection;
 import book.Chapter;
 import book.DevelopmentStatus;
 import book.Section;
@@ -81,7 +81,7 @@ public class SectionDevStatusCard extends TransparentPanel {
 		if(!UserSettings.getInstance().getTutorial().setDevelopmentStatus) {
 			UserSettings.getInstance().getTutorial().setDevelopmentStatus = true;
 			UserSettings.getInstance().save();
-			BookEditorFrame.getInstance().switchBody(new Page_ViewSection(my_section, my_parentChapter));
+			BookEditorFrame.getInstance().switchBody(new Page_ChangeSection(my_section, my_parentChapter));
 		}
 	}
 
