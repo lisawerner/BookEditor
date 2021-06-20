@@ -7,10 +7,10 @@ import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
 import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.content.changeSection.Page_ChangeSection;
-import book.Book;
-import book.Chapter;
-import book.Section;
-import time.Timestamp;
+import book.content.Book;
+import book.content.Chapter;
+import book.content.Section;
+import book.time.Timestamp;
 
 import javax.swing.*;
 import java.awt.*;

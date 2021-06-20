@@ -4,10 +4,10 @@ import GUI.components.ComboItem;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleTextField;
 import GUI.components.TransparentPanel;
-import book.Book;
-import book.Section;
-import person.Person;
-import person.Relationship;
+import book.content.Book;
+import book.content.Section;
+import book.person.Person;
+import book.person.Relationship;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

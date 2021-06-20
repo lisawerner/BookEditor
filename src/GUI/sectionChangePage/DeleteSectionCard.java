@@ -6,9 +6,9 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.Page_sortContent;
 import GUI.pages.content.changeSection.Page_ChangeSection;
-import book.Book;
-import book.Chapter;
-import book.Section;
+import book.content.Book;
+import book.content.Chapter;
+import book.content.Section;
 
 import javax.swing.*;
 import java.util.ArrayList;

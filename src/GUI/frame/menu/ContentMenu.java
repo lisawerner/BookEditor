@@ -8,8 +8,8 @@ import GUI.pages.content.Page_sortContent;
 import GUI.pages.content.settings.Page_ContentSettings;
 import GUI.pages.content.viewChapter.Page_viewChapter;
 import GUI.pages.filterPage.FilterChaptersPage;
-import book.Book;
-import book.Chapter;
+import book.content.Book;
+import book.content.Chapter;
 
 public class ContentMenu extends FrameSubmenu {
 	private static final long serialVersionUID = 1L;

@@ -5,8 +5,8 @@ import GUI.components.ComplexTextFieldSavable;
 import GUI.components.InfoButton;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.changeSection.Page_ChangeSection;
-import book.Chapter;
-import book.Section;
+import book.content.Chapter;
+import book.content.Section;
 import global.UserSettings;
 
 import java.awt.*;
@@ -25,7 +25,7 @@ public class Card_createSectionByTitle extends TransparentPanel {
 		txt_sectionTitle = new ComplexTextFieldSavable("Section Title:", "", this::save);
 		add(txt_sectionTitle);
 		
-		add(new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every time.</html>"),
+		add(new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every book.time.</html>"),
 				BorderLayout.EAST);
 	}
 	

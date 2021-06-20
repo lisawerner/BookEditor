@@ -5,7 +5,7 @@ import GUI.components.TransparentPanel;
 import GUI.components.form.FormButton;
 import GUI.components.form.FormTextarea;
 import GUI.components.form.SimpleForm;
-import book.Section;
+import book.content.Section;
 
 import java.awt.*;
 

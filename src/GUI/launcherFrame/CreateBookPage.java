@@ -4,7 +4,7 @@ import GUI.components.FrameHeader;
 import GUI.components.InfoButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleTextField;
-import book.Book;
+import book.content.Book;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +73,7 @@ public class CreateBookPage extends JPanel {
 		lblNewTitle = new SimpleLabel("* Enter Book Title:");
 		panel_enterDataHere.add(lblNewTitle, BorderLayout.WEST);
 		
-		InfoButton btn_newTitleInfo = new InfoButton("You can change the title at any time.");
+		InfoButton btn_newTitleInfo = new InfoButton("You can change the title at any book.time.");
 		panel_enterDataHere.add(btn_newTitleInfo, BorderLayout.EAST);
 		
 		txt_newTitle = new SimpleTextField();

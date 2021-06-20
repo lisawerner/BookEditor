@@ -7,8 +7,8 @@ import GUI.components.form.FormTextField;
 import GUI.components.form.FormTextarea;
 import GUI.components.form.SimpleForm;
 import GUI.pages.notesPage.Page_viewNotes;
-import book.Book;
-import notes.GeneralNote;
+import book.content.Book;
+import book.notes.GeneralNote;
 
 import java.awt.*;
 

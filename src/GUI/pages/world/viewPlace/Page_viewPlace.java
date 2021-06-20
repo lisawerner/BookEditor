@@ -4,7 +4,7 @@ import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
 import global.UserSettings;
-import world.Place;
+import book.world.Place;
 
 public class Page_viewPlace extends Page {
 	private static final long serialVersionUID = 1L;

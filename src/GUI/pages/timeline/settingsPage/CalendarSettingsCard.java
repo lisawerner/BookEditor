@@ -4,7 +4,7 @@ import GUI.components.InfoButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import book.Book;
+import book.content.Book;
 
 import javax.swing.*;
 import java.awt.*;

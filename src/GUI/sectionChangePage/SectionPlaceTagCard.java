@@ -3,10 +3,10 @@ package GUI.sectionChangePage;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import book.Book;
-import book.Section;
+import book.content.Book;
+import book.content.Section;
 import global.Tag;
-import world.Place;
+import book.world.Place;
 
 import javax.swing.*;
 import java.awt.*;

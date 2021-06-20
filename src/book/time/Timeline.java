@@ -1,9 +1,9 @@
-package time;
+package book.time;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
 
 public class Timeline {
@@ -82,8 +82,8 @@ public class Timeline {
 	}
 
 //	public void fix() {
-//		for(Timestamp time : my_times){
-//			time.fix(my_times);
+//		for(Timestamp book.time : my_times){
+//			book.time.fix(my_times);
 //		}	
 //	}
 

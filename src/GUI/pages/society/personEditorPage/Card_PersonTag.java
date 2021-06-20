@@ -5,10 +5,10 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.changeSection.Page_ChangeSection;
-import book.Book;
-import book.Chapter;
-import book.Section;
-import person.Person;
+import book.content.Book;
+import book.content.Chapter;
+import book.content.Section;
+import book.person.Person;
 
 import javax.swing.*;
 import java.awt.*;

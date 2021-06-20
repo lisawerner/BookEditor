@@ -1,6 +1,6 @@
-package world;
+package book.world;
 
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
 import global.SerializedObject;
 

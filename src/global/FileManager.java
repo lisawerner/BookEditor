@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import GUI.launcherFrame.LoadBookPair;
-import book.Book;
+import book.content.Book;
 
 public class FileManager {
 	

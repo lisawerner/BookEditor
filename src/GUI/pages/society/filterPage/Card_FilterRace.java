@@ -5,9 +5,9 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import book.Book;
-import person.Person;
-import person.Race;
+import book.content.Book;
+import book.person.Person;
+import book.person.Race;
 
 import javax.swing.*;
 import java.awt.*;

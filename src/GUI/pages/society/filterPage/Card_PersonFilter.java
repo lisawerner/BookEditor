@@ -4,8 +4,8 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import book.Book;
-import person.Person;
+import book.content.Book;
+import book.person.Person;
 
 import javax.swing.*;
 import java.awt.*;

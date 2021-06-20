@@ -5,8 +5,8 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
-import book.Book;
-import person.Person;
+import book.content.Book;
+import book.person.Person;
 
 import javax.swing.*;
 import java.awt.*;

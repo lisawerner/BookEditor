@@ -1,8 +1,8 @@
-package time;
+package book.time;
 
 import java.util.ArrayList;
 
-import book.Book;
+import book.content.Book;
 
 public class TimelineController {
 
@@ -52,7 +52,7 @@ public class TimelineController {
 	}
 	
 	private static ArrayList<Timestamp> getTimelineChapterFilteredByMonth(ArrayList<Timestamp> timeList) {
-		//TODO: everything would be easier if the time list is always sorted chronological -.-
+		//TODO: everything would be easier if the book.time list is always sorted chronological -.-
 		//TODO: maybe it will be easier if the timeline is splitter in years in object structure
 		return timeList;
 	}
@@ -84,7 +84,7 @@ public class TimelineController {
 		return timeList;
 	}
 	
-	//TODO: Add filter. but this one was not so clever... maybe add other filter next time...
+	//TODO: Add filter. but this one was not so clever... maybe add other filter next book.time...
 	
 //	public ArrayList<Section> filterTimelineSections() {
 //	ArrayList<Section> sectionsSortedByTimestamp = Book.getInstance().getTableOfContent().getTimeSortedSections();
@@ -102,10 +102,10 @@ public class TimelineController {
 //	ArrayList<Section> filteredList = new ArrayList<Section>();
 //	for(Section section : unfilteredList) {
 //		boolean foundSomething = false;
-//		//TODO: Do not filter only for person Tag -> Filter also for Relationship with mainCharacters
-//		for(Person person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
+//		//TODO: Do not filter only for book.person Tag -> Filter also for Relationship with mainCharacters
+//		for(Person book.person : Book.getInstance().getSociety().getPersonListOfSuperMainCharacters()) {
 //			for(Person taggedPerson : section.getPersonByTag()) {					
-//				if(taggedPerson.equals(person)) {
+//				if(taggedPerson.equals(book.person)) {
 //					foundSomething = true;
 //					break;
 //				}

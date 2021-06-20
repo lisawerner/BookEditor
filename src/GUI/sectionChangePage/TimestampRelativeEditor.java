@@ -1,11 +1,11 @@
 package GUI.sectionChangePage;
 
 import GUI.components.*;
-import book.Book;
-import book.Chapter;
-import book.Section;
-import time.RelativeDate;
-import time.Timestamp;
+import book.content.Book;
+import book.content.Chapter;
+import book.content.Section;
+import book.time.RelativeDate;
+import book.time.Timestamp;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -72,7 +72,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		add(panel_beforeOrAfter);
 		panel_beforeOrAfter.setLayout(new BorderLayout(5, 5));
 		
-		lblShouldTheRelated = new SimpleLabel("Should the related time happen before or after the selected section:");
+		lblShouldTheRelated = new SimpleLabel("Should the related book.time happen before or after the selected section:");
 		panel_beforeOrAfter.add(lblShouldTheRelated, BorderLayout.NORTH);
 		
 		TransparentPanel panel_afterBeforeBODY = new TransparentPanel();
@@ -91,7 +91,7 @@ public class TimestampRelativeEditor extends TransparentPanel {
 		add(panel_setDistance);
 		panel_setDistance.setLayout(new BorderLayout(0, 0));
 		
-		lblSetTheDistanceTime = new SimpleLabel("Set the distance-time to selected Section:");
+		lblSetTheDistanceTime = new SimpleLabel("Set the distance-book.time to selected Section:");
 		panel_setDistance.add(lblSetTheDistanceTime, BorderLayout.NORTH);
 		
 		TransparentPanel panel_distanceBODY = new TransparentPanel();

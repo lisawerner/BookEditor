@@ -5,9 +5,9 @@ import GUI.components.ComboItem;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
-import person.Race;
+import book.person.Race;
 
 import javax.swing.*;
 import java.awt.*;

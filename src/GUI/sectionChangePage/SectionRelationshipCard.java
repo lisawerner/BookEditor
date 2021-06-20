@@ -1,8 +1,8 @@
 package GUI.sectionChangePage;
 
 import GUI.components.TransparentPanel;
-import book.Section;
-import person.Relationship;
+import book.content.Section;
+import book.person.Relationship;
 
 import javax.swing.*;
 

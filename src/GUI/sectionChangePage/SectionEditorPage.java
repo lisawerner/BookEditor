@@ -5,9 +5,9 @@ import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
 import GUI.pages.content.changeSection.Page_ChangeSection;
-import book.Book;
-import book.Chapter;
-import book.Section;
+import book.content.Book;
+import book.content.Chapter;
+import book.content.Section;
 import global.UserSettings;
 
 import javax.swing.*;

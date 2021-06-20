@@ -3,7 +3,7 @@ package GUI.pages.settings;
 import GUI.components.ComplexTextFieldSavable;
 import GUI.components.SimpleCheckbox;
 import GUI.components.TransparentPanel;
-import book.Book;
+import book.content.Book;
 
 import java.awt.*;
 

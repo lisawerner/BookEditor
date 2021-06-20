@@ -3,7 +3,7 @@ package GUI.sectionChangePage;
 import GUI.components.ComplexTextFieldSavable;
 import GUI.components.InfoButton;
 import GUI.components.TransparentPanel;
-import book.Section;
+import book.content.Section;
 
 import java.awt.*;
 
@@ -21,7 +21,7 @@ public class SectionTitleCard extends TransparentPanel {
 		txt_sectionTitle = new ComplexTextFieldSavable("Section Title:", my_section.getName(), this::save);
 		add(txt_sectionTitle);
 		
-		add(new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every time.</html>"), 
+		add(new InfoButton("<html>Title is only shown in table of content and not in Text.<br/>You can change the title every book.time.</html>"),
 				BorderLayout.EAST);
 	}
 	

@@ -4,8 +4,8 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.FrameSubmenu;
 import GUI.components.MenuButton;
 import GUI.components.MenuListButton;
-import book.Book;
-import notes.GeneralNote;
+import book.content.Book;
+import book.notes.GeneralNote;
 
 public class NotesMenu extends FrameSubmenu {
 	private static final long serialVersionUID = 1L;

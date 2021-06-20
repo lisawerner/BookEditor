@@ -6,8 +6,8 @@ import GUI.components.form.FormButton;
 import GUI.components.form.FormTextField;
 import GUI.components.form.FormTextarea;
 import GUI.components.form.SimpleForm;
-import book.Book;
-import person.Race;
+import book.content.Book;
+import book.person.Race;
 
 import javax.swing.*;
 import java.awt.*;

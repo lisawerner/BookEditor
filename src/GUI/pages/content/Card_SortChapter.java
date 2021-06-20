@@ -1,8 +1,8 @@
 package GUI.pages.content;
 
 import GUI.components.TransparentPanel;
-import book.Book;
-import book.Chapter;
+import book.content.Book;
+import book.content.Chapter;
 
 import javax.swing.*;
 import java.awt.*;

@@ -3,7 +3,7 @@ package GUI.pages.content.viewChapter;
 import GUI.components.ComplexTextFieldSavable;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import book.Chapter;
+import book.content.Chapter;
 
 import javax.swing.*;
 import java.awt.*;

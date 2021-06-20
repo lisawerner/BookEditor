@@ -4,8 +4,8 @@ import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.pages.notes.createNote.Card_createNote;
 import GUI.pages.notes.viewNote.Card_editNote;
-import book.Book;
-import notes.GeneralNote;
+import book.content.Book;
+import book.notes.GeneralNote;
 
 import java.util.ArrayList;
 

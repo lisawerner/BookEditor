@@ -1,9 +1,9 @@
 package GUI.sectionChangePage;
 
 import GUI.components.*;
-import book.Book;
-import book.Section;
-import time.Timestamp;
+import book.content.Book;
+import book.content.Section;
+import book.time.Timestamp;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -36,7 +36,7 @@ public class TimestampSpecificEditor extends TransparentPanel {
 	public TimestampSpecificEditor(Section openedSection) {
 		my_section = openedSection;
 		if(my_section.hasTimestamp()) {
-			time.Timestamp time = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
+			Timestamp time = Book.getInstance().getTimeline().getTimestamp(my_section.getTimestampID());
 			if(time.isSpecificDate()) {
 				my_specificTimestamp = time;
 			}

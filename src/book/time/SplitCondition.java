@@ -1,4 +1,4 @@
-package time;
+package book.time;
 
 public enum SplitCondition {
 

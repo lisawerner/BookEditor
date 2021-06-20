@@ -1,8 +1,8 @@
 package GUI.pages.society;
 
 import GUI.components.TransparentPanel;
-import book.Book;
-import person.Race;
+import book.content.Book;
+import book.person.Race;
 
 import javax.swing.*;
 

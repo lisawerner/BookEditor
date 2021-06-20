@@ -6,9 +6,9 @@ import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.changeSection.Page_ChangeSection;
-import book.Book;
-import book.DevelopmentStatus;
-import book.Section;
+import book.content.Book;
+import book.content.DevelopmentStatus;
+import book.content.Section;
 
 import javax.swing.*;
 import java.awt.*;

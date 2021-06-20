@@ -4,8 +4,8 @@ import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TextPreview;
 import GUI.components.TutorialCard;
-import book.Chapter;
-import book.Section;
+import book.content.Chapter;
+import book.content.Section;
 import global.UserSettings;
 
 public class Page_ChangeSection extends Page {

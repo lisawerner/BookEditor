@@ -5,12 +5,12 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TimelineItem;
 import GUI.components.TransparentPanel;
-import book.Book;
-import book.Section;
-import person.Person;
-import person.Relationship;
-import time.Timestamp;
-import world.Place;
+import book.content.Book;
+import book.content.Section;
+import book.person.Person;
+import book.person.Relationship;
+import book.time.Timestamp;
+import book.world.Place;
 
 import javax.swing.*;
 import java.util.ArrayList;

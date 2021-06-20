@@ -2,8 +2,8 @@ package GUI.pages.timeline;
 
 import GUI.components.TimelineItem;
 import GUI.components.TransparentPanel;
-import time.TimelineController;
-import time.Timestamp;
+import book.time.TimelineController;
+import book.time.Timestamp;
 
 import javax.swing.*;
 import java.awt.*;

@@ -7,9 +7,9 @@ import GUI.components.MenuListButton;
 import GUI.pages.timeline.Page_RelativeDateListView;
 import GUI.pages.timeline.Page_TimelineFilter;
 import GUI.pages.timeline.settingsPage.Page_TimelineSettings;
-import book.Book;
-import time.TimelineController;
-import time.Timestamp;
+import book.content.Book;
+import book.time.TimelineController;
+import book.time.Timestamp;
 
 import java.time.LocalDate;
 

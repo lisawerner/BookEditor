@@ -3,7 +3,7 @@ package GUI.sectionChangePage;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleTextarea;
 import GUI.components.TransparentPanel;
-import book.Section;
+import book.content.Section;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

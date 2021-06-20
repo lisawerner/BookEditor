@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
 import GUI.theme.Theme;
 import GUI.theme.ThemeList;
-import book.Book;
+import book.content.Book;
 import global.UserSettings;
 
 import javax.swing.*;
@@ -100,7 +100,7 @@ public class DesignSettingsCard extends TransparentPanel {
 		add(panel_changeDisplaySettings);
 		panel_changeDisplaySettings.setLayout(new BorderLayout(0, 0));
 		
-		SimpleLabel lblChangeDisplayHint = new SimpleLabel("<html>If you have a huge Display you can use this setting to view 'two' frames beside at same time.<br/>"
+		SimpleLabel lblChangeDisplayHint = new SimpleLabel("<html>If you have a huge Display you can use this setting to view 'two' frames beside at same book.time.<br/>"
 				+ "You should not use this option if you don't have a huge display.</html>");
 		panel_changeDisplaySettings.add(lblChangeDisplayHint, BorderLayout.NORTH);
 		
@@ -219,7 +219,7 @@ public class DesignSettingsCard extends TransparentPanel {
 	private void saveDisplay() {
 		UserSettings.getInstance().setDisplaySettings(checkboxActivateHugeDisplay.isSelected());
 		if(checkboxActivateHugeDisplay.isSelected()) {
-			lblDisplaySaveHint.setText("Display Settings are saved: Now two frames can seen at same time together");
+			lblDisplaySaveHint.setText("Display Settings are saved: Now two frames can seen at same book.time together");
 		} else {
 			lblDisplaySaveHint.setText("Display Settings are saved: There is always only one frame");
 		}

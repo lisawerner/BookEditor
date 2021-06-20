@@ -1,6 +1,6 @@
-package notes;
+package book.notes;
 
-import book.Book;
+import book.content.Book;
 import global.SerializedObject;
 
 public class GeneralNote extends SerializedObject {

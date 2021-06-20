@@ -2,7 +2,7 @@ package GUI.pages.society;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;
-import book.Book;
+import book.content.Book;
 
 public class Page_ViewSociety extends Page {
 	private static final long serialVersionUID = 1L;

@@ -4,10 +4,10 @@ import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
-import book.Book;
-import book.Section;
+import book.content.Book;
+import book.content.Section;
 import global.Tag;
-import person.Person;
+import book.person.Person;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +55,7 @@ public class SectionPersonTagCard extends TransparentPanel {
 		panel_appearedTagUnimportantList = new TransparentPanel();
 
 		
-		btn_showHide = new JToggleButton("Show/Hide full person list");
+		btn_showHide = new JToggleButton("Show/Hide full book.person list");
 		panel_showHide.add(btn_showHide, BorderLayout.NORTH);
 		btn_showHide.addActionListener(e -> showFullPersonList());
 		

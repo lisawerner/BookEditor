@@ -1,6 +1,6 @@
 package GUI.launcherFrame;
 
-import book.Book;
+import book.content.Book;
 import global.FileManager;
 import global.UserSettings;
 
@@ -65,7 +65,7 @@ public class StartPage extends JPanel {
 						selectionDone = true;
 					}
 				} else {
-					// Select book which was last time opened
+					// Select book which was last book.time opened
 					if(lastOpenedBookFile.equals(book.getFilename())) {
 						radiobuttonNewCheckBox.setSelected(true);
 						selectedBook = book.getFilename();

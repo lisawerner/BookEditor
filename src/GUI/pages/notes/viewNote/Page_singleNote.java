@@ -2,7 +2,7 @@ package GUI.pages.notes.viewNote;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;
-import notes.GeneralNote;
+import book.notes.GeneralNote;
 
 public class Page_singleNote extends Page {
 

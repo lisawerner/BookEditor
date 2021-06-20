@@ -3,8 +3,8 @@ package GUI.pages.content.createChapter;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.ComplexTextFieldSavable;
 import GUI.components.TransparentPanel;
-import book.Book;
-import book.Chapter;
+import book.content.Book;
+import book.content.Chapter;
 
 import java.awt.*;
 

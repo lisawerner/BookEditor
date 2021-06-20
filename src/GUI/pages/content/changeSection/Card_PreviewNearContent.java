@@ -3,9 +3,9 @@ package GUI.pages.content.changeSection;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.TextPreview;
 import GUI.components.TransparentPanel;
-import book.Book;
-import book.Chapter;
-import book.Section;
+import book.content.Book;
+import book.content.Chapter;
+import book.content.Section;
 
 import javax.swing.*;
 

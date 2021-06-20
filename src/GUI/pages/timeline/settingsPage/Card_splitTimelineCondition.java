@@ -2,8 +2,8 @@ package GUI.pages.timeline.settingsPage;
 
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import book.Book;
-import time.SplitCondition;
+import book.content.Book;
+import book.time.SplitCondition;
 
 import javax.swing.*;
 

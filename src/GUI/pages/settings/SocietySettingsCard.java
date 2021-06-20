@@ -3,7 +3,7 @@ package GUI.pages.settings;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import book.Book;
+import book.content.Book;
 
 import java.awt.*;
 
@@ -18,7 +18,7 @@ public class SocietySettingsCard extends TransparentPanel {
 		
 		SimpleLabel lbl_fantasyRacesHint = new SimpleLabel("<html>If you want to write a fantasy-story you can activate race-sysem here.<br/>"
 				+ "With the race-system you can declare races and tag them to persons.<br/>"
-				+ "Without race-system the book-editor think every person is a human.</html>");
+				+ "Without race-system the book-editor think every book.person is a human.</html>");
 		add(lbl_fantasyRacesHint, BorderLayout.NORTH);
 		
 		checkbox_fantasyRaces = new SimpleCheckbox("Activate Race-System");

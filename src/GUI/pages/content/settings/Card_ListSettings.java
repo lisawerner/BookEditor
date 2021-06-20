@@ -3,7 +3,7 @@ package GUI.pages.content.settings;
 import GUI.components.SimpleCheckbox;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import book.Book;
+import book.content.Book;
 
 import javax.swing.*;
 

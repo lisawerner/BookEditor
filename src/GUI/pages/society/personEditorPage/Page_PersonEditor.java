@@ -5,9 +5,9 @@ import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
 import GUI.pages.society.Page_ViewSociety;
-import book.Book;
+import book.content.Book;
 import global.UserSettings;
-import person.Person;
+import book.person.Person;
 
 import javax.swing.*;
 

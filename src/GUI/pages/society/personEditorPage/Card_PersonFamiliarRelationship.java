@@ -1,6 +1,6 @@
 package GUI.pages.society.personEditorPage;
 
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
 import GUI.components.ComboItem;
 import GUI.components.InfoButton;
@@ -8,7 +8,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.SimpleRadiobutton;
 import GUI.components.TransparentPanel;
-import person.Person;
+import book.person.Person;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -182,13 +182,13 @@ public class Card_PersonFamiliarRelationship extends TransparentPanel {
 		
 		if(comboBox_selectPerson.getSelectedIndex() == -1) {
 			canSave = false;
-			lblSaveHint.setText("Can not save! Select a person for adding a familiar relationship!");
+			lblSaveHint.setText("Can not save! Select a book.person for adding a familiar relationship!");
 		}
 		
 		ObjectID selectedPersonID = ((ComboItem) comboBox_selectPerson.getSelectedItem()).getValue();
 		if(selectedPersonID == null) {
 			canSave = false;
-			lblSaveHint.setText("Can not save! Select a person for adding a familiar relationship!");
+			lblSaveHint.setText("Can not save! Select a book.person for adding a familiar relationship!");
 		}
 		
 		if(!rdbtnIsChild.isSelected() && !rdbtnIsParent.isSelected() && !rdbtnIsSpouse.isSelected() && !rdbtnIsDescendant.isSelected() && !rdbtnIsAncestor.isSelected()) {
@@ -197,12 +197,12 @@ public class Card_PersonFamiliarRelationship extends TransparentPanel {
 		}
 		
 		if(canSave) {
-			//Add own familiar relationship to other person
+			//Add own familiar relationship to other book.person
 			my_person.getFamiliarRelation().addRelationship(rdbtnIsChild.isSelected(), rdbtnIsParent.isSelected(),
 					rdbtnIsSpouse.isSelected(),
 					rdbtnIsDescendant.isSelected(), rdbtnIsAncestor.isSelected(),
 					selectedPersonID);
-			//Add reverse familiar relationship for other person
+			//Add reverse familiar relationship for other book.person
 			Book.getInstance().getSociety().getPerson(selectedPersonID).getFamiliarRelation().addRelationship(rdbtnIsParent.isSelected(), rdbtnIsChild.isSelected(),
 						rdbtnIsSpouse.isSelected(),
 						rdbtnIsAncestor.isSelected(), rdbtnIsDescendant.isSelected(),

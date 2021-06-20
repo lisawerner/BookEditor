@@ -1,7 +1,7 @@
 package GUI.components;
 
 import GUI.theme.ThemeList;
-import time.Timestamp;
+import book.time.Timestamp;
 
 import javax.swing.*;
 import java.awt.*;

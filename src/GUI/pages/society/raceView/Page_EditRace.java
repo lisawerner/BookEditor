@@ -2,7 +2,7 @@ package GUI.pages.society.raceView;
 
 import GUI.components.Page;
 import GUI.components.StructureCard;
-import person.Race;
+import book.person.Race;
 
 import javax.swing.*;
 

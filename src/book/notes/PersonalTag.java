@@ -1,4 +1,4 @@
-package notes;
+package book.notes;
 
 import global.SerializedObject;
 

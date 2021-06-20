@@ -3,7 +3,7 @@ package GUI.pages.content.createSection;
 import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
-import book.Chapter;
+import book.content.Chapter;
 import global.UserSettings;
 
 public class Page_createSection extends Page {

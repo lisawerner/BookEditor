@@ -7,8 +7,8 @@ import GUI.components.MenuListButton;
 import GUI.pages.society.Page_ViewSociety;
 import GUI.pages.society.filterPage.Page_FilterPerson;
 import GUI.pages.society.raceSystemPage.Page_RaceSystem;
-import book.Book;
-import person.Person;
+import book.content.Book;
+import book.person.Person;
 
 public class SocietyMenu extends FrameSubmenu {
 	private static final long serialVersionUID = 1L;

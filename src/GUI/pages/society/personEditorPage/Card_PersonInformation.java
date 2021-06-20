@@ -2,11 +2,11 @@ package GUI.pages.society.personEditorPage;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
 import global.UserSettings;
-import person.Person;
-import person.Race;
+import book.person.Person;
+import book.person.Race;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -168,7 +168,7 @@ public class Card_PersonInformation extends TransparentPanel {
 		btngrAge.add(rdbtnAgeBookStart);
 		rdbtnAgeBookStart.addActionListener(e -> updateSaveHint());
 		
-		rdbtnAgeFirstAppearance = new SimpleRadiobutton("... when person appear first time in book");
+		rdbtnAgeFirstAppearance = new SimpleRadiobutton("... when book.person appear first book.time in book");
 		if(my_person != null) {
 			rdbtnAgeFirstAppearance.setSelected(my_person.getInformation().getAgeFirstAppear());}
 		panel_ageValues.add(rdbtnAgeFirstAppearance);
@@ -317,14 +317,14 @@ public class Card_PersonInformation extends TransparentPanel {
 		if(!"".equals(newAge)) {
 			if(!ageFromBookStart && !ageFirstEnter) {
 				canSave = false;
-				lblWarning.setText("WARNING: Can not save person, because age is set, but not the relation to timeline!");
+				lblWarning.setText("WARNING: Can not save book.person, because age is set, but not the relation to timeline!");
 			}
 		}
 		
 		setWarningEnterName(false);
 		String name = txt_name.getText();				
 		if(name.equals("")) {
-			lblWarning.setText("WARNING: Can not save person, because no name was entered!");
+			lblWarning.setText("WARNING: Can not save book.person, because no name was entered!");
 			setWarningEnterName(true);
 			canSave = false;
 		}

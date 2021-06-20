@@ -174,7 +174,7 @@ public class TutorialCard extends Card {
         	case 16:
         		return "<p>Well done!<br/>"
         				+ "You can do same with places.<br/>"
-        				+ "Click on 'World' in left navigation menu and create some places in your fictional/real world by clicking 'Add Place'.</p>";
+        				+ "Click on 'World' in left navigation menu and create some places in your fictional/real book.world by clicking 'Add Place'.</p>";
         	case 17:
         		return "<p>Very good, you found the Page for creating a new Place!<br/>"
         				+ "<br/>"

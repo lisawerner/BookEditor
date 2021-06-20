@@ -2,8 +2,8 @@ package GUI.pages.society.filterPage;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
-import book.Book;
-import person.Person;
+import book.content.Book;
+import book.person.Person;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,7 +92,7 @@ public class Card_FilterRelationships extends TransparentPanel {
 			rdbtnMissingRelationship.setWarning(false);
 		}
 		if(comboBox.getSelectedIndex() == -1) {
-			lblHint.setText("You have to select one person of the list");
+			lblHint.setText("You have to select one book.person of the list");
 			//TODO: comboBox.setWarning(true);
 		} else {
 			lblHint.setText(" ");

@@ -4,7 +4,7 @@ import GUI.components.Page;
 import GUI.components.StructureCard;
 import GUI.components.TutorialCard;
 import global.UserSettings;
-import time.Timestamp;
+import book.time.Timestamp;
 public class Page_ViewTimeline extends Page {
 	private static final long serialVersionUID = 1L;
 	

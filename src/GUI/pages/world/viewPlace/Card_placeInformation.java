@@ -5,7 +5,7 @@ import GUI.components.*;
 import GUI.components.form.FormButton;
 import GUI.components.form.FormTextField;
 import GUI.components.form.SimpleForm;
-import world.Place;
+import book.world.Place;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,7 +46,7 @@ public class Card_placeInformation extends TransparentPanel {
 		panel_placeType.setLayout(new BorderLayout(0, 0));
 		
 		InfoButton btnPlaceTypeInfo = new InfoButton("<html>Enter something like city, state, village, parc, house, disco, living room, ...<br/>"
-				+ "Can changed every time.</html>");
+				+ "Can changed every book.time.</html>");
 		panel_placeType.add(btnPlaceTypeInfo, BorderLayout.EAST);
 		
 		txtPlaceType = new FormTextField("Place-Type:", my_place.getType(), false);

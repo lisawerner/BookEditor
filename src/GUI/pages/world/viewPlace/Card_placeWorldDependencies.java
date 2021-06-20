@@ -2,9 +2,9 @@ package GUI.pages.world.viewPlace;
 
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
-import world.Place;
+import book.world.Place;
 
 import javax.swing.*;
 import java.awt.*;

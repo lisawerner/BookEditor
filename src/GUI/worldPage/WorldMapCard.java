@@ -5,9 +5,9 @@ import GUI.components.InfoButton;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
-import world.Place;
+import book.world.Place;
 
 import javax.swing.*;
 import java.awt.*;

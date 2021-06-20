@@ -5,10 +5,10 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.components.WrapLayout;
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
-import person.Person;
-import person.Race;
+import book.person.Person;
+import book.person.Race;
 
 import javax.swing.*;
 import java.awt.*;

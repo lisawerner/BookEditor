@@ -1,7 +1,7 @@
-package person;
+package book.person;
 import java.util.ArrayList;
 
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
 import global.SerializedObject;
 

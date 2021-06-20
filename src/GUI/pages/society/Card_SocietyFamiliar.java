@@ -4,9 +4,9 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import book.Book;
+import book.content.Book;
 import global.ObjectID;
-import person.Person;
+import book.person.Person;
 
 import javax.swing.*;
 import java.awt.*;

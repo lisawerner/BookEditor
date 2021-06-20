@@ -1,4 +1,4 @@
-package book;
+package book.content;
 
 public class DevelopmentStatus {
 	
@@ -24,7 +24,7 @@ public class DevelopmentStatus {
 	public static String getDevStatDescription(int id) {
 		switch(id) {
 		case 0:
-			return "This Section is only a placeholder and there are nor information inside at the moment.";
+			return "This Section is only a placeholder and there are no information inside at the moment.";
 		case 1:
 			return "This Section is planed and notes are written down, but no text exist at the moment.";
 		case 2:
