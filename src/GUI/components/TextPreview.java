@@ -5,20 +5,28 @@ import global.UserSettings;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class TextPreview extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
+	public final static String TYPE_PREVIEW_BEFORE = "previous_text";
+	public final static String TYPE_PREVIEW_AFTER = "following_text";
+
+	private final JScrollPane scrollPane;
 	private final JPanel panel_viewport;
 	private final SimpleTextarea lblText;
 	
-	public TextPreview(String text, boolean isReview, boolean setHeight) {
+	public TextPreview(String text, String type) {
+		this.validateInput(type);
+
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setOpaque(false);
 		scrollPane.setViewportBorder(BorderFactory.createEmptyBorder());
 		scrollPane.setBorder(BorderFactory.createEmptyBorder());
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scrollPane);
 		
 		panel_viewport = new JPanel();
@@ -33,18 +41,11 @@ public class TextPreview extends TransparentPanel {
 		lblText.setFont(this.getFont().deriveFont((float) UserSettings.getInstance().getTextareaFontSize()));
 		panel_viewport.add(lblText);
 		lblText.setEditable(false);	
-		
-		if(setHeight) {
-			Font font = lblText.getFont();
-			int height = font.getSize() + 4; //Why +4 ??? TODO: Maybe there is something wrong...
-			
-			Dimension dim = scrollPane.getSize();
-			dim.setSize(dim.getWidth(), height*3);
-			scrollPane.setSize(dim);
-			scrollPane.setPreferredSize(dim);
-		}
-		if(isReview) {
-			//Scroll to Bottom
+
+		this.setPreviewAreaHeight();
+
+		if(type.equals(TYPE_PREVIEW_BEFORE)) {
+			//Scroll to bottom of the preview text
 			scrollPane.getViewport().setViewPosition(new Point(0, lblText.getDocument().getLength()));
 		}
 
@@ -66,5 +67,22 @@ public class TextPreview extends TransparentPanel {
 			repaint();
 		}
 	}
-	
+
+	private void validateInput(String type) {
+		String[] TYPES = new String[]{TYPE_PREVIEW_BEFORE, TYPE_PREVIEW_AFTER};
+		if(!Arrays.asList(TYPES).contains(type)) {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private void setPreviewAreaHeight() {
+		Font font = lblText.getFont();
+		int height = font.getSize();
+
+		Dimension dim = scrollPane.getSize();
+		dim.setSize(dim.getWidth(), height*4); //TODO: Why 4 when i want to show 3 lines?
+		scrollPane.setSize(dim);
+		scrollPane.setPreferredSize(dim);
+	}
+
 }

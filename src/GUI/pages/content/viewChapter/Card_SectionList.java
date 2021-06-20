@@ -5,7 +5,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.createSection.Page_createSection;
-import GUI.sectionPage.SectionPage;
+import GUI.pages.content.viewSection.Page_ViewSection;
 import book.Book;
 import book.Chapter;
 import book.DevelopmentStatus;
@@ -30,7 +30,7 @@ public class Card_SectionList extends TransparentPanel {
 			add(panel_section);
 			
 			LinkButton lbl_sectionTitle = new LinkButton(section.getName(),
-					e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter)));
+					e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, chapter)));
 			panel_section.add(lbl_sectionTitle);
 			
 			panel_section.add(new SimpleLabel((getAdditionalSectionInformation(section))));

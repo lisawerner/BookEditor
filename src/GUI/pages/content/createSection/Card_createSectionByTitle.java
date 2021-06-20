@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.ComplexTextFieldSavable;
 import GUI.components.InfoButton;
 import GUI.components.TransparentPanel;
-import GUI.sectionPage.SectionPage;
+import GUI.pages.content.viewSection.Page_ViewSection;
 import book.Chapter;
 import book.Section;
 import global.UserSettings;
@@ -38,7 +38,7 @@ public class Card_createSectionByTitle extends TransparentPanel {
 				UserSettings.getInstance().getTutorial().createFirstSection = true;
 				UserSettings.getInstance().save();
 			}
-			BookEditorFrame.getInstance().switchBody(new SectionPage(newSection, my_parentChapter));
+			BookEditorFrame.getInstance().switchBody(new Page_ViewSection(newSection, my_parentChapter));
 
 //			BookEditorFrame.getInstance().reloadMenu();
 		}

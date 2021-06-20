@@ -5,7 +5,7 @@ import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import GUI.pages.content.viewChapter.Page_viewChapter;
-import GUI.sectionPage.SectionPage;
+import GUI.pages.content.viewSection.Page_ViewSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -34,7 +34,7 @@ public class Card_RelativeList extends TransparentPanel {
 				panel_TimeRelationTree.add(panel_child);
 				
 				panel_child.add(new LinkButton(section.getName(),
-						e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, chapter))));
+						e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, chapter))));
 				
 				panel_child.add(new SimpleLabel("  [Chapter: "));
 				
@@ -77,7 +77,7 @@ public class Card_RelativeList extends TransparentPanel {
 					panel_child.add(new SimpleLabel(space + " "));
 					
 					panel_child.add(new LinkButton(ownSection.getName(),
-							e -> BookEditorFrame.getInstance().switchBody(new SectionPage(ownSection, chapter))));
+							e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(ownSection, chapter))));
 					
 					panel_child.add(new SimpleLabel("  [Chapter: "));
 					

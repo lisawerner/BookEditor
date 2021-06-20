@@ -1,4 +1,4 @@
-package GUI.sectionPage;
+package GUI.pages.content.viewSection;
 
 import GUI.components.*;
 import GUI.components.form.FormButton;
@@ -9,7 +9,7 @@ import book.Section;
 import javax.swing.*;
 import java.awt.*;
 
-public class EditSectionTextCard extends TransparentPanel {
+public class Card_EditSectionText extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final Section my_section;
@@ -20,7 +20,7 @@ public class EditSectionTextCard extends TransparentPanel {
 	private final FormTextarea textArea;
 	private final SimpleLabel lblCounts;
 	
-	public EditSectionTextCard(Section openedSection) {
+	public Card_EditSectionText(Section openedSection) {
 		my_section = openedSection;
 		setLayout(new BorderLayout(10, 10));
 
@@ -55,14 +55,14 @@ public class EditSectionTextCard extends TransparentPanel {
 		panel_changeFontButtons.setLayout(new GridLayout(1, 0, 5, 5));
 		
 		//TODO: Try again to add bold/italic and other stuff to text.... :/
-		JButton btnBold = new JButton("bold");
-		panel_changeFontButtons.add(btnBold);
-		btnBold.setEnabled(false);
-		//btnBold.addActionListener(e -> makeTextBold());
-				
-		JButton btnItalic = new JButton("italic");
-		panel_changeFontButtons.add(btnItalic);
-		btnItalic.setEnabled(false);
+//		JButton btnBold = new JButton("bold");
+//		panel_changeFontButtons.add(btnBold);
+//		btnBold.setEnabled(false);
+//		//btnBold.addActionListener(e -> makeTextBold());
+//
+//		JButton btnItalic = new JButton("italic");
+//		panel_changeFontButtons.add(btnItalic);
+//		btnItalic.setEnabled(false);
 
 	}
 

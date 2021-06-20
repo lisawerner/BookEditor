@@ -4,7 +4,7 @@ import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.LinkButton;
 import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
-import GUI.sectionPage.SectionPage;
+import GUI.pages.content.viewSection.Page_ViewSection;
 import book.Book;
 import book.Chapter;
 import book.Section;
@@ -28,7 +28,7 @@ public class Card_PersonTag extends TransparentPanel {
 						panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 						add(panel);
 						panel.add(new LinkButton(section.getName(),
-								e -> BookEditorFrame.getInstance().switchBody(new SectionPage(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
+								e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSection(section, Book.getInstance().getTableOfContent().getChapter(section.getParentChapterID())))));
 						panel.add(new SimpleLabel(";  "));
 					}
 				}
