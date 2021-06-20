@@ -46,7 +46,7 @@ public class PersonInformation {
 	public void editInformation(String newName, String newNickname,
 			String newAge, boolean ageBookStart, boolean ageFirstAppearance, boolean isDeathBeforeBookStart, String newDeathTime,
 			boolean newIsSuperMainCharacter, boolean newIsMainCharacter,
-			String newNotes, ObjectID newRace, ObjectID OWNid) {
+			String newNotes, ObjectID newRace) {
 		my_name = newName;
 		my_nickname = newNickname;
 		
@@ -60,8 +60,7 @@ public class PersonInformation {
 		isMainCharacter = newIsMainCharacter;
 		
 		my_notes = newNotes;
-		
-		Book.getInstance().getSociety().updateRaceRepresentatives(my_race, newRace, OWNid);
+
 		my_race = newRace;
 		
 		Book.getInstance().getSociety().sortPersons();

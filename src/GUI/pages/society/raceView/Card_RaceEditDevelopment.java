@@ -97,7 +97,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		panel_crazyDescendantStructurePanel.setLayout(new BoxLayout(panel_crazyDescendantStructurePanel, BoxLayout.X_AXIS));
 		
 		for(ObjectID descendantID : my_race.getDescendants()) {
-			Race descendant = Book.getInstance().getSociety().getRace(descendantID);
+			Race descendant = Book.getInstance().getSociety().getRaceSystem().getRace(descendantID);
 			
 			panel_crazyDescendantStructurePanel.add(new LinkButton(descendant.getName(),
 					e -> BookEditorFrame.getInstance().openRacePage(descendant)));
@@ -169,8 +169,8 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 		if(my_race.hasAscendants()) {
 			lbl_noAscendants.setText("     '" + my_race.getName() + "' is descendant of: ");
 			
-			panel_showAscendantInformation.add(new LinkButton(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant()).getName(),
-					e -> BookEditorFrame.getInstance().openRacePage(Book.getInstance().getSociety().getRace(my_race.getFirstAscendant()))));
+			panel_showAscendantInformation.add(new LinkButton(Book.getInstance().getSociety().getRaceSystem().getRace(my_race.getFirstAscendant()).getName(),
+					e -> BookEditorFrame.getInstance().openRacePage(Book.getInstance().getSociety().getRaceSystem().getRace(my_race.getFirstAscendant()))));
 		} else {
 			lbl_noAscendants = new SimpleLabel("     '" + my_race.getName() + "' is first of its kind!");
 		}
@@ -193,7 +193,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 				panel_allInfo.add(panel_children);
 				panel_children.setLayout(new BoxLayout(panel_children, BoxLayout.X_AXIS));
 				
-				Race child = Book.getInstance().getSociety().getRace(childID);
+				Race child = Book.getInstance().getSociety().getRaceSystem().getRace(childID);
 				panel_children.add(new LinkButton(child.getName(),
 						e -> BookEditorFrame.getInstance().openRacePage(child)));
 				panel_children.add(new SimpleLabel(";"));
@@ -208,7 +208,7 @@ public class Card_RaceEditDevelopment extends TransparentPanel {
 			SimpleLabel lblIsSubtypeOf = new SimpleLabel("Is Subtype of: ");
 			panel_parentType.add(lblIsSubtypeOf);
 			
-			Race parent = Book.getInstance().getSociety().getRace(my_race.getParentRace());
+			Race parent = Book.getInstance().getSociety().getRaceSystem().getRace(my_race.getParentRace());
 			panel_parentType.add(new LinkButton(parent.getName(),
 					e -> BookEditorFrame.getInstance().openRacePage(parent)));
 		}

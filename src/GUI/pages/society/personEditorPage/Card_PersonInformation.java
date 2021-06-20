@@ -3,10 +3,10 @@ package GUI.pages.society.personEditorPage;
 import GUI.bookeditorFrame.BookEditorFrame;
 import GUI.components.*;
 import book.content.Book;
-import global.ObjectID;
-import global.UserSettings;
 import book.person.Person;
 import book.person.Race;
+import global.ObjectID;
+import global.UserSettings;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -40,7 +40,7 @@ public class Card_PersonInformation extends TransparentPanel {
 	
 	public Card_PersonInformation(Person person) {
 		my_person = person;
-		if(Book.getInstance().getSociety().isRaceSystemActivated()) {
+		if(Book.getInstance().getSociety().getRaceSystem().isRaceSystemActivated()) {
 			if(my_person != null) {				
 				selectedRace = my_person.getInformation().getRace();
 			}
@@ -228,14 +228,14 @@ public class Card_PersonInformation extends TransparentPanel {
 		
 		//*********************************************************************************
 		TransparentPanel panel_raceSelection = new TransparentPanel();
-		if(Book.getInstance().getSociety().isRaceSystemActivated()) {add(panel_raceSelection);}
+		if(Book.getInstance().getSociety().getRaceSystem().isRaceSystemActivated()) {add(panel_raceSelection);}
 		
 		SimpleLabel lblCharacterRace = new SimpleLabel("Character Race:");
 		panel_raceSelection.add(lblCharacterRace);
 		
 		ButtonGroup btnGroup_races = new ButtonGroup();
 		
-		for(Race race : Book.getInstance().getSociety().getRaces()) {
+		for(Race race : Book.getInstance().getSociety().getRaceSystem().getRaces()) {
 			TransparentPanel panel_singleRace = new TransparentPanel();
 			panel_singleRace.setLayout(new BoxLayout(panel_singleRace, BoxLayout.LINE_AXIS));
 			panel_raceSelection.add(panel_singleRace);
@@ -243,7 +243,7 @@ public class Card_PersonInformation extends TransparentPanel {
 			SimpleRadiobutton checkbox_race = new SimpleRadiobutton(race.getName());
 			ObjectID parentRace = race.getParentRace();
 			if(parentRace != null){
-				checkbox_race.setText("[" + Book.getInstance().getSociety().getRace(parentRace).getName() + ":] " + race.getName());
+				checkbox_race.setText("[" + Book.getInstance().getSociety().getRaceSystem().getRace(parentRace).getName() + ":] " + race.getName());
 			}
 			panel_singleRace.add(checkbox_race);
 			btnGroup_races.add(checkbox_race);
@@ -348,7 +348,7 @@ public class Card_PersonInformation extends TransparentPanel {
 				my_person.getInformation().editInformation(name, newNickname, 
 						newAge, ageFromBookStart, ageFirstEnter, checkboxDiedBeforeThe.isSelected(), txt_deathInYears.getText(),
 						rdbtn_superMain.isSelected(), rdbtn_onlyOften.isSelected(), 
-						txt_notes.getText(), selectedRace, my_person.getID());
+						txt_notes.getText(), selectedRace);
 			}
 			lblWarning.setText("<html>" + saveMessage + "<br>Successfully saved</html>");
 		}	

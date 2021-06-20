@@ -14,7 +14,7 @@ public class Page_FilterPerson extends Page {
 		//*********************************************************************************
 		this.addCard(new StructureCard("Filter Persons:", new Card_PersonFilter()));
 		this.addCard(new StructureCard("Filter Persons by Relationship:", new Card_FilterRelationships()));
-		if(Book.getInstance().getSociety().isRaceSystemActivated()) {this.addCard(new StructureCard("Filter Persons by Race:", new Card_FilterRace()));}
+		if(Book.getInstance().getSociety().getRaceSystem().isRaceSystemActivated()) {this.addCard(new StructureCard("Filter Persons by Race:", new Card_FilterRace()));}
 
 	}
 

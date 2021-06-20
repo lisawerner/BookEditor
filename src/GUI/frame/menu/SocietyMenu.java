@@ -17,7 +17,7 @@ public class SocietyMenu extends FrameSubmenu {
 		super("Society:", "List of Persons:");
 		
 		addButton(new MenuButton("View Society", e -> BookEditorFrame.getInstance().switchBody(new Page_ViewSociety())));
-		if(Book.getInstance().getSociety().isRaceSystemActivated()){			
+		if(Book.getInstance().getSociety().getRaceSystem().isRaceSystemActivated()){
 			addButton(new MenuButton("View Race-System", e -> BookEditorFrame.getInstance().switchBody(new Page_RaceSystem())));
 		}
 		addButton(new MenuButton("Filter Persons", e -> BookEditorFrame.getInstance().switchBody(new Page_FilterPerson())));

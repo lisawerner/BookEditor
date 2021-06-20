@@ -32,7 +32,7 @@ public class Card_FilterRace extends TransparentPanel {
 		
 		this.add(new SimpleLabel("Person with Race:"));
 		
-		for(Race race : Book.getInstance().getSociety().getRaces()) {
+		for(Race race : Book.getInstance().getSociety().getRaceSystem().getRaces()) {
 			SimpleRadiobutton rdbtnRace = new SimpleRadiobutton(race.getName());
 			rdbtnRace.addActionListener(e -> showPersonsRace(race));
 			panel_selectFilter.add(rdbtnRace);

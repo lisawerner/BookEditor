@@ -37,7 +37,7 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 	
 	private ArrayList<Race> getRootRaces(){
 		ArrayList<Race> rootRaces = new ArrayList<>();
-		for(Race race : Book.getInstance().getSociety().getRaces()){
+		for(Race race : Book.getInstance().getSociety().getRaceSystem().getRaces()){
 			if(race.getParentRace() == null && race.getFirstAscendant() == null){
 				rootRaces.add(race);
 			}
@@ -64,7 +64,7 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 			panel_RaceWithSubtypes.add(lbl_leftBrace);
 			
 			for(ObjectID subtypeID : currentRace.getSubtypes()){
-				Race subtype = Book.getInstance().getSociety().getRace(subtypeID);
+				Race subtype = Book.getInstance().getSociety().getRaceSystem().getRace(subtypeID);
 				panel_RaceWithSubtypes.add(new LinkButton(subtype.getName(),
 						e -> BookEditorFrame.getInstance().openRacePage(subtype)));
 				panel_RaceWithSubtypes.add(new SimpleLabel("; "));
@@ -75,7 +75,7 @@ public class Card_RaceDevelopmentTree extends TransparentPanel {
 		}
 		
 		for(ObjectID childID : currentRace.getDescendants()){
-			Race child = Book.getInstance().getSociety().getRace(childID);
+			Race child = Book.getInstance().getSociety().getRaceSystem().getRace(childID);
 			currentSpace += "      ";
 			addRace(panel_raceTree, child, currentSpace);
 		}

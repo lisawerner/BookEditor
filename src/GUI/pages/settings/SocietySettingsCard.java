@@ -5,12 +5,13 @@ import GUI.components.SimpleLabel;
 import GUI.components.TransparentPanel;
 import book.content.Book;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class SocietySettingsCard extends TransparentPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private final SimpleCheckbox checkbox_fantasyRaces;
+	private SimpleCheckbox checkbox_fantasyRaces;
 
 	public SocietySettingsCard() {
 		
@@ -20,15 +21,31 @@ public class SocietySettingsCard extends TransparentPanel {
 				+ "With the race-system you can declare races and tag them to persons.<br/>"
 				+ "Without race-system the book-editor think every book.person is a human.</html>");
 		add(lbl_fantasyRacesHint, BorderLayout.NORTH);
-		
+
+		this.buildRaceSystemStuff();
+	}
+
+	private void buildRaceSystemStuff() {
+		TransparentPanel panel_raceSystem = new TransparentPanel();
+		panel_raceSystem.setLayout(new BoxLayout(panel_raceSystem, BoxLayout.LINE_AXIS));
+		add(panel_raceSystem, BorderLayout.CENTER);
+
 		checkbox_fantasyRaces = new SimpleCheckbox("Activate Race-System");
-		checkbox_fantasyRaces.setSelected(Book.getInstance().getSociety().isRaceSystemActivated());
-		add(checkbox_fantasyRaces, BorderLayout.CENTER);
+		checkbox_fantasyRaces.setSelected(Book.getInstance().getSociety().getRaceSystem().isRaceSystemActivated());
+		panel_raceSystem.add(checkbox_fantasyRaces);
+		if(!Book.getInstance().getSociety().getRaceSystem().canChangeActivationOfSystem()
+		) {
+			checkbox_fantasyRaces.setEnabled(false);
+			SimpleLabel lbl_deleteWarning = new SimpleLabel("Can not deactivate race system when still races or representatives exist.");
+			lbl_deleteWarning.setWarning(true);
+			panel_raceSystem.add(lbl_deleteWarning);
+
+		}
 		checkbox_fantasyRaces.addActionListener(e -> changeRaceSystemSettings());
 	}
 
 	private void changeRaceSystemSettings() {
-		Book.getInstance().getSociety().activateRaceSettings(checkbox_fantasyRaces.isSelected());
+		Book.getInstance().getSociety().getRaceSystem().activateRaceSettings(checkbox_fantasyRaces.isSelected());
 	}
 
 }

@@ -1,11 +1,9 @@
 package book.person;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import book.content.Book;
 import global.ObjectID;
 import global.SerializedObject;
+
+import java.util.ArrayList;
 
 public class Person extends SerializedObject {
 	
@@ -24,7 +22,6 @@ public class Person extends SerializedObject {
 		my_information = new PersonInformation(newName, newNickname, 
 				newAge, ageBookStart, ageFirstAppearance, isDeathBeforeBookStart, newDeathTime,
 				newIsSuperMainCharacter, newIsMainCharacter, newNotes, newRace);
-		Book.getInstance().getSociety().updateRaceRepresentatives(newRace, this.getID());
 		my_relationships = new ArrayList<>();
 		my_familiarRelationships = new FamiliarRelationship();
 	}
@@ -61,10 +58,6 @@ public class Person extends SerializedObject {
 	
 	public boolean equals(ObjectID otherPerson) {
 		return this.my_uID.getIDtoString().equals(otherPerson.getIDtoString());
-	}
-
-	protected void setRelationships(List<ObjectID> filteredRelationships) {
-		my_relationships = (ArrayList<ObjectID>) filteredRelationships;	
 	}
 	
 	public FamiliarRelationship getFamiliarRelation() {

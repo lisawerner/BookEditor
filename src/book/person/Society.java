@@ -1,28 +1,20 @@
 package book.person;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import book.content.Book;
 import book.content.Chapter;
 import book.content.Section;
 import global.ObjectID;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Society {
 	
 	private ArrayList<Person> my_persons;
-	
-	private boolean isAFantasyStory;
-	private ArrayList<Race> my_races;
-	
-	public Society() {
-		my_persons = new ArrayList<>();
-		
-		isAFantasyStory = false;
-		my_races = new ArrayList<>();
-	}
+
+	private RaceSystem my_raceSystem;
 	
 	public List<Person> getPersonListOfSuperMainCharacters() {
 		if(my_persons == null) {return new ArrayList<>();}
@@ -180,67 +172,23 @@ public class Society {
 		my_persons = newList;
 		Book.getInstance().save();
 	}
-
-	public void activateRaceSettings(boolean selected) {
-		isAFantasyStory = selected;
-		Book.getInstance().save();
-	}
-
-	public boolean isRaceSystemActivated() {
-		return isAFantasyStory;
-	}
-
-	public void addRace(Race race) {
-		if(my_races == null) { my_races = new ArrayList<>();}
-
-		my_races.add(race);
-		Book.getInstance().save();
-	}
-
-	public ArrayList<Race> getRaces() {
-		return my_races;
-	}
 	
 	public ArrayList<Person> getPersonListByRace(Race filteredRace) {
+		if(filteredRace == null) {
+			return this.getPersonListWithEmptyRace();
+		}
+
 		ArrayList<Person> filteredList = new ArrayList<>();
 		
 		for(Person person : my_persons) {
-			if(filteredRace == null) {
-				if(person.getInformation().getRace() == null) {
+			if(person.getInformation().getRace() != null) {
+				if(person.getInformation().getRace().equals(filteredRace.getID())) {
 					filteredList.add(person);
-				}
-			} else {				
-				if(person.getInformation().getRace() != null) {				
-					if(person.getInformation().getRace().equals(filteredRace.getID())) {
-						filteredList.add(person);
-					}
 				}
 			}
 		}
 		
 		return filteredList;
-	}
-
-	public void updateRaceRepresentatives(ObjectID raceID, ObjectID personID) {
-		if(raceID != null) {			
-			getRace(raceID).addRepresentative(personID);
-		}
-	}
-
-	public Race getRace(ObjectID raceID) {
-		for(Race race : my_races) {
-			if(race.getID().equals(raceID)) {
-				return race;
-			}
-		}
-		return null;
-	}
-
-	public void updateRaceRepresentatives(ObjectID oldRaceID, ObjectID newRace, ObjectID personID) {
-		if(oldRaceID != null) {			
-			getRace(oldRaceID).removeRepresentative(personID);
-		}
-		updateRaceRepresentatives(newRace, personID);
 	}
 
 	public ArrayList<Person> getPersonListFirstAncestors() {
@@ -254,5 +202,22 @@ public class Society {
 		return ancestorList;
 	}
 
+	public RaceSystem getRaceSystem() {
+		if(my_raceSystem == null) {
+			my_raceSystem = new RaceSystem();
+		}
+		return my_raceSystem;
+	}
+	private ArrayList<Person> getPersonListWithEmptyRace() {
+		ArrayList<Person> filteredList = new ArrayList<>();
+
+		for(Person person : my_persons) {
+			if(person.getInformation().getRace() == null) {
+				filteredList.add(person);
+			}
+		}
+
+		return filteredList;
+	}
 
 }

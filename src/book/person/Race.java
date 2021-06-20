@@ -1,9 +1,10 @@
 package book.person;
-import java.util.ArrayList;
 
 import book.content.Book;
 import global.ObjectID;
 import global.SerializedObject;
+
+import java.util.ArrayList;
 
 public class Race extends SerializedObject {
 	
@@ -17,9 +18,6 @@ public class Race extends SerializedObject {
 	
 	private ObjectID isSubtypeOf;
 	private ArrayList<ObjectID> my_subtypes;
-
-	private final ArrayList<ObjectID> my_representative;
-		
 	
 	public Race(String newRaceName, String newNotes) {
 		super();
@@ -33,8 +31,6 @@ public class Race extends SerializedObject {
 		
 		isSubtypeOf = null;
 		my_subtypes = new ArrayList<>();
-		
-		my_representative = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -43,18 +39,6 @@ public class Race extends SerializedObject {
 
 	public String getNotes() {
 		return my_notes;
-	}
-
-	public void addRepresentative(ObjectID personID) {
-		my_representative.add(personID);
-	}
-
-	public void removeRepresentative(ObjectID personID) {
-		my_representative.remove(personID);
-	}
-	
-	public ArrayList<ObjectID> getRepresentative(){
-		return my_representative;
 	}
 
 	public void edit(String newRaceName, String newNotes) {
@@ -73,7 +57,7 @@ public class Race extends SerializedObject {
 		if(my_subtypes == null){my_subtypes = new ArrayList<>();}
 		if(my_descendants == null){my_descendants = new ArrayList<>();}
 		ArrayList<ObjectID> allDescendants = getCompleteDescendantList();
-		for(Race race : Book.getInstance().getSociety().getRaces()) {
+		for(Race race : Book.getInstance().getSociety().getRaceSystem().getRaces()) {
 			if(race.isPossible(this, my_subtypes, allDescendants)) {
 				possibleRaces.add(race);
 			}
@@ -103,7 +87,7 @@ public class Race extends SerializedObject {
 	private ArrayList<ObjectID> getCompleteDescendantList(){
 		ArrayList<ObjectID> descendantList = new ArrayList<>(my_descendants);
 		for(ObjectID desc : my_descendants){
-			descendantList.addAll(Book.getInstance().getSociety().getRace(desc).getCompleteDescendantList());
+			descendantList.addAll(Book.getInstance().getSociety().getRaceSystem().getRace(desc).getCompleteDescendantList());
 		}
 		return descendantList;
 	}
@@ -111,26 +95,25 @@ public class Race extends SerializedObject {
 	public void setSingleAscending(ObjectID newAscendant) {
 		//Remove old relationships
 		if(my_firstAscendant != null) {		
-			Book.getInstance().getSociety().getRace(my_firstAscendant).removeDescendant(this.getID());
+			Book.getInstance().getSociety().getRaceSystem().getRace(my_firstAscendant).removeDescendant(this.getID());
 		}
 		if(my_secondAscendant != null) {			
-			Book.getInstance().getSociety().getRace(my_secondAscendant).removeDescendant(this.getID());
+			Book.getInstance().getSociety().getRaceSystem().getRace(my_secondAscendant).removeDescendant(this.getID());
 		}
 		
 		//Set new relationships
 		my_firstAscendant = newAscendant;
 		my_secondAscendant = null;
-		Book.getInstance().getSociety().getRace(my_firstAscendant).addDescendant(this.getID());
+		Book.getInstance().getSociety().getRaceSystem().getRace(my_firstAscendant).addDescendant(this.getID());
 		
 		Book.getInstance().save();
 	}
 
 	private void removeDescendant(ObjectID removeDescendant) {
-		if(my_descendants == null) {my_descendants = new ArrayList<>();}
 		if(my_descendants != null) {
 			my_descendants.remove(removeDescendant);
 			Book.getInstance().save();
-		}		
+		}
 	}
 
 	private void addDescendant(ObjectID newDescendant) {
@@ -156,7 +139,7 @@ public class Race extends SerializedObject {
 
 	public ArrayList<Race> getPossibleParents() {
 		ArrayList<Race> selectedRaces = new ArrayList<>();
-		for(Race race : Book.getInstance().getSociety().getRaces()) {
+		for(Race race : Book.getInstance().getSociety().getRaceSystem().getRaces()) {
 			if(!this.getID().equals(race.getID()) && race.isSubtypeOf == null) {
 				selectedRaces.add(race);
 			}
@@ -167,12 +150,12 @@ public class Race extends SerializedObject {
 	public void setParentType(ObjectID newParent) {
 		//Remove old relationship
 		if(isSubtypeOf != null) {
-			Book.getInstance().getSociety().getRace(isSubtypeOf).removeSubtype(this.getID());
+			Book.getInstance().getSociety().getRaceSystem().getRace(isSubtypeOf).removeSubtype(this.getID());
 		}
 		
 		//Set new relationship
 		isSubtypeOf = newParent;
-		Book.getInstance().getSociety().getRace(isSubtypeOf).addSubtype(this.getID());
+		Book.getInstance().getSociety().getRaceSystem().getRace(isSubtypeOf).addSubtype(this.getID());
 	}
 
 	private void addSubtype(ObjectID addChild) {

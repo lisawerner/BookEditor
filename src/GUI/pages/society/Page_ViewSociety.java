@@ -14,7 +14,7 @@ public class Page_ViewSociety extends Page {
 		
 		this.addCard(new StructureCard("Persons Importance", new Card_PersonImportance()));
 		
-		if(Book.getInstance().getSociety().isRaceSystemActivated()) {
+		if(Book.getInstance().getSociety().getRaceSystem().isRaceSystemActivated()) {
 			this.addCard(new StructureCard("Race Society", new Card_RaceSociety()));
 		}
 	}

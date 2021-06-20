@@ -41,7 +41,7 @@ public class Element_RaceSociety extends TransparentPanel {
 			
 		} else {
 			for(ObjectID typeID : race.getSubtypes()){			
-				Race subtype = Book.getInstance().getSociety().getRace(typeID);
+				Race subtype = Book.getInstance().getSociety().getRaceSystem().getRace(typeID);
 				
 				TransparentPanel panel_subtypeMemberList = new TransparentPanel();
 				panel_subtypeMemberList.setLayout(new FlowLayout(FlowLayout.LEADING));

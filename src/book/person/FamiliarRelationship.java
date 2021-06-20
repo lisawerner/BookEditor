@@ -1,9 +1,9 @@
 package book.person;
 
-import java.util.ArrayList;
-
 import book.content.Book;
 import global.ObjectID;
+
+import java.util.ArrayList;
 
 public class FamiliarRelationship {
 
@@ -21,7 +21,12 @@ public class FamiliarRelationship {
 		my_distantAncestor = new ArrayList<>();
 	}
 
-	public void addRelationship(boolean childRelation, boolean parentRelation, boolean spouseRelation, boolean distantDescendant, boolean distantAncestor, ObjectID otherPersonID) {
+	public void addRelationship(
+			boolean childRelation, boolean parentRelation,
+			boolean spouseRelation,
+			boolean distantDescendant, boolean distantAncestor,
+			ObjectID otherPersonID
+	) {
 		if(childRelation) {
 			my_parents.add(otherPersonID);
 		} else if(parentRelation) {

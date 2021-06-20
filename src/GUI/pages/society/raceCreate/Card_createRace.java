@@ -38,7 +38,7 @@ public class Card_createRace extends TransparentPanel {
 	private void save() {
 		if(!txt_raceName.getText().isEmpty()) {
 			Race newRace = new Race(txt_raceName.getText(), txt_raceNotes.getText());
-			Book.getInstance().getSociety().addRace(newRace);
+			Book.getInstance().getSociety().getRaceSystem().addRace(newRace);
 			BookEditorFrame.getInstance().openRacePage(newRace);
 		}
 	}
